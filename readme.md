@@ -8,4 +8,4 @@ y una plataforma abierta al publico general para concretar partidos en dicha can
 diferentes equipos registrados en la web.
 ~~~
 
-![logoFulbito](logof.png "hayFulbito")  
+![logoFulbito](logo.png "hayFulbito")  
