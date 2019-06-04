@@ -7,5 +7,6 @@ de canchas de futbol reducido (gestionar turnos, cobranzas y cuestiones administ
 y una plataforma abierta al publico general para concretar partidos en dicha cancha con
 diferentes equipos registrados en la web.
 ~~~
-
+<p align="center">
 ![logoFulbito](logo.png "hayFulbito")  
+<p>
