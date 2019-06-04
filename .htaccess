@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	#Evito la redireccion cuando se solicita /img
+	RewriteCond %{REQUEST_URI} !/img/
+
+	#No muestro Errores
+	#php_flag display_startup_errors off
+	#php_flag display_errors off
+	#php_flag html_errors off
+
+	RewriteRule ^(.*)$ index.php [QSA,L]
+
+</IfModule>
