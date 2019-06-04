@@ -1,6 +1,6 @@
-#Trabajo Practico Final Integrador PAW - Hay Fulbito!!
-
-##Motivación
+# Trabajo Practico Final Integrador PAW - Hay Fulbito!!  
+  
+## Motivación
 ~~~
 Hay fulbito’ es una web que surge de la idea de fusionar una plataforma de administración
 de canchas de futbol reducido (gestionar turnos, cobranzas y cuestiones administrativas)
