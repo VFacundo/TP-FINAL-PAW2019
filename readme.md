@@ -8,5 +8,5 @@ y una plataforma abierta al publico general para concretar partidos en dicha can
 diferentes equipos registrados en la web.
 ~~~
 <p align="center">
-![logoFulbito](logo.png "hayFulbito")  
-<p>
+<img src="logo.png" title="fulbito Logo" width="300" height="300">
+</p>
