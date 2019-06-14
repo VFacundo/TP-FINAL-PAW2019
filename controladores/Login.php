@@ -55,7 +55,7 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     if($db->buscarUser($ident)===TRUE){
       if($db->loginUser($ident,$pass)===TRUE){
         $_SESSION['mensaje'] = 'Logueado';
-        $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
+        $this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
       }else{
         $_SESSION['mensaje'] = 'Contraseña Incorrecta';
         $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');

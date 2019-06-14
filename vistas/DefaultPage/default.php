@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1>Pagina de Inicio Under Construction</h1>
-      <video id="reproductor" controls preload="auto" src="http://thenewcode.com/assets/videos/backflip.mp4" autoplay> </video>
+      <video id="reproductor" controls preload="auto" width="200" height="200"  src="http://thenewcode.com/assets/videos/backflip.mp4" autoplay> </video>
       <a href="login/registro">Crear Cuenta</a>
       <a href="login">Login</a>
   </body>
