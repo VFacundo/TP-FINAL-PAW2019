@@ -1,8 +1,0 @@
-[
-  {
-      "host": "localhost",
-      "dbname":"dbturnos",
-      "user": "user",
-      "pass": "user"
-  }
-]

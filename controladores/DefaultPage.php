@@ -3,12 +3,10 @@ namespace UNLu\PAW\Controladores;
 use UNLu\PAW\Libs\VIstaHTML;
 
 class DefaultPage extends \UNLu\PAW\Libs\Controlador{
-    public function Default(){
+    public function Default($mensaje=null){
       //carga la vista default
-      $carga = $_SERVER['REQUEST_URI'].'Formulario/cargar';
-      $this->pasarVariableAVista('carga',$carga);
-
-      $admin = $_SERVER['REQUEST_URI'].'Administracion/listar';
-      $this->pasarVariableAVista('admin',$admin);
+      $this->pasarVariableAVista('action','Login/loginUser');
+      $this->pasarVariableAVista('mensaje',$mensaje);
     }
+
 }

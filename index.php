@@ -6,7 +6,6 @@ use UNLu\PAW\Libs\Despachador;
 use UNLu\PAW\Libs\Router;
 
 $router = new Router();
-
 $solicitud = substr($_SERVER['REQUEST_URI'],1);//Obtengo la url q ing el user
 $solicitud = strstr($solicitud,'/');
 $solicitud = strtolower($solicitud);
@@ -15,18 +14,14 @@ $despachador = new Despachador($router);
 $configuracion = new Configuracion(__DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'app.php');
 $rutaPorDefecto = $configuracion->getConfiguracion('Router.accionPorDefecto');
 
-/*
-if(!(is_null($rutaPorDefecto)) && (strlen($solicitud))<=1){
-    $router->setRutaPorDefecto($rutaPorDefecto);
-}else{
-  $rutaPorDefecto = $router->route($solicitud);
-  $router->setRutaPorDefecto($rutaPorDefecto);
-}
-*/
-
 if(strlen($solicitud)>1){
   $rutaPorDefecto = $router->route($solicitud);
-  //var_dump($rutaPorDefecto);
+  //$rutaPorDefecto = $configuracion->getConfiguracion('');
+    if(sizeof($rutaPorDefecto)==1){//Si la ruta x default == 1 significa que solo ing el controlador, return el default del controlador
+      //Los default d los controladores deben registrar en app.php
+      $solicitud = str_replace("/","",$solicitud);
+      $rutaPorDefecto = $configuracion->getConfiguracion($solicitud .= '.accionPorDefecto');
+  }
 }
 
 if(!is_null($rutaPorDefecto)){

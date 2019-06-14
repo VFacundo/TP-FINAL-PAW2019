@@ -1,0 +1,10 @@
+[
+    {
+        "dbname": "dbFulbito",
+        "dbhost": "localhost",
+        "dbport": "3306",
+        "username": "user",
+        "pass": "user",
+        "folder": "fulbitoWeb"
+    }
+]

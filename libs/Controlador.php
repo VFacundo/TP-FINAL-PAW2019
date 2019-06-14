@@ -29,6 +29,12 @@ abstract class Controlador {
         exit();
     }
 
+    public function redireccionarA($request,$ruta){//Recibe $_SERVER['REQUEST_URI'], /ruta/a
+      $request = explode('/',$request);//La separo por "/"
+      header('Location:/'. $request[1] . $ruta);
+      exit();
+    }
+
     public function ejecutarAccion($nombre, $parametros = []){
         //call_user_method_array($nombre, $this, $parametros);
         call_user_func_array([$this,$nombre], $parametros);

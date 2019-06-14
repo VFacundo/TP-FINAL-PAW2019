@@ -39,7 +39,7 @@ class Despachador {
             return new $className();
         }else{
             //die("Controlador no existente: $className");
-            die('Error 404');
+            die("Error 404 $className");
         }
     }
 }
