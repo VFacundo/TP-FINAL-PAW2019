@@ -1,2 +1,5 @@
-Registro de usuarios. Email Unico, Username Unico, Clave almacenada con Hash
-Login de Usuario Por Mail o Usenarma
+-Registro de usuarios. Email Unico, Username Unico, Clave almacenada con Hash
+-Login de Usuario Por Mail o Username
+-Controlador Session
+-Session Timeout
+-Session Logout
