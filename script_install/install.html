@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Install Fulbito!</title>
+    <link rel="stylesheet" href="styles/inicial.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <figure>
+      <img src="resources/logo.png" alt="Logo Fulbito!">
+    </figure>
+    <form id="form" class="" action="resources/install.php" method="post">
+      <label>DBName<input type="text" name="dbname" value="dbFulbito" required></label><br>
+      <label>DBHost<input type="text" name="dbhost" value="localhost" required></label><br>
+      <label>DBPort<input type="number" name="dbport" value="3306" required></label><br>
+      <label>User<input type="text" name="user" value="user" required></label><br>
+      <label>Pass<input type="password" name="pass" value="user" required></label><br><br>
+      <input type="submit" name="install" id="install" value="Instalar!"></button>
+      <input type="reset" name="borrar" value="Borrar"></button>
+    </form>
+  </body>
+</html>
