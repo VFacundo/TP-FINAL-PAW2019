@@ -17,6 +17,7 @@
       <label>Nombre<input type="text" name="nombre" placeholder="Nombre" required></label><br>
       <label>UserName<input type="text" name="username" placeholder="User Name" required></label><br>
       <label>Edad<input type="number" name="edad" value="" min="10" max="100" required></label><br>
+      <label>Telefono: <input type="tel" name="tel" placeholder="542346454545" maxlength="12"></label><br>
       <input type="submit" name="install" id="login" value="Registrarme!"></button>
       <input type="reset" name="borrar" value="Borrar"></button>
     </form>

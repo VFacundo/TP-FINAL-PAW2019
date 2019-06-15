@@ -34,10 +34,10 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     $nombre = filter_input(INPUT_POST,'nombre',FILTER_SANITIZE_STRING);
     $username = filter_input(INPUT_POST,'username',FILTER_SANITIZE_STRING);
     $edad = filter_input(INPUT_POST,'edad',FILTER_SANITIZE_NUMBER_INT);
+    $tel = filter_input(INPUT_POST,'tel',FILTER_SANITIZE_STRING);
     ///FIN DATOS////
-      if(($db->buscarUser($mail)===FALSE) && ($db->buscarUser($username)===FALSE)){
-          $db->newUser($pass,$mail,$nombre,$username,$edad);
-          $_SESSION['mensaje'] = 'Registrado';
+      if(empty($db->buscarUser($mail)) && (empty($db->buscarUser($username)))){
+          $db->newUser($pass,$mail,$nombre,$username,$edad,$tel);
           $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
       }else{
           $_SESSION['mensaje'] = 'Ya Existe';
@@ -52,9 +52,10 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     $db = new users();
     $ident = filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
     $pass = filter_input(INPUT_POST,'pass',FILTER_SANITIZE_STRING);
-    if($db->buscarUser($ident)===TRUE){
+    if(!empty($db->buscarUser($ident))){
       if($db->loginUser($ident,$pass)===TRUE){
-        $_SESSION['mensaje'] = 'Logueado';
+        $sesion = new sesion();
+        $sesion->inicializarSesion($db->buscarUser($ident));
         $this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
       }else{
         $_SESSION['mensaje'] = 'Contraseña Incorrecta';
@@ -64,6 +65,11 @@ class Login extends \UNLu\PAW\Libs\Controlador{
         $_SESSION['mensaje'] = 'Error NO log';
         $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
     }
+  }
+
+  public function logout(){
+    $sesion = new sesion();
+    $sesion->log_out();
   }
 
 
