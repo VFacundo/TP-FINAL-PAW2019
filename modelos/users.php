@@ -9,8 +9,17 @@ class users{
       $this->db = new dbconnect();
     }
 
-    public function newUser($pass, $mail,$nombre,$username,$edad){
-      if(!$this->buscarUser($mail)){//0 usuario comun, 1 admin
+    public function datosUserJug($id){
+      $sql = "SELECT nombre,edad,user,mail,tel FROM usuario u INNER JOIN jugador j on (u.id = j.id_usuario) WHERE u.id = '$id'";
+      $result = $this->db->conn->query($sql);
+      if(!$result===FALSE){
+        $result = $result->fetch();
+      }
+      return $result;
+    }
+
+    public function newUser($pass, $mail,$nombre,$username,$edad,$tel){
+      if(empty($this->buscarUser($mail))){//0 usuario comun, 1 admin
         if(empty($username)){
           $sql = "SELECT count(id) from usuario";
             $result = $this->db->conn->query($sql);
@@ -26,8 +35,8 @@ class users{
           $result = $result->fetch();
           $id_usuario = $result[0];
 
-          $sql = "INSERT INTO jugador(id,nombre,img_src,edad,id_usuario) VALUES (?,?,?,?,?)";
-          $resultado = $this->db->conn->prepare($sql)->execute([NULL,$nombre,'default',$edad,$id_usuario]);
+          $sql = "INSERT INTO jugador(id,nombre,img_src,edad,tel,id_usuario) VALUES (?,?,?,?,?,?)";
+          $resultado = $this->db->conn->prepare($sql)->execute([NULL,$nombre,'default',$edad,$tel,$id_usuario]);
         }
 
       }
@@ -58,11 +67,11 @@ class users{
           $sql= "SELECT id,user FROM usuario WHERE user='$ident'";
       }
     $result = $this->db->conn->query($sql);
-    $existe = FALSE;
+    $existe = NULL;
     if(!$result===FALSE){
       $result = $result->fetch();
         if(!$result===FALSE){
-            $existe = TRUE;
+            $existe = $result['id'];
         }
     }
     return $existe;
