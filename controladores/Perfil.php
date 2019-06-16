@@ -6,19 +6,10 @@ use UNLu\PAW\Modelos\users;
 class Perfil extends \UNLu\PAW\Libs\Controlador{
 
 public function perfil(){
-  $db = new users();
-  sesion::startSession();
-  if(sesion::is_login()){
-    //var_dump($sesion->sesionActiva());
-    //var_dump($_SESSION);
-    //var_dump($db->datosUserJug($_SESSION['id']));
-    $this->pasarVariableAVista('datos',$db->datosUserJug($_SESSION['id']));
-    sesion::refreshTime();
-    //var_dump($_SESSION);
-  }
+  session_start();
+  $mensaje = $_SESSION['mensaje'];
+  $this->pasarVariableAVista('mensaje',$mensaje);
 }
-
-
 
 }
 ?>
