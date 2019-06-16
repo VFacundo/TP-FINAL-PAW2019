@@ -6,7 +6,8 @@ use UNLu\PAW\Modelos\users;
 class Login extends \UNLu\PAW\Libs\Controlador{
 
   public function iniciarSesion($mensaje=null){
-    session_start();
+    //session_start();
+    sesion::startSession();
     if(isset($_SESSION['mensaje'])){
       $mensaje = $_SESSION['mensaje'];
       unset($_SESSION['mensaje']);
@@ -15,7 +16,8 @@ class Login extends \UNLu\PAW\Libs\Controlador{
   }
 
   public function registro($mensaje=null){
-    session_start();
+    //session_start();
+    sesion::startSession();
     if(isset($_SESSION['mensaje'])){
       $mensaje = $_SESSION['mensaje'];
       unset($_SESSION['mensaje']);
@@ -25,7 +27,8 @@ class Login extends \UNLu\PAW\Libs\Controlador{
 
   public function registroUser($mensaje=null){
     //carga la vista default
-    session_start();
+    //session_start();
+    sesion::startSession();
     $action = '';
     $db = new users();
     ///OBTENGO LOS DATOS///
@@ -47,15 +50,15 @@ class Login extends \UNLu\PAW\Libs\Controlador{
 
   public function loginUser(){
     //carga la vista default
-    session_start();
+    //session_start();
+    sesion::startSession();
     $action = '';
     $db = new users();
     $ident = filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
     $pass = filter_input(INPUT_POST,'pass',FILTER_SANITIZE_STRING);
     if(!empty($db->buscarUser($ident))){
       if($db->loginUser($ident,$pass)===TRUE){
-        $sesion = new sesion();
-        $sesion->inicializarSesion($db->buscarUser($ident));
+        sesion::inicializarSesion($db->buscarUser($ident));
         $this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
       }else{
         $_SESSION['mensaje'] = 'Contraseña Incorrecta';
@@ -68,8 +71,7 @@ class Login extends \UNLu\PAW\Libs\Controlador{
   }
 
   public function logout(){
-    $sesion = new sesion();
-    $sesion->log_out();
+    sesion::log_out();
   }
 
 
