@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login Fulbito!</title>
+    <link rel="stylesheet" href="../assets/css/login.css">
+    <script src="../assets/js/login.js"></script>
+	<script src="../assets/js/calcViewPort.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="loader">
+      <figure>
+        <img src="../img/logoBlack.png" alt="Logo Fulbito!">
+      </figure>
+    </div>
+    <div class="background"></div>
+    <section id="login">
+		<h1>Hay Fulbito</h1>
+		<figure>
+			<img src="../img/logoBlack.png" alt="Logo Fulbito!">
+		</figure>
+		<h2>Registro</h2>
+		<form id="form" class="" action="registroUser" method="post">
+			<label>Mail<input type="email" name="email" placeholder="Example@mail" required></label>
+			<label>Pass<input type="password" name="pass" value="contrasenia" required></label>
+			<label>Nombre<input type="text" name="nombre" placeholder="Nombre" required></label>
+			<label>UserName<input type="text" name="username" placeholder="User Name" required></label>
+			<label>Edad<input type="number" name="edad" value="" min="10" max="100" required></label>
+			<label>Telefono: <input type="tel" name="tel" placeholder="542346454545" maxlength="12"></label>
+			<div>
+				<input type="submit" name="install" value="Registrarme!">
+				<input type="reset" name="borrar" value="Borrar">
+			</div>
+		</form>
+		<label><?=$mensaje?></label>
+	</section>
+  </body>
+</html>

@@ -31,7 +31,7 @@ class VistaHTMLSimple extends Vista{
     protected function doRender($accion) {
         extract($this->viewVars);
         ob_start();
-        include $this->baseDir . $accion . '.php';
+        include $this->baseDir . $accion . '.html';
         return ob_get_clean();
     }
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Login Fulbito!</title>
+		<link rel="stylesheet" href="assets/css/perfil.css">
+		<link rel="stylesheet" href="assets/css/loader.css">
+		<script src="assets/js/calcViewPort.js"></script>
+    </head>
+	<body>
+		<nav>
+		    <figure>
+			  <img src="img/logoBlack.png" alt="Logo Fulbito!">
+		    </figure>
+			<nav>
+				<ul>
+					<li class="boton selectedLi"><a href="/">Mi perfil</a></li>
+					<li class="boton"><a href="/">Mi Equipo</a></li>
+					<li class="boton"><a href="/">Mis turnos</a></li>
+					<li class="boton"><a href="/">Buscar partido</a></li>
+					<li class="boton"><a href="/">Cerrar sesion</a></li>
+				</ul>
+			</nav>
+		</nav>
+		<div class="background"></div>
+		<section class="sideSection" id="miPerfil">
+			<h1>Mi Perfil</h1>
+			<div>
+				<div id="miPerfilImagen">
+					<img src="img/avatar1.svg" alt="Imagen de perfil">
+					<div>
+						<a class="boton" href="./?obtenerNuevaImagen">Cambiar</a>
+						<a class="boton" href="./?subirImagen">Subir</a>
+					</div>
+				</div>
+				<div id="miPerfilDatos">
+					<span id="nombre"></span>
+					<span id="edad"></span>
+					<span id="usuario"></span>
+					<span id="email"></span>
+					<span id="telefono"></span>
+					<a class="boton" href="./miperfil/editar/">Editar</a>
+				</div>
+				<div id="miPerfilEstadisticas">
+					<span id="partidosJugados"></span>
+					<span id="partidosGanados"></span>
+					<span id="partidosPerdidos"></span>
+				</div>
+				<div class="anuncio">
+					<img src="img/ads.png" alt="Anuncio">
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

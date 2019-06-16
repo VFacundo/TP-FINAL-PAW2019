@@ -1,0 +1,32 @@
+.loader{
+    width:100%;
+    position: absolute;
+    background: white;
+    height: 100%;
+    z-index: 4;
+}
+.loader figure{display: flex;justify-content: center;align-items: center;height: 100%;flex-flow: column;}
+.loader figure:after{
+   content: 'Cargando...';
+   font-weight: bold;
+   color: black;
+   font-size: 2.5em;
+   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+   font-family: 'Indie Flower', cursive;
+   animation: puntosSuspensivos 3s linear infinite;
+}
+@keyframes puntosSuspensivos {
+  0% {
+    content: "Cargando";
+  }
+  33% {
+    content: "Cargando.";
+  }
+  66% {
+    content: "Cargando..";
+  }
+  100% {
+    content: "Cargando...";
+  }
+}
+.loader figure img{width: 22%;}
