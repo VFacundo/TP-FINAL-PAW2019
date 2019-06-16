@@ -2,8 +2,8 @@
 return [
     'Router' => [
         'accionPorDefecto' => [
-            'controlador' => 'DefaultPage',
-            'accion' => 'default'
+            'controlador' => 'Login',
+            'accion' => 'iniciarsesion'
         ]
     ],
     'login' => [
