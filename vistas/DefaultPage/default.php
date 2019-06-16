@@ -18,8 +18,8 @@
         <label>Usuario o email<input type="text" name="email" placeholder="SuCorreo@email.com" required></label>
         <label>Contraseña<input type="password" name="pass" required></label>
         <div>
-          <input type="submit" name="login" value="Login"></button>
-          <input type="reset" name="borrar" value="Restaurar Campos"></button>
+          <input type="reset" name="borrar" value="Restaurar Campos">
+          <input type="submit" name="login" value="Login">
         </div>
       </form>
       <label><?=$mensaje?></label>
