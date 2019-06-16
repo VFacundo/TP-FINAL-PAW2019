@@ -3,8 +3,7 @@
 
 	#Evito la redireccion cuando se solicita /img
 	RewriteCond %{REQUEST_URI} !/img/
-	RewriteCond %{REQUEST_URI} !/css/
-	RewriteCond %{REQUEST_URI} !/script_install/
+	RewriteCond %{REQUEST_URI} !/assets/css/
 
 	#No muestro Errores
 	#php_flag display_startup_errors off

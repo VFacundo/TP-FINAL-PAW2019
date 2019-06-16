@@ -3,13 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>Login Fulbito!</title>
-    <link rel="stylesheet" type="text/css" href='css/login.css'>
+    <link rel="stylesheet" href="assets/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <h1>Pagina de Inicio Under Construction</h1>
-      <video id="reproductor" controls preload="auto" width="200" height="200"  src="http://thenewcode.com/assets/videos/backflip.mp4" autoplay> </video>
+    <div class="background"></div>
+    <section id="login">
+      <h1>Hay Fulbito</h1>
+      <figure>
+        <img src="img/logoBlack.png" alt="Logo Fulbito!">
+      </figure>
+      <h2>Ingreso al sistema</h2>
+      <form action="login/loginUser" method="post">
+        <label>Usuario o email<input type="text" name="email" placeholder="SuCorreo@email.com" required></label>
+        <label>Contraseña<input type="password" name="pass" required></label>
+        <div>
+          <input type="reset" name="borrar" value="Restaurar Campos">
+          <input type="submit" name="login" value="Login">
+        </div>
+      </form>
+      <label><?=$mensaje?></label>
       <a href="login/registro">Crear Cuenta</a>
-      <a href="login">Login</a>
+    </section>
   </body>
 </html>

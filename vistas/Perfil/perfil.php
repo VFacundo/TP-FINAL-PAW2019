@@ -9,7 +9,6 @@
   <body>
     <h1>Bienvenido aa Tu Perfil EN Construccion! FULBITO!</h1>
       <video id="reproductor" controls preload="auto" width="200" height="200" src="http://thenewcode.com/assets/videos/backflip.mp4" autoplay> </video>
-      <a href="login/logout">LogOut</a>
-      <?php var_dump($datos); ?>
+    <label><?=$mensaje?></label>
   </body>
 </html>
