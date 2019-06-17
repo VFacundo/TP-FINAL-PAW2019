@@ -3,7 +3,7 @@
         "dbname": "dbFulbito",
         "dbhost": "localhost",
         "dbport": "3306",
-        "username": "admin",
-        "pass": "admin"
+        "username": "user",
+        "pass": "user"
     }
 ]
