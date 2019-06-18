@@ -15,6 +15,8 @@ public function perfil(){
     $this->pasarVariableAVista('datos',$db->datosUserJug($_SESSION['id']));
     sesion::refreshTime();
     //var_dump($_SESSION);
+  }else{
+    $this->redireccionar('/login');
   }
 }
 

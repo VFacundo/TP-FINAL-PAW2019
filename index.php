@@ -7,7 +7,13 @@ use UNLu\PAW\Libs\Router;
 
 $router = new Router();
 $solicitud = substr($_SERVER['REQUEST_URI'],1);//Obtengo la url q ing el user
-$solicitud = strstr($solicitud,'/');
+/////////////////////////////////
+$dir = __DIR__;
+$dir = explode("/",$dir);
+  if(strpos($solicitud,$dir[sizeof($dir)-1])!==FALSE){
+    $solicitud = strstr($solicitud,'/');
+  }
+////////////////////////////////
 $solicitud = strtolower($solicitud);
 
 $despachador = new Despachador($router);

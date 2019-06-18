@@ -10,7 +10,7 @@
     <script sync defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=2326764637646567&autoLogAppEvents=1"></script>
 
     <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="858752674560-4ue2oi57iggs74vudq0kr0dip8ujlbg5.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="858752674560-6emgo7emadgcv30k8k9qfa8mrnsotjph.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,6 +47,7 @@
           <script>
             function onSignIn(googleUser) {
               // Useful data for your client-side scripts:
+      /*
               var profile = googleUser.getBasicProfile();
               console.log("ID: " + profile.getId()); // Don't send this directly to your server!
               console.log('Full Name: ' + profile.getName());
@@ -54,10 +55,19 @@
               console.log('Family Name: ' + profile.getFamilyName());
               console.log("Image URL: " + profile.getImageUrl());
               console.log("Email: " + profile.getEmail());
-
+    */
               // The ID token you need to pass to your backend:
               var id_token = googleUser.getAuthResponse().id_token;
-              console.log("ID Token: " + id_token);
+              var umail = googleUser.getBasicProfile().getEmail();
+              var xhr = new XMLHttpRequest();
+              var formData = new FormData();
+                xhr.open('POST', 'http://localhost/login/glogin');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                console.log('Signed in as: ' + xhr.responseText);
+                };
+                xhr.send('id_token='+id_token+'&umail='+umail);
+                location.reload();
             }
           </script>
         </div>

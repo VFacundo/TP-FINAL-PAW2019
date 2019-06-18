@@ -24,6 +24,7 @@ class dbConnection{
 									user VARCHAR(30) NOT NULL,
 									pass VARCHAR(255) NOT NULL,
 									tipo TINYINT NOT NULL,
+									token_id VARCHAR(255) NOT NULL,
 				    				PRIMARY KEY(id,mail)
 									);
 				CREATE TABLE jugador (

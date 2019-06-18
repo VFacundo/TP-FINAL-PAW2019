@@ -2,6 +2,7 @@
 namespace UNLu\PAW\Modelos;
 use UNLu\PAW\Modelos\dbconnect;
 use PDO;
+require_once 'vendor/autoload.php';
 
 class users{
   private $db;
@@ -16,6 +17,11 @@ class users{
         $result = $result->fetch();
       }
       return $result;
+    }
+
+    public function newGoogleUser($token,$mail){
+      $sql = "INSERT INTO usuario(id,mail,pass,tipo,token_id) VALUES (?,?,?,?,?)";
+      $resultado = $this->db->conn->prepare($sql)->execute([NULL,$mail,$token,0,$token]);
     }
 
     public function newUser($pass, $mail,$nombre,$username,$edad,$tel){

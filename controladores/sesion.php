@@ -36,19 +36,24 @@ class sesion{
     }
 
     public static function is_login(){
+      $login = TRUE;
       if(isset($_SESSION['is_login'])){
         if(($_SESSION['is_login']!==TRUE)||(self::sesionActiva()!==TRUE)){
-          self::redireccion();
+          $login = FALSE;
         }
       }else{
-          self::redireccion();
+          $login = FALSE;
         }
-        return TRUE;
+        return $login;
       }
 
     public static function redireccion(){
       $request = explode('/',$_SERVER['REQUEST_URI']);//La separo por "/"
-      header('Location:/'. $request[1] . '/login');
+      if(!empty($request[0]))
+        header('Location:/'. $request[0] . '/login');
+      else {
+        header("Location: /login");
+      }
       exit();
     }
 
@@ -58,14 +63,16 @@ class sesion{
     }
 
     public static function sesionActiva(){//Antes de Realizar alguna accion se solicita este metodo
+      $sa = TRUE;
       if(isset($_SESSION['timeout'])){
         $sessionTimeOut = time() - $_SESSION['timeout'];
         if($sessionTimeOut>self::$timeout){
           session_destroy();
-          self::redireccion();
+          $sa = FALSE;
         }
       }
-      return TRUE;
+      return $sa;
     }
+
 }
 ?>

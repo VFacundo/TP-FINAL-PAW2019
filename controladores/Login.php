@@ -2,12 +2,16 @@
 namespace UNLu\PAW\Controladores;
 use UNLu\PAW\Libs\VIstaHTML;
 use UNLu\PAW\Modelos\users;
+require_once 'vendor/autoload.php';
 
 class Login extends \UNLu\PAW\Libs\Controlador{
 
   public function iniciarSesion($mensaje=null){
     //session_start();
     sesion::startSession();
+    if(sesion::is_login()){
+      $this->redireccionar('/perfil');
+    }
     if(isset($_SESSION['mensaje'])){
       $mensaje = $_SESSION['mensaje'];
       unset($_SESSION['mensaje']);
@@ -15,8 +19,19 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     $this->pasarVariableAVista('mensaje',$mensaje);
   }
 
+  public function glogin(){
+    $id_token = $_POST['id_token'];
+    $mail = $_POST['umail'];
+
+    $db = new users();
+      if(empty($db->buscarUser($mail))){
+        $db->newGoogleUser($id_token,$mail);
+    }
+    sesion::startSession();
+    sesion::inicializarSesion($db->buscarUser($mail));
+  }
+
   public function registro($mensaje=null){
-    //session_start();
     sesion::startSession();
     if(isset($_SESSION['mensaje'])){
       $mensaje = $_SESSION['mensaje'];
@@ -27,7 +42,6 @@ class Login extends \UNLu\PAW\Libs\Controlador{
 
   public function registroUser($mensaje=null){
     //carga la vista default
-    //session_start();
     sesion::startSession();
     $action = '';
     $db = new users();
@@ -41,10 +55,10 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     ///FIN DATOS////
       if(empty($db->buscarUser($mail)) && (empty($db->buscarUser($username)))){
           $db->newUser($pass,$mail,$nombre,$username,$edad,$tel);
-          $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
+          $this->redireccionar('/login');
       }else{
           $_SESSION['mensaje'] = 'Ya Existe';
-          $this->redireccionarA($_SERVER['REQUEST_URI'],'/login/registro');
+          $this->redireccionarA($_SERVER['REQUEST_URI'],'/registro');
       }
   }
 
@@ -59,7 +73,7 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     if(!empty($db->buscarUser($ident))){
       if($db->loginUser($ident,$pass)===TRUE){
         sesion::inicializarSesion($db->buscarUser($ident));
-        $this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
+        $this->redireccionar('/perfil');
       }else{
         $_SESSION['mensaje'] = 'Contraseña Incorrecta';
         $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
@@ -73,6 +87,4 @@ class Login extends \UNLu\PAW\Libs\Controlador{
   public function logout(){
     sesion::log_out();
   }
-
-
 }
