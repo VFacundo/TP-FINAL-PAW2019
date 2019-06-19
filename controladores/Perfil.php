@@ -44,6 +44,10 @@ public function editarPerfil(){
   $this->redireccionar('/perfil');
 }
 
+public function ok(){
+  echo('<p>200 OK</p>');//Resp a ajax..
+}
+
 public function subirImagen(){
   sesion::startSession();
   sesion::refreshTime();
@@ -52,7 +56,7 @@ public function subirImagen(){
     if(!empty($img)){
       $db = new users();
       $db->imgUser($img,sesion::getId());
-      echo('200 OK');
+      $this->redireccionarA($_SERVER['REQUEST_URI'],'ok');
     }
   }
 }

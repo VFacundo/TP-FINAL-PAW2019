@@ -19,6 +19,7 @@ function subirImg() {
       xhr.open('POST', 'http://localhost/perfil/subirImagen');
       xhr.onload = function() {
       console.log('Img Enviada.. ');
+      console.log(xhr.responseText);
       }
       xhr.send(formData);
   }

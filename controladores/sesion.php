@@ -5,7 +5,7 @@ class sesion{
 
   private function __construct(){}
   private static $initialized = false;
-  private static $timeout = 10;
+  private static $timeout = 200;
   private static $sName = "USRSSN";
 
     private static function initialize(){

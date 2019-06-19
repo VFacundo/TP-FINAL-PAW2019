@@ -369,6 +369,10 @@ align-items: center;
 #miPerfilImagen img{
 	max-width: 25vh;
 	max-height: 28vh;
+	border-radius: 50%;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-position: 50%;
 }
 #miPerfilImagen a{
 	max-height: 4vh;
