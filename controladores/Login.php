@@ -9,7 +9,7 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     //session_start();
     sesion::startSession();
     if(sesion::is_login()){
-      $this->redireccionar('/perfil');
+      $this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
     }
     if(isset($_SESSION['mensaje'])){
       $mensaje = $_SESSION['mensaje'];
@@ -56,16 +56,15 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     ///FIN DATOS////
       if(empty($db->buscarUser($mail)) && (empty($db->buscarUser($username)))){
           $db->newUser($pass,$mail,$nombre,$username,$edad,$tel);
-          $this->redireccionar('/login');
+          $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
       }else{
           $_SESSION['mensaje'] = 'Ya Existe';
-          $this->redireccionarA($_SERVER['REQUEST_URI'],'/registro');
+          $this->redireccionarA($_SERVER['REQUEST_URI'],'registro');
       }
   }
 
   public function loginUser(){
     //carga la vista default
-    //session_start();
     sesion::startSession();
     $action = '';
     $db = new users();
@@ -74,7 +73,7 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     if(!empty($db->buscarUser($ident))){
       if($db->loginUser($ident,$pass)===TRUE){
         sesion::inicializarSesion($db->buscarUser($ident));
-        $this->redireccionar('/perfil');
+        $this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
       }else{
         $_SESSION['mensaje'] = 'Contraseña Incorrecta';
         $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
