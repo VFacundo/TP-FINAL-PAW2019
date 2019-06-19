@@ -5,12 +5,13 @@ class sesion{
 
   private function __construct(){}
   private static $initialized = false;
-  private static $timeout = 20;
+  private static $timeout = 200;
+  private static $sName = "USRSSN";
 
     private static function initialize(){
       if(self::$initialized)
         return;
-      session_name("USRSSN");
+      session_name(self::$sName);
       ini_set("session.cookie_lifetime","7200");
       ini_set("session.gc_maxlifetime","7200");
       self::$initialized=true;
@@ -21,6 +22,12 @@ class sesion{
         if(!isset($_SESSION)){
           session_start();
         }
+    }
+
+    public static function getId(){
+      if(self::is_login()){
+        return $_SESSION['id'];
+      }
     }
 
     public static function refreshTime(){
@@ -50,7 +57,7 @@ class sesion{
     public static function redireccion(){
       $request = explode('/',$_SERVER['REQUEST_URI']);//La separo por "/"
       if(!empty($request[0]))
-        header('Location:/'. $request[0] . '/login');
+        header('Location:/'. $request[1] . '/login');
       else {
         header("Location: /login");
       }
@@ -58,7 +65,9 @@ class sesion{
     }
 
     public static function log_out(){
+      self::startSession();
       session_destroy();
+      setcookie (self::$sName, "", 10000);
       self::redireccion();
     }
 

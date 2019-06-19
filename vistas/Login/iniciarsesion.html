@@ -67,7 +67,7 @@
                 console.log('Signed in as: ' + xhr.responseText);
                 };
                 xhr.send('id_token='+id_token+'&umail='+umail);
-                location.reload();
+                window.location="login";
             }
           </script>
         </div>

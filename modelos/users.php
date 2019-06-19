@@ -10,8 +10,33 @@ class users{
       $this->db = new dbconnect();
     }
 
+    public function imgUser($datosImg,$id){
+      $directorioImagenes = dirname(__DIR__) . '/img/userImg/';
+      if(is_uploaded_file($datosImg['imgFile']['tmp_name'])){
+        $tipoImagen = $datosImg['imgFile']['type'];
+            if(($tipoImagen == "image/jpeg") || ($tipoImagen == "image/png")){
+              $infoImg = getimagesize($datosImg['imgFile']['tmp_name']);
+                if(($datosImg['imgFile']['size'])<10000000){
+                    $archivoImagen = time() . basename($_FILES["imgFile"]["name"]);
+                    move_uploaded_file($datosImg["imgFile"]["tmp_name"],$directorioImagenes . $archivoImagen);
+                    $sql = "UPDATE jugador SET img_src='$archivoImagen' WHERE id_usuario='$id'";
+                    $resultado = $this->db->conn->prepare($sql)->execute();
+                }
+            }
+        }
+    }
+
+    public function editUser($nombre,$username=null,$edad,$tel,$id){
+      $sql = "UPDATE jugador SET nombre='$nombre',edad='$edad',tel='$tel' WHERE id_usuario='$id'";
+      $resultado = $this->db->conn->prepare($sql)->execute();
+      if(!empty($username)){
+        $sql = "UPDATE usuario SET user='$username' WHERE id='$id'";
+        $resultado = $this->db->conn->prepare($sql)->execute();
+      }
+    }
+
     public function datosUserJug($id){
-      $sql = "SELECT nombre,edad,user,mail,tel FROM usuario u INNER JOIN jugador j on (u.id = j.id_usuario) WHERE u.id = '$id'";
+      $sql = "SELECT nombre,edad,user,mail,tel,img_src FROM usuario u INNER JOIN jugador j on (u.id = j.id_usuario) WHERE u.id = '$id'";
       $result = $this->db->conn->query($sql);
       if(!$result===FALSE){
         $result = $result->fetch();

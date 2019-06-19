@@ -2,7 +2,6 @@
 namespace UNLu\PAW\Controladores;
 use UNLu\PAW\Libs\VIstaHTML;
 use UNLu\PAW\Modelos\users;
-require_once 'vendor/autoload.php';
 
 class Login extends \UNLu\PAW\Libs\Controlador{
 
@@ -29,6 +28,8 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     }
     sesion::startSession();
     sesion::inicializarSesion($db->buscarUser($mail));
+    //$archivoActual = $_SERVER['PHP_SELF'];
+      //header("refresh:1;url=" + $archivoActual);
   }
 
   public function registro($mensaje=null){

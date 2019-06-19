@@ -30,8 +30,15 @@ abstract class Controlador {
     }
 
     public function redireccionarA($request,$ruta){//Recibe $_SERVER['REQUEST_URI'], /ruta/a
+      //$request = explode('/',$request);//La separo por "/"
+      //header('Location:/'. $request[1] . $ruta);
+      //exit();
       $request = explode('/',$request);//La separo por "/"
-      header('Location:/'. $request[1] . $ruta);
+      if(!empty($request[0]))
+        header('Location:/'. $request[1] . $ruta);
+      else {
+        header("Location:".$ruta);
+      }
       exit();
     }
 
