@@ -1,0 +1,145 @@
+.sideSection{
+	grid-area:b;
+	position: relative;
+	min-height: 100vh;
+}
+
+.sideSection h1{
+	font-size:2em;
+	line-height: 15vh;
+	padding: 0em 2em;
+	display: block;
+	background: #ffffffed;
+	background-image: initial;
+	background-position-x: initial;
+	background-position-y: initial;
+	background-size: initial;
+	background-repeat-x: initial;
+	background-repeat-y: initial;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: rgba(255, 255, 255, 0.93);
+}
+.sideSection > div{
+	background: #ffffffed;
+	margin: .5em 0em 0em 0em;
+	height: -webkit-fill-available;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr;
+	max-height: 84vh;
+	}
+
+#miequipoImagen{width: 100%;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;}
+
+#miequipoImagen img{
+	max-width: 25vh;
+	max-height: 28vh;
+	border-radius: 50%;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-position: 50%;
+}
+#miequipoImagen a{
+	max-height: 4vh;
+	width: 100%;
+	margin: 0.5em;
+}
+#miequipoImagen div{
+	font-size: 0.6em;
+	width: 90%;
+	/* display: flex; */
+	/* vertical-align: middle; */
+	/* justify-content: center; */
+}
+
+#nombre::before{
+	content:"Nombre: ";
+}
+#edad::before{
+	content:"Edad: ";
+}
+#email::before{
+	content:"Email: ";
+}
+#usuario::before{
+	content:"Usuario: ";
+}
+#telefono::before{
+	content:"Telefono: ";
+}
+
+#miequipoDatos a{
+    width: 40%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+#miequipoDatos span{
+}
+#miequipoEstadisticas{
+	justify-content: space-evenly;
+	grid-column: 1 / 4;
+	margin: 0em 2em;
+}
+
+.anuncio{
+	max-width: 70vw;
+	grid-column: 1 / 3;
+	padding: 0em 10vw;
+	display: flex;
+	align-items: center;
+}
+.anuncio img{
+	width: 100%;
+	max-height: 15vh;
+}
+
+.btnEquipo{
+	display: flex;
+	max-height: 5vw;
+	max-width: 100%;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.btnEquipo a {
+	margin: 0.5em;
+	width: 100%;
+	max-height: 5vh;
+}
+
+input[type="file"]#inputSb {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#miequipoImagen #labelSubir{
+	max-height: 4vh;
+	width: 100%;
+	margin: 0.5em;
+	color: #ffffff;
+	text-decoration: none;
+}
+.nombreEquipo{
+	display: flex;
+	justify-content: center;
+}
+.nombreEquipo h3{
+	font-size: 1.8em;
+	text-align: center;
+	margin: 0.5vw;
+}
+
+#mensajeEquipo{
+	display: flex;
+	grid-column: 1 / span 3;
+	justify-content: center;
+}

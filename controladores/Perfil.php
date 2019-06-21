@@ -18,7 +18,6 @@ public function perfil(){
       }
     sesion::refreshTime();
   }else{
-    //$this->redireccionar('/login');
     $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
   }
 }
