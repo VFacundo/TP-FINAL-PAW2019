@@ -1,51 +1,13 @@
+<?php include('assets/template/base.html'); ?>
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Perfil Fulbito!</title>
-		<link rel="stylesheet" href="assets/css/perfil.css">
-		<link rel="stylesheet" href="assets/css/loader.css">
-		<script src="assets/js/calcViewPort.js"></script>
-    <script type="text/javascript" src="assets/js/editarPerfil.js"></script>
-    <meta name="google-signin-client_id" content="858752674560-6emgo7emadgcv30k8k9qfa8mrnsotjph.apps.googleusercontent.com">
-
-    </head>
-	<body>
-		<nav>
-		    <figure>
-			  <img src="img/logoBlack.png" alt="Logo Fulbito!">
-		    </figure>
-			<nav>
-				<ul>
-					<li class="boton selectedLi"><a href="/">Mi perfil</a></li>
-					<li class="boton"><a href="/">Mi Equipo</a></li>
-					<li class="boton"><a href="/">Mis turnos</a></li>
-					<li class="boton"><a href="/">Buscar partido</a></li>
-					<li class="boton"><a href="login/logout" onclick="signOut();" >Cerrar sesion</a></li>
-
-          <script type="text/javascript">
-            function signOut() {
-              var auth2 = gapi.auth2.getAuthInstance();
-              auth2.signOut().then(function () {
-                console.log('User signed out.');
-              });
-              auth2.disconnect().then(function () {
-                console.log('No Scopes');
-              });
-            }
-            function onLoad() {
-              gapi.load('auth2', function() {
-                gapi.auth2.init();
-              });
-            }
-          </script>
-        <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-				</ul>
-			</nav>
-		</nav>
-		<div class="background"></div>
-		<section class="sideSection" id="miPerfil">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mi Perfil</title>
+    <link rel="stylesheet" href="/assets/css/perfil.css">
+  </head>
+  <body>
+    <section class="sideSection" id="miPerfil">
 			<h1>Mi Perfil</h1>
 			<div>
 				<div id="miPerfilImagen">
@@ -87,5 +49,5 @@
 				</div>
 			</div>
 		</section>
-	</body>
+  </body>
 </html>

@@ -56,7 +56,7 @@ public function subirImagen(){
     if(!empty($img)){
       $db = new users();
       $db->imgUser($img,sesion::getId());
-      $this->redireccionarA($_SERVER['REQUEST_URI'],'ok');
+      $this->redireccionarA($_SERVER['REQUEST_URI'],'/response/responsepage/OK');
     }
   }
 }

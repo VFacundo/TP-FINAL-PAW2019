@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/assets/css/base.css">
+		<link rel="stylesheet" href="/assets/css/loader.css">
+		<script src="/assets/js/calcViewPort.js"></script>
+    <script type="text/javascript" src="/assets/js/editarPerfil.js"></script>
+    <script src="/assets/js/base.js"></script>
+    <script> Base.init(); </script>
+    <meta name="google-signin-client_id" content="858752674560-6emgo7emadgcv30k8k9qfa8mrnsotjph.apps.googleusercontent.com">
+
+    </head>
+	<body>
+		<nav>
+		    <figure>
+			  <img src="/img/logoBlack.png" alt="Logo Fulbito!">
+		    </figure>
+			<nav>
+				<ul>
+					<li class="botonLi boton" onclick="location.href='/perfil'">Mi perfil</li>
+					<li class="botonLi boton" onclick="location.href='/equipo'">Mi Equipo</li>
+					<li class="botonLi boton">Mis turnos</li>
+					<li class="botonLi boton">Buscar partido</li>
+					<li class="botonLi boton" onclick="location.href='login/logout'" onclick="signOut();">Cerrar sesion</li>
+
+          <script type="text/javascript">
+            function signOut() {
+              var auth2 = gapi.auth2.getAuthInstance();
+              auth2.signOut().then(function () {
+                console.log('User signed out.');
+              });
+              auth2.disconnect().then(function () {
+                console.log('No Scopes');
+              });
+            }
+            function onLoad() {
+              gapi.load('auth2', function() {
+                gapi.auth2.init();
+              });
+            }
+          </script>
+        <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+				</ul>
+			</nav>
+		</nav>
+		<div class="background"></div>
+		<section class="sideSection" id="miPerfil">
+
+		</section>
+    <footer class="anuncio">
+      <div>
+        <img src="/img/ads.png" alt="Anuncio">
+      </div>
+    </footer>
+	</body>
+</html>

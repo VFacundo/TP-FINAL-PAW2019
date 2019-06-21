@@ -17,5 +17,17 @@ return [
             'controlador' => 'Perfil',
             'accion' => 'perfil'
         ]
+    ],
+    'response' => [
+        'accionPorDefecto' => [
+            'controlador' => 'Response',
+            'accion' => 'responsepage'
+        ]
+    ],
+    'equipo' => [
+        'accionPorDefecto' => [
+            'controlador' => 'Equipo',
+            'accion' => 'miequipo'
+        ]
     ]
 ];

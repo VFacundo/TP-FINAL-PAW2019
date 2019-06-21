@@ -54,6 +54,8 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     $edad = filter_input(INPUT_POST,'edad',FILTER_SANITIZE_NUMBER_INT);
     $tel = filter_input(INPUT_POST,'tel',FILTER_SANITIZE_STRING);
     ///FIN DATOS////
+    if(data::verify_mail($mail)&&data::verify_pass($pass)&&data::verify_name($nombre)&&data::verify_username($username)&&data::verify_age($edad)&&data::verify_phone($tel)){
+    //Verifico todos los Datos//
       if(empty($db->buscarUser($mail)) && (empty($db->buscarUser($username)))){
           $db->newUser($pass,$mail,$nombre,$username,$edad,$tel);
           $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
@@ -61,6 +63,10 @@ class Login extends \UNLu\PAW\Libs\Controlador{
           $_SESSION['mensaje'] = 'Ya Existe';
           $this->redireccionarA($_SERVER['REQUEST_URI'],'registro');
       }
+    }else {
+      $_SESSION['mensaje'] = 'Datos Incorrectos!';
+      $this->redireccionarA($_SERVER['REQUEST_URI'],'registro');
+    }
   }
 
   public function loginUser(){
@@ -70,17 +76,23 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     $db = new users();
     $ident = filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
     $pass = filter_input(INPUT_POST,'pass',FILTER_SANITIZE_STRING);
-    if(!empty($db->buscarUser($ident))){
-      if($db->loginUser($ident,$pass)===TRUE){
-        sesion::inicializarSesion($db->buscarUser($ident));
-        $this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
+    if((data::verify_mail($ident)||data::verify_username($ident))&&data::verify_pass($pass)){
+    //Verifico los Datos..//
+      if(!empty($db->buscarUser($ident))){
+        if($db->loginUser($ident,$pass)===TRUE){
+          sesion::inicializarSesion($db->buscarUser($ident));
+          $this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
+        }else{
+          $_SESSION['mensaje'] = 'Contraseña Incorrecta';
+          $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
+        }
       }else{
-        $_SESSION['mensaje'] = 'Contraseña Incorrecta';
-        $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
+          $_SESSION['mensaje'] = 'Datos Ingresados NO Validos!';
+          $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
       }
-    }else{
-        $_SESSION['mensaje'] = 'Error NO log';
-        $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
+    }else {
+      $_SESSION['mensaje'] = 'Datos Ingresados NO Validos!';
+      $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
     }
   }
 
