@@ -8,3 +8,7 @@
 -Edit Perfil
 -Subir Img Perfil Ajax
 -Guardar Img Perfil Local y Ruta BD
+-Template Base(Nav,head)
+-Controlador Datos Ingresados (Data)
+-Efecto Nav Js
+-Response ajax
