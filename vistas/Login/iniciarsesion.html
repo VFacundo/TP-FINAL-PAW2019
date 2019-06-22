@@ -58,16 +58,17 @@
               console.log("Email: " + profile.getEmail());
     */
               // The ID token you need to pass to your backend:
-              var id_token = googleUser.getAuthResponse().id_token;
-              var umail = googleUser.getBasicProfile().getEmail();
-              var xhr = new XMLHttpRequest();
-              var formData = new FormData();
+              var id_token = googleUser.getAuthResponse().id_token,
+              umail = googleUser.getBasicProfile().getEmail(),
+              fullName = googleUser.getBasicProfile().getName(),
+              xhr = new XMLHttpRequest(),
+              formData = new FormData();
                 xhr.open('POST', 'http://localhost/login/glogin');
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onload = function() {
                 console.log('Signed in as: ' + xhr.responseText);
                 };
-                xhr.send('id_token='+id_token+'&umail='+umail);
+                xhr.send('id_token='+id_token+'&umail='+umail+'&fullName='+fullName);
                 window.location="login";
             }
           </script>
