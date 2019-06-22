@@ -22,7 +22,7 @@
       </figure>
     </div>
     <div class="background"></div>
-    <section id="login">
+    <section class="login">
       <h1>Hay Fulbito</h1>
       <figure>
         <img src="img/logoBlack.png" alt="Logo Fulbito!">
@@ -39,11 +39,12 @@
       <label><?=$mensaje?></label>
       <a href="login/registro">Crear Cuenta</a>
       <section id="logTerceros">
-        <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
-        <div id="fb-root"></div>
-
+		<div class="fb-login-button">
+			<div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
+			<div id="fb-root"></div>
+		</div>
         <div class="g-login-button">
-          <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+          <div class="g-signin2" data-width="282" data-height="40" data-onsuccess="onSignIn" data-theme="dark"></div>
           <script>
             function onSignIn(googleUser) {
               // Useful data for your client-side scripts:

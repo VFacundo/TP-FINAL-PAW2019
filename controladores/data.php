@@ -60,7 +60,7 @@ public static function verify_phone($tel){
 
 public static function verify_pass($pass){
   $valido = FALSE;
-  if((strlen($pass)>6)&&(preg_match("/^[a-zA-Z0-9]*$/",$pass)===1)){
+  if((strlen($pass)>=6)&&(preg_match("/^[a-zA-Z0-9]*$/",$pass)===1)){
     $valido = TRUE;
   }
   return $valido;

@@ -16,26 +16,34 @@
     </head>
 	<body>
 		<nav>
-		    <figure>
-			  <img src="/img/logoBlack.png" alt="Logo Fulbito!">
-		    </figure>
+			<div class="logo">
+				<figure>
+				  <img src="/img/logoBlack.png" alt="Logo Fulbito!">
+				</figure>
+				<h1>Hay Fulbito</h1>
+			</div>
 			<nav>
 				<ul>
 					<li class="botonLi boton" onclick="location.href='/perfil'">Mi perfil</li>
 					<li class="botonLi boton" onclick="location.href='/equipo'">Mi Equipo</li>
 					<li class="botonLi boton">Mis turnos</li>
 					<li class="botonLi boton">Buscar partido</li>
-					<li class="botonLi boton" onclick="location.href='login/logout'" onclick="signOut();">Cerrar sesion</li>
+					<li class="botonLi boton" onclick="signOut();">Cerrar sesion</li>
 
           <script type="text/javascript">
             function signOut() {
               var auth2 = gapi.auth2.getAuthInstance();
-              auth2.signOut().then(function () {
+              auth2.disconnect().then(function () {
                 console.log('User signed out.');
               });
-              auth2.disconnect().then(function () {
+              auth2.signOut().then(function () {
                 console.log('No Scopes');
               });
+              //onclick="location.href='login/logout'"
+              setTimeout(logoutPhp(),4000);
+            }
+            function logoutPhp(){
+              window.location.href='login/logout';
             }
             function onLoad() {
               gapi.load('auth2', function() {
