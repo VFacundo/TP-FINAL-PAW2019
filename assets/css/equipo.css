@@ -28,7 +28,7 @@
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 10vh 1fr 1fr;
-	max-height: 84vh;
+	max-height: 83.5vh;
 	}
 
 #miequipoImagen{width: 20vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 1vh 1vw;}
@@ -68,6 +68,7 @@
     height: 45vh;
     width: 52vw;
 }
+
 
 #miequipoDatos > ul > li:nth-child(odd) {
     background: #99c35f5e;
@@ -117,7 +118,126 @@
     flex-direction: row;
     width: 100%;
 }
+/******/
+#solicitudesDatos > ul:nth-child(even) {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 50vh;
+    margin: 1vh 0vw;
+}
 
+
+#solicitudesDatos > ul > li:nth-child(odd) {
+    background: #99c35f5e;
+}
+
+#solicitudesDatos > input {
+    margin: 1vh 0vw;
+}
+
+#solicitudesDatos > ul > li {
+    background: #ffffff;
+}
+
+#solicitudesDatos ul li ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5vh 0.5vw;
+}
+
+.detalles.mostrando {
+    /* position: absolute; */
+    /* top: 6vh; */
+    display: block;
+    height: 30vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    /* left: 0; */
+    background: white;
+    border: 0.2vh solid #475b26;
+}
+
+.detalles {
+    display: none;
+}
+#solicitudesDatos ul li ul li:nth-child(1){
+	min-width: 15vw;
+}
+#solicitudesDatos ul li ul li:nth-child(2){
+	min-width: 10vw;
+}
+#solicitudesDatos ul li ul li:nth-child(3){
+	min-width: 15vw;
+}
+#solicitudesDatos ul li ul li:nth-child(4){
+	width: 15vw;
+	margin: 0.1vh 0vw;
+}
+#solicitudesDatos ul li ul li:nth-child(5){
+	width: 0vw;
+	margin: 0.1vh 0vw;
+}
+#solicitudesDatos ul li ul li:nth-child(6){
+	width: 11vw;
+	margin: 0.2vh 0vw;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#solicitudesDatos ul li ul li:nth-child(7) {
+    width: 10vw;
+    margin: 0.2vh 0vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#solicitudesDatos ul li ul li input {
+    min-width: 100%;
+    line-height: 3vh;
+}
+
+#solicitudesDatos ul li ul li button {
+    width: 5vw;
+    font-size: 3.5vh;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 2vh;
+    text-shadow: 1px 2px #00000063;
+}
+
+button.boton.aceptar {
+    background: #8eec0c;
+}
+
+button.boton.rechazar {
+    background: #ea4848;
+}
+
+#solicitudesDatos > ul > li ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+ul#ulHeader {
+    background: white;
+    font-weight: bold;
+}
+
+#solicitudesDatos {
+    width: 79.5vw;
+}
+/****/
 #miequipoImagen img{
 	width: 25vh;
 	height: auto;
