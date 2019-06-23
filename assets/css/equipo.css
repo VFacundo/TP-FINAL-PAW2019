@@ -31,7 +31,7 @@
 	max-height: 84vh;
 	}
 
-#miequipoImagen{width: 25vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 1vh 1vw;}
+#miequipoImagen{width: 20vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 1vh 1vw;}
 
 #miequipoDatos {
     display: flex;
@@ -59,10 +59,14 @@
 
 #ulHeader {line-height: 5vh;}
 
-#miequipoDatos > ul {
+#miequipoDatos > ul:nth-child(even) {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 45vh;
+    width: 52vw;
 }
 
 #miequipoDatos > ul > li:nth-child(odd) {
@@ -115,8 +119,8 @@
 }
 
 #miequipoImagen img{
-	max-width: 25vh;
-	max-height: 28vh;
+	width: 25vh;
+	height: auto;
 	border-radius: 50%;
 	background-size: 100% auto;
 	background-repeat: no-repeat;
@@ -175,6 +179,7 @@
 	width: 100%;
 	max-height: 15vh;
 }
+
 .contenedorBotones{
 	display: flex;
 	flex-direction: row;
@@ -233,12 +238,12 @@ input[type="file"]#inputSb {
 	margin: 1vh 0vw;
 }
 
-.contenedorEquipo form {
+#contenedorEquipo form {
     position: relative;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
 }
 
-.contenedorEquipo {
+#contenedorEquipo {
 }
