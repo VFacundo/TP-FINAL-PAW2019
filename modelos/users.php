@@ -10,6 +10,15 @@ class users{
       $this->db = new dbconnect();
     }
 
+    public function getImg($id){
+      $sql = "SELECT img_src FROM jugador WHERE id_usuario='$id'";
+      $result = $this->db->conn->query($sql);
+      if(!$result===FALSE){
+        $result = $result->fetch();
+      }
+      return $result;
+    }
+
     public function imgUser($datosImg,$id){
       $directorioImagenes = dirname(__DIR__) . '/img/userImg/';
       if(is_uploaded_file($datosImg['imgFile']['tmp_name'])){
@@ -17,8 +26,9 @@ class users{
             if(($tipoImagen == "image/jpeg") || ($tipoImagen == "image/png")){
               $infoImg = getimagesize($datosImg['imgFile']['tmp_name']);
                 if(($datosImg['imgFile']['size'])<10000000){
-                    $archivoImagen = 'userImg/' . time() . basename($_FILES["imgFile"]["name"]);
+                    $archivoImagen = time() . basename($_FILES["imgFile"]["name"]);
                     move_uploaded_file($datosImg["imgFile"]["tmp_name"],$directorioImagenes . $archivoImagen);
+                    $archivoImagen = 'userImg/' . $archivoImagen;
                     $sql = "UPDATE jugador SET img_src='$archivoImagen' WHERE id_usuario='$id'";
                     $resultado = $this->db->conn->prepare($sql)->execute();
                 }

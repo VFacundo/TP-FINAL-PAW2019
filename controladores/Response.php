@@ -4,7 +4,7 @@ use UNLu\PAW\Libs\VIstaHTML;
 
 class Response extends \UNLu\PAW\Libs\Controlador{
 
-    public function responsePage($mensaje){
+    public function responsePage($mensaje=null){
       echo($mensaje);
     }
 

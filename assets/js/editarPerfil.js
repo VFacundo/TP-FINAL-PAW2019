@@ -20,6 +20,23 @@ function subirImg() {
       xhr.onload = function() {
       console.log('Img Enviada.. ');
       console.log(xhr.responseText);
+        actualizarImg();
       }
       xhr.send(formData);
+  }
+
+  function actualizarImg(){
+    var img = document.getElementById("imgPerfil"),
+    xhr = new XMLHttpRequest(),response;
+    xhr.open('POST', 'http://localhost/perfil/getImg');
+    xhr.onload = function() {
+    console.log('Solicito Img... ');
+    response = xhr.responseText;
+    if(response!='error'){
+      console.log(response);
+      response = response.trim();//quito espacios
+      img.src = 'img/'+response;
+    }
+    }
+    xhr.send('');
   }

@@ -52,5 +52,18 @@ public function subirImagen(){
   }
 }
 
+public function getImg(){//devuelve img perfil
+  sesion::startSession();
+  $db = new users();
+  $result = $db->getImg(sesion::getId());
+   if(!$result===FALSE){
+     echo($result['img_src']);
+     exit();
+   }else {
+      echo('error');
+      exit();
+   }
+}
+
 }
 ?>
