@@ -10,22 +10,26 @@
     <section class="sideSection" id="miequipo">
       <h1>Mi Equipo</h1>
         <div>
-          <div class="btnEquipo">
-            <a class="boton">Mi Equipo</a>
-            </div>
-            <div class="btnEquipo">
-                <a class="boton">Mis Solicitudes</a>
-            </div>
-            <div class="btnEquipo">
-                <a class="boton">Mis Equipos Jugador</a>
-            </div>
-          <?php
-          if(!$equipo){
-            include('sinequipo.html');
-          }else{
-            include('conequipo.html');
-          }
-           ?>
+			<div class="contenedorBotones">
+				<div class="btnEquipo btnActive" >
+					<a class="boton">Mi Equipo</a>
+				</div>
+				<div class="btnEquipo">
+					<a class="boton">Mis Solicitudes</a>
+				</div>
+				<div class="btnEquipo">
+					<a class="boton">Mis Equipos Jugador</a>
+				</div>
+			</div>
+			<div class="contenedorEquipo">
+			  <?php
+				  if(!$equipo){
+					include('sinequipo.html');
+				  }else{
+					include('conequipo.html');
+				  }
+			   ?>
+			</div>
         </div>
     </section>
   </body>

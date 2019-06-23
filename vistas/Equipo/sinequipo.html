@@ -1,17 +1,77 @@
-  <div id="mensajeEquipo">
-    <h2>Ops! Parece que aun no Creaste un Equipo!</h2>
-  </div>
-  <div id="miequipoImagen">
-    <div class="nombreEquipo">
-      <h3>Nombre Equipo</h3>
-      <label>Editar</label>
-    </div>
-    <img src="/img/avatar1.png" alt="Imagen de Equipo">
-    <div>
-      <label class="boton" id="labelSubir">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" ></label>
-    </div>
-</div>
-
-<div class="crearEquipo">
-  <span id="nombreEquipo"></span>
-</div>
+<h2 id="mensajeEquipo">Ops! Parece que aun no creaste un equipo. Crea uno ahora</h2>
+<form action="equipo/crearequipo" method="post">
+	<div id="miequipoImagen">
+		<img src="/img/avatar1.png" alt="Imagen de Equipo">
+		<label class="boton" id="labelSubir">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" ></label>
+	</div>
+	<div id="miequipoDatos">
+		<label>Nombre del equipo: <input type="text" name="eq_nombre" placeholder="Ingrese el nombre de su equipo" required></label>
+		<span>Cargar Jugadores (Minimo: 5 jugadores)</span>
+		<ul>
+			<li>
+				<ul id="ulHeader">
+					<li>Nombre</li>
+					<li>Edad</li>
+					<li>Usuario</li>
+					<li></li>
+				</ul>
+			</li>
+			<!-- Asi queda con el paso de variables.
+			<ul class="capitan">
+				<li></?php $datos['cap_nombre'] ?></li>
+				<li></?php $datos['cap_edad'] ?></li>
+				<li></?php $datos['cap_usuario'] ?></li>
+			<ul> -->
+			<!-- Hardcoded -->
+			<li>
+				<ul class="capitan">
+					<li>Juan Ignacio Sacco (Capitan)</li>
+					<li>25</li>
+					<li>Juanito</li>
+					<li><button class="boton" disabled>Editar</button></li>
+				</ul>	
+			</li>	
+			<li>	
+				<ul>
+					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre"></li>
+					<li><input type="number" name="j_edad" value="" min="5" max="100"></li>
+					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
+					<li><button class="boton" onclick="agregarJugador()">Agregar</button></li>
+				</ul>
+			</li>	
+			<li>	
+				<ul>
+					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre"></li>
+					<li><input type="number" name="j_edad" value="" min="5" max="100"></li>
+					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
+					<li><button class="boton" onclick="agregarJugador()">Agregar</button></li>
+				</ul>
+			</li>	
+			<li>	
+				<ul>
+					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre"></li>
+					<li><input type="number" name="j_edad" value="" min="5" max="100"></li>
+					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
+					<li><button class="boton" onclick="agregarJugador()">Agregar</button></li>
+				</ul>
+			</li>	
+			<li>	
+				<ul>
+					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre"></li>
+					<li><input type="number" name="j_edad" value="" min="5" max="100"></li>
+					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
+					<li><button class="boton" onclick="agregarJugador()">Agregar</button></li>
+				</ul>
+			</li>	
+			<li>	
+				<ul>
+					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre"></li>
+					<li><input type="number" name="j_edad" value="" min="5" max="100"></li>
+					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
+					<li><button class="boton" class="boton" onclick="agregarJugador()">Agregar</button></li>
+				</ul>
+			</li>
+		</ul>
+		<input class="boton" type="submit" name="crear" value="Crear equipo">
+	</div>
+</form>
