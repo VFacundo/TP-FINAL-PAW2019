@@ -26,16 +26,260 @@
 	margin: .5em 0em 0em 0em;
 	height: -webkit-fill-available;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr;
-	max-height: 84vh;
+	grid-template-columns: 1fr;
+	grid-template-rows: 10vh 1fr 1fr;
+	max-height: 83.5vh;
 	}
 
-#miequipoImagen{width: 100%;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;}
+#miequipoImagen{width: 20vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 1vh 1vw;}
 
+#miequipoDatos {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    width: 50vw;
+    margin: 1vh 1vw;
+    height: 65vh;
+}
+
+#miequipoDatos > ul{
+}
+
+#miequipoDatos > label > input {
+    line-height: 3vh;
+    width: 20vw;
+    font-size: 1em;
+}
+
+#miequipoDatos > label {
+    margin: 1vh 0vw;
+    line-height: 2vh;
+}
+
+#miequipoDatos > span {
+    margin: 1vh 0vw;
+}
+
+#ulHeader {line-height: 5vh;}
+
+#miequipoDatos > ul:nth-child(even) {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 40vh;
+    position: relative;
+}
+
+#miequipoDatos ul:first-child {}
+
+
+#miequipoDatos > ul > li:nth-child(odd) {
+    background: #99c35f5e;
+}
+
+#miequipoDatos > input {
+    margin: 1vh 0vw;
+}
+
+#miequipoDatos > ul > li {
+    background: #ffffff;
+}
+
+#miequipoDatos ul li ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5vh 0.5vw;
+}
+#miequipoDatos ul li ul li:nth-child(1){
+	min-width: 4vw;
+}
+#miequipoDatos ul li ul li:nth-child(2){
+	width: 15vw;
+}
+
+.capitan li:nth-child(2):after {
+    content: '(C)';
+}
+
+li {}
+#miequipoDatos ul li ul li:nth-child(3){
+	min-width: 5vw;
+}
+#miequipoDatos ul li ul li:nth-child(4){
+	min-width: 15vw;
+}
+#miequipoDatos ul li ul li:nth-child(5){
+	width: 7vw;
+	margin: 0.1vh 0.5vw;
+}
+
+#miequipoDatos ul li ul li:nth-child(6){
+	width: 7vw;
+	margin: 0.1vh 0vw;
+}
+
+#miequipoDatos ul li ul li input {
+    min-width: 100%;
+    line-height: 3vh;
+}
+
+#miequipoDatos ul li ul li button {
+    padding: 1vh 1vw;
+    width: 100%;
+    font-size: 0.9vw;
+    min-width: 7vw;
+}
+
+#miequipoDatos > ul > li ul {
+    display: flex;
+    flex-direction: row;
+}
+
+ul li img {
+    width: 2.2vw;
+}
+
+.capitan li:nth-child(1) {}
+/******/
+#solicitudesDatos > ul:nth-child(even) {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 50vh;
+    margin: 1vh 0vw;
+}
+
+
+#solicitudesDatos > ul > li:nth-child(odd) {
+    background: #99c35f5e;
+}
+
+#solicitudesDatos > input {
+    margin: 1vh 0vw;
+}
+
+#solicitudesDatos > ul > li {
+    background: #ffffff;
+}
+
+#solicitudesDatos ul li ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5vh 0.5vw;
+}
+
+.detalles.mostrando {
+    /* position: absolute; */
+    /* top: 6vh; */
+    display: block;
+    height: 30vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    /* left: 0; */
+    background: white;
+    border: 0.2vh solid #475b26;
+}
+
+.detalles {
+    display: none;
+}
+#solicitudesDatos ul li ul li:nth-child(1){
+	min-width: 15vw;
+}
+#solicitudesDatos ul li ul li:nth-child(2){
+	min-width: 10vw;
+}
+#solicitudesDatos ul li ul li:nth-child(3){
+	min-width: 15vw;
+}
+#solicitudesDatos ul li ul li:nth-child(4){
+	width: 15vw;
+	margin: 0.1vh 0vw;
+}
+#solicitudesDatos ul li ul li:nth-child(5){
+	width: 0vw;
+	margin: 0.1vh 0vw;
+}
+#solicitudesDatos ul li ul li:nth-child(6){
+	width: 11vw;
+	margin: 0.2vh 0vw;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#solicitudesDatos ul li ul li:nth-child(7) {
+    width: 10vw;
+    margin: 0.2vh 0vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#solicitudesDatos ul li ul li:nth-child(8) {
+    width: 100%;
+}
+
+.masDetalles {
+    text-decoration-line: underline;
+    line-height: 3em;
+    width: 80%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.masDetalles:hover {
+    cursor: pointer;
+}
+
+#solicitudesDatos ul li ul li input {
+    min-width: 100%;
+    line-height: 3vh;
+}
+
+#solicitudesDatos ul li ul li button {
+    width: 5vw;
+    font-size: 3.5vh;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 2vh;
+    text-shadow: 1px 2px #00000063;
+}
+
+button.boton.aceptar {
+    background: #8eec0c;
+}
+
+button.boton.rechazar {
+    background: #ea4848;
+}
+
+#solicitudesDatos > ul > li ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+ul#ulHeader {
+    background: white;
+    font-weight: bold;
+}
+
+#solicitudesDatos {
+    width: 79.5vw;
+}
+/****/
 #miequipoImagen img{
-	max-width: 25vh;
-	max-height: 28vh;
+	width: 25vh;
+	height: auto;
 	border-radius: 50%;
 	background-size: 100% auto;
 	background-repeat: no-repeat;
@@ -76,8 +320,7 @@
     right: 0;
     bottom: 0;
 }
-#miequipoDatos span{
-}
+
 #miequipoEstadisticas{
 	justify-content: space-evenly;
 	grid-column: 1 / 4;
@@ -96,14 +339,25 @@
 	max-height: 15vh;
 }
 
+.contenedorBotones{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
 .btnEquipo{
 	display: flex;
 	max-height: 5vw;
-	max-width: 100%;
 	flex-wrap: nowrap;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
+}
+
+.btnActive {
+    background: #b3f35b;
+    border-radius: 1em;
 }
 
 .btnEquipo a {
@@ -124,7 +378,6 @@ input[type="file"]#inputSb {
 #miequipoImagen #labelSubir{
 	max-height: 4vh;
 	width: 100%;
-	margin: 0.5em;
 	color: #ffffff;
 	text-decoration: none;
 }
@@ -140,6 +393,16 @@ input[type="file"]#inputSb {
 
 #mensajeEquipo{
 	display: flex;
-	grid-column: 1 / span 3;
 	justify-content: center;
+	margin: 1vh 0vw;
+}
+
+#contenedorEquipo form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+#contenedorEquipo {
 }

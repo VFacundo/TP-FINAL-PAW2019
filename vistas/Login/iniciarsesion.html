@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/loader.css">
     <script src="assets/js/login.js"></script>
-	  <script src="assets/js/calcViewPort.js"></script>
+	<script src="assets/js/calcViewPort.js"></script>
     <script sync defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=2326764637646567&autoLogAppEvents=1"></script>
 
     <meta name="google-signin-scope" content="profile email">
@@ -22,7 +22,7 @@
       </figure>
     </div>
     <div class="background"></div>
-    <section id="login">
+    <section class="login">
       <h1>Hay Fulbito</h1>
       <figure>
         <img src="img/logoBlack.png" alt="Logo Fulbito!">
@@ -39,11 +39,12 @@
       <label><?=$mensaje?></label>
       <a href="login/registro">Crear Cuenta</a>
       <section id="logTerceros">
-        <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
-        <div id="fb-root"></div>
-
+		<div class="fb-login-button">
+			<div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
+			<div id="fb-root"></div>
+		</div>
         <div class="g-login-button">
-          <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+          <div class="g-signin2" data-width="282" data-height="40" data-onsuccess="onSignIn" data-theme="dark"></div>
           <script>
             function onSignIn(googleUser) {
               // Useful data for your client-side scripts:
@@ -57,16 +58,17 @@
               console.log("Email: " + profile.getEmail());
     */
               // The ID token you need to pass to your backend:
-              var id_token = googleUser.getAuthResponse().id_token;
-              var umail = googleUser.getBasicProfile().getEmail();
-              var xhr = new XMLHttpRequest();
-              var formData = new FormData();
+              var id_token = googleUser.getAuthResponse().id_token,
+              umail = googleUser.getBasicProfile().getEmail(),
+              fullName = googleUser.getBasicProfile().getName(),
+              xhr = new XMLHttpRequest(),
+              formData = new FormData();
                 xhr.open('POST', 'http://localhost/login/glogin');
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onload = function() {
                 console.log('Signed in as: ' + xhr.responseText);
                 };
-                xhr.send('id_token='+id_token+'&umail='+umail);
+                xhr.send('id_token='+id_token+'&umail='+umail+'&fullName='+fullName);
                 window.location="login";
             }
           </script>

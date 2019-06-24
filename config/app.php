@@ -29,5 +29,11 @@ return [
             'controlador' => 'Equipo',
             'accion' => 'miequipo'
         ]
+    ],
+    'turnos' => [
+        'accionPorDefecto' => [
+            'controlador' => 'Turnos',
+            'accion' => 'misturnos'
+        ]
     ]
 ];

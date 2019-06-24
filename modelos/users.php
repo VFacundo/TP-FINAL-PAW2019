@@ -10,6 +10,20 @@ class users{
       $this->db = new dbconnect();
     }
 
+    public function setImg($id,$img_src){
+      $sql = "UPDATE jugador SET img_src='$img_src' WHERE id_usuario='$id'";
+      $resultado = $this->db->conn->prepare($sql)->execute();
+    }
+
+    public function getImg($id){
+      $sql = "SELECT img_src FROM jugador WHERE id_usuario='$id'";
+      $result = $this->db->conn->query($sql);
+      if(!$result===FALSE){
+        $result = $result->fetch();
+      }
+      return $result;
+    }
+
     public function imgUser($datosImg,$id){
       $directorioImagenes = dirname(__DIR__) . '/img/userImg/';
       if(is_uploaded_file($datosImg['imgFile']['tmp_name'])){
@@ -19,6 +33,7 @@ class users{
                 if(($datosImg['imgFile']['size'])<10000000){
                     $archivoImagen = time() . basename($_FILES["imgFile"]["name"]);
                     move_uploaded_file($datosImg["imgFile"]["tmp_name"],$directorioImagenes . $archivoImagen);
+                    $archivoImagen = 'userImg/' . $archivoImagen;
                     $sql = "UPDATE jugador SET img_src='$archivoImagen' WHERE id_usuario='$id'";
                     $resultado = $this->db->conn->prepare($sql)->execute();
                 }
@@ -44,9 +59,21 @@ class users{
       return $result;
     }
 
-    public function newGoogleUser($token,$mail){
-      $sql = "INSERT INTO usuario(id,mail,pass,tipo,token_id) VALUES (?,?,?,?,?)";
-      $resultado = $this->db->conn->prepare($sql)->execute([NULL,$mail,$token,0,$token]);
+    public function googleToken($mail,$token){//Inset token en bd
+      $sql = "UPDATE usuario SET token_id='$token' WHERE mail='$mail'";
+      $resultado = $this->db->conn->prepare($sql)->execute();
+    }
+
+    public function newGoogleUser($token){//Verifico que el token es valido
+      $CLIENT_ID = '858752674560-6emgo7emadgcv30k8k9qfa8mrnsotjph.apps.googleusercontent.com';
+      $client = new \Google_Client(['client_id' => $CLIENT_ID]);
+      $payload = $client->verifyIdToken($token);
+      if ($payload) {
+        $userid = $payload['sub'];
+      } else {
+        $userid = FALSE;
+      }
+      return $userid;
     }
 
     public function newUser($pass, $mail,$nombre,$username,$edad,$tel){
@@ -67,7 +94,8 @@ class users{
           $id_usuario = $result[0];
 
           $sql = "INSERT INTO jugador(id,nombre,img_src,edad,tel,id_usuario) VALUES (?,?,?,?,?,?)";
-          $resultado = $this->db->conn->prepare($sql)->execute([NULL,$nombre,'default',$edad,$tel,$id_usuario]);
+          $img = 'avatar' . rand(1,3) . ".svg";
+          $resultado = $this->db->conn->prepare($sql)->execute([NULL,$nombre,$img,$edad,$tel,$id_usuario]);
         }
 
       }

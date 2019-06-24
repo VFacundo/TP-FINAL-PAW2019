@@ -9,9 +9,10 @@ h1 {
 h2{
    font-weight: bold;
    color: black;
-   font-size: 1.5em;
+   font-size: 4.5vh;
    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
    font-family: 'Indie Flower', cursive;
+   line-height: 1.5em;
 }
 .background{
     background-image: url('../../img/bg.jpg');
@@ -43,6 +44,17 @@ body{
     align-items: flex-start;
     justify-content: center;
     font-family: 'Raleway', sans-serif;
+}
+
+#registro {
+    width: 50vw;
+    background: #ffffffa8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em 0em 0em 0em;
+    font-family: 'Raleway', sans-serif;
+    height: 90vh;
 }
 
 .loader{
@@ -79,7 +91,7 @@ body{
 .loader figure img{width: 22%;}
 
 /*  SECTION LOGIN */
-#login{
+.login{
     width: 50vw;
     background: #ffffffa8;
     display: flex;
@@ -87,113 +99,157 @@ body{
     align-items: center;
     margin: 2em 0em 0em 0em;
     font-family: 'Raleway', sans-serif;
+    height: 90vh;
 }
-#login figure{
+
+.g-login-button {}
+
+.g-signin2 {width: 100%;}
+.login figure{
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: 15vh;
+    max-width: 15vw;
 }
-#login figure img{
-    width: 30%;
+.login figure img{
     height: auto;
+    width: auto;
+    max-width: 15vw;
+    max-height: 15vh;
 }
-#login h1{font-size: 3em;color: black;line-height: 2em;text-shadow: 0 2px 2px rgba(0, 0, 0, 0.32);font-family: 'Indie Flower', cursive;}
-#login form{
+.login h1{font-size: 5vh;color: black;line-height: 7vh;text-shadow: 0 2px 2px rgba(0, 0, 0, 0.32);font-family: 'Indie Flower', cursive;}
+.login form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 90%;
     text-transform: uppercase;
-    margin: 0.5em 0em;
 }
-#login form label{
+.login form label{
     width: 100%;
-    font-size: 1.3em;
-    margin: 0.2em 0em;
+    font-size: 2vh;
+    margin: 0.2vh 0em;
 }
-#login form label input{
+.login form label input{
     width: 100%;
     background: #ffffffc2;
     border-color: black;
 }
-#login form div{
+.login form div{
     display: flex;
     flex-direction:row;
     width:100%;
     align-items: center;
     justify-content: center;
+    height: 10vh;
 }
-#login form div input{
+.login form div input{
     width: 50%;
     background: #99c35f;
     border-radius: 0.5em;
     font-weight: bold;
     border-color: #3aca17;
-    margin: 0.1em;
+    margin: 0.5vh;
     text-transform: uppercase;
     font-family: 'Raleway', sans-serif;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0);
+    height: 8vh;
 }
-#login form div input:hover {
+.login form div input:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   transition: 0.5s;
 }
-#login form input{height: 3em;vertical-align: middle;}
-#login a{
+.login form input{height: 5vh;vertical-align: middle;}
+.login a{
     color: black;
     margin: .5em;
     font-size: 1.4em;
     text-transform: uppercase;
 }
+#logTerceros{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#logTerceros > div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5vh 0vw;
+}
+
+.pluginLoginButton table .pluginLoginButtonlarge table {
+    width: 100%;
+}
 
 /*  ---VISTA CELULAR ---  */
   @media (max-width: 600px) {
-    #login{
+    .login{
         width: 90vw;
         position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 90vh;
     }
-    #login h1{
+    .login h1{
         display:none;
     }
-    #login figure{
-        width: 100%;
+    .login figure{
+        max-width: 50vw;
+        align-items: start;
     }
-    #login figure:after{
+    .login figure:after{
         content:'Hay Fulbito';
-        font-size: 3em;
+        font-size: 8vh;
         color: black;
-        line-height: 2em;
+        line-height: 1em;
         text-shadow: 0 2px 2px rgba(0, 0, 0, 0.32);
         font-family: 'Indie Flower', cursive;
-        width: 100%;
     }
-    #login form{
-    font-size: 0.6em;
+    .login form{
+    font-size: 1.5vh;
+    margin: 2vh 0vw;
     }
 
-    #login form label{
+    .login form label{
         width: 100%;
         margin: 0.2em 0em;
     }
-    #login form label input{
+    .login form label input{
     }
-    #login form div{
+    .login form div{
         display: flex;
         flex-direction:row;
         width:100%;
         align-items: center;
         justify-content: center;
     }
-    #login form div input{
-        font-size: 1.5em;
+    .login form div input{
+        font-size: 2.5vw;
     }
-    #login form div input:hover {
+    .login form div input:hover {
       box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
       transition: 0.5s;
     }
-    #login form input{height: 2em;}
-    #login a{font-size: 1em;}
+    .login form input{height: 5vh;}
+    .login a{font-size: 1em;}
+	
+	#registro {
+		width: 90vw;
+		background: #ffffffa8;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 2em 0em 0em 0em;
+		font-family: 'Raleway', sans-serif;
+		height: 90vh;
+	}
   }
 /*  ---FIN VISTA CELULAR ---  */
 

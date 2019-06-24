@@ -4,29 +4,40 @@
   <head>
     <meta charset="utf-8">
     <title>Mi Equipo</title>
-    		<link rel="stylesheet" href="/assets/css/equipo.css">
+    <link rel="stylesheet" href="/assets/css/equipo.css">
+	<script src="assets/js/equipo.js"></script>
   </head>
   <body>
     <section class="sideSection" id="miequipo">
       <h1>Mi Equipo</h1>
         <div>
-          <div class="btnEquipo">
-            <a class="boton">Mi Equipo</a>
-            </div>
-            <div class="btnEquipo">
-                <a class="boton">Mis Solicitudes</a>
-            </div>
-            <div class="btnEquipo">
-                <a class="boton">Mis Equipos Jugador</a>
-            </div>
-          <?php
-          if(!$equipo){
-            include('sinequipo.html');
-          }else{
-            include('conequipo.html');
-          }
-           ?>
+			<div class="contenedorBotones">
+				<div class="btnEquipo btnActive" onclick="showSection(1)">
+					<a class="boton">Mi Equipo</a>
+				</div>
+				<div class="btnEquipo" onclick="showSection(2)">
+					<a class="boton">Mis Solicitudes</a>
+				</div>
+				<div class="btnEquipo" onclick="showSection(3)">
+					<a class="boton">Mis Equipos Jugador</a>
+				</div>
+			</div>
+			<div id="contenedorEquipo">
+			  <?php
+				  if(!$equipo){
+					include('sinequipo.html');
+				  }else{
+					include('conequipo.html');
+				  }
+			   ?>
+			</div>
+			<div id="contenedorSolicitudes">
+				<?php include('solicitudes.html');?>
+			</div>
+			<div id="contenedorComoJugador">
+				<span>contenedorComoJugador</span>
+			</div>
         </div>
     </section>
-  </body>
+  </body>	
 </html>

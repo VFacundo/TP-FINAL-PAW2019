@@ -11,9 +11,9 @@
 			<h1>Mi Perfil</h1>
 			<div>
 				<div id="miPerfilImagen">
-					<img src="<?=$img?>" alt="Imagen de perfil">
+					<img src="<?=$img?>" alt="Imagen de perfil" id="imgPerfil">
 					<div>
-						<a class="boton" href="./?obtenerNuevaImagen">Cambiar</a>
+						<a class="boton" onclick="cambiarImg();">Cambiar</a>
             <label class="boton">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" onchange="subirImg();"></label>
 					</div>
 				</div>

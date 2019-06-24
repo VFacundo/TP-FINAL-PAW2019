@@ -11,11 +11,7 @@ public function perfil(){
   if(sesion::is_login()){
     $datosUser = $db->datosUserJug($_SESSION['id']);
     $this->pasarVariableAVista('datos',$datosUser);
-      if($datosUser['img_src'] == 'default'){
-        $this->pasarVariableAVista('img','img/avatar' . rand(1,3) . ".svg");
-      }else{
-        $this->pasarVariableAVista('img','img/userImg/' . $datosUser['img_src']);
-      }
+    $this->pasarVariableAVista('img','img/' . $datosUser['img_src']);
     sesion::refreshTime();
   }else{
     $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
@@ -43,10 +39,6 @@ public function editarPerfil(){
   $this->redireccionar('/perfil');
 }
 
-public function ok(){
-  echo('<p>200 OK</p>');//Resp a ajax..
-}
-
 public function subirImagen(){
   sesion::startSession();
   sesion::refreshTime();
@@ -58,6 +50,28 @@ public function subirImagen(){
       $this->redireccionarA($_SERVER['REQUEST_URI'],'/response/responsepage/OK');
     }
   }
+}
+
+public function setImg(){
+  sesion::startSession();
+  $db = new users();
+  $ruta = $_POST['img_src'];
+  $db->setImg(sesion::getId(),$ruta);
+  echo('ok');
+  exit();
+}
+
+public function getImg(){//devuelve img perfil
+  sesion::startSession();
+  $db = new users();
+  $result = $db->getImg(sesion::getId());
+   if(!$result===FALSE){
+     echo($result['img_src']);
+     exit();
+   }else {
+      echo('error');
+      exit();
+   }
 }
 
 }

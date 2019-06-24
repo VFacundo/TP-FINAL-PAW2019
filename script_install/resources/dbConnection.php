@@ -30,7 +30,7 @@ class dbConnection{
 				CREATE TABLE jugador (
 									id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 									nombre VARCHAR(50) NOT NULL,
-									img_src VARCHAR(50),
+									img_src VARCHAR(150),
 									edad INT NOT NULL,
 									tel varchar(25),
 									id_usuario INT(11) UNSIGNED,
@@ -39,7 +39,7 @@ class dbConnection{
 				CREATE TABLE equipo (
 									id INT(11) UNSIGNED AUTO_INCREMENT,
 									nombre VARCHAR(50) NOT NULL,
-									logo VARCHAR(50) NOT NULL,
+									logo VARCHAR(150) NOT NULL,
 									id_capitan INT(11) UNSIGNED,
 									FOREIGN KEY(id_capitan) REFERENCES jugador(id),
 									PRIMARY KEY(id,nombre)
