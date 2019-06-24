@@ -10,6 +10,11 @@ class users{
       $this->db = new dbconnect();
     }
 
+    public function setImg($id,$img_src){
+      $sql = "UPDATE jugador SET img_src='$img_src' WHERE id_usuario='$id'";
+      $resultado = $this->db->conn->prepare($sql)->execute();
+    }
+
     public function getImg($id){
       $sql = "SELECT img_src FROM jugador WHERE id_usuario='$id'";
       $result = $this->db->conn->query($sql);

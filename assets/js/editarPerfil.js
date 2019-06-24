@@ -40,3 +40,27 @@ function subirImg() {
     }
     xhr.send('');
   }
+
+  function cambiarImg(){
+    var rnd,
+    min = 1,
+    max = 4,
+    img_src = 'avatar',
+    ext = '.svg',
+    ruta,
+    img = document.getElementById("imgPerfil"),
+    xhr = new XMLHttpRequest(),
+    formData = new FormData();
+
+    rnd = Math.floor(Math.random() * (max - min)) + min;
+    ruta = img_src+rnd+ext;
+    img.src = 'img/'+ruta;
+    formData.append('img_src',ruta);
+    xhr.open('POST', 'http://localhost/perfil/setImg');
+    xhr.onload = function() {
+    response = xhr.responseText;
+    console.log(response);
+
+  }
+    xhr.send(formData);
+  }

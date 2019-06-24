@@ -52,6 +52,15 @@ public function subirImagen(){
   }
 }
 
+public function setImg(){
+  sesion::startSession();
+  $db = new users();
+  $ruta = $_POST['img_src'];
+  $db->setImg(sesion::getId(),$ruta);
+  echo('ok');
+  exit();
+}
+
 public function getImg(){//devuelve img perfil
   sesion::startSession();
   $db = new users();
