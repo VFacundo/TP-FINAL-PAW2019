@@ -102,7 +102,9 @@
     content: '(C)';
 }
 
-li {}
+li label.boton {
+    width: 100%;
+}
 #miequipoDatos ul li ul li:nth-child(3){
 	min-width: 5vw;
 }

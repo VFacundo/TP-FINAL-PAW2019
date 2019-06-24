@@ -1,0 +1,39 @@
+<form name="equipo" action="" onSubmit="crearEquipo(); return false">
+	<div id="miequipoImagen">
+		<img src="/img/<?=$logo_equipo?>" alt="Imagen de Equipo">
+		<label class="boton" id="labelSubir">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" ></label>
+	</div>
+	<div id="miequipoDatos">
+		<label>Nombre del equipo: <input type="text" name="eq_nombre" value="<?=$nombre_equipo?>" disabled><label class="boton">Editar</label></label>
+		<ul>
+			<li>
+				<ul id="ulHeader">
+					<li>Nombre</li>
+					<li>Edad</li>
+					<li>Usuario</li>
+					<li></li>
+				</ul>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<ul class="capitan">
+					<li><img src="/img/avatar1.png" alt="Imagen de jugador"></li>
+					<li><?=$datosUserJug['nombre']?></li>
+					<li><?=$datosUserJug['edad']?></li>
+					<li><?=$datosUserJug['user']?></li>
+					<li><label class="boton" disabled>Editar</label></li>
+				</ul>
+			</li>
+			<?php 
+				foreach($jugadores as $valor){
+					echo '<li><img src="/img/' . $valor['img'] . '" alt="Imagen de jugador"></li>';
+					echo '<li><input type="text" name="j_nombre" value="' . $valor['nombre'] . 'disabled"></li>';
+					echo '<li><input type="number" name="j_edad" value="' . $valor['edad'] . '" disabled></li>';
+					echo '<li><input type="text" name="j_usr" value="' . $valor['usuario'] . '" disabled></li>';
+					echo '<li><label class="boton" onclick="agregarJugador()">Editar</label></li>';
+				}
+			?>
+		</ul>
+	</div>
+</form>

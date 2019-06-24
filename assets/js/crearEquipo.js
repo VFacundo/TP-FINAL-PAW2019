@@ -1,6 +1,21 @@
 function agregarJugador(){
-  var target = event.target;
-  target.disabled=true;
+  var target = event.target,
+	  ul = target.parentElement.parentElement,
+	  nombre = ul.children[1].querySelector("input"),
+	  edad = ul.children[2].querySelector("input"),
+	  usuario = ul.children[3].querySelector("input");
+  (target.innerHTML === 'Editar')? target.innerHTML = "Agregar" : target.innerHTML = "Editar";
+  if(edad != null && usuario != null && nombre != null){
+	  if(nombre.disabled){
+		  nombre.disabled = false;
+		  edad.disabled = false;
+		  usuario.disabled = false;
+	  }else{
+		  nombre.disabled = true;
+		  edad.disabled = true;
+		  usuario.disabled = true;
+	  }
+  }
 }
 
 function crearEquipo(){
@@ -25,13 +40,14 @@ function crearEquipo(){
       }
   }
 
-  if(cantJ>=5){
+  if(cantJ>=4){
     xhr.open('POST', 'http://localhost/equipo/nuevoequipo');
     xhr.onload = function() {
     console.log('Info Enviada');
-      if(xhr.responseText!='ok'){
+      if(xhr.responseText.contains('ok')){
         alert(xhr.responseText);
       }
+	  window.location.reload();
     }
     xhr.send(formData);
   }else {
