@@ -13,7 +13,7 @@ abstract class Vista {
      * @var string
      */
     protected $contentType;
-    
+
     public function __construct() {
     }
 
@@ -23,7 +23,7 @@ abstract class Vista {
      * @param mixed $valor Valor de la variable
      */
     public abstract function setVariable($nombre, $valor);
-    
+
     /**
      * Renderiza la vista
      */
@@ -31,14 +31,14 @@ abstract class Vista {
         header("Content-Type: {$this->getContentType()}");
         echo $this->doRender($accion);
     }
-    
+
     /**
      * Método a sobrescribir por las clase hijas en el cual se debe implementar
      * la lógica de dibujado de la vista
      * @param string $accion Nombre de la acción a renderizar
      */
     protected abstract function doRender($accion);
-    
+
     /**
      * Recupera el tipo MIME de la vista
      * @return string

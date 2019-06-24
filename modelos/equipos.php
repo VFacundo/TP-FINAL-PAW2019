@@ -9,6 +9,19 @@ class equipos{
       $this->db = new dbconnect();
     }
 
+public function getJugadoresEquipo($id_equipo){//Input id Equipo Return Todos los jugadores
+  $sql = "SELECT e.logo,e.nombre,j.nombre,j.img_src,j.edad,u.user FROM equipo e
+	         INNER JOIN jugador_equipo je on (je.id_equipo = e.id)
+     	        INNER JOIN jugador j on (j.id = je.id_jugador)
+                	LEFT JOIN usuario u on (u.id = j.id_usuario)
+                   WHERE e.id = '$id_equipo'";
+  $result = $this->db->conn->query($sql);
+  if(!$result===FALSE){
+    $result = $result->fetchAll();
+  }
+  return $result;
+}
+
 public function verifyNombre($nombre){
   $this->sanitizeString($nombre);
   $sql = $sql = "SELECT id FROM equipo WHERE nombre='$nombre'";
@@ -104,7 +117,17 @@ public function newEquipo($nombre_equipo,$img_equipo,$nombre_j,$edad_j,$usr_j,$i
   }
 }
 
-public function getEquipo($id){
+public function getEquipoNombre($nombre_equipo){
+  $sql = "SELECT id FROM equipo WHERE nombre='$nombre_equipo'";
+  $result = $this->db->conn->query($sql);
+  if(!$result===FALSE){
+    $result = $result->fetch();
+    $result = $result['id'];
+  }
+  return $result;
+}
+
+public function getEquipo($id){//Regresa el id de equipo Propio
  $id_jugador = $this->getIdJugador($id);
  $sql = "SELECT * FROM equipo WHERE id_capitan='$id_jugador'";
  $result = $this->db->conn->query($sql);

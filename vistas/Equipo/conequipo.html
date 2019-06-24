@@ -25,13 +25,17 @@
 					<li><label class="boton" disabled>Editar</label></li>
 				</ul>
 			</li>
-			<?php 
+			<?php
 				foreach($jugadores as $valor){
-					echo '<li><img src="/img/' . $valor['img'] . '" alt="Imagen de jugador"></li>';
-					echo '<li><input type="text" name="j_nombre" value="' . $valor['nombre'] . 'disabled"></li>';
+					echo '<li>';
+					echo '<ul>';
+					echo '<li><img src="/img/' . $valor['img_src'] . '" alt="Imagen de jugador"></li>';
+					echo '<li><input type="text" name="j_nombre" value="' . $valor['nombre'] . '" disabled></li>';
 					echo '<li><input type="number" name="j_edad" value="' . $valor['edad'] . '" disabled></li>';
-					echo '<li><input type="text" name="j_usr" value="' . $valor['usuario'] . '" disabled></li>';
+					echo '<li><input type="text" name="j_usr" value="' . $valor['user'] . '" disabled></li>';
 					echo '<li><label class="boton" onclick="agregarJugador()">Editar</label></li>';
+					echo '</ul>';
+					echo '</li>';
 				}
 			?>
 		</ul>

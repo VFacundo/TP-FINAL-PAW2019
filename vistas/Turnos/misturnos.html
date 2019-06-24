@@ -1,2 +1,37 @@
 <?php include('assets/template/base.html'); ?>
-<?php var_dump(misturnos) ?>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mi Equipo</title>
+    <link rel="stylesheet" href="/assets/css/equipo.css">
+	<script src="assets/js/equipo.js"></script>
+  </head>
+  <body>
+    <section class="sideSection" id="miequipo">
+      <h1>Mis Turnos</h1>
+        <div>
+			<div class="contenedorBotones">
+				<div class="btnEquipo btnActive" onclick="showSection(1)">
+					<a class="boton">Mi Equipo</a>
+				</div>
+				<div class="btnEquipo" onclick="showSection(2)">
+					<a class="boton">Mis Solicitudes</a>
+				</div>
+				<div class="btnEquipo" onclick="showSection(3)">
+					<a class="boton">Mis Turnos Jugador</a>
+				</div>
+			</div>
+			<div id="contenedorEquipo">
+
+			</div>
+			<div id="contenedorSolicitudes">
+				
+			</div>
+			<div id="contenedorComoJugador">
+				<span>contenedorComoJugador</span>
+			</div>
+        </div>
+    </section>
+  </body>
+</html>

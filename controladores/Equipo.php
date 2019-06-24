@@ -11,8 +11,15 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
     $dbu = new users();
     sesion::startSession();
     if(sesion::is_login()){
-      $this->pasarVariableAVista("equipo",$db->getEquipo(sesion::getId()));
+      $miEquipo = $db->getEquipo(sesion::getId());
+      $this->pasarVariableAVista("equipo",$miEquipo);
       $this->pasarVariableAVista("datosUserJug",$dbu->datosUserJug(sesion::getId()));
+        if($miEquipo){
+          $jugadoresEquipo = $db->getJugadoresEquipo($miEquipo['id']);
+          $this->pasarVariableAVista("logo_equipo",$jugadoresEquipo[0]['logo']);
+          $this->pasarVariableAVista("nombre_equipo","hola");
+          $this->pasarVariableAVista("jugadores",$jugadoresEquipo);
+        }
       sesion::refreshTime();
     }else{
       $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
@@ -31,9 +38,9 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
       $usr_j = $_POST['user'];
         if($db->verifyNombre($nombre_equipo)===FALSE){
           $db->newEquipo($nombre_equipo,$img_equipo,$nombre_j,$edad_j,$usr_j,sesion::getId());
-          echo('ok');
+          echo('Equipo Creado!');
         }else {
-          echo('Ya existe un Equipo Con ese Nombre');
+          echo('Ya existe un Equipo Con ese Nombre!');
         }
       exit();
     }

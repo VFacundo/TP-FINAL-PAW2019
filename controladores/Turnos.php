@@ -16,4 +16,25 @@ class Turnos extends \UNLu\PAW\Libs\Controlador{
     }
 
   }
+
+  public function nuevoTurno(){
+    sesion::startSession();
+    if(sesion::is_login()){
+      $dbTurnos = new turnosdb();
+      $tipoTurno = $_POST['tipo_turno'];
+      $fecha = $_POST['fecha_Turno'];
+      $horario = $_POST['horario_turno'];
+      $cancha = $_POST['cancha_turno'];
+      $equipo_rival = isset($_POST['equipo_rival'])?$_POST['equipo_rival']:FALSE;
+        if(!$dbTurnos->buscarTurnoHD($fecha,$horario)){
+          echo("Fecha/Hora No disponibles!");
+        }else {
+          $dbTurnos->newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,sesion::getId());
+        }
+      sesion::refreshTime();
+      exit();
+    }
+  }
+
+
 }
