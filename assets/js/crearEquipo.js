@@ -44,7 +44,8 @@ function crearEquipo(){
     xhr.open('POST', 'http://localhost/equipo/nuevoequipo');
     xhr.onload = function() {
     console.log('Info Enviada');
-      if(xhr.responseText.contains('ok')){
+    var msg = xhr.responseText;
+      if(msg.includes('ok')){
         alert(xhr.responseText);
       }
 	  window.location.reload();

@@ -9,6 +9,8 @@ class equipos{
       $this->db = new dbconnect();
     }
 
+
+
 public function getJugadoresEquipo($id_equipo){//Input id Equipo Return Todos los jugadores
   $sql = "SELECT e.logo,e.nombre,j.nombre,j.img_src,j.edad,u.user FROM equipo e
 	         INNER JOIN jugador_equipo je on (je.id_equipo = e.id)
@@ -88,7 +90,7 @@ public function newEquipo($nombre_equipo,$img_equipo,$nombre_j,$edad_j,$usr_j,$i
   if(!empty($img_equipo)){
     $img_equipo = $this->subirLogo($img_equipo);
   }else {
-    $img_equipo = 'default';//aca van los avatares default
+    $img_equipo = 'avatar' . rand(1,3) . ".svg";;//aca van los avatares default
   }
   $id_capitan = $this->getIdJugador($id);
   if($id_capitan){
@@ -103,8 +105,9 @@ public function newEquipo($nombre_equipo,$img_equipo,$nombre_j,$edad_j,$usr_j,$i
       $nombre_jugador = $this->sanitizeString($nombre_j[$i]);
       $edad_jugador = $this->sanitizeInt($edad_j[$i]);
         if(empty($usr_j[$i])){
-          $sql = "INSERT INTO jugador(id,nombre,edad) VALUES(?,?,?)";
-          $resultado = $this->db->conn->prepare($sql)->execute([NULL,$nombre_jugador,$edad_jugador]);
+          $imgJugador = 'avatar' . rand(1,3) . ".svg";
+          $sql = "INSERT INTO jugador(id,nombre,img_src,edad) VALUES(?,?,?,?)";
+          $resultado = $this->db->conn->prepare($sql)->execute([NULL,$nombre_jugador,$imgJugador,$edad_jugador]);
               if(!$resultado===FALSE){
                 $id_jugador = $this->db->conn->lastInsertId();
               }

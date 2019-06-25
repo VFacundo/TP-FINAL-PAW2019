@@ -63,12 +63,14 @@
 
 #ulHeader {line-height: 5vh;}
 
-#miequipoDatos > ul:nth-child(even) {
+#miequipoDatos > ul:nth-child(even){
     overflow-y: scroll;
     overflow-x: hidden;
     height: 40vh;
     position: relative;
 }
+
+
 
 #miequipoDatos ul:first-child {}
 

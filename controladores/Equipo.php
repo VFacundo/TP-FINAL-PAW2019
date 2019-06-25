@@ -17,7 +17,7 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
         if($miEquipo){
           $jugadoresEquipo = $db->getJugadoresEquipo($miEquipo['id']);
           $this->pasarVariableAVista("logo_equipo",$jugadoresEquipo[0]['logo']);
-          $this->pasarVariableAVista("nombre_equipo","hola");
+          $this->pasarVariableAVista("nombre_equipo",$jugadoresEquipo[0][1]);
           $this->pasarVariableAVista("jugadores",$jugadoresEquipo);
         }
       sesion::refreshTime();

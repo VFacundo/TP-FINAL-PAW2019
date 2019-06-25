@@ -5,9 +5,11 @@
 	</div>
 	<div id="miequipoDatos">
 		<label>Nombre del equipo: <input type="text" name="eq_nombre" value="<?=$nombre_equipo?>" disabled><label class="boton">Editar</label></label>
+		<span></span>
 		<ul>
 			<li>
 				<ul id="ulHeader">
+					<li>Perfil</li>
 					<li>Nombre</li>
 					<li>Edad</li>
 					<li>Usuario</li>
@@ -15,7 +17,7 @@
 				</ul>
 			</li>
 		</ul>
-		<ul>
+		<ul class="jugadoresMiEquipo">
 			<li>
 				<ul class="capitan">
 					<li><img src="/img/avatar1.png" alt="Imagen de jugador"></li>
@@ -27,15 +29,15 @@
 			</li>
 			<?php
 				foreach($jugadores as $valor){
-					echo '<li>';
-					echo '<ul>';
-					echo '<li><img src="/img/' . $valor['img_src'] . '" alt="Imagen de jugador"></li>';
-					echo '<li><input type="text" name="j_nombre" value="' . $valor['nombre'] . '" disabled></li>';
-					echo '<li><input type="number" name="j_edad" value="' . $valor['edad'] . '" disabled></li>';
-					echo '<li><input type="text" name="j_usr" value="' . $valor['user'] . '" disabled></li>';
-					echo '<li><label class="boton" onclick="agregarJugador()">Editar</label></li>';
-					echo '</ul>';
-					echo '</li>';
+					echo '<li>' . "\n";
+					echo '<ul>' . "\n";
+					echo '<li><img src="/img/' . $valor['img_src'] . '" alt="Imagen de jugador"></li>' . "\n";
+					echo '<li><input type="text" name="j_nombre" value="' . $valor['nombre'] . '" disabled></li>' . "\n";
+					echo '<li><input type="number" name="j_edad" value="' . $valor['edad'] . '" disabled></li>' . "\n";
+					echo '<li><input type="text" name="j_usr" value="' . $valor['user'] . '" disabled></li>' . "\n";
+					echo '<li><label class="boton" onclick="agregarJugador()">Editar</label></li>' . "\n";
+					echo '</ul>' . "\n";
+					echo '</li>' . "\n";
 				}
 			?>
 		</ul>
