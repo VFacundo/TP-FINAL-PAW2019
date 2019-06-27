@@ -165,11 +165,18 @@ a:hover
 	}
 	nav ul li a{
 	}
-	.selectedLi{
+	.selectedLi{background-color: #ffffff !important;border: 2px solid #000000;color: black !important;}
 
-		background-color: #475B26 !important;
-
-		border: 2px solid #ffffff;
+	.selectedLi::before {
+		content:'';
+		background-image: url('/img/silueta.png');
+		position: absolute;
+		height: 4vh;
+		width: 2vw;
+		min-width: 20px;
+		background-size: 30px 35px;
+		background-repeat: no-repeat;
+		margin: 0vh -2vw;
 	}
 
 	#contenedorLogo{
@@ -239,13 +246,15 @@ a:hover
 		line-height: 3vh;
 		text-align: center;
 		white-space: pre-wrap;
-		background: #99c35f;
+		background: #58a300;
 		border-radius: 0.5em;
 		font-weight: bold;
 		text-transform: uppercase;
 		font-family: 'Raleway', sans-serif;
 		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0);
 		padding: 1.5vh 0em;
+		color: white;
+		position: relative;
 	}
 
 /*********************************************************************************/
@@ -314,12 +323,26 @@ body > nav {
 	align-items: center;
 }
 .logo figure{
-
+    position: relative;
 }
 .logo figure img{
     max-width: 100%;
     max-height: 30vh;
+    animation: rot3d 60s cubic-bezier(1, 0.15, 0, 0.78) 10ms infinite;
 }
+
+@keyframes rot3d {
+    0%{
+		transform: rotate3d(0, 1, 0, 0deg);
+    }
+    5%{
+		transform: rotate3d(0, 1, 0, 360deg);
+    }
+    100%{
+		transform: rotate3d(0, 1, 0, 360deg);
+    }
+}
+
 .logo h1{
  font-family: 'Indie Flower', cursive;
  font-size:4vh;
@@ -373,5 +396,14 @@ body > nav > nav {min-width: 20vw;max-width: 20vw;min-height: 70vh;}
 	}
 	.sideSection > div{
 		grid-template-columns: 1fr 4fr;
+	}
+}
+/*********************************************************************************/
+/* small screen	                                                             */
+/*********************************************************************************/
+@media (max-width: 1050px) {
+	
+	.boton {
+		
 	}
 }

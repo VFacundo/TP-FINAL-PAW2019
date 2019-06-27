@@ -14,6 +14,39 @@
 		</ul>
 		<ul>
 			<!-- Hardcoded -->
+			<?php 
+				foreach($equipos as $valor){
+					echo '<li>
+							<ul>
+								<li>'.$valor['nombre'].'</li>
+								<li>'.$valor['promedio'].'</li>
+								<li>'.$valor['fechaProximoPartido'].'</li>
+								<li></li>
+								<li>
+									<button class="boton rechazar">Salir del equipo</button>
+								</li>
+								<li>
+									<span class="masDetalles"> Mas detalles </span>
+								</li>
+								<li>
+									<div class="detalles">
+										<ul>
+											<li>Jugador</li>
+											<li>Edad</li>
+											<li>Usuario</li>
+										</ul>'.
+										foreach($valor['jugadores'] as $jugadores){
+											echo '<ul>
+													<li>'.$jugadores['nombre'].'</li>
+													<li>29</li>
+													<li>@Guest1424</li>
+												 </ul>'
+										}
+						;
+				
+				
+				}
+			?>
 			<li>
 				<ul>
 					<li>Marcelona FC</li>
@@ -29,7 +62,7 @@
 						<span class="masDetalles"> Mas detalles </span>
 					</li>
 					<li>
-						<div class="detalles mostrando">
+						<div class="detalles">
 							<ul>
 								<li>Jugador</li>
 								<li>Edad</li>
