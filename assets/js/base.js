@@ -26,8 +26,8 @@ Base.init = function(){
   });
 }
 Base.click = function(){
-  var selected = event.target;
-  var old_selected = document.getElementsByClassName("selectedLi");
+  var selected = event.target,
+	  old_selected = document.getElementsByClassName("selectedLi");
     old_selected[0].classList.remove("selectedLi");
     selected.classList.add("selectedLi");
 }

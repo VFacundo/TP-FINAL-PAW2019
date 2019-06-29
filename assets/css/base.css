@@ -77,7 +77,6 @@ strong
 
 a
 {
-	/* display: block; */
 	color: #ffffff;
 	text-decoration: none;
 	font-size: 0.8em;
@@ -172,11 +171,11 @@ a:hover
 		background-image: url('/img/silueta.png');
 		position: absolute;
 		height: 4vh;
-		width: 2vw;
+		width: 4vw;
 		min-width: 20px;
 		background-size: 30px 35px;
 		background-repeat: no-repeat;
-		margin: 0vh -2vw;
+		margin: 0vh -3vw;
 	}
 
 	#contenedorLogo{
@@ -255,6 +254,7 @@ a:hover
 		padding: 1.5vh 0em;
 		color: white;
 		position: relative;
+		user-select: none;
 	}
 
 /*********************************************************************************/
@@ -348,6 +348,7 @@ body > nav {
  font-size:4vh;
  transform: rotate(-16deg);
  text-align: end;
+ padding: 0vh 1vw;
 }
 
 body > nav > nav {min-width: 20vw;max-width: 20vw;min-height: 70vh;}
@@ -370,13 +371,13 @@ body > nav > nav {min-width: 20vw;max-width: 20vw;min-height: 70vh;}
 /*********************************************************************************/
 @media (max-width: 600px) {
 	body{
-		    grid-template-areas: "b b"
-								 "b b"
-								 "b b"
-								 "b b"
-								 "b b";
-		    grid-template-columns: 1fr 1fr;
-		    margin: 0em 1em;
+		    grid-template-areas: "b b b b"
+		    			         "b b b b"
+		    			         "b b b b"
+		    			         "b b b b"
+		    			         "b b b b";
+		    grid-template-columns: 1fr 1fr 1fr 1fr;
+		    margin: 0em 0.5em;
 	}
 	body > nav{
 		position:absolute;
@@ -386,24 +387,50 @@ body > nav > nav {min-width: 20vw;max-width: 20vw;min-height: 70vh;}
 	body > nav:after{
 		content: '>';
 		position: absolute;
-		top: 2vh;
-		left: 97vw;
+		top: -100vh;
+		left: 96.5vw;
 		background: black;
 		color: white;
-		font-size: 4em;
+		font-size: 3em;
 		border: 2px solid white;
 		border-radius: 0em .1em .1em 0em;
 	}
 	.sideSection > div{
 		grid-template-columns: 1fr 4fr;
 	}
+	
+	#editarPerfil {
+		width: 93vw;
+	}
+	#miequipoImagen {
+		width: 20vw !important;
+	}
+
+	#contenedorEquipo form > label {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 68vw !important;
+	}
+	#contenedorEquipo form > label input{
+	width: 50vw;
+	}
+	#contenedorEquipo form > label label{width: 10vw;padding: 1vh 0.5vw !important;margin: 0vh 1vw !important;}
 }
 /*********************************************************************************/
 /* small screen	                                                             */
 /*********************************************************************************/
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
 	
 	.boton {
 		
+	}
+	.selectedLi::before {
+		background-size: 0px;
+	}
+	/*---------Equipo screen----------*/
+	#miequipoDatos{
+		width: 100%;
+		margin: 1vh 0vw !important;
 	}
 }

@@ -1,3 +1,4 @@
+
 .sideSection{
 	grid-area:b;
 	position: relative;
@@ -23,27 +24,36 @@
 }
 .sideSection > div{
 	background: #ffffffed;
-	margin: .5em 0em 0em 0em;
+	margin: 0.5em 0em 0em 0em;
 	height: -webkit-fill-available;
-	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 10vh 1fr 1fr;
 	max-height: 83.5vh;
 	}
 
-#miequipoImagen{width: 20vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 1vh 1vw;}
+#miequipoImagen{width: 8vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 1vh 1vw;}
+
+
+
+#miequipoImagen::before{
+	 content: 'Logo'; 
+	font-size: 1em;
+}
 
 #miequipoDatos {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
-    width: 50vw;
     margin: 1vh 1vw;
-    height: 65vh;
+    max-height: 65vh;
+    width: 100%;
 }
 
-#miequipoDatos > ul{}
+#miequipoDatos > ul{
+    max-height: 40vh;
+    overflow-y: auto;
+}
 
 #miequipoDatos > label > input {
     line-height: 3vh;
@@ -93,13 +103,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0.5vh 0.5vw;
+    margin: 0.5vh 1vw;
 }
 #miequipoDatos ul li ul li:nth-child(1){
-	min-width: 4vw;
+	width: 10vw;
 }
 #miequipoDatos ul li ul li:nth-child(2){
-	width: 15vw;
+	width: 20vw;
 }
 
 .capitan li:nth-child(2):after {
@@ -107,23 +117,25 @@
 }
 
 li label.boton {
-    width: 1007vw;
+    padding: 1vh 1.5vw;
 }
+
+.icon-trash {
+    background: #f13232;
+}
+
 #miequipoDatos ul li ul li:nth-child(3){
-	min-width: 5vw;
+	width: 6vw;
 }
 #miequipoDatos ul li ul li:nth-child(4){
 	width: 15vw;
 }
 #miequipoDatos ul li ul li:nth-child(5){
 	width: 8vw;
-	margin: 0.1vh 0.5vw;
-	padding: 1vh 0vw;
 }
 
 #miequipoDatos ul li ul li:nth-child(6){
-	width: 7vw;
-	margin: 0.1vh 0vw;
+	width: 8vw;
 }
 
 #miequipoDatos ul li ul li input {
@@ -144,7 +156,8 @@ li label.boton {
 }
 
 ul li img {
-    width: 2.2vw;
+    width: 3vw;
+    min-width: 40px;
 }
 
 .capitan li:nth-child(1) {}
@@ -176,7 +189,7 @@ ul li img {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0.5vh 0.5vw;
+    margin: 0.3vh 0.3vw;
 }
 
 .detalles.mostrando {
@@ -273,6 +286,7 @@ button.boton.rechazar {
     width: 100%;
     position: relative;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 ul#ulHeader {
@@ -281,7 +295,6 @@ ul#ulHeader {
 }
 
 #solicitudesDatos {
-    width: 79.5vw;
 }
 /****/
 /***como jugador***/
@@ -319,7 +332,7 @@ ul#ulHeader {
     /* position: absolute; */
     /* top: 6vh; */
     display: block;
-    height: 30vh;
+    max-height: 20vh;
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
@@ -370,8 +383,6 @@ ul#ulHeader {
 
 .masDetalles {
     text-decoration-line: underline;
-    line-height: 3em;
-    width: 80%;
     text-align: center;
     font-weight: bold;
 }
@@ -421,12 +432,13 @@ ul#ulHeader {
 }
 /****/
 #miequipoImagen img{
-	width: 25vh;
+	width: 100%;
 	height: auto;
 	border-radius: 50%;
 	background-size: 100% auto;
 	background-repeat: no-repeat;
 	background-position: 50%;
+	margin: 1vh 0vw;
 }
 #miequipoImagen a{
 	max-height: 4vh;
@@ -490,23 +502,21 @@ ul#ulHeader {
 }
 .btnEquipo{
 	display: flex;
-	max-height: 5vw;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
+	min-width: 33%;
 }
 
 .btnActive {
     background: #b3f35b;
-    border-radius: 1em;
+    border-radius: .5em;
 }
 
 .btnEquipo a {
 	margin: 0.5em;
 	width: 100%;
-	max-height: 5vh;
 }
 
 input[type="file"]#inputSb {
@@ -519,10 +529,11 @@ input[type="file"]#inputSb {
 }
 
 #miequipoImagen #labelSubir{
-	max-height: 4vh;
+	max-height: 3vh;
 	width: 100%;
 	color: #ffffff;
 	text-decoration: none;
+	padding: 0;
 }
 .nombreEquipo{
 	display: flex;
@@ -544,8 +555,109 @@ input[type="file"]#inputSb {
     position: relative;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: baseline;
+    flex-wrap: wrap;
+    padding: 2vh 2vw;
 }
 
-#contenedorEquipo {
+#contenedorEquipo form > label{width: 50vw;}
+#contenedorEquipo form > label > input{
+    line-height: 2em;
+    width: 40vw;
+}
+#contenedorEquipo form > label > label{padding: 0.5vh 1vw;margin: 0vh 1vw;}
+
+/* Mobile view */
+
+@media (max-width: 600px) {
+	ul li img {
+	min-width: 30px;
+	}
+	.btnEquipo a {
+		font-size: 0.6em;
+		height: 5.5vh;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	#miequipoDatos ul li ul li:nth-child(1){
+		width: 8vw;
+	}
+	#miequipoDatos ul li ul li:nth-child(2){
+		width: 30vw;
+		font-size: 0.6em;
+	}
+
+	.capitan li:nth-child(2):after {
+		content: '(C)';
+	}
+
+	li label.boton {
+		padding: 1vh 1.5vw;
+	}
+
+	.icon-trash {
+		background: #f13232;
+	}
+
+	#miequipoDatos ul li ul li:nth-child(3){
+		width: 7vw;
+		font-size: .6em;
+	}
+	#miequipoDatos ul li ul li:nth-child(4){
+		width: 20vw;
+		font-size: 0.6em;
+	}
+	#miequipoDatos ul li ul li:nth-child(5){
+		width: 10vw;
+		margin: 0vh 0vw;
+		font-size: 0.9em;
+	}
+
+	#miequipoDatos ul li ul li:nth-child(6){
+		width: 10vw;
+		margin: 0vh 0vw;
+		font-size: .9em;
+	}
+	/*----------------*/
+	#solicitudesDatos {
+		font-size: 0.6em;
+	}
+	#solicitudesDatos > ul > li > ul > li:nth-child(1){
+		width: 20vw;
+	}
+	#solicitudesDatos > ul > li > ul > li:nth-child(2){
+		width: 7vw;
+		line-height: 1.2em;
+	}
+	#solicitudesDatos > ul > li > ul > li:nth-child(3){
+		width: 10vw;
+		margin: auto;
+	}
+	#solicitudesDatos > ul > li > ul > li:nth-child(4){
+		width: 15vw;
+	}
+	#solicitudesDatos > ul > li > ul > li:nth-child(5){
+		width: 0vw;
+	}
+	#solicitudesDatos > ul > li > ul > li:nth-child(6){
+		width: 15vw;
+		margin: 0.2vh 0vw;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	#solicitudesDatos > ul > li > ul > li:nth-child(7) {
+		width: 16vw;
+		margin: auto auto;
+		display: inline;
+	}
+	#solicitudesDatos > ul > li > ul > li:nth-child(8) {
+		width: 100%;
+	}
+	#solicitudesDatos ul li ul li button {
+	font-size: 1em;
+	width: 7vw;
+	}
 }
