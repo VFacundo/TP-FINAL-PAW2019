@@ -13,24 +13,7 @@
 		<script src="/assets/js/base.js"></script>
 		<script> Base.init(); </script>
 		<meta name="google-signin-client_id" content="858752674560-6emgo7emadgcv30k8k9qfa8mrnsotjph.apps.googleusercontent.com">
-    </head>
-	<body>
-		<nav>
-			<div class="logo">
-				<figure>
-				  <img src="/img/logoBlack.png" alt="Logo Fulbito!">
-				</figure>
-				<h1>Hay Fulbito</h1>
-			</div>
-			<nav>
-				<ul>
-					<li class="botonLi boton" onclick="location.href='/perfil'">Mi perfil</li>
-					<li class="botonLi boton" onclick="location.href='/equipo'">Mi Equipo</li>
-					<li class="botonLi boton" onclick="location.href='/turnos'">Mis turnos</li>
-					<li class="botonLi boton">Buscar partido</li>
-					<li class="botonLi boton" onclick="signOut();">Cerrar sesion</li>
-
-          <script type="text/javascript">
+        <script type="text/javascript">
             function signOut() {
               var auth2 = gapi.auth2.getAuthInstance();
               auth2.disconnect().then(function () {
@@ -50,8 +33,25 @@
                 gapi.auth2.init();
               });
             }
-          </script>
-        <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+        </script>
+		<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+    </head>
+	<body>
+		<span id="menuBtn">></span>
+		<nav>
+			<div class="logo">
+				<figure>
+				  <img src="/img/logoBlack.png" alt="Logo Fulbito!">
+				</figure>
+				<h1>Hay Fulbito</h1>
+			</div>
+			<nav>
+				<ul>
+					<li class="botonLi boton" onclick="location.href='/perfil'">Mi perfil</li>
+					<li class="botonLi boton" onclick="location.href='/equipo'">Mi Equipo</li>
+					<li class="botonLi boton" onclick="location.href='/turnos'">Mis turnos</li>
+					<li class="botonLi boton">Buscar partido</li>
+					<li class="botonLi boton" onclick="signOut();">Cerrar sesion</li>
 				</ul>
 			</nav>
 		</nav>

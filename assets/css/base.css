@@ -343,18 +343,36 @@ body > nav {
     }
 }
 
+.goLeft {
+	animation: goLeft .5s linear 0s forwards;
+}
+
+@keyframes goLeft {
+  from {left:0}
+  to {left:-200vw}
+}
+
+.goRight {
+	animation: goRight .5s linear 0s forwards;
+}
+
+@keyframes goRight {
+  from {left:-100vw}
+  to {left:0vw}
+}
 .logo h1{
  font-family: 'Indie Flower', cursive;
- font-size:4vh;
+ font-size: 3.5vh;
  transform: rotate(-16deg);
  text-align: end;
  padding: 0vh 1vw;
 }
 
-body > nav > nav {min-width: 20vw;max-width: 20vw;min-height: 70vh;}
+body > nav > nav {width: 20vw;min-height: 70vh;}
 
+body > span{position: absolute;top: 5vh;left: -40vw;}
 .anuncio{
-	max-width: 70vw;
+	max-width: 80vw;
 	grid-column: 1 / 3;
 	padding: 0em 10vw;
 	display: flex;
@@ -380,20 +398,19 @@ body > nav > nav {min-width: 20vw;max-width: 20vw;min-height: 70vh;}
 		    margin: 0em 0.5em;
 	}
 	body > nav{
-		position:absolute;
-		left:-100vw;
-
-	}
-	body > nav:after{
-		content: '>';
 		position: absolute;
-		top: -100vh;
-		left: 96.5vw;
+	}
+	body > span{
+		position: absolute;
+		top: 5vh;
+		left: -3vw;
 		background: black;
 		color: white;
 		font-size: 3em;
 		border: 2px solid white;
 		border-radius: 0em .1em .1em 0em;
+		z-index: 999;
+		display: block !important;
 	}
 	.sideSection > div{
 		grid-template-columns: 1fr 4fr;
