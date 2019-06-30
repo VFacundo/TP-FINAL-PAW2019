@@ -4,12 +4,13 @@
 		<img src="/img/avatar1.png" alt="Imagen de Equipo">
 		<label class="boton" id="labelSubir">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" ></label>
 	</div>
+	<label>Nombre del equipo: <input type="text" name="eq_nombre" placeholder="Ingrese el nombre de su equipo" required></label>
+	<span>Cargar Jugadores (Minimo: 5 jugadores)</span>
 	<div id="miequipoDatos">
-		<label>Nombre del equipo: <input type="text" name="eq_nombre" placeholder="Ingrese el nombre de su equipo" required></label>
-		<span>Cargar Jugadores (Minimo: 5 jugadores)</span>
 		<ul>
 			<li>
 				<ul id="ulHeader">
+					<li></li>
 					<li>Nombre</li>
 					<li>Edad</li>
 					<li>Usuario</li>
@@ -17,21 +18,14 @@
 				</ul>
 			</li>
 		</ul>
-		<ul>
-			<!-- Asi queda con el paso de variables.
-			<ul class="capitan">
-				<li></?php $datos['cap_nombre'] ?></li>
-				<li></?php $datos['cap_edad'] ?></li>
-				<li></?php $datos['cap_usuario'] ?></li>
-			<ul> -->
-			<!-- Hardcoded -->
+		<ul class="ulSinEquipo">
 			<li>
 				<ul class="capitan">
-					<li><img src="/img/avatar1.png" alt="Imagen de jugador"></li>
+					<li><img src="img/<?=$datosUserJug['img_src']?>" alt="Imagen de jugador"></li>
 					<li><?=$datosUserJug['nombre']?></li>
 					<li><?=$datosUserJug['edad']?></li>
 					<li><?=$datosUserJug['user']?></li>
-					<li><label class="boton" disabled>Editar</label></li>
+					<li></li>
 				</ul>
 			</li>
 			<li>
@@ -40,7 +34,7 @@
 					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" required></li>
 					<li><input type="number" name="j_edad" value="" min="5" max="100" required></li>
 					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
-					<li><label class="boton" onclick="agregarJugador()">Agregar</label></li>
+					<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>
 				</ul>
 			</li>
 			<li>
@@ -49,7 +43,7 @@
 					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" required></li>
 					<li><input type="number" name="j_edad" value="" min="5" max="100" required></li>
 					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
-					<li><label class="boton" onclick="agregarJugador()">Agregar</label></li>
+					<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>
 				</ul>
 			</li>
 			<li>
@@ -58,7 +52,7 @@
 					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" required></li>
 					<li><input type="number" name="j_edad" value="" min="5" max="100" required></li>
 					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
-					<li><label class="boton" onclick="agregarJugador()">Agregar</label></li>
+					<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>
 				</ul>
 			</li>
 			<li>
@@ -67,71 +61,58 @@
 					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" required></li>
 					<li><input type="number" name="j_edad" value="" min="5" max="100" required></li>
 					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
-					<li><label class="boton" onclick="agregarJugador()">Agregar</label></li>
+					<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>
 				</ul>
 			</li>
 			<li>
 				<ul>
 					<li><img src="/img/avatar1.png" alt="Imagen de jugador"></li>
-					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" ></li>
-					<li><input type="number" name="j_edad" value="" min="5" max="100" ></li>
+					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" required></li>
+					<li><input type="number" name="j_edad" value="" min="5" max="100" required></li>
 					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
-					<li><label class="boton" onclick="agregarJugador()">Agregar</label></li>
+					<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>
 				</ul>
 			</li>
 			<li>
 				<ul>
 					<li><img src="/img/avatar1.png" alt="Imagen de jugador"></li>
-					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" ></li>
-					<li><input type="number" name="j_edad" value="" min="5" max="100" ></li>
+					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" required></li>
+					<li><input type="number" name="j_edad" value="" min="5" max="100" required></li>
 					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
-					<li><label class="boton" onclick="agregarJugador()">Agregar</label></li>
+					<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>
 				</ul>
 			</li>
 			<li>
 				<ul>
 					<li><img src="/img/avatar1.png" alt="Imagen de jugador"></li>
-					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" ></li>
-					<li><input type="number" name="j_edad" value="" min="5" max="100" ></li>
+					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" required></li>
+					<li><input type="number" name="j_edad" value="" min="5" max="100" required></li>
 					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
-					<li><label class="boton" onclick="agregarJugador()">Agregar</label></li>
+					<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>
 				</ul>
 			</li>
 			<li>
 				<ul>
 					<li><img src="/img/avatar1.png" alt="Imagen de jugador"></li>
-					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" ></li>
-					<li><input type="number" name="j_edad" value="" min="5" max="100" ></li>
+					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" required></li>
+					<li><input type="number" name="j_edad" value="" min="5" max="100" required></li>
 					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
-					<li><label class="boton" onclick="agregarJugador()">Agregar</label></li>
+					<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>
 				</ul>
 			</li>
 			<li>
 				<ul>
 					<li><img src="/img/avatar1.png" alt="Imagen de jugador"></li>
-					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" ></li>
-					<li><input type="number" name="j_edad" value="" min="5" max="100" ></li>
+					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" required></li>
+					<li><input type="number" name="j_edad" value="" min="5" max="100" required></li>
 					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
-					<li><label class="boton" onclick="agregarJugador()">Agregar</label></li>
+					<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>
 				</ul>
 			</li>
-			<li>
-				<ul>
-					<li><img src="/img/avatar1.png" alt="Imagen de jugador"></li>
-					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" ></li>
-					<li><input type="number" name="j_edad" value="" min="5" max="100" ></li>
-					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
-					<li><label class="boton" onclick="agregarJugador()">Agregar</label></li>
-				</ul>
-			</li>
-			<li>
-				<ul>
-					<li><img src="/img/avatar1.png" alt="Imagen de jugador"></li>
-					<li><input type="text" name="j_nombre" placeholder="Ingrese el nombre" ></li>
-					<li><input type="number" name="j_edad" value="" min="5" max="100" ></li>
-					<li><input type="text" name="j_usr" placeholder="Usuario (opcional)"></li>
-					<li><label class="boton" onclick="agregarJugador()">Agregar</label></li>
-				</ul>
+			<li class="add">
+				<div>
+					<span class="boton">Agregar jugador</span>
+				</div>
 			</li>
 		</ul>
 		<input class="boton" type="submit" name="crear" value="Crear equipo">

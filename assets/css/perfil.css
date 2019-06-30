@@ -4,23 +4,6 @@
 	min-height: 100vh;
 }
 
-.sideSection h1{
-	font-size:2em;
-	line-height: 15vh;
-	padding: 0em 2em;
-	display: block;
-	background: #ffffffed;
-	background-image: initial;
-	background-position-x: initial;
-	background-position-y: initial;
-	background-size: initial;
-	background-repeat-x: initial;
-	background-repeat-y: initial;
-	background-attachment: initial;
-	background-origin: initial;
-	background-clip: initial;
-	background-color: rgba(255, 255, 255, 0.93);
-}
 .sideSection > div{
 	background: #ffffffed;
 	margin: .5em 0em 0em 0em;

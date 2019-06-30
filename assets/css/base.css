@@ -95,7 +95,23 @@ a:hover
 	margin: 0em auto;
 	width: 1200px;
 }
-
+.sideSection h1 {
+    font-size: 2em;
+    line-height: 10vh;
+    padding: 0em 2em;
+    display: block;
+    background: #ffffffed;
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgba(255, 255, 255, 0.93);
+}
 /*********************************************************************************/
 /* Image Style                                                                   */
 /*********************************************************************************/
@@ -432,7 +448,7 @@ body > span{position: absolute;top: 5vh;left: -40vw;}
 	#contenedorEquipo form > label input{
 	width: 50vw;
 	}
-	#contenedorEquipo form > label label{width: 10vw;padding: 1vh 0.5vw !important;margin: 0vh 1vw !important;}
+	#contenedorEquipo form > label label{width: 8vw;padding: 1vh 0.5vw !important;margin: 0vh 1vw !important;}
 }
 /*********************************************************************************/
 /* small screen	                                                             */

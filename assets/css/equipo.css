@@ -1,37 +1,25 @@
-
+.add div{
+	width: 25vw;
+	display:block;
+	margin: 0 auto;
+	font-size: 0.7em;
+}
 .sideSection{
 	grid-area:b;
 	position: relative;
 	min-height: 100vh;
 }
 
-.sideSection h1{
-	font-size:2em;
-	line-height: 15vh;
-	padding: 0em 2em;
-	display: block;
-	background: #ffffffed;
-	background-image: initial;
-	background-position-x: initial;
-	background-position-y: initial;
-	background-size: initial;
-	background-repeat-x: initial;
-	background-repeat-y: initial;
-	background-attachment: initial;
-	background-origin: initial;
-	background-clip: initial;
-	background-color: rgba(255, 255, 255, 0.93);
-}
 .sideSection > div{
 	background: #ffffffed;
 	margin: 0.5em 0em 0em 0em;
 	height: -webkit-fill-available;
 	grid-template-columns: 1fr;
 	grid-template-rows: 10vh 1fr 1fr;
-	max-height: 83.5vh;
+	max-height: 88.5vh;
 	}
 
-#miequipoImagen{width: 8vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 1vh 1vw;}
+#miequipoImagen{width: 8vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 0vh 1vw;}
 
 
 
@@ -41,17 +29,13 @@
 }
 
 #miequipoDatos {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: center;
     margin: 1vh 1vw;
-    max-height: 65vh;
+    height: 50vh;
     width: 100%;
 }
 
 #miequipoDatos > ul{
-    max-height: 40vh;
+    max-height: 35vh;
     overflow-y: auto;
 }
 
@@ -75,7 +59,7 @@
     margin: 1vh 0vw;
 }
 
-#ulHeader {line-height: 5vh;}
+#ulHeader {min-height: 5vh;}
 
 #miequipoDatos > ul:nth-child(3) {
     overflow-y: scroll;
@@ -84,7 +68,8 @@
     position: relative;
 }
 
-#miequipoDatos ul:first-child {}
+#miequipoDatos ul:first-child > li ul {
+}
 
 
 #miequipoDatos > ul > li:nth-child(odd) {
@@ -92,7 +77,9 @@
 }
 
 #miequipoDatos > input {
-    margin: 1vh 0vw;
+    margin: 1vh auto;
+    display: block;
+    padding: 2vh 15vw;
 }
 
 #miequipoDatos > ul > li {
@@ -158,9 +145,18 @@ li label.boton {
 ul li img {
     width: 3vw;
     min-width: 40px;
+    height: 4.5vh;
+    border-radius: 50%;
 }
 
 .capitan li:nth-child(1) {}
+
+.ulSinEquipo li ul li:nth-child(4){
+	width: 30vw !important;
+}
+
+
+
 /******/
 #solicitudesDatos > ul:nth-child(even) {
     display: flex;
@@ -549,6 +545,7 @@ input[type="file"]#inputSb {
 	display: flex;
 	justify-content: center;
 	margin: 1vh 0vw;
+	text-align: center;
 }
 
 #contenedorEquipo form {
@@ -557,13 +554,13 @@ input[type="file"]#inputSb {
     flex-direction: row;
     align-items: baseline;
     flex-wrap: wrap;
-    padding: 2vh 2vw;
+    padding: 0vh 2vw;
 }
-
+#contenedorEquipo form span{width: 100%;text-align: center;}
 #contenedorEquipo form > label{width: 50vw;}
 #contenedorEquipo form > label > input{
     line-height: 2em;
-    width: 40vw;
+    width: 55vw;
 }
 #contenedorEquipo form > label > label{padding: 0.5vh 1vw;margin: 0vh 1vw;}
 
@@ -571,7 +568,7 @@ input[type="file"]#inputSb {
 
 @media (max-width: 600px) {
 	ul li img {
-	min-width: 30px;
+		min-width: 30px;
 	}
 	.btnEquipo a {
 		font-size: 0.6em;
@@ -659,5 +656,26 @@ input[type="file"]#inputSb {
 	#solicitudesDatos ul li ul li button {
 	font-size: 1em;
 	width: 7vw;
+	}
+}
+@media (max-height: 600px) {
+	#miequipoDatos{
+		height: 40vh;
+	}
+	#mensajeEquipo{
+		font-size: .7em;
+	}
+	#contenedorEquipo form span {
+		font-size: 0.7em;
+	}
+	#miequipoImagen img{
+		max-height: 10vh;
+		max-width: 15vw;
+	}
+	#miequipoImagen label{
+		font-size: .7em;
+	}
+	#miequipoDatos > ul{
+		max-height: 28vh;
 	}
 }
