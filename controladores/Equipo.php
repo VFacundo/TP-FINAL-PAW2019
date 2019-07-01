@@ -20,6 +20,7 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
           $this->pasarVariableAVista("nombre_equipo",$jugadoresEquipo[0][1]);
           $this->pasarVariableAVista("jugadores",$jugadoresEquipo);
         }
+        $this->pasarVariableAVista("equiposComoJugador",$db->misEquiposJugador(sesion::getId()));
       sesion::refreshTime();
     }else{
       $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');

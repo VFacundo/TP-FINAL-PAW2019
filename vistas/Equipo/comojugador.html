@@ -3,10 +3,10 @@
 		<ul>
 			<li>
 				<ul id="ulHeader">
+					<li>Logo</li>
 					<li>Equipo</li>
 					<li>Edad promedio</li>
 					<li>Proximo partido</li>
-					<li></li>
 					<li></li>
 					<li></li>
 				</ul>
@@ -14,128 +14,49 @@
 		</ul>
 		<ul>
 			<!-- Hardcoded -->
-			<?php 
-				foreach($equipos as $valor){
-					echo '<li>
-							<ul>
-								<li>'.$valor['nombre'].'</li>
-								<li>'.$valor['promedio'].'</li>
-								<li>'.$valor['fechaProximoPartido'].'</li>
-								<li></li>
-								<li>
-									<button class="boton rechazar">Salir del equipo</button>
-								</li>
-								<li>
-									<span class="masDetalles"> Mas detalles </span>
-								</li>
-								<li>
-									<div class="detalles">
-										<ul>
-											<li>Jugador</li>
-											<li>Edad</li>
-											<li>Usuario</li>
-										</ul>'.
-										foreach($valor['jugadores'] as $jugadores){
-											echo '<ul>
-													<li>'.$jugadores['nombre'].'</li>
-													<li>29</li>
-													<li>@Guest1424</li>
-												 </ul>'
-										}
-						;
-				
-				
+			<?php
+				if(!empty($equiposComoJugador)){
+					foreach($equiposComoJugador as $valor){
+						echo '<li><ul>';
+						echo '<li><img src="/img/' . $valor['logo'] . '" alt="Logo de Equipo"></li>';
+						echo '<li>' . $valor['nombre'] . '</li>';
+						echo '<li>' . $valor['promedio_edad'] . '</li>';
+						echo '<li>' . "ProximoPartido" . '</li>';
+						echo '<li></li>';
+						echo '<li>
+										<button class="boton rechazar" disabled>✕</button>
+										<button class="boton aceptar" disabled>✓</button>
+								 </li>';
+						echo '<li>
+										<span class="masDetalles"> Mas detalles </span>
+									</li>';
+						echo 	'<li>
+										<div class="detalles">
+											<ul>
+												<li>Jugador</li>
+												<li>Edad</li>
+												<li>Usuario</li>
+											</ul>';
+
+							echo	'<ul>';
+							echo		'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
+							echo		'<li>' . $valor['capitan'][0]['edad'] . '</li>';
+							echo		'<li>' . $valor['capitan'][0]['user'] . '</li>';
+							echo	'</ul>';
+
+							foreach($valor['jugadores'] as $valorJug){
+								echo	'<ul>';
+								echo		'<li>' . $valorJug['nombre'] . '</li>';
+								echo		'<li>' . $valorJug['edad'] . '</li>';
+								echo		'<li>' . $valorJug['user'] . '</li>';
+								echo	'</ul>';
+							}
+						echo 	'</div>
+									</li>';
+						echo '</ul></li>';
+					}
 				}
 			?>
-			<li>
-				<ul>
-					<li>Marcelona FC</li>
-					<li>25</li>
-					<li>Sabado 1/6/19 14:00hs</li>
-					<li>Almafuerte 224 | Afuera</li>
-					<li></li>
-					<li>
-						<button class="boton rechazar" disabled>✕</button>
-						<button class="boton aceptar" disabled>✓</button>
-					</li>
-					<li>
-						<span class="masDetalles"> Mas detalles </span>
-					</li>
-					<li>
-						<div class="detalles">
-							<ul>
-								<li>Jugador</li>
-								<li>Edad</li>
-								<li>Usuario</li>
-							</ul>
-							<ul>
-								<li>Malesandro</li>
-								<li>29</li>
-								<li>@Guest1424</li>
-							</ul>
-							<ul>
-								<li>Malesandro</li>
-								<li>29</li>
-								<li></li>
-							</ul>
-							<ul>
-								<li>Malesandro</li>
-								<li>29</li>
-								<li></li>
-							</ul>
-							<ul>
-								<li>Malesandro</li>
-								<li>29</li>
-								<li>@Guest1568</li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<ul>
-					<li>Real Bañil</li>
-					<li>26</li>
-					<li>Sabado 1/6/19 16:00hs</li>
-					<li>Almafuerte 224 | Afuera</li>
-					<li></li>
-					<li>
-						<button class="boton rechazar" disabled>✕</button>
-						<button class="boton aceptar" disabled>✓</button>
-					</li>
-					<li>
-						<span class="masDetalles"> Mas detalles </span>
-					</li>
-					<li>
-						<div class="detalles mostrando">
-							<ul>
-								<li>Jugador</li>
-								<li>Edad</li>
-								<li>Usuario</li>
-							</ul>
-							<ul>
-								<li>Malesandro</li>
-								<li>29</li>
-								<li>@Guest1424</li>
-							</ul>
-							<ul>
-								<li>Malesandro</li>
-								<li>29</li>
-								<li></li>
-							</ul>
-							<ul>
-								<li>Malesandro</li>
-								<li>29</li>
-								<li></li>
-							</ul>
-							<ul>
-								<li>Malesandro</li>
-								<li>29</li>
-								<li>@Guest1568</li>
-							</ul>
-						</div>
-					</li>
-				</ul>					
-			</li>	
+			
 		</ul>
 	</div>

@@ -9,6 +9,49 @@ class equipos{
       $this->db = new dbconnect();
     }
 
+public function datosJugador($id_jugador){//In idJugador return Data jugador/user
+  $sql = "SELECT u.user,j.nombre,j.edad FROM jugador j
+	INNER JOIN usuario u ON (j.id_usuario = u.id)
+    	WHERE j.id = '$id_jugador'";
+  $result = $this->db->conn->query($sql);
+  if(!$result===FALSE){
+    $result = $result->fetchAll();
+  }
+  return $result;
+}
+
+public function misEquiposJugador($id){
+  $id = $this->getIdJugador($id);
+  $sql = "SELECT e.* FROM jugador_equipo je
+          	INNER JOIN equipo e ON (je.id_equipo = e.id)
+              	INNER JOIN jugador j ON (je.id_jugador = j.id)
+                  	INNER JOIN jugador jj on (e.id_capitan = jj.id)
+                      	WHERE je.id_jugador = '$id'";
+$result = $this->db->conn->query($sql);
+$arrayResultado;
+  if(!$result===FALSE){
+    $result = $result->fetchAll();
+      foreach ($result as $value) {
+        $jugadores = $this->getJugadoresEquipo($value['id']);
+        $capitan = $this->datosJugador($value['id_capitan']);
+        $promedio_edad = 0;
+          foreach ($jugadores as $valueJug) {
+              $promedio_edad += $valueJug['edad'];
+          }
+          $nro = count($jugadores);
+          $promedio_edad += $capitan[0]['edad'];
+          $promedio_edad = $promedio_edad / (count($jugadores) + 1);
+        $arrayResultado[] = [
+                      'nombre' =>  $value['nombre'],
+                      'logo' => $value['logo'],
+                      'capitan' => $this->datosJugador($value['id_capitan']),
+                      'jugadores' => $this->getJugadoresEquipo($value['id']),
+                      'promedio_edad' => $promedio_edad,
+        ];
+      }
+  }
+  return $arrayResultado;
+}
 
 
 public function getJugadoresEquipo($id_equipo){//Input id Equipo Return Todos los jugadores
@@ -24,7 +67,7 @@ public function getJugadoresEquipo($id_equipo){//Input id Equipo Return Todos lo
   return $result;
 }
 
-public function verifyNombre($nombre){
+public function verifyNombre($nombre){//Busca nombre de equipo en la bd
   $this->sanitizeString($nombre);
   $sql = $sql = "SELECT id FROM equipo WHERE nombre='$nombre'";
   $result = $this->db->conn->query($sql);
@@ -120,7 +163,7 @@ public function newEquipo($nombre_equipo,$img_equipo,$nombre_j,$edad_j,$usr_j,$i
   }
 }
 
-public function getEquipoNombre($nombre_equipo){
+public function getEquipoNombre($nombre_equipo){//id equipo x nombre
   $sql = "SELECT id FROM equipo WHERE nombre='$nombre_equipo'";
   $result = $this->db->conn->query($sql);
   if(!$result===FALSE){
@@ -130,7 +173,7 @@ public function getEquipoNombre($nombre_equipo){
   return $result;
 }
 
-public function getEquipo($id){//Regresa el id de equipo Propio
+public function getEquipo($id){//Regresa el id de equipo Propio(capitan)
  $id_jugador = $this->getIdJugador($id);
  $sql = "SELECT * FROM equipo WHERE id_capitan='$id_jugador'";
  $result = $this->db->conn->query($sql);
