@@ -28,7 +28,7 @@ public function misEquiposJugador($id){
                   	INNER JOIN jugador jj on (e.id_capitan = jj.id)
                       	WHERE je.id_jugador = '$id'";
 $result = $this->db->conn->query($sql);
-$arrayResultado;
+$arrayResultado = null;
   if(!$result===FALSE){
     $result = $result->fetchAll();
       foreach ($result as $value) {
@@ -49,7 +49,7 @@ $arrayResultado;
                       'promedio_edad' => $promedio_edad,
         ];
       }
-  }
+}
   return $arrayResultado;
 }
 
