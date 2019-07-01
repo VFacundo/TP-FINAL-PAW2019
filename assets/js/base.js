@@ -33,25 +33,18 @@ function showNav(){
 		menu = document.querySelector("body > nav nav"),
 		menuBtn = document.querySelector("#menuBtn");
 	if(menuBtn.innerText === '>'){
-		nav.style.position = 'absolute';
-		nav.style.gridArea = 'b';
-		nav.style.left = '-100wv';
+		nav.classList.add('mobileMenu');
 		nav.classList.add('goRight');
-		nav.style.width = '100vw';
-		menu.style.width = '65vw';
-		nav.style.backgroundColor = '#fffffffa';
 		setTimeout(function(){
 			menuBtn.innerText = '<';
 			nav.classList.remove('goRight');
-		}, 499);
+		}, 999);
 	}else{
 		nav.classList.add('goLeft');
-		nav.style.position = 'absolute';
 		setTimeout(function(){
-			nav.style = '';
-			menu.style = '';
+			nav.classList.remove('mobileMenu');
 			nav.classList.remove('goLeft');
-		}, 499);
+		}, 399);
 		menuBtn.innerText = '>';
 		
 	}

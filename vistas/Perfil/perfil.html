@@ -1,53 +1,49 @@
-<?php include('assets/template/base.html'); ?>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Mi Perfil</title>
-    <link rel="stylesheet" href="/assets/css/perfil.css">
-  </head>
-  <body>
-    <section class="sideSection" id="miPerfil">
-			<h1>Mi Perfil</h1>
-			<div>
-				<div id="miPerfilImagen">
-					<img src="<?=$img?>" alt="Imagen de perfil" id="imgPerfil">
-					<div>
-						<a class="boton" onclick="cambiarImg();">Cambiar</a>
-            <label class="boton">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" onchange="subirImg();"></label>
-					</div>
-				</div>
-				<div id="miPerfilDatos">
-					<span id="nombre"><?=$datos['nombre']?></span>
-					<span id="edad"><?=$datos['edad']?></span>
-					<span id="usuario"><?=$datos['user']?></span>
-					<span id="email"><?=$datos['mail']?></span>
-					<span id="telefono"><?=$datos['tel']?></span>
-					<a class="boton" id="btnEditar" onclick="editarPerfil();">Editar</a>
-				</div>
-
-        <div id="editarPerfil">
-            <form action="perfil/editarPerfil" method="post">
-              <label>Nombre<input type="text" name="nombre" value="<?=$datos['nombre']?>" required></label>
-              <label>UserName<input type="text" name="username" value="<?=$datos['user']?>" required></label>
-              <label>Edad<input type="number" name="edad" value="<?=$datos['edad']?>" min="10" max="100" required></label>
-              <label>Telefono: <input type="tel" name="tel" value="<?=$datos['tel']?>" maxlength="12"></label>
-            <div>
-              <input class="boton" type="submit" name="install" value="Guardar"></button>
-              <input class="boton" type="reset" name="borrar" value="Restaurar"></button>
-            </div>
-            </form>
-        </div>
-
-				<div id="miPerfilEstadisticas">
-					<span id="partidosJugados"></span>
-					<span id="partidosGanados"></span>
-					<span id="partidosPerdidos"></span>
-				</div>
-				<div class="anuncio">
-					<img src="img/ads.png" alt="Anuncio">
+<?php include('assets/template/baseHead.html'); ?>
+<head>
+	<meta charset="utf-8">
+	<title>Mi Perfil</title>
+	<link rel="stylesheet" href="/assets/css/perfil.css">
+</head>
+<section class="sideSection" id="miPerfil">
+		<h1>Mi Perfil</h1>
+		<div>
+			<div id="miPerfilImagen">
+				<img src="<?=$img?>" alt="Imagen de perfil" id="imgPerfil">
+				<div>
+					<a class="boton" onclick="cambiarImg();">Cambiar</a>
+					<label class="boton">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" onchange="subirImg();"></label>
 				</div>
 			</div>
-		</section>
-  </body>
-</html>
+			<div id="miPerfilDatos">
+				<span id="nombre"><?=$datos['nombre']?></span>
+				<span id="edad"><?=$datos['edad']?></span>
+				<span id="usuario"><?=$datos['user']?></span>
+				<span id="email"><?=$datos['mail']?></span>
+				<span id="telefono"><?=$datos['tel']?></span>
+				<a class="boton" id="btnEditar" onclick="editarPerfil();">Editar</a>
+			</div>
+
+			<div id="editarPerfil">
+				<form action="perfil/editarPerfil" method="post">
+					<label>Nombre<input type="text" name="nombre" value="<?=$datos['nombre']?>" required></label>
+					<label>UserName<input type="text" name="username" value="<?=$datos['user']?>" required></label>
+					<label>Edad<input type="number" name="edad" value="<?=$datos['edad']?>" min="10" max="100" required></label>
+					<label>Telefono: <input type="tel" name="tel" value="<?=$datos['tel']?>" maxlength="12"></label>
+					<div>
+					  <input class="boton" type="submit" name="install" value="Guardar"></button>
+					  <input class="boton" type="reset" name="borrar" value="Restaurar"></button>
+					</div>
+				</form>
+			</div>
+
+			<div id="miPerfilEstadisticas">
+				<span id="partidosJugados"></span>
+				<span id="partidosGanados"></span>
+				<span id="partidosPerdidos"></span>
+			</div>
+			<div class="anuncio">
+				<img src="img/ads.png" alt="Anuncio">
+			</div>
+		</div>
+</section>
+<?php include('assets/template/baseTail.html'); ?>

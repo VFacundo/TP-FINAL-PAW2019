@@ -330,8 +330,8 @@ position: fixed;
 }
 body > nav {
 	background: #ffffffa6;
-	grid-area: a;
 	min-height: 100vh;
+	grid-area: a;
 	z-index: 1;
 	display: flex;
 	flex-direction: column;
@@ -360,7 +360,7 @@ body > nav {
 }
 
 .goLeft {
-	animation: goLeft .5s linear 0s forwards;
+	animation: goLeft .4s cubic-bezier(0.9, 0.01, 1, 1) 0s forwards;
 }
 
 @keyframes goLeft {
@@ -369,7 +369,7 @@ body > nav {
 }
 
 .goRight {
-	animation: goRight .5s linear 0s forwards;
+	animation: goRight .4s cubic-bezier(0.85, 0.04, 1, 1) 0s forwards;
 }
 
 @keyframes goRight {
@@ -400,6 +400,18 @@ body > span{position: absolute;top: 5vh;left: -40vw;}
 	max-height: 15vh;
 }
 
+.mobileMenu{
+	display: flex !important;
+	position: absolute;
+	grid-area: b / b / b / b;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.98);
+	visibility: visible !important;
+}
+
+.mobileMenu nav{
+    width: 60vw;
+}
 /*********************************************************************************/
 /* Mobile styles	                                                             */
 /*********************************************************************************/
@@ -415,6 +427,7 @@ body > span{position: absolute;top: 5vh;left: -40vw;}
 	}
 	body > nav{
 		position: absolute;
+		visibility: hidden;
 	}
 	body > span{
 		position: absolute;
