@@ -226,8 +226,8 @@ li button {
 		animation-duration: 0.6s;
 		position: fixed;
 		z-index: 10;
-		height: 30vh;
-		width: 30vw;
+		height: 35vh;
+		width: 45vw;
 		background-color: #ffffff;
 		padding: 5vh 1vw;
 		justify-content: center;
@@ -245,7 +245,7 @@ font-size: 2em;
 
 	#nuevoTurno form label {
 		width: 100%;
-		padding: 1em 0em;
+		padding: 1.5vh 0em;
 	}
 
 #nuevoTurno form label:nth-child(odd) {
@@ -320,6 +320,10 @@ font-size: 2em;
 			content: '\f196';
 			font-size: 30px !important;
 			font-family: 'fontello';
+		}
+		#nuevoTurno form div input,
+		#nuevoTurno form div a{
+			padding: .5em;
 		}
 	}
 	/* Mobile screen */
@@ -431,10 +435,6 @@ font-size: 2em;
 
 		#nuevoTurno form div {
 			margin: 5vh 0vh;
-		}
-		#nuevoTurno form div input,
-		#nuevoTurno form div a{
-		padding: .5em;
 		}
 
 		#nuevoTurno form label {
