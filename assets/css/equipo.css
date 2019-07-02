@@ -514,7 +514,7 @@ input[type="file"]#inputSb {
 #contenedorEquipo form > label{width: 65vw;}
 #contenedorEquipo form > label > input{
     line-height: 2em;
-    width: 55vw;
+    width: 50vw;
 }
 #contenedorEquipo form > label > label{padding: 0.5vh 1vw;margin: 0vh 1vw;}
 

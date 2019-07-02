@@ -21,17 +21,16 @@
 
 li.botonesTurnos > div {
     width: 100%;
-    margin: 1vh 0vw;
+    padding: 0.7vh 0.5vw;
 }
 
-.contenedorTablaTurnos {width: 100%;margin: 1vh 1vw;background: white;border-radius: .5em;}
+.contenedorTablaTurnos {width: 100%;margin: 1vh 1vw;background: white;}
 
 li button {
 	min-width: 5vh;
 	padding: 1vh !important;
 }
 .botonesTurnos a {
-    margin: 0.5em;
     width: 100%;
 }
 #contenedorEquipo h2{
@@ -39,7 +38,7 @@ li button {
 	margin: 4vh 0vw;
 }
 
-#misturnos > div:nth-child(2){max-height: 60vh;}
+#misturnos > div:nth-child(2){max-height: 70vh;}
 
 #misturnos > div:nth-child(3){
 	display: flex;
@@ -195,8 +194,10 @@ li button {
 		width: 100%;
 		position: relative;
 		flex-wrap: wrap;
-		justify-content: flex-start;
+		justify-content: space-around;
 	}
+
+.mostrando ul {}
 
 	ul#ulHeader {
 		background: white;
@@ -216,6 +217,40 @@ li button {
 	#tSolicitudes{
 		display: none;
 	}
+	/*		registrarTurno		*/
+	
+
+	#nuevoTurno{
+		display: flex;
+		animation-name: zoom;
+		animation-duration: 0.6s;
+		position: fixed;
+		z-index: 10;
+		height: 30vh;
+		width: 30vw;
+		background-color: #ffffff;
+		padding: 5vh 1vw;
+		justify-content: center;
+		top: 20vh;
+		left: 40vw;
+		border: 5px solid black;
+		flex-direction: column;
+		align-items: center;
+	}
+	#nuevoTurno h5{
+		
+font-size: 2em;
+	}
+	#nuevoTurno form{display: flex;flex-direction: column;align-items: center;text-transform: uppercase;width: 100%;}
+
+	#nuevoTurno form label {
+		width: 100%;
+		padding: 1em 0em;
+	}
+
+#nuevoTurno form label:nth-child(odd) {
+    background: #d9e9c4;
+}
 
 /* small screens */
 	/* width */
@@ -270,22 +305,39 @@ li button {
 		.contenedorTablaTurnos button:after{
 			content: '\f1f8';
 			font-size: 15px !important;
-			font-family: 'fontello';
 			line-height: 2vh;
+			font-family: "fontello";
 		}
 		.masDetalles{
 			font-size: 0em;
-			line-height: 1.5vh;
 			text-decoration-line: none;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 		.masDetalles:after{
-			content: '+';
-			font-size: 15px !important;
-			line-height: 2vh;
+			content: '\f196';
+			font-size: 30px !important;
+			font-family: 'fontello';
 		}
 	}
 	/* Mobile screen */
 	@media (max-width: 600px) {
+		#contenedorTurnos > ul{
+		flex-direction: column;
+		margin: 0;
+		}
+
+.botonesTurnos {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 11vh;
+    border-top: 2px solid #58a300;
+}
+
+.botonesTurnos div {}
 		/*TABLA SIMPLE*/
 		.tablaSimple > ul li ul li:nth-child(1){
 			margin: 0 2vw;
@@ -312,20 +364,24 @@ li button {
 		#tTvT > ul li ul li:nth-child(5){
 		}
 		#tTvT > ul li ul li:nth-child(6){
-		width: 9vw;
+		width: 10vw;
 		}
 
 		#tTvT ul li:nth-child(7) {
-		width: 4vw;
+		width: 6vw;
 		}
 		#tTvT > ul li ul li:nth-child(8) {
 		}
 		/*BOTONES*/
-		.botonesTurnos{
-			font-size: .8em;
+		.botonesTurnos a{
+			font-size: 0.6em;
+			height: 100%;
 		}
 		.contenedorTablaTurnos{
 			font-size: .65em;
+			border-top: 2px solid #58a300;
+			margin: 0;
+			padding: 1vh 0vw;
 		}
 		.contenedorTablaTurnos button{
 			font-size: 0em;
@@ -333,38 +389,62 @@ li button {
 			letter-spacing: 0;
 			font-weight: 100;
 			min-width: 3vw !important;
+			height: 4vh;
+			border-radius: 50%;
+			margin: 0 auto;
 		}
 		.contenedorTablaTurnos button:after{
 			content: '\f1f8';
 			font-size: 15px !important;
 			font-family: 'fontello';
-			line-height: 2vh;
+			line-height: 1.5vh;
 		}
 		.masDetalles{
 			font-size: 0em;
 			line-height: 1.5vh;
 			text-decoration-line: none;
+			margin: 0 auto;
 		}
 		.masDetalles:after{
-			content: '+';
+			content: '\f196';
 			font-size: 15px !important;
 			line-height: 2vh;
+			font-family: 'fontello';
+		}
+		/*	RegistrarTurno*/
+		#nuevoTurno{
+			display: none;
+			animation-name: zoom;
+			animation-duration: 0.6s;
+			position: fixed;
+			z-index: 1;
+			width: 95vw;
+			background-color: #f7faf2f7;
+			top: 0vh;
+			left: 2.5vw;
+			padding: 5vh 0vw;
+			border: none;
+			height: 90vh;
+		}
+
+		#nuevoTurno form{display: flex;flex-direction: column;justify-content: center;align-items: center;text-transform: uppercase;margin: 2vh 3vw;width: unset;}
+
+		#nuevoTurno form div {
+			margin: 5vh 0vh;
+		}
+		#nuevoTurno form div input,
+		#nuevoTurno form div a{
+		padding: .5em;
+		}
+
+		#nuevoTurno form label {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			line-height: 1.5em;
 		}
 	}
 	/*Height*/
 	@media (max-height: 600px) {
 
 	}
-
-	#nuevoTurno{
-		display: none;
-		animation-name: zoom;
-		animation-duration: 0.6s;
-		position: fixed;
-		z-index: 1;
-		min-width: 80vw;
-		background-color: #f7faf2f7;
-		max-height: 35vw;
-	}
-
-#nuevoTurno form{display: flex;flex-direction: column;justify-content: center;align-items: center;text-transform: uppercase;margin: 1vh 2vw;/* background: #f7faf2; */}

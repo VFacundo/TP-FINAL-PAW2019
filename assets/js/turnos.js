@@ -14,9 +14,9 @@ turnos.init = function(){
 
 turnos.toggle = function(){
   var style = divForm.style.display;
-  if(style == 'block'){
+  if(style == 'flex'){
     divForm.style.display = 'none';
   }else {
-    divForm.style.display='block';
+    divForm.style.display='flex';
   }
 }

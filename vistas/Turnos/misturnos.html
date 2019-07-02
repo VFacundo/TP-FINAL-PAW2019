@@ -232,7 +232,8 @@
 		<a onclick="turnos.toggle();" class="boton" id="btnEditar">Registrar turno ahora</a>
 	</div>
 
-	<div id="nuevoTurno">
+	<div id="nuevoTurno" style="display:none">
+		<h5>Reservar turno</h5>
 		<form action="" method="post">
 			<label>Tipo de Turno <select name="tipo_turno">
 															<option value="0">Simple</option>
@@ -244,8 +245,8 @@
 			<label>Horario de Turno: <input type="time" name="horario_turno" id="appt" min="08:00" max="17:00" step="900" required/></label>
 			<label>Cancha<input type="text" name="cancha_turno" value="" required></label>
 			<div>
-				<input class="boton" type="submit" name="install" value="Confirmar"></button>
-				<input class="boton" type="reset" name="borrar" value="Cancelar"></button>
+				<input class="boton" type="submit" name="install" value="Confirmar"></input>
+				<a class="boton rechazar" onclick="turnos.toggle();">Cancelar</a>
 			</div>
 		</form>
 	</div>
