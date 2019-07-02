@@ -2,35 +2,41 @@
 <head>
 	<title>Mis Turnos</title>
 	<link rel="stylesheet" href="/assets/css/turnos.css">
+	<script src="assets/js/toggleSection.js"></script>
+	<script>var toggleBtnEquipo = new toggleSection.iniciarBtn(),
+					toggleBtnSec = new toggleSection.iniciarBtnSec();</script>
+
+	<script src="assets/js/mostrarDetalles.js"></script>
 	<script src="assets/js/turnos.js"></script>
+	<script> turnos.init(); </script>
 </head>
 <section class="sideSection" id="misturnos">
   <h1>Mis Turnos</h1>
 	<div>
 		<div class="contenedorBotones">
-			<div class="btnEquipo btnActive" onclick="showSection(1)">
+			<div class="btnEquipo btnActive"  >
 				<a class="boton">Turnos</a>
 			</div>
-			<div class="btnEquipo" onclick="showSection(2)">
+			<div class="btnEquipo"  >
 				<a class="boton">Mis Solicitudes de partido</a>
 			</div>
-			<div class="btnEquipo" onclick="showSection(3)">
+			<div class="btnEquipo"  >
 				<a class="boton">Mis turnos como Jugador</a>
 			</div>
 		</div>
-		<div id="contenedorTurnos">
+		<div id="contenedorTurnos" class="divContenedor">
 			<ul>
 				<li class="botonesTurnos">
-					<div class="btnEquipo btnActive" onclick="showSection(1)">
+					<div class="btnActive">
 						<a class="boton">Turno simple</a>
 					</div>
-					<div class="btnEquipo" onclick="showSection(2)">
+					<div>
 						<a class="boton">Equipo vs Equipo</a>
 					</div>
-					<div class="btnEquipo" onclick="showSection(3)">
+					<div>
 						<a class="boton">Equipo vs Invitado</a>
 					</div>
-					<div class="btnEquipo" onclick="showSection(3)">
+					<div>
 						<a class="boton">Solicitudes partido</a>
 					</div>
 				</li>
@@ -158,8 +164,8 @@
 											</ul>
 										</div>
 									</li>
-								</ul>					
-							</li>	
+								</ul>
+							</li>
 						</ul>
 					</div>
 					<div class="tablaSimple" id="tTvI">
@@ -207,7 +213,7 @@
 						</ul>
 				</li>
 			</ul>
-			<?php 
+			<?php
 				if(true)
 					include('conequipo.html');
 				/*}else{
@@ -215,15 +221,34 @@
 				} */
 			?>
 		</div>
-		<div id="contenedorSolicitudes">
+		<div id="contenedorSolicitudes" class="divContenedor">
 			<?php //include('solicitudes.html');?>
 		</div>
-		<div id="contenedorComoJugador">
+		<div id="contenedorComoJugador" class="divContenedor">
 			<?php //include('comojugador.html');?>
 		</div>
 	</div>
 	<div id="registrar">
-		<a href="turnos/registrar" class="boton">Registrar turno ahora</a>
+		<a onclick="turnos.toggle();" class="boton" id="btnEditar">Registrar turno ahora</a>
 	</div>
+
+	<div id="nuevoTurno">
+		<form action="" method="post">
+			<label>Tipo de Turno <select name="tipo_turno">
+															<option value="0">Simple</option>
+															<option value="1">Mi Equipo VS Otro Equipo</option>
+															<option value="2">Mi Equipo VS Invitado</option>
+													</select>
+			</label>
+			<label>Fecha: <input type="date" name="fecha_turno" min="1919-01-01" max="2019-12-12" required/></label>
+			<label>Horario de Turno: <input type="time" name="horario_turno" id="appt" min="08:00" max="17:00" step="900" required/></label>
+			<label>Cancha<input type="text" name="cancha_turno" value="" required></label>
+			<div>
+				<input class="boton" type="submit" name="install" value="Confirmar"></button>
+				<input class="boton" type="reset" name="borrar" value="Cancelar"></button>
+			</div>
+		</form>
+	</div>
+
 </section>
 <?php include('assets/template/baseTail.html'); ?>

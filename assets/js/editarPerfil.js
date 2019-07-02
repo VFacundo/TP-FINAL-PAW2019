@@ -1,8 +1,7 @@
 function editarPerfil() {
-  var btnEditar = document.getElementById('btnEditar');
-  var divForm = document.getElementById('editarPerfil');
-  //divForm.style.display='block';
-  var style = divForm.style.display;
+  var btnEditar = document.getElementById('btnEditar'),
+  divForm = document.getElementById('editarPerfil'),
+  style = divForm.style.display;
     if(style == 'block'){
       divForm.style.display = 'none';
     }else {

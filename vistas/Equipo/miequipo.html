@@ -2,24 +2,26 @@
 <head>
 <title>Mi Equipo</title>
 <link rel="stylesheet" href="/assets/css/equipo.css">
-<script src="assets/js/equipo.js"></script>
 <script src="assets/js/crearEquipo.js"></script>
+<script src="assets/js/toggleSection.js"></script>
+<script>var toggleBtnEquipo = new toggleSection.iniciarBtn();</script>
+<script src="assets/js/mostrarDetalles.js"></script>
 </head>
 <section class="sideSection" id="miequipo">
   <h1>Mi Equipo</h1>
 	<div>
 		<div class="contenedorBotones">
-			<div class="btnEquipo btnActive" onclick="showSection(1)">
+			<div class="btnEquipo btnActive">
 				<a class="boton">Mi Equipo</a>
 			</div>
-			<div class="btnEquipo" onclick="showSection(2)">
+			<div class="btnEquipo">
 				<a class="boton">Mis Solicitudes</a>
 			</div>
-			<div class="btnEquipo" onclick="showSection(3)">
+			<div class="btnEquipo">
 				<a class="boton">Mis Equipos Jugador</a>
 			</div>
 		</div>
-		<div id="contenedorEquipo">
+		<div id="contenedorEquipo" class="divContenedor">
 		  <?php
 			  if(!$equipo){
 				include('sinequipo.html');
@@ -28,10 +30,10 @@
 			  }
 		   ?>
 		</div>
-		<div id="contenedorSolicitudes">
+		<div id="contenedorSolicitudes" class="divContenedor">
 			<?php include('solicitudes.html');?>
 		</div>
-		<div id="contenedorComoJugador">
+		<div id="contenedorComoJugador" class="divContenedor">
 			<?php include('comojugador.html');?>
 		</div>
 	</div>

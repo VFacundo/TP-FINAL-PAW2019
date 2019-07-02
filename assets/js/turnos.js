@@ -1,102 +1,22 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    var masDetalles = document.getElementsByClassName("masDetalles");
-	for(var i=0; masDetalles.length > i; i++){
-		masDetalles[i].addEventListener('click', function (){mostrarDetalle()});
-		console.log(masDetalles[i]);
-	}
-	toggleContenedor(document.getElementById("contenedorEquipo"));
-});
+var document = document || {},
+    console = console || {},
+    window = window || {},
+    turnos = turnos || {},
+    btnEditar,
+    divForm;
 
-function mostrarDetalle(){
-	var div = (event.target).parentElement.parentElement.querySelector(".detalles");
-	if(div.classList.contains("mostrando")){
-		div.classList.remove("mostrando");
-		console.log("nomostrando");
-	}else{
-		div.classList.add("mostrando");
-		console.log("mostrando");
-	}
+turnos.init = function(){
+  window.addEventListener("DOMContentLoaded", function() {
+      btnEditar = document.getElementById('btnEditar');
+      divForm = document.getElementById('nuevoTurno');
+  });
 }
 
-
-function toggleContenedor(active){
-	var equipo = document.getElementById("contenedorEquipo"),
-	solicitudes = document.getElementById("contenedorSolicitudes"),
-	jugador = document.getElementById("contenedorComoJugador");
-
-	equipo.style.display = 'none';
-	solicitudes.style.display = 'none';
-	jugador.style.display = 'none';
-	active.style.display = '';
-}
-
-function showSection(index){
-	var equipo = document.getElementById("contenedorEquipo"),
-		solicitudes = document.getElementById("contenedorSolicitudes"),
-		jugador = document.getElementById("contenedorComoJugador"),
-		active = document.querySelector(".btnActive"),
-		botones = document.getElementsByClassName("btnEquipo");
-	if(active.innerText == "MI EQUIPO" && !(index == 1)){
-		if(index==2){
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MIS SOLICITUDES DE PARTIDO"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(solicitudes);
-					break;
-				}
-			}
-		}else{
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MIS TURNOS COMO JUGADOR"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(jugador);
-					break;
-				}
-			}
-		}
-	}
-	if(active.innerText == "MIS SOLICITUDES DE PARTIDO" && !(index == 2)){
-		if(index==1){
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MI EQUIPO"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(equipo);
-					break;
-				}
-			}
-		}else{
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MIS TURNOS COMO JUGADOR"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(jugador);
-					break;
-				}
-			}
-		}
-	}
-	if(active.innerText == "MIS TURNOS COMO JUGADOR" && !(index == 3)){
-		if(index==1){
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MI EQUIPO"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(equipo);
-					break;
-				}
-			}
-		}else{
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MIS SOLICITUDES DE PARTIDO"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(solicitudes);
-					break;
-				}
-			}
-		}
-	}
+turnos.toggle = function(){
+  var style = divForm.style.display;
+  if(style == 'block'){
+    divForm.style.display = 'none';
+  }else {
+    divForm.style.display='block';
+  }
 }

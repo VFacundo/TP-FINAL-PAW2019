@@ -30,7 +30,8 @@ li button {
 	min-width: 5vh;
 	padding: 1vh !important;
 }
-.botonesTurnos > div a {
+.botonesTurnos a {
+    margin: 0.5em;
     width: 100%;
 }
 #contenedorEquipo h2{
@@ -52,7 +53,7 @@ li button {
 /*	tabla Simple	*/
 	.tablaSimple{
 		width: 100%;
-		display: none;
+		/* display: none; */
 	}
 	.tablaSimple > ul > li:nth-child(odd) {
 		background: #99c35f5e;
@@ -72,7 +73,7 @@ li button {
 		overflow-y: auto;
 		max-height: 40vh;
 	}
-	
+
 	.tablaSimple > ul li ul li:nth-child(1){
 		 width: 20vw;
 		 margin: 0 auto;
@@ -209,7 +210,7 @@ li button {
 		line-height: 2vh;
 		text-shadow: 1px 2px #00000063;
 	}
-	#tTvT {/* display: none; */}
+	#tTvT {display: none;}
 
 	#tTvI{display: none;}
 	#tSolicitudes{
@@ -354,3 +355,16 @@ li button {
 	@media (max-height: 600px) {
 
 	}
+
+	#nuevoTurno{
+		display: none;
+		animation-name: zoom;
+		animation-duration: 0.6s;
+		position: fixed;
+		z-index: 1;
+		min-width: 80vw;
+		background-color: #f7faf2f7;
+		max-height: 35vw;
+	}
+
+#nuevoTurno form{display: flex;flex-direction: column;justify-content: center;align-items: center;text-transform: uppercase;margin: 1vh 2vw;/* background: #f7faf2; */}
