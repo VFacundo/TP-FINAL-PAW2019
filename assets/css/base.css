@@ -95,6 +95,25 @@ a:hover
 	margin: 0em auto;
 	width: 1200px;
 }
+
+.sideSection{
+	grid-area:b;
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+.sideSection > div{
+	background: #ffffffed;
+	margin: 0.5em 0em 0em 0em;
+	height: -webkit-fill-available;
+	grid-template-columns: 1fr;
+	grid-template-rows: 10vh 1fr 1fr;
+	max-height: 88.5vh;
+	}
+	
 .sideSection h1 {
     font-size: 2em;
     line-height: 10vh;
@@ -272,6 +291,38 @@ a:hover
 		position: relative;
 		user-select: none;
 	}
+	.contenedorBotones{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: stretch;
+	}
+
+	.contenedorBotones a {
+		margin: 0.5em;
+		width: 100%;
+	}
+
+	.btnActive {
+		background: #b3f35b;
+		border-radius: .5em;
+	}
+	.contenedorBotones > div{
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		justify-content: center;
+		align-items: stretch;
+		min-width: 33%;
+	}
+	
+	button.boton.aceptar {
+		background: #8eec0c;
+	}
+
+	button.boton.rechazar {
+		background: #ea4848;
+	}
 
 /*********************************************************************************/
 /* Heading Titles                                                                */
@@ -311,23 +362,17 @@ a:hover
 /*  Hay fulbito!                                                                  */
 /*********************************************************************************/
 body {
-
-display: grid;
-
-grid-gap: 0.5em;
-
-grid-template-areas: "a b b b"
+					 display: grid;
+					 grid-gap: 0.5em;
+					 grid-template-areas: "a b b b"
 					 "a b b b"
 					 "a b b b"
 					 "a b b b"
 					 "a b b b";
-
-grid-template-columns: 1fr 1fr 60vw;
-
-align-items: flex-start;
-
-position: fixed;
-}
+					 grid-template-columns: 1fr 1fr 60vw;
+					 align-items: flex-start;
+					 position: fixed;
+					 }
 body > nav {
 	background: #ffffffa6;
 	min-height: 100vh;
@@ -462,6 +507,16 @@ body > span{position: absolute;top: 5vh;left: -40vw;}
 	width: 50vw;
 	}
 	#contenedorEquipo form > label label{width: 8vw;padding: 1vh 0.5vw !important;margin: 0vh 1vw !important;}
+	.btnEquipo a {
+		font-size: 0.6em;
+		height: 5.5vh;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	ul{
+		font-size: 1em;
+	}
 }
 /*********************************************************************************/
 /* small screen	                                                             */
@@ -478,5 +533,8 @@ body > span{position: absolute;top: 5vh;left: -40vw;}
 	#miequipoDatos{
 		width: 100%;
 		margin: 1vh 0vw !important;
+	}
+	#solicitudesDatos ul li ul li:nth-child(7){
+		font-size: .7em;
 	}
 }

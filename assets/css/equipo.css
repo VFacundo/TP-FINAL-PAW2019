@@ -4,20 +4,6 @@
 	margin: 0 auto;
 	font-size: 0.7em;
 }
-.sideSection{
-	grid-area:b;
-	position: relative;
-	min-height: 100vh;
-}
-
-.sideSection > div{
-	background: #ffffffed;
-	margin: 0.5em 0em 0em 0em;
-	height: -webkit-fill-available;
-	grid-template-columns: 1fr;
-	grid-template-rows: 10vh 1fr 1fr;
-	max-height: 88.5vh;
-	}
 
 #miequipoImagen{width: 8vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 0vh 1vw;}
 
@@ -205,13 +191,13 @@ ul li img {
     display: none;
 }
 #solicitudesDatos ul li ul li:nth-child(1){
-	min-width: 15vw;
+	width: 15vw;
 }
 #solicitudesDatos ul li ul li:nth-child(2){
-	min-width: 10vw;
+	width: 10vw;
 }
 #solicitudesDatos ul li ul li:nth-child(3){
-	min-width: 15vw;
+	width: 15vw;
 }
 #solicitudesDatos ul li ul li:nth-child(4){
 	width: 15vw;
@@ -266,14 +252,6 @@ ul li img {
     letter-spacing: 0;
     line-height: 2vh;
     text-shadow: 1px 2px #00000063;
-}
-
-button.boton.aceptar {
-    background: #8eec0c;
-}
-
-button.boton.rechazar {
-    background: #ea4848;
 }
 
 #solicitudesDatos > ul > li ul {
@@ -351,7 +329,7 @@ ul#ulHeader {
 }
 #comojugadorDatos ul li ul li:nth-child(4){
 	width: 15vw;
-	margin: 0.1vh 0vw;
+	margin: 0.1vh auto;
 }
 #comojugadorDatos ul li ul li:nth-child(5){
 	width: 0vw;
@@ -424,7 +402,7 @@ ul#ulHeader {
 }
 
 #comojugadorDatos {
-    width: 79.5vw;
+    /* width: 79.5vw; */
 }
 /****/
 #miequipoImagen img{
@@ -490,30 +468,6 @@ ul#ulHeader {
 	max-height: 15vh;
 }
 
-.contenedorBotones{
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-}
-.btnEquipo{
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	min-width: 33%;
-}
-
-.btnActive {
-    background: #b3f35b;
-    border-radius: .5em;
-}
-
-.btnEquipo a {
-	margin: 0.5em;
-	width: 100%;
-}
 
 input[type="file"]#inputSb {
 	width: 0.1px;
@@ -557,7 +511,7 @@ input[type="file"]#inputSb {
     padding: 0vh 2vw;
 }
 #contenedorEquipo form span{width: 100%;text-align: center;}
-#contenedorEquipo form > label{width: 50vw;}
+#contenedorEquipo form > label{width: 65vw;}
 #contenedorEquipo form > label > input{
     line-height: 2em;
     width: 55vw;
@@ -570,13 +524,7 @@ input[type="file"]#inputSb {
 	ul li img {
 		min-width: 30px;
 	}
-	.btnEquipo a {
-		font-size: 0.6em;
-		height: 5.5vh;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-	}
+	
 	#miequipoDatos ul li ul li:nth-child(1){
 		width: 8vw;
 	}
@@ -638,7 +586,7 @@ input[type="file"]#inputSb {
 		width: 0vw;
 	}
 	#solicitudesDatos > ul > li > ul > li:nth-child(6){
-		width: 15vw;
+		width: 18vw;
 		margin: 0.2vh 0vw;
 		display: flex;
 		flex-direction: row;
@@ -646,7 +594,7 @@ input[type="file"]#inputSb {
 	}
 
 	#solicitudesDatos > ul > li > ul > li:nth-child(7) {
-		width: 16vw;
+		width: 12vw;
 		margin: auto auto;
 		display: inline;
 	}
@@ -655,7 +603,8 @@ input[type="file"]#inputSb {
 	}
 	#solicitudesDatos ul li ul li button {
 	font-size: 1em;
-	width: 7vw;
+	width: 8vw;
+	margin: 0vh 0.5vw;
 	}
 }
 @media (max-height: 600px) {

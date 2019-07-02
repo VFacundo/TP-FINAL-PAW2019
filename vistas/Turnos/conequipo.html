@@ -1,0 +1,45 @@
+<?php var_dump($misturnos);?>
+<!-- <form name="equipo" action="" onSubmit="crearEquipo(); return false">
+	<div id="miequipoImagen">
+		<img src="/img/<?=$logo_equipo?>" alt="Imagen de Equipo">
+		<label class="boton" id="labelSubir">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" ></label>
+	</div>
+	<label>Nombre del equipo: <input type="text" name="eq_nombre" value="<?=$nombre_equipo?>" disabled><label class="boton icon-pencil"></label></label>
+	<div id="miequipoDatos">
+		<ul>
+			<li>
+				<ul id="ulHeader">
+					<li></li>
+					<li>Nombre</li>
+					<li>Edad</li>
+					<li>Usuario</li>
+					<li></li>
+				</ul>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<ul class="capitan">
+					<li><img src="img/<?=$datosUserJug['img_src']?>" alt="Imagen de jugador"></li>
+					<li><?=$datosUserJug['nombre']?></li>
+					<li><?=$datosUserJug['edad']?></li>
+					<li><?=$datosUserJug['user']?></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</li>
+			<?php 
+				foreach($jugadores as $valor){
+					echo '<li><ul>';
+					echo '<li><img src="/img/' . $valor[0] . '" alt="Imagen de jugador"></li>';
+					echo '<li><input type="text" name="j_nombre" value="' . $valor['nombre'] . '"disabled></li>';
+					echo '<li><input type="number" name="j_edad" value="' . $valor['edad'] . '" disabled></li>';
+					echo '<li><input type="text" name="j_usr" value="' . $valor['user'] . '" disabled></li>';
+					echo '<li><label class="boton icon-pencil" onclick="editarJugador()"></label></li>';
+					echo '<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>';
+					echo '</ul></li>';
+				}
+			?>
+		</ul>
+	</div>
+</form> -->

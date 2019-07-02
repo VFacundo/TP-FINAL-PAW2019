@@ -1,0 +1,356 @@
+/*----------------TURNOS---------------*/
+
+#misturnos{
+
+}
+
+#contenedorTurnos > ul{
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	min-height: 20vh;
+	margin: 2vh 1vw;
+}
+/* Tabla de turnos */
+.botonesTurnos {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 15vw;
+}
+
+li.botonesTurnos > div {
+    width: 100%;
+    margin: 1vh 0vw;
+}
+
+.contenedorTablaTurnos {width: 100%;margin: 1vh 1vw;background: white;border-radius: .5em;}
+
+li button {
+	min-width: 5vh;
+	padding: 1vh !important;
+}
+.botonesTurnos > div a {
+    width: 100%;
+}
+#contenedorEquipo h2{
+	font-size:1.6em;
+	margin: 4vh 0vw;
+}
+
+#misturnos > div:nth-child(2){max-height: 60vh;}
+
+#misturnos > div:nth-child(3){
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+.ulHeaderSimple{border-bottom: 1px solid black;line-height: 3vh;background: white;}
+
+/*	tabla Simple	*/
+	.tablaSimple{
+		width: 100%;
+		display: none;
+	}
+	.tablaSimple > ul > li:nth-child(odd) {
+		background: #99c35f5e;
+	}
+
+	.tablaSimple > ul > li {
+		width: 100%;
+	}
+	.tablaSimple ul {
+		display: flex;
+		flex-direction: row;
+		align-items:center;
+		min-height:2em;
+	}
+
+	.tablaSimple ul:nth-child(2) {
+		overflow-y: auto;
+		max-height: 40vh;
+	}
+	
+	.tablaSimple > ul li ul li:nth-child(1){
+		 width: 20vw;
+		 margin: 0 auto;
+	}
+	.tablaSimple > ul li ul li:nth-child(2){
+		width: 20vw;
+	}
+	.tablaSimple > ul li ul li:nth-child(3){
+		width: 15vw;
+	}
+
+	.tablaSimple ul > li ul > li button {line-height: 2vh;}
+
+/*	TvT	  */
+	.ulHeaderCompleto {
+		border-bottom: 1px solid black;
+		line-height: 2vh;
+		background: white;
+	}
+	#tTvT > ul:nth-child(even) {
+		display: flex;
+		justify-content: flex-start;
+		flex-direction: column;
+		overflow-y: auto;
+		overflow-x: hidden;
+		height: 40vh;
+	}
+
+	#tTvT > ul > li:nth-child(odd) {
+		background: #99c35f5e;
+	}
+
+	#tTvT > input {
+		margin: 1vh 0vw;
+	}
+
+	#tTvT > ul > li {
+		background: #ffffff;
+	}
+
+	#tTvT ul li ul li {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0.3vh 0vw;
+	}
+
+	.detalles.mostrando {
+		/* position: absolute; */
+		/* top: 6vh; */
+		display: block;
+		height: 30vh;
+		overflow-y: auto;
+		overflow-x: hidden;
+		width: 100%;
+		/* left: 0; */
+		background: white;
+		border: 0.2vh solid #475b26;
+	}
+
+	.detalles {
+		display: none;
+	}
+	#tTvT > ul li ul li:nth-child(1){
+		width: 10vw;
+	}
+	#tTvT > ul li ul li:nth-child(2){
+		width: 7vw;
+	}
+	#tTvT > ul li ul li:nth-child(3){
+		width: 9vw;
+	}
+	#tTvT > ul li ul li:nth-child(4){
+		width: 14vw;
+	}
+	#tTvT > ul li ul li:nth-child(5){
+		width: 0vw;
+		margin: 0.1vh 0vw;
+	}
+	#tTvT > ul li ul li:nth-child(6){
+		width: 9vw;
+		margin: 0.2vh 0vw;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	#tTvT ul li:nth-child(7) {
+		width: 9vw;
+		margin: 0.2vh 0vw;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	#tTvT > ul li ul li:nth-child(8) {
+		width: 100%;
+	}
+
+	.masDetalles {
+		text-decoration-line: underline;
+		line-height: 3em;
+		width: 80%;
+		text-align: center;
+		font-weight: bold;
+	}
+
+	.masDetalles:hover {
+		cursor: pointer;
+	}
+
+	#tTvT ul li ul li input {
+		min-width: 100%;
+		line-height: 3vh;
+	}
+	#tTvT > ul > li ul {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		position: relative;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+	}
+
+	ul#ulHeader {
+		background: white;
+		font-weight: bold;
+	}
+
+	ul li button {
+		color: white;
+		font-weight: bold;
+		letter-spacing: 0;
+		line-height: 2vh;
+		text-shadow: 1px 2px #00000063;
+	}
+	#tTvT {/* display: none; */}
+
+	#tTvI{display: none;}
+	#tSolicitudes{
+		display: none;
+	}
+
+/* small screens */
+	/* width */
+	@media (max-width: 1100px) {
+		/*TABLA SIMPLE*/
+		.tablaSimple > ul li ul li:nth-child(1){
+			margin: 0 2vw;
+		}
+		.tablaSimple > ul li ul li:nth-child(2){
+			margin: 0 2vw;
+		}
+		.tablaSimple > ul li ul li:nth-child(3){
+			margin: 0 2vw;
+		}
+		/*TABLA COMPLETA*/
+		#tTvT > ul li ul li:nth-child(1){
+		width: 11vw;
+		}
+		#tTvT > ul li ul li:nth-child(2){
+		width: 5vw;
+		}
+		#tTvT > ul li ul li:nth-child(3){
+			width: 15vw;
+		}
+		#tTvT > ul li ul li:nth-child(4){
+		width: 10vw;
+		}
+		#tTvT > ul li ul li:nth-child(5){
+		}
+		#tTvT > ul li ul li:nth-child(6){
+		width: 6vw;
+		}
+
+		#tTvT ul li:nth-child(7) {
+		width: 5vw;
+		}
+		#tTvT > ul li ul li:nth-child(8) {
+		}
+		/*BOTONES*/
+		.botonesTurnos{
+			font-size: .8em;
+		}
+		.contenedorTablaTurnos{
+			font-size: .65em;
+		}
+		.contenedorTablaTurnos button{
+			font-size: 0em;
+			line-height: 1.5vh;
+			letter-spacing: 0;
+			font-weight: 100;
+		}
+		.contenedorTablaTurnos button:after{
+			content: '\f1f8';
+			font-size: 15px !important;
+			font-family: 'fontello';
+			line-height: 2vh;
+		}
+		.masDetalles{
+			font-size: 0em;
+			line-height: 1.5vh;
+			text-decoration-line: none;
+		}
+		.masDetalles:after{
+			content: '+';
+			font-size: 15px !important;
+			line-height: 2vh;
+		}
+	}
+	/* Mobile screen */
+	@media (max-width: 600px) {
+		/*TABLA SIMPLE*/
+		.tablaSimple > ul li ul li:nth-child(1){
+			margin: 0 2vw;
+		}
+		.tablaSimple > ul li ul li:nth-child(2){
+			margin: 0 2vw;
+		}
+		.tablaSimple > ul li ul li:nth-child(3){
+			margin: 0 2vw;
+		}
+		/*TABLA COMPLETA*/
+		#tTvT > ul li ul li:nth-child(1){
+		width: 15vw;
+		}
+		#tTvT > ul li ul li:nth-child(2){
+		width: 9vw;
+		}
+		#tTvT > ul li ul li:nth-child(3){
+			width: 13vw;
+		}
+		#tTvT > ul li ul li:nth-child(4){
+		width: 14vw;
+		}
+		#tTvT > ul li ul li:nth-child(5){
+		}
+		#tTvT > ul li ul li:nth-child(6){
+		width: 9vw;
+		}
+
+		#tTvT ul li:nth-child(7) {
+		width: 4vw;
+		}
+		#tTvT > ul li ul li:nth-child(8) {
+		}
+		/*BOTONES*/
+		.botonesTurnos{
+			font-size: .8em;
+		}
+		.contenedorTablaTurnos{
+			font-size: .65em;
+		}
+		.contenedorTablaTurnos button{
+			font-size: 0em;
+			line-height: 1.5vh;
+			letter-spacing: 0;
+			font-weight: 100;
+			min-width: 3vw !important;
+		}
+		.contenedorTablaTurnos button:after{
+			content: '\f1f8';
+			font-size: 15px !important;
+			font-family: 'fontello';
+			line-height: 2vh;
+		}
+		.masDetalles{
+			font-size: 0em;
+			line-height: 1.5vh;
+			text-decoration-line: none;
+		}
+		.masDetalles:after{
+			content: '+';
+			font-size: 15px !important;
+			line-height: 2vh;
+		}
+	}
+	/*Height*/
+	@media (max-height: 600px) {
+
+	}

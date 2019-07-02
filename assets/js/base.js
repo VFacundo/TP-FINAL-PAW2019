@@ -5,7 +5,7 @@ var document = document || {},
 
 Base.init = function(){
 	window.addEventListener("DOMContentLoaded", function(){
-    var botonLi = document.getElementsByClassName("botonLi"),
+    var botonNav = document.getElementsByClassName("botonNav"),
 			initSel = 0,
 			menu = document.querySelector("#menuBtn"),
 			location = window.location.href;
@@ -20,9 +20,9 @@ Base.init = function(){
 		}else {
 			initSel = 0;
 		}
-		botonLi[initSel].classList.add("selectedLi");
-		for (var i = 0; i < botonLi.length; i++) {
-			botonLi[i].addEventListener("click",Base.click);
+		botonNav[initSel].classList.add("selectedLi");
+		for (var i = 0; i < botonNav.length; i++) {
+			botonNav[i].addEventListener("click",Base.click);
 		}
 		menu.addEventListener("click",function(){showNav()});
 	});
