@@ -1,9 +1,14 @@
 .add div{
-	width: 25vw;
-	display:block;
-	margin: 0 auto;
+	display: flex;
 	font-size: 0.7em;
+	justify-content: center;
+	align-items: center;
 }
+
+div .equipo > input{
+	width: 50%;
+	margin: 1vh auto;
+} 
 
 #miequipoImagen{width: 8vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 0vh 1vw;}
 
@@ -12,17 +17,6 @@
 #miequipoImagen::before{
 	 content: 'Logo'; 
 	font-size: 1em;
-}
-
-#miequipoDatos {
-    margin: 1vh 1vw;
-    height: 50vh;
-    width: 100%;
-}
-
-#miequipoDatos > ul{
-    max-height: 35vh;
-    overflow-y: auto;
 }
 
 #miequipoDatos > label > input {
@@ -36,10 +30,6 @@
     margin: 1vh 1vw;
 }
 
-#miequipoDatos > label {
-    margin: 1vh 0vw;
-    line-height: 2vh;
-}
 
 #miequipoDatos > span {
     margin: 1vh 0vw;
@@ -47,95 +37,24 @@
 
 #ulHeader {min-height: 5vh;}
 
-#miequipoDatos > ul:nth-child(3) {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 40vh;
-    position: relative;
-}
-
-#miequipoDatos ul:first-child > li ul {
-}
-
-
-#miequipoDatos > ul > li:nth-child(odd) {
-    background: #99c35f5e;
-}
-
-#miequipoDatos > input {
-    margin: 1vh auto;
-    display: block;
-    padding: 2vh 15vw;
-}
-
-#miequipoDatos > ul > li {
-    background: #ffffff;
-}
-
-#miequipoDatos ul li ul li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0.5vh 1vw;
-}
-#miequipoDatos ul li ul li:nth-child(1){
-	width: 10vw;
-}
-#miequipoDatos ul li ul li:nth-child(2){
-	width: 20vw;
-}
 
 .capitan li:nth-child(2):after {
     content: '(C)';
 }
 
-li label.boton {
-    padding: 1vh 1.5vw;
+li .icon-pencil {
+	width:100%;
 }
-
-.icon-trash {
+li .icon-trash {
     background: #f13232;
-}
-
-#miequipoDatos ul li ul li:nth-child(3){
-	width: 6vw;
-}
-#miequipoDatos ul li ul li:nth-child(4){
-	width: 15vw;
-}
-#miequipoDatos ul li ul li:nth-child(5){
-	width: 8vw;
-}
-
-#miequipoDatos ul li ul li:nth-child(6){
-	width: 8vw;
-}
-
-#miequipoDatos ul li ul li input {
-    min-width: 100%;
-    line-height: 3vh;
-}
-
-#miequipoDatos ul li ul li button {
-    padding: 1vh 1vw;
-    width: 100%;
-    font-size: 0.9vw;
-    min-width: 7vw;
-}
-
-#miequipoDatos > ul > li ul {
-    display: flex;
-    flex-direction: row;
+	width:100%;
 }
 
 ul li img {
-    width: 3vw;
     min-width: 40px;
     height: 4.5vh;
     border-radius: 50%;
 }
-
-.capitan li:nth-child(1) {}
 
 .ulSinEquipo li ul li:nth-child(4){
 	width: 30vw !important;
@@ -144,132 +63,9 @@ ul li img {
 
 
 /******/
-#solicitudesDatos > ul:nth-child(even) {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden;
-    min-height: 50vh;
-    margin: 1vh 0vw;
-}
 
 
-#solicitudesDatos > ul > li:nth-child(odd) {
-    background: #99c35f5e;
-}
 
-#solicitudesDatos > input {
-    margin: 1vh 0vw;
-}
-
-#solicitudesDatos > ul > li {
-    background: #ffffff;
-}
-
-#solicitudesDatos ul li ul li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0.3vh 0.3vw;
-}
-
-.detalles.mostrando {
-    /* position: absolute; */
-    /* top: 6vh; */
-    display: block;
-    height: 30vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: 100%;
-    /* left: 0; */
-    background: white;
-    border: 0.2vh solid #475b26;
-}
-
-.detalles {
-    display: none;
-}
-#solicitudesDatos ul li ul li:nth-child(1){
-	width: 15vw;
-}
-#solicitudesDatos ul li ul li:nth-child(2){
-	width: 10vw;
-}
-#solicitudesDatos ul li ul li:nth-child(3){
-	width: 15vw;
-}
-#solicitudesDatos ul li ul li:nth-child(4){
-	width: 15vw;
-	margin: 0.1vh 0vw;
-}
-#solicitudesDatos ul li ul li:nth-child(5){
-	width: 0vw;
-	margin: 0.1vh 0vw;
-}
-#solicitudesDatos ul li ul li:nth-child(6){
-	width: 11vw;
-	margin: 0.2vh 0vw;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-}
-
-#solicitudesDatos ul li ul li:nth-child(7) {
-    width: 10vw;
-    margin: 0.2vh 0vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-#solicitudesDatos ul li ul li:nth-child(8) {
-    width: 100%;
-}
-
-.masDetalles {
-    text-decoration-line: underline;
-    line-height: 3em;
-    width: 80%;
-    text-align: center;
-    font-weight: bold;
-}
-
-.masDetalles:hover {
-    cursor: pointer;
-}
-
-#solicitudesDatos ul li ul li input {
-    min-width: 100%;
-    line-height: 3vh;
-}
-
-#solicitudesDatos ul li ul li button {
-    width: 5vw;
-    font-size: 3.5vh;
-    color: white;
-    font-weight: bold;
-    letter-spacing: 0;
-    line-height: 2vh;
-    text-shadow: 1px 2px #00000063;
-}
-
-#solicitudesDatos > ul > li ul {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    position: relative;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-
-ul#ulHeader {
-    background: white;
-    font-weight: bold;
-}
-
-#solicitudesDatos {
-}
 /****/
 /***como jugador***/
 #comojugadorDatos > ul:nth-child(even) {
@@ -302,22 +98,7 @@ ul#ulHeader {
     margin: 0.5vh 0.5vw;
 }
 
-.detalles.mostrando {
-    /* position: absolute; */
-    /* top: 6vh; */
-    display: block;
-    max-height: 20vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: 100%;
-    /* left: 0; */
-    background: white;
-    border: 0.2vh solid #475b26;
-}
 
-.detalles {
-    display: none;
-}
 #comojugadorDatos ul li ul li:nth-child(1){
 	min-width: 15vw;
 }
@@ -355,16 +136,6 @@ ul#ulHeader {
     width: 100%;
 }
 
-.masDetalles {
-    text-decoration-line: underline;
-    text-align: center;
-    font-weight: bold;
-}
-
-.masDetalles:hover {
-    cursor: pointer;
-}
-
 #comojugadorDatos ul li ul li input {
     min-width: 100%;
     line-height: 3vh;
@@ -378,14 +149,6 @@ ul#ulHeader {
     letter-spacing: 0;
     line-height: 2vh;
     text-shadow: 1px 2px #00000063;
-}
-
-button.boton.aceptar {
-    background: #8eec0c;
-}
-
-button.boton.rechazar {
-    background: #ea4848;
 }
 
 #comojugadorDatos > ul > li ul {
@@ -422,9 +185,6 @@ ul#ulHeader {
 #miequipoImagen div{
 	font-size: 0.6em;
 	width: 90%;
-	/* display: flex; */
-	/* vertical-align: middle; */
-	/* justify-content: center; */
 }
 
 #nombre::before{
@@ -506,35 +266,23 @@ input[type="file"]#inputSb {
     position: relative;
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
     flex-wrap: wrap;
     padding: 0vh 2vw;
 }
-#contenedorEquipo form span{width: 100%;text-align: center;}
-#contenedorEquipo form > label{width: 65vw;}
+#contenedorEquipo form span{width: max-content;text-align: center;margin: auto;}
+#contenedorEquipo form > label{width: min-content;display: flex;flex-direction: row;flex-wrap: nowrap;justify-content: start;align-items: baseline;}
 #contenedorEquipo form > label > input{
     line-height: 2em;
-    width: 50vw;
+    width: 40vw;
 }
-#contenedorEquipo form > label > label{padding: 0.5vh 1vw;margin: 0vh 1vw;}
+#contenedorEquipo form > label > label{padding: 2vh 1vw;margin: 0vh 1vw;display: inline-block;vertical-align: middle;}
 
 /* Mobile view */
 
 @media (max-width: 600px) {
 	ul li img {
 		min-width: 30px;
-	}
-	
-	#miequipoDatos ul li ul li:nth-child(1){
-		width: 8vw;
-	}
-	#miequipoDatos ul li ul li:nth-child(2){
-		width: 30vw;
-		font-size: 0.6em;
-	}
-
-	.capitan li:nth-child(2):after {
-		content: '(C)';
 	}
 
 	li label.boton {
@@ -544,78 +292,27 @@ input[type="file"]#inputSb {
 	.icon-trash {
 		background: #f13232;
 	}
-
-	#miequipoDatos ul li ul li:nth-child(3){
-		width: 7vw;
-		font-size: .6em;
-	}
-	#miequipoDatos ul li ul li:nth-child(4){
-		width: 20vw;
-		font-size: 0.6em;
-	}
-	#miequipoDatos ul li ul li:nth-child(5){
-		width: 10vw;
-		margin: 0vh 0vw;
-		font-size: 0.9em;
-	}
-
-	#miequipoDatos ul li ul li:nth-child(6){
-		width: 10vw;
-		margin: 0vh 0vw;
-		font-size: .9em;
-	}
-	/*----------------*/
-	#solicitudesDatos {
-		font-size: 0.6em;
-	}
-	#solicitudesDatos > ul > li > ul > li:nth-child(1){
-		width: 20vw;
-	}
-	#solicitudesDatos > ul > li > ul > li:nth-child(2){
-		width: 7vw;
-		line-height: 1.2em;
-	}
-	#solicitudesDatos > ul > li > ul > li:nth-child(3){
-		width: 10vw;
-		margin: auto;
-	}
-	#solicitudesDatos > ul > li > ul > li:nth-child(4){
-		width: 15vw;
-	}
-	#solicitudesDatos > ul > li > ul > li:nth-child(5){
-		width: 0vw;
-	}
-	#solicitudesDatos > ul > li > ul > li:nth-child(6){
-		width: 18vw;
-		margin: 0.2vh 0vw;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
-
-	#solicitudesDatos > ul > li > ul > li:nth-child(7) {
-		width: 12vw;
-		margin: auto auto;
-		display: inline;
-	}
-	#solicitudesDatos > ul > li > ul > li:nth-child(8) {
-		width: 100%;
-	}
-	#solicitudesDatos ul li ul li button {
-	font-size: 1em;
-	width: 8vw;
-	margin: 0vh 0.5vw;
-	}
+	
 }
+
 @media (max-height: 600px) {
 	#miequipoDatos{
-		height: 40vh;
+		/* height: 40vh; */
 	}
 	#mensajeEquipo{
 		font-size: .7em;
 	}
-	#contenedorEquipo form span {
-		font-size: 0.7em;
+	.add span {
+		font-size: 0;
+		display:flex;
+		border-radius: 20%;
+	}
+	.add span:after{
+		content: '\f196';
+		font-size: 20px !important;
+		font-family: 'fontello';
+		min-width: 32px;
+		font-weight: 100;
 	}
 	#miequipoImagen img{
 		max-height: 10vh;
@@ -625,6 +322,6 @@ input[type="file"]#inputSb {
 		font-size: .7em;
 	}
 	#miequipoDatos > ul{
-		max-height: 28vh;
+		max-height: 40vh;
 	}
 }

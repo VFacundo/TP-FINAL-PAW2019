@@ -47,79 +47,7 @@ li button {
 	align-items: center;
 	height: 100%;
 }
-.ulHeaderSimple{border-bottom: 1px solid black;line-height: 3vh;background: white;}
-
-/*	tabla Simple	*/
-	.tablaSimple{
-		width: 100%;
-		/* display: none; */
-	}
-	.tablaSimple > ul > li:nth-child(odd) {
-		background: #99c35f5e;
-	}
-
-	.tablaSimple > ul > li {
-		width: 100%;
-	}
-	.tablaSimple ul {
-		display: flex;
-		flex-direction: row;
-		align-items:center;
-		min-height:2em;
-	}
-
-	.tablaSimple ul:nth-child(2) {
-		overflow-y: auto;
-		max-height: 40vh;
-	}
-
-	.tablaSimple > ul li ul li:nth-child(1){
-		 width: 20vw;
-		 margin: 0 auto;
-	}
-	.tablaSimple > ul li ul li:nth-child(2){
-		width: 20vw;
-	}
-	.tablaSimple > ul li ul li:nth-child(3){
-		width: 15vw;
-	}
-
-	.tablaSimple ul > li ul > li button {line-height: 2vh;}
-
 /*	TvT	  */
-	.ulHeaderCompleto {
-		border-bottom: 1px solid black;
-		line-height: 2vh;
-		background: white;
-	}
-	#tTvT > ul:nth-child(even) {
-		display: flex;
-		justify-content: flex-start;
-		flex-direction: column;
-		overflow-y: auto;
-		overflow-x: hidden;
-		height: 40vh;
-	}
-
-	#tTvT > ul > li:nth-child(odd) {
-		background: #99c35f5e;
-	}
-
-	#tTvT > input {
-		margin: 1vh 0vw;
-	}
-
-	#tTvT > ul > li {
-		background: #ffffff;
-	}
-
-	#tTvT ul li ul li {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin: 0.3vh 0vw;
-	}
-
 	.detalles.mostrando {
 		/* position: absolute; */
 		/* top: 6vh; */
@@ -136,42 +64,6 @@ li button {
 	.detalles {
 		display: none;
 	}
-	#tTvT > ul li ul li:nth-child(1){
-		width: 10vw;
-	}
-	#tTvT > ul li ul li:nth-child(2){
-		width: 7vw;
-	}
-	#tTvT > ul li ul li:nth-child(3){
-		width: 9vw;
-	}
-	#tTvT > ul li ul li:nth-child(4){
-		width: 14vw;
-	}
-	#tTvT > ul li ul li:nth-child(5){
-		width: 0vw;
-		margin: 0.1vh 0vw;
-	}
-	#tTvT > ul li ul li:nth-child(6){
-		width: 9vw;
-		margin: 0.2vh 0vw;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
-
-	#tTvT ul li:nth-child(7) {
-		width: 9vw;
-		margin: 0.2vh 0vw;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-	}
-	#tTvT > ul li ul li:nth-child(8) {
-		width: 100%;
-	}
-
 	.masDetalles {
 		text-decoration-line: underline;
 		line-height: 3em;
@@ -184,33 +76,8 @@ li button {
 		cursor: pointer;
 	}
 
-	#tTvT ul li ul li input {
-		min-width: 100%;
-		line-height: 3vh;
-	}
-	#tTvT > ul > li ul {
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-		position: relative;
-		flex-wrap: wrap;
-		justify-content: space-around;
-	}
-
 .mostrando ul {}
 
-	ul#ulHeader {
-		background: white;
-		font-weight: bold;
-	}
-
-	ul li button {
-		color: white;
-		font-weight: bold;
-		letter-spacing: 0;
-		line-height: 2vh;
-		text-shadow: 1px 2px #00000063;
-	}
 	#tTvT {display: none;}
 
 	#tTvI{display: none;}
@@ -255,40 +122,6 @@ font-size: 2em;
 /* small screens */
 	/* width */
 	@media (max-width: 1100px) {
-		/*TABLA SIMPLE*/
-		.tablaSimple > ul li ul li:nth-child(1){
-			margin: 0 2vw;
-		}
-		.tablaSimple > ul li ul li:nth-child(2){
-			margin: 0 2vw;
-		}
-		.tablaSimple > ul li ul li:nth-child(3){
-			margin: 0 2vw;
-		}
-		/*TABLA COMPLETA*/
-		#tTvT > ul li ul li:nth-child(1){
-		width: 11vw;
-		}
-		#tTvT > ul li ul li:nth-child(2){
-		width: 5vw;
-		}
-		#tTvT > ul li ul li:nth-child(3){
-			width: 15vw;
-		}
-		#tTvT > ul li ul li:nth-child(4){
-		width: 10vw;
-		}
-		#tTvT > ul li ul li:nth-child(5){
-		}
-		#tTvT > ul li ul li:nth-child(6){
-		width: 6vw;
-		}
-
-		#tTvT ul li:nth-child(7) {
-		width: 5vw;
-		}
-		#tTvT > ul li ul li:nth-child(8) {
-		}
 		/*BOTONES*/
 		.botonesTurnos{
 			font-size: .8em;
@@ -308,19 +141,6 @@ font-size: 2em;
 			line-height: 2vh;
 			font-family: "fontello";
 		}
-		.masDetalles{
-			font-size: 0em;
-			text-decoration-line: none;
-			height: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		.masDetalles:after{
-			content: '\f196';
-			font-size: 30px !important;
-			font-family: 'fontello';
-		}
 		#nuevoTurno form div input,
 		#nuevoTurno form div a{
 			padding: .5em;
@@ -329,52 +149,15 @@ font-size: 2em;
 	/* Mobile screen */
 	@media (max-width: 600px) {
 		#contenedorTurnos > ul{
-		flex-direction: column;
-		margin: 0;
+			flex-direction: column;
+			margin: 0;
 		}
-
-.botonesTurnos {
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    height: 11vh;
-    border-top: 2px solid #58a300;
-}
-
-.botonesTurnos div {}
-		/*TABLA SIMPLE*/
-		.tablaSimple > ul li ul li:nth-child(1){
-			margin: 0 2vw;
-		}
-		.tablaSimple > ul li ul li:nth-child(2){
-			margin: 0 2vw;
-		}
-		.tablaSimple > ul li ul li:nth-child(3){
-			margin: 0 2vw;
-		}
-		/*TABLA COMPLETA*/
-		#tTvT > ul li ul li:nth-child(1){
-		width: 15vw;
-		}
-		#tTvT > ul li ul li:nth-child(2){
-		width: 9vw;
-		}
-		#tTvT > ul li ul li:nth-child(3){
-			width: 13vw;
-		}
-		#tTvT > ul li ul li:nth-child(4){
-		width: 14vw;
-		}
-		#tTvT > ul li ul li:nth-child(5){
-		}
-		#tTvT > ul li ul li:nth-child(6){
-		width: 10vw;
-		}
-
-		#tTvT ul li:nth-child(7) {
-		width: 6vw;
-		}
-		#tTvT > ul li ul li:nth-child(8) {
+		.botonesTurnos {
+			flex-direction: row;
+			justify-content: center;
+			width: 100%;
+			height: 11vh;
+			border-top: 2px solid #58a300;
 		}
 		/*BOTONES*/
 		.botonesTurnos a{

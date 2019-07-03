@@ -3,21 +3,18 @@
 		<img src="/img/<?=$logo_equipo?>" alt="Imagen de Equipo">
 		<label class="boton" id="labelSubir">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" ></label>
 	</div>
-	<label>Nombre del equipo: <input type="text" name="eq_nombre" value="<?=$nombre_equipo?>" disabled><label class="boton icon-pencil"></label></label>
-	<div id="miequipoDatos">
+	<label><span>Nombre del equipo:</span><input type="text" name="eq_nombre" value="<?=$nombre_equipo?>" disabled><label class="boton icon-pencil"></label></label>
+	<div class="lista6Col equipo" id="miequipoDatos">
 		<ul>
-			<li>
-				<ul id="ulHeader">
-					<li></li>
-					<li>Nombre</li>
-					<li>Edad</li>
-					<li>Usuario</li>
-					<li></li>
-				</ul>
-			</li>
+			<li>&nbsp;</li>
+			<li>Nombre</li>
+			<li>Edad</li>
+			<li>Usuario</li>
+			<li></li>
+			<li></li>
 		</ul>
 		<ul>
-			<li>
+			<li class="lista6Row equipo">
 				<ul class="capitan">
 					<li><img src="img/<?=$datosUserJug['img_src']?>" alt="Imagen de jugador"></li>
 					<li><?=$datosUserJug['nombre']?></li>
@@ -29,7 +26,7 @@
 			</li>
 			<?php 
 				foreach($jugadores as $valor){
-					echo '<li><ul>';
+					echo '<li class="lista6Row equipo"><ul>';
 					echo '<li><img src="/img/' . $valor[0] . '" alt="Imagen de jugador"></li>';
 					echo '<li><input type="text" name="j_nombre" value="' . $valor['nombre'] . '"disabled></li>';
 					echo '<li><input type="number" name="j_edad" value="' . $valor['edad'] . '" disabled></li>';
