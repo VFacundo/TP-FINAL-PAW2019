@@ -5,11 +5,21 @@ use UNLu\PAW\Modelos\users;
 
 class Perfil extends \UNLu\PAW\Libs\Controlador{
 
+  private static $initialized = false;
+  private static $db;
+
+  private static function initialize(){
+    if(self::$initialized)
+      return true;
+      self::$db = new users();
+    self::$initialized=true;
+  }
+
 public function perfil(){
-  $db = new users();
+  self::initialize();
   sesion::startSession();
   if(sesion::is_login()){
-    $datosUser = $db->datosUserJug($_SESSION['id']);
+    $datosUser = self::$db->datosUserJug($_SESSION['id']);
     $this->pasarVariableAVista('datos',$datosUser);
     $this->pasarVariableAVista('img','img/' . $datosUser['img_src']);
     sesion::refreshTime();
@@ -19,6 +29,7 @@ public function perfil(){
 }
 
 public function editarPerfil(){
+  self::initialize();
   sesion::startSession();
   sesion::refreshTime();
   if(sesion::is_login()){
@@ -26,13 +37,12 @@ public function editarPerfil(){
     $username = filter_input(INPUT_POST,'username',FILTER_SANITIZE_STRING);
     $edad = filter_input(INPUT_POST,'edad',FILTER_SANITIZE_NUMBER_INT);
     $tel = filter_input(INPUT_POST,'tel',FILTER_SANITIZE_STRING);
-    $db = new users();
-    $datosJug = $db->datosUserJug(sesion::getId());
+    $datosJug = self::$db->datosUserJug(sesion::getId());
       if($datosJug['user'] == $username){//Si es el mismo user lo edito
-        $db->editUser($nombre,null,$edad,$tel,sesion::getId());
+        self::$db->editUser($nombre,null,$edad,$tel,sesion::getId());
       }else {//Si lo cambio me fijo si esta
-        if(empty($db->buscarUser($username))){
-            $db->editUser($nombre,$username,$edad,$tel,sesion::getId());
+        if(empty(self::$db->buscarUser($username))){
+            self::$db->editUser($nombre,$username,$edad,$tel,sesion::getId());
         }
       }
   }
@@ -42,29 +52,32 @@ public function editarPerfil(){
 public function subirImagen(){
   sesion::startSession();
   sesion::refreshTime();
+  self::initialize();
   if(sesion::is_login()){
     $img = $_FILES;
     if(!empty($img)){
-      $db = new users();
-      $db->imgUser($img,sesion::getId());
-      $this->redireccionarA($_SERVER['REQUEST_URI'],'/response/responsepage/OK');
+      self::$db->imgUser($img,sesion::getId());
+      echo "OK";
+    }else{
+      echo "";
     }
   }
+  exit();
 }
 
 public function setImg(){
   sesion::startSession();
-  $db = new users();
+  self::initialize();
   $ruta = $_POST['img_src'];
-  $db->setImg(sesion::getId(),$ruta);
-  echo('ok');
+  self::$db->setImg(sesion::getId(),$ruta);
+  echo('OK');
   exit();
 }
 
 public function getImg(){//devuelve img perfil
   sesion::startSession();
-  $db = new users();
-  $result = $db->getImg(sesion::getId());
+  self::initialize();
+  $result = self::$db->getImg(sesion::getId());
    if(!$result===FALSE){
      echo($result['img_src']);
      exit();

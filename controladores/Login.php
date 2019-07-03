@@ -6,7 +6,6 @@ use UNLu\PAW\Modelos\users;
 class Login extends \UNLu\PAW\Libs\Controlador{
 
   public function iniciarSesion($mensaje=null){
-    //session_start();
     sesion::startSession();
     if(sesion::is_login()){
       $this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
