@@ -214,11 +214,11 @@
 				</li>
 			</ul>
 			<?php
-				if(true)
+				if($miequipo)
 					include('conequipo.html');
-				/*}else{
+				else
 					include('sinequipo.html');
-				} */
+
 			?>
 		</div>
 		<div id="contenedorSolicitudes" class="divContenedor">
@@ -234,18 +234,18 @@
 
 	<div id="nuevoTurno" style="display:none">
 		<h5>Reservar turno</h5>
-		<form action="" method="post">
-			<label>Tipo de Turno <select name="tipo_turno">
+		<form name="turno" action="" onSubmit="turnos.crearTurno(); return false">
+			<label>Tipo de Turno: <select name="tipo_turno">
 															<option value="0">Simple</option>
 															<option value="1">Mi Equipo VS Otro Equipo</option>
 															<option value="2">Mi Equipo VS Invitado</option>
 													</select>
 			</label>
-			<label>Fecha: <input type="date" name="fecha_turno" min="1919-01-01" max="2019-12-12" required/></label>
-			<label>Horario de Turno: <input type="time" name="horario_turno" id="appt" min="08:00" max="17:00" step="900" required/></label>
-			<label>Cancha<input type="text" name="cancha_turno" value="" required></label>
+			<label>Cancha: <select name="cancha_turno" onchange="turnos.horariosDisponibles();" required></select>
+			<label>Fecha: <input type="date" name="fecha_turno" min="1919-01-01" max="2019-12-12" onchange="turnos.horariosDisponibles();" required/></label>
+			<label>Horario: <select name="horario_turno" required></select>
 			<div>
-				<input class="boton" type="submit" name="install" value="Confirmar"></input>
+				<input class="boton" type="submit" name="confirmar" value="Confirmar"></input>
 				<a class="boton rechazar" onclick="turnos.toggle();">Cancelar</a>
 			</div>
 		</form>

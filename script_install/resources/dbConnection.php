@@ -24,7 +24,7 @@ class dbConnection{
 									user VARCHAR(30) NOT NULL,
 									pass VARCHAR(255) NOT NULL,
 									tipo TINYINT NOT NULL,
-									token_id VARCHAR(255) NOT NULL,
+									token_id VARCHAR(255) DEFAULT NULL,
 				    				PRIMARY KEY(id,mail)
 									);
 				CREATE TABLE jugador (
@@ -58,26 +58,21 @@ class dbConnection{
 									telefono VARCHAR(20),
 									horario_cierre TIME NOT NULL,
 									horario_apertura TIME NOT NULL,
+									duracion_turno INT(10) UNSIGNED NOT NULL,
 									PRIMARY KEY(id,nombre)
-									);
-				CREATE TABLE tipo (
-									id INT(11) UNSIGNED AUTO_INCREMENT,
-									descripcion VARCHAR(40) NOT NULL,
-									PRIMARY KEY(id)
 									);
 				CREATE TABLE turno (
 									id INT(11) UNSIGNED AUTO_INCREMENT,
 									fecha DATE NOT NULL,
 									horario_turno TIME NOT NULL,
-									id_equipo_solicitante INT UNSIGNED,
+									id_solicitante INT UNSIGNED,
 									id_equipo_rival INT UNSIGNED,
 									id_cancha INT(11) UNSIGNED,
-									id_tipo INT(11) UNSIGNED,
+									tipo_turno INT(11) UNSIGNED,
 									origen_turno VARCHAR(50),
-									FOREIGN KEY(id_equipo_solicitante) REFERENCES equipo(id),
+									FOREIGN KEY(id_solicitante) REFERENCES usuario(id),
 									FOREIGN KEY(id_equipo_rival) REFERENCES equipo(id),
 									FOREIGN KEY(id_cancha) REFERENCES cancha(id),
-									FOREIGN KEY(id_tipo) REFERENCES tipo(id),
 									PRIMARY KEY(id,fecha,horario_turno)
 									);
 				CREATE TABLE desafio (
