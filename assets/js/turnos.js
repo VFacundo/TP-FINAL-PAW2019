@@ -123,8 +123,8 @@ turnos.showTab = function(n) {
 			
 		document.getElementById("nextBtn").style.display = "none";
 		divResumen.children[0].innerHTML += ' '+tipo_turno.innerHTML;
-		if (tipo_turno == 1){
-			divResumen.children[0].innerHTML += ' Equipo rival: '+form.rival.value;
+		if (tipo_turno.value == 1){
+			divResumen.children[0].innerHTML += ' Equipo rival: '+form.eq_rival.value;
 		}
 		divResumen.children[1].innerHTML += ' '+cancha_turno;
 		divResumen.children[2].innerHTML += ' '+fecha_turno;
