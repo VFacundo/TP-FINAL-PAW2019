@@ -35,5 +35,11 @@ return [
             'controlador' => 'Turnos',
             'accion' => 'misturnos'
         ]
+    ],
+    'instantsearch' => [
+        'accionPorDefecto' => [
+            'controlador' => 'Instantsearch',
+            'accion' => 'search'
+        ]
     ]
 ];

@@ -1,6 +1,6 @@
 [
     {
-        "dbname": "dbFulbito",
+        "dbname": "dbFulbito_new",
         "dbhost": "localhost",
         "dbport": "3306",
         "username": "user",
