@@ -1,144 +1,60 @@
 <div class="lista6Col" id="solicitudesDatos">
-	<ul>
-		<li>Equipo</li>
-		<li>Edad media</li>
-		<li>Fecha</li>
-		<li>Lugar</li>
-		<li></li>
-		<li></li>
-	</ul>
-	<ul>
-		<li class="lista6Row">
-			<ul>
-				<li>Marcelona FC</li>
-				<li>25</li>
-				<li>Sabado 1/6/19 14:00hs</li>
-				<li>Almafuerte 224 | Afuera</li>
-				<li>
-					<button class="boton rechazar">✕</button>
-					<button class="boton aceptar">✓</button>
-				</li>
-				<li>
-					<span class="masDetalles"> Mas detalles </span>
-				</li>
-				<li>
-					<div class="detalles mostrando">
-						<ul>
-							<li>Jugador</li>
-							<li>Edad</li>
-							<li>Usuario</li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li>@Guest1424</li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li></li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li></li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li>@Guest1568</li>
-						</ul>
-					</div>
-				</li>
+	<?php	
+		if($equipo){
+			echo '<ul>
+				<li>Equipo</li>
+				<li>Edad media</li>
+				<li>Fecha</li>
+				<li>Lugar</li>
+				<li></li>
+				<li></li>
 			</ul>
-		</li>
-		<li class="lista6Row">
-			<ul>
-				<li>Marcelona FC</li>
-				<li>25</li>
-				<li>Sabado 1/6/19 14:00hs</li>
-				<li>Almafuerte 224 | Afuera</li>
-				<li>
-					<button class="boton rechazar">✕</button>
-					<button class="boton aceptar">✓</button>
-				</li>
-				<li>
-					<span class="masDetalles"> Mas detalles </span>
-				</li>
-				<li>
-					<div class="detalles mostrando">
-						<ul>
-							<li>Jugador</li>
-							<li>Edad</li>
-							<li>Usuario</li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li>@Guest1424</li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li></li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li></li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li>@Guest1568</li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</li>
-		<li class="lista6Row">
-			<ul>
-				<li>Marcelona FC</li>
-				<li>25</li>
-				<li>Sabado 1/6/19 14:00hs</li>
-				<li>Almafuerte 224 | Afuera</li>
-				<li>
-					<button class="boton rechazar">✕</button>
-					<button class="boton aceptar">✓</button>
-				</li>
-				<li>
-					<span class="masDetalles"> Mas detalles </span>
-				</li>
-				<li>
-					<div class="detalles mostrando">
-						<ul>
-							<li>Jugador</li>
-							<li>Edad</li>
-							<li>Usuario</li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li>@Guest1424</li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li></li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li></li>
-						</ul>
-						<ul>
-							<li>Malesandro</li>
-							<li>29</li>
-							<li>@Guest1568</li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</li>
-	</ul>
+			<ul>'; 	
+			if(isset($turno['tSolicitudesEnviadas'])){		
+				foreach($turno['tSolicitudesEnviadas'] as $valor){
+					echo '<li  class="lista6Row">';
+					echo	'<ul>';
+					echo		'<li> <img src="img/' . $valor['img_equipo'] . '"></li>';
+					echo		'<li>' . $valor['equipo'] . '</li>';
+					echo		'<li>' . $valor['edad'] . '</li>';
+					echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
+					echo		'<li>' . $valor['direccion'] . "|" . $valor['cancha'] .'</li>';
+					echo		'<li> <button class="boton rechazar" onclick="aceptarTurno('. $valor['id'] .')">Aceptar</button> </li>';
+					echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id'] .')">Cancelar</button> </li>';
+					echo 		'<li>
+									<span class="masDetalles"> Mas detalles </span>
+								</li>';
+					echo 		'<li>
+									<div class="detalles">
+										<ul>
+											<li>Jugador</li>
+											<li>Edad</li>
+											<li>Usuario</li>
+										</ul>';
+					echo				'<ul>';
+					echo					'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
+					echo					'<li>' . $valor['capitan'][0]['edad'] . '</li>';
+					echo					'<li>' . $valor['capitan'][0]['user'] . '</li>';
+					echo				'</ul>';
+										foreach($valor['jugadores'] as $valorJug){
+											echo	'<ul>';
+											echo		'<li>' . $valorJug['nombre'] . '</li>';
+											echo		'<li>' . $valorJug['edad'] . '</li>';
+											echo		'<li>' . $valorJug['user'] . '</li>';
+											echo	'</ul>';
+										}
+					echo 			'</div>
+								</li>';
+					echo 	'</ul>
+						</li>';
+				}
+			}
+			echo '</ul>';
+		}else{
+			echo '<div class="sinEquipo">';
+				echo '<h2 id="mensajeEquipo">Ops! Parece que aun no creaste un equipo.</h2>
+					  <a class="boton" href="equipo"> Crea uno ahora! </a>';
+			echo '</div>';
+		}
+	?>
 </div>

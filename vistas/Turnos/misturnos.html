@@ -15,13 +15,13 @@
 	<div>
 		<div class="contenedorBotones">
 			<div class="btnEquipo btnActive"  >
-				<a class="boton">Turnos</a>
+				<a class="boton">Mis Turnos</a>
 			</div>
 			<div class="btnEquipo"  >
-				<a class="boton">Mis Solicitudes de partido</a>
+				<a class="boton">Solicitudes Enviadas</a>
 			</div>
 			<div class="btnEquipo"  >
-				<a class="boton">Mis turnos como Jugador</a>
+				<a class="boton">Turnos como Jugador</a>
 			</div>
 		</div>
 		<div id="contenedorTurnos" class="divContenedor">
@@ -36,192 +36,152 @@
 					<div>
 						<a class="boton">Equipo vs Invitado</a>
 					</div>
-					<div>
-						<a class="boton">Solicitudes partido</a>
-					</div>
 				</li>
 				<li class="contenedorTablaTurnos">
-					<div id="tSimple">
-						<div class="lista3Col">
-							<ul>
-								<li>Fecha</li>
-								<li>Lugar</li>
-								<li></li>
-							</ul>
-							<ul>
-								<li  class="lista3Row">
-									<ul>
-										<li>Sabado 1/6/19 14:00hs</li>
-										<li>Almafuerte 224 | Afuera</li>
-										<li>
-											<button class="boton rechazar">Cancelar</button>
-										</li>
+					<div class="lista3Col" id="tSimple">
+							<?php 
+								echo '<ul>
+										<li>Fecha</li>
+										<li>Lugar</li>
+										<li></li>
 									</ul>
-								</li>
-								<li  class="lista3Row">
-									<ul>
-										<li>Sabado 1/6/19 14:00hs</li>
-										<li>Almafuerte 224 | Afuera</li>
-										<li>
-											<button class="boton rechazar">Cancelar</button>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
+									<ul>';
+								if(isset($turno['simple'])){	
+									foreach($turno['simple'] as $valor){
+										echo '<li  class="lista3Row">';
+										echo	'<ul>';
+										echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
+										echo		'<li>' . $valor['direccion'] . "|" . $valor['cancha'] .'</li>';
+										echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id'] .')">Cancelar</button> </li>';
+										echo	'</ul>';
+										echo '</li>';
+									}
+								}
+								echo '</ul>';
+							?>
 					</div>
-					<div id="tTvT">
-						<div class="lista6Col">
-							<ul>
-								<li>Equipo</li>
-								<li>Edad media</li>
-								<li>Fecha</li>
-								<li>Lugar</li>
-								<li></li>
-								<li></li>
-							</ul>
-							<ul>
-								<li class="lista6Row">
-									<ul>
-										<li>Marcelona FC</li>
-										<li>25</li>
-										<li>Sabado 1/6/19 14:00hs</li>
-										<li>Almafuerte 224 | Afuera</li>
-										<li><button class="boton rechazar">Cancelar</button></li>
-										<li><span class="masDetalles"> Mas detalles </span></li>
-										<li>
-											<div class="detalles mostrando">
-												<ul>
-													<li>Jugador</li>
-													<li>Edad</li>
-													<li>Usuario</li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li>@Guest1424</li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li></li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li></li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li>@Guest1568</li>
-												</ul>
-											</div>
-										</li>
+					<div class="lista6Col" id="tTvT">
+						<?php
+							if($miequipo){
+								echo '<ul>
+										<li>Equipo</li>
+										<li>Edad media</li>
+										<li>Fecha</li>
+										<li>Lugar</li>
+										<li></li>
+										<li></li>
 									</ul>
-								</li>
-								<li class="lista6Row">
-									<ul>
-										<li>Argentina FC</li>
-										<li>25</li>
-										<li>Sabado 1/6/19 14:00hs</li>
-										<li>Almafuerte 224 | Afuera</li>
-										<li><button class="boton rechazar">Cancelar</button></li>
-										<li><span class="masDetalles"> Mas detalles </span></li>
-										<li>
-											<div class="detalles mostrando">
-												<ul>
-													<li>Jugador</li>
-													<li>Edad</li>
-													<li>Usuario</li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li>@Guest1424</li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li></li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li></li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li>@Guest1568</li>
-												</ul>
-											</div>
-										</li>
-									</ul>
-								</li>
-								<li class="lista6Row">
-									<ul>
-										<li>Boca Jr</li>
-										<li>25</li>
-										<li>Sabado 1/6/19 14:00hs</li>
-										<li>Almafuerte 224 | Afuera</li>
-										<li><button class="boton rechazar">Cancelar</button></li>
-										<li><span class="masDetalles"> Mas detalles </span></li>
-										<li>
-											<div class="detalles mostrando">
-												<ul>
-													<li>Jugador</li>
-													<li>Edad</li>
-													<li>Usuario</li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li>@Guest1424</li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li></li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li></li>
-												</ul>
-												<ul>
-													<li>Malesandro</li>
-													<li>29</li>
-													<li>@Guest1568</li>
-												</ul>
-											</div>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
+									<ul>'; 
+								if(isset($turno['tvt'])){		
+									foreach($turno['tvt'] as $valor){
+										echo '<li  class="lista6Row">';
+										echo	'<ul>';
+										echo		'<li> <img src="img/' . $valor['img_equipo'] . '"></li>';
+										echo		'<li>' . $valor['equipo'] . '</li>';
+										echo		'<li>' . $valor['edad'] . '</li>';
+										echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
+										echo		'<li>' . $valor['direccion'] . "|" . $valor['cancha'] .'</li>';
+										echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id'] .')">Cancelar</button> </li>';
+										echo 		'<li>
+														<span class="masDetalles"> Mas detalles </span>
+													</li>';
+										echo 		'<li>
+														<div class="detalles">
+															<ul>
+																<li>Jugador</li>
+																<li>Edad</li>
+																<li>Usuario</li>
+															</ul>';
+										echo				'<ul>';
+										echo					'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
+										echo					'<li>' . $valor['capitan'][0]['edad'] . '</li>';
+										echo					'<li>' . $valor['capitan'][0]['user'] . '</li>';
+										echo				'</ul>';
+															foreach($valor['jugadores'] as $valorJug){
+																echo	'<ul>';
+																echo		'<li>' . $valorJug['nombre'] . '</li>';
+																echo		'<li>' . $valorJug['edad'] . '</li>';
+																echo		'<li>' . $valorJug['user'] . '</li>';
+																echo	'</ul>';
+															}
+										echo 			'</div>
+													</li>';
+										echo 	'</ul>
+											</li>';
+									}
+								}
+								echo '</ul>';
+							}else{
+								echo '<div class="sinEquipo">';
+									include('sinequipo.html');
+								echo '</div>';
+							}
+							?>
 					</div>
-					<div class="tablaSimple" id="tTvI">
-					
-					<div class="tablaSimple" id="tSolicitudes">
-					
+					<div class="lista6Col" id="tTvI">
+						<?php
+							if($miequipo){
+								echo '<ul>
+										<li>Equipo</li>
+										<li>Edad media</li>
+										<li>Fecha</li>
+										<li>Lugar</li>
+										<li></li>
+										<li></li>
+									</ul>
+									<ul>'; 
+								if(isset($turno['tvi'])){
+									foreach($turno['tvi'] as $valor){
+										echo '<li  class="lista6Row">';
+										echo	'<ul>';
+										echo		'<li> <img src="img/' . $valor['img_equipo'] . '"></li>';
+										echo		'<li>' . $valor['equipo'] . '</li>';
+										echo		'<li>' . $valor['edad'] . '</li>';
+										echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
+										echo		'<li>' . $valor['direccion'] . "|" . $valor['cancha'] .'</li>';
+										echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id'] .')">Cancelar</button> </li>';
+										echo 		'<li>
+														<span class="masDetalles"> Mas detalles </span>
+													</li>';
+										echo 		'<li>
+														<div class="detalles">
+															<ul>
+																<li>Jugador</li>
+																<li>Edad</li>
+																<li>Usuario</li>
+															</ul>';
+										echo				'<ul>';
+										echo					'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
+										echo					'<li>' . $valor['capitan'][0]['edad'] . '</li>';
+										echo					'<li>' . $valor['capitan'][0]['user'] . '</li>';
+										echo				'</ul>';
+															foreach($valor['jugadores'] as $valorJug){
+																echo	'<ul>';
+																echo		'<li>' . $valorJug['nombre'] . '</li>';
+																echo		'<li>' . $valorJug['edad'] . '</li>';
+																echo		'<li>' . $valorJug['user'] . '</li>';
+																echo	'</ul>';
+															}
+										echo 			'</div>
+													</li>';
+										echo 	'</ul>
+											</li>';
+									}
+								}
+								echo '</ul>';
+							}else{
+								echo '<div class="sinEquipo">';
+									include('sinequipo.html');
+								echo '</div>';
+							}
+						?>
 					</div>
 				</li>
 			</ul>
-			<?php
-				if($miequipo)
-					include('conequipo.html');
-				else
-					include('sinequipo.html');
-
-			?>
 		</div>
-		<div id="contenedorSolicitudes" class="divContenedor">
-			<?php //include('solicitudes.html');?>
-		</div>
-		<div id="contenedorComoJugador" class="divContenedor">
-			<?php //include('comojugador.html');?>
-		</div>
+		<?php include('solicitudes.html');?>
+		<?php include('comojugador.html');?>
+	</div>
 	</div>
 	<div id="registrar">
 		<a onclick="turnos.toggle();" class="boton" id="btnEditar">Registrar turno ahora</a>

@@ -316,7 +316,6 @@ a:hover
 
 	.rechazar {
 		background: #ea4848;
-		line-height: 0;
 		display: inline-block;
 		vertical-align: middle;
 		padding: 3vh 2vw;
@@ -356,6 +355,7 @@ a:hover
 		align-items: center;
 		flex-wrap: wrap;
 		justify-content: space-around;
+		background: white;
 	}
 	.lista3Col > ul li:nth-child(1){
 		width: 20vw;
@@ -385,21 +385,22 @@ a:hover
 		align-items: center;
 		text-align: center;
 		flex-wrap: wrap;
-		justify-content: space-around;
+		justify-content: flex-start;
 	}
 	.lista6Col {
 		width: 100% !important;
 	}
 	.lista6Col > ul:nth-child(1){/*Header*/
-			line-height: 2em;
-			border-bottom: 1px solid black;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			text-align: center;
-			flex-wrap: wrap;
-			justify-content: space-around;
-			}
+		line-height: 2em;
+		border-bottom: 1px solid black;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		text-align: center;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		background: white;
+	}
 	.lista6Col > ul li:nth-child(1),
 	.lista6Row > ul li:nth-child(1){
 		width: 10vw;
@@ -604,15 +605,14 @@ a:hover
 		border: 0.2vh solid #475b26;
 	}
 	.lista6Row, .lista3Row{
-		padding: 0.5vh 0vw;
 		border-bottom: 1px solid black;
 		margin: 0.1vh 0vw;
 	}
 	.lista6Col ul:not(:first-child),
-	.lista3Col ul:not(:first-child){    
+	.lista3Col ul:not(:first-child){
 		overflow-y: auto;
 		overflow-x: hidden;
-		max-height: 60vh;
+		max-height: 50vh;
 	}
 	.lista6Col.equipo > ul:not(:first-child){
 		overflow-y: auto;
@@ -810,6 +810,13 @@ body > span{position: absolute;top: 5vh;left: -40vw;}
 
 .mobileMenu nav{
     width: 60vw;
+}
+.sinEquipo{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 50vh;
 }
 /*********************************************************************************/
 /* Mobile styles	                                                             */

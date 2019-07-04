@@ -10,6 +10,7 @@
 	align-items: start;
 	min-height: 20vh;
 	margin: 2vh 1vw;
+	max-height: 30vw;
 }
 /* Tabla de turnos */
 .botonesTurnos {
@@ -24,7 +25,7 @@ li.botonesTurnos > div {
     padding: 0.7vh 0.5vw;
 }
 
-.contenedorTablaTurnos {width: 100%;margin: 1vh 1vw;background: white;}
+.contenedorTablaTurnos {margin: 1vh 1vw;width: -webkit-fill-available;}
 
 li button {
 	min-width: 5vh;
@@ -76,9 +77,20 @@ li button {
 		cursor: pointer;
 	}
 
-.mostrando ul {}
+	.mostrando ul {}
 
 	#tTvT {display: none;}
+
+	#tTvT .lista6Col > ul li:nth-child(5),
+	#tTvT .lista6Row > ul li:nth-child(5){
+		width: 9vw;
+		/* height: 2em; */
+	}
+	#tTvT .lista6Col > ul,
+	#tTvT .lista6Row > ul{
+		justify-content: flex-start;
+	}
+
 
 	#tTvI{display: none;}
 	#tSolicitudes{
@@ -169,6 +181,7 @@ font-size: 2em;
 			border-top: 2px solid #58a300;
 			margin: 0;
 			padding: 1vh 0vw;
+			width: 100%;
 		}
 		.contenedorTablaTurnos button{
 			font-size: 0em;
@@ -176,8 +189,7 @@ font-size: 2em;
 			letter-spacing: 0;
 			font-weight: 100;
 			min-width: 3vw !important;
-			height: 4vh;
-			border-radius: 50%;
+			height: 3vh;
 			margin: 0 auto;
 		}
 		.contenedorTablaTurnos button:after{
@@ -185,6 +197,7 @@ font-size: 2em;
 			font-size: 15px !important;
 			font-family: 'fontello';
 			line-height: 1.5vh;
+			padding: 0;
 		}
 		.masDetalles{
 			font-size: 0em;

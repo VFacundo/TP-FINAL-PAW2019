@@ -1,61 +1,66 @@
-
-	<div id="comojugadorDatos">
-		<ul>
-			<li>
-				<ul id="ulHeader">
-					<li>Logo</li>
-					<li>Equipo</li>
-					<li>Edad promedio</li>
-					<li>Proximo partido</li>
-					<li></li>
-					<li></li>
-				</ul>
-			</li>
+<div  class="lista6Col divContenedor" id="comojugadorDatos">
+	<?php
+		echo '<ul class="lista6Col">
+			<li>Logo</li>
+			<li>Equipo</li>
+			<li>Edad promedio</li>
+			<li>Proximo partido</li>
+			<li></li>
+			<li></li>
 		</ul>
-		<ul>
-			<?php
-				if(!empty($equiposComoJugador)){
-					foreach($equiposComoJugador as $valor){
-						echo '<li><ul>';
-						echo '<li><img src="/img/' . $valor['logo'] . '" alt="Logo de Equipo"></li>';
-						echo '<li>' . $valor['nombre'] . '</li>';
-						echo '<li>' . $valor['promedio_edad'] . '</li>';
-						echo '<li>' . "ProximoPartido" . '</li>';
-						echo '<li></li>';
-						echo '<li>
-										<button class="boton rechazar" disabled>✕</button>
-										<button class="boton aceptar" disabled>✓</button>
-								 </li>';
-						echo '<li>
-										<span class="masDetalles"> Mas detalles </span>
-									</li>';
-						echo 	'<li>
-										<div class="detalles">
-											<ul>
-												<li>Jugador</li>
-												<li>Edad</li>
-												<li>Usuario</li>
-											</ul>';
-
-							echo	'<ul>';
-							echo		'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
-							echo		'<li>' . $valor['capitan'][0]['edad'] . '</li>';
-							echo		'<li>' . $valor['capitan'][0]['user'] . '</li>';
-							echo	'</ul>';
-
-							foreach($valor['jugadores'] as $valorJug){
-								echo	'<ul>';
-								echo		'<li>' . $valorJug['nombre'] . '</li>';
-								echo		'<li>' . $valorJug['edad'] . '</li>';
-								echo		'<li>' . $valorJug['user'] . '</li>';
-								echo	'</ul>';
-							}
-						echo 	'</div>
-									</li>';
-						echo '</ul></li>';
+			<ul>';
+		if(!empty($turnosComoJugador)){
+			foreach($turnosComoJugador as $valor){
+				echo '<li><ul>';
+				echo '<li><img src="/img/' . $valor['logo'] . '" alt="Logo de Equipo"></li>';
+				echo '<li>' . $valor['nombre'] . '</li>';
+				echo '<li>' . $valor['promedio_edad'] . '</li>';
+				echo '<li>' . $valor['proxPartido'] . '</li>';
+				echo '<li></li>';
+				echo '<li>';
+					if(isset($valor['asiste'])){
+						if($valor['asiste']){
+							echo'<button class="boton noAsisto">No asisto <span></span></button>
+							<button class="boton asisto confirmed" disabled>Asisto <span></span></button>
+						</li>';
+						}else{
+							echo'<button class="boton noAsisto confirmed" disabled>No asisto <span></span></button>
+							<button class="boton asisto">Asisto <span></span></button>
+						</li>';
+						}
+					}else{
+						echo'<button class="boton noAsisto">No asisto <span></span></button>
+							<button class="boton asisto">Asisto <span></span></button>
+						</li>';
 					}
-				}
-			?>
+				echo '<li>
+						<span class="masDetalles"> Mas detalles </span>
+					 </li>';
+				echo '<li>
+						<div class="detalles">
+							<ul>
+								<li>Jugador</li>
+								<li>Edad</li>
+								<li>Usuario</li>
+							</ul>';
+				echo	'<ul>';
+				echo		'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
+				echo		'<li>' . $valor['capitan'][0]['edad'] . '</li>';
+				echo		'<li>' . $valor['capitan'][0]['user'] . '</li>';
+				echo	'</ul>';
 
-		</ul>
-	</div>
+				foreach($valor['jugadores'] as $valorJug){
+					echo	'<ul>';
+					echo		'<li>' . $valorJug['nombre'] . '</li>';
+					echo		'<li>' . $valorJug['edad'] . '</li>';
+					echo		'<li>' . $valorJug['user'] . '</li>';
+					echo	'</ul>';
+				}
+				echo 	'</div>
+					</li>';
+				echo '</ul></li>';
+			}
+		}
+		echo '</ul>';
+	?>
+</div>
