@@ -9,6 +9,8 @@
 	<script src="assets/js/mostrarDetalles.js"></script>
 	<script src="assets/js/turnos.js"></script>
 	<script> turnos.init(); </script>
+	<script src="assets/js/instantSearch.js"></script>
+	<script> instantSearch.init("eq_rival","equipos"); </script>
 </head>
 <section class="sideSection" id="misturnos">
   <h1>Mis Turnos</h1>
@@ -190,20 +192,74 @@
 	<div id="nuevoTurno" style="display:none">
 		<h5>Reservar turno</h5>
 		<form name="turno" action="" onSubmit="turnos.crearTurno(); return false">
-			<label>Tipo de Turno: <select name="tipo_turno">
-															<option value="0">Simple</option>
-															<option value="1">Mi Equipo VS Otro Equipo</option>
-															<option value="2">Mi Equipo VS Invitado</option>
-													</select>
-			</label>
-			<label>Cancha: <select name="cancha_turno" onchange="turnos.horariosDisponibles();" required></select>
-			<label>Fecha: <input type="date" name="fecha_turno" min="1919-01-01" max="2019-12-12" onchange="turnos.horariosDisponibles();" required/></label>
-			<label>Horario: <select name="horario_turno" required></select>
-			<div>
-				<input class="boton" type="submit" name="confirmar" value="Confirmar"></input>
-				<a class="boton rechazar" onclick="turnos.toggle();">Cancelar</a>
+			<div class="stepTab">
+				<label>Tipo de Turno: 
+					<select name="tipo_turno">
+						<option value="0">Simple</option>
+						<option value="1">Mi Equipo VS Otro Equipo</option>
+						<option value="2">Mi Equipo VS Invitado</option>
+					</select>
+					<input name="eq_rival" id="eq_rival" autocomplete="off" placeholder="Equipo a desafiar" style="display:none;">
+				</label>
+				<div class="hint">
+					<span>Ayuda:</span>
+					<ul>
+						<li>Turno simple: </li>
+						<li>Turno simple: </li>
+						<li>Turno simple: </li>
+						<li>Turno simple: </li>
+					</ul>
+				</div>
+			</div>
+			<div class="stepTab">
+				<label>Cancha: 
+					<select name="cancha_turno" onchange="turnos.horariosDisponibles();" required></select>
+				</label>
+				<div class="hint">
+					<span>Ayuda: Canchas disponibles para solicitar turnos</span>
+				</div>
+			</div>
+			<div class="stepTab">
+				<label>Fecha:
+					<input type="date" name="fecha_turno" max="<?php echo date("Y") . '-12' . '-31' ;?>" min="<?php echo date("Y-m-d");?>"  value="<?php echo date("Y-m-d");?>" onchange="turnos.horariosDisponibles();" required/>
+				</label>
+				<div class="hint">
+					<span>Ayuda: Seleccione la fecha para reservar el turno</span>
+				</div>
+			</div>
+			<div class="stepTab">
+				<label>Horario: 
+					<select name="horario_turno" required></select>
+				</label>
+				<div class="hint">
+					<span>Ayuda: Se muestran las horas disponibles para reservar un turno. Si no ve ninguna disponible significa que no hay turnos disponibles.</span>
+				</div>
+			</div>
+			<div class="stepTab">
+				<label>Resumen de turno:</label>
+				<div id="resumenTurno">
+					<span>Tipo de turno:</span>
+					<span>Cancha:</span>
+					<span>Fecha: </span>
+					<span>Hora: </span>
+				</div>
+				<div>
+					<input class="boton" type="submit" name="confirmar" value="Confirmar Turno"></input>
+				</div>
+			</div>
+			<div id="contenedorAtrasAdelante">
+				<button class="boton" type="button" id="prevBtn" onclick="turnos.nextPrevTab(-1)">Atras</button>
+				<button class="boton" type="button" id="nextBtn" onclick="turnos.nextPrevTab(1)">Siguiente</button>
+			</div>
+			<div class="stepContenedor">
+			  <span class="step"></span>
+			  <span class="step"></span>
+			  <span class="step"></span>
+			  <span class="step"></span>
+			  <span class="step"></span>
 			</div>
 		</form>
+		<a class="boton rechazar" onclick="turnos.toggle();">Cerrar</a>
 	</div>
 
 </section>
