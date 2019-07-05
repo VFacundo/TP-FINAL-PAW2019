@@ -60,18 +60,17 @@ public function newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,$id){
       $id_equipo_rival = NULL;
       break;
     case 1://Mi Equipo vs Otro Equipo
-      $id_solicitante = $this->dbEquipo->getEquipo($id);
-      $id_solicitante = $id_solicitante['id'];
-      $id_equipo_rival = $this->dbEquipo->getEquipoNombre($equipo_rival);
+      $id_solicitante = $id;
+      //$nombreEquipoRival = $this->dbEquipo->getEquipoNombre($equipo_rival);
+      $idCapitanRival = $this->dbEquipo->getCapitan($equipo_rival);
+      $id_equipo_rival = $idCapitanRival['id_capitan'];
       break;
     case 2://Mi Equipo vs Invitado
-      $id_solicitante = $this->dbEquipo->getEquipo($id);
-      $id_solicitante = $id_solicitante['id'];
+      $id_solicitante = $id;
       $id_equipo_rival = NULL;
       break;
     case 3://Mi Equipo Lista de Espera
-      $id_solicitante = $this->dbEquipo->getEquipo($id);
-      $id_solicitante = $id_solicitante['id'];
+      $id_solicitante = $id;
       $id_equipo_rival = NULL;
       break;
   }
@@ -80,15 +79,67 @@ public function newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,$id){
 }
 
 public function buscarMisTurnos($id){//Id user
-    $id_equipo = $this->dbEquipo->getEquipo($id);//Return Id equipo
-    $id_equipo = $id_equipo['id'];
-    $sql = "SELECT * FROM turno WHERE id_equipo_solicitante='$id_equipo'";
+    $sql = "SELECT t.id, t.tipo_turno, t.fecha,t.id_equipo_rival, t.horario_turno,c.nombre,c.direccion FROM turno t
+	            INNER JOIN cancha c on t.id_cancha=c.id
+                WHERE id_solicitante='$id'";
     $result = $this->db->conn->query($sql);
+    $arrayResultado = [];
     if(!$result===FALSE){
-      $result = $result->fetch();
+      $result = $result->fetchAll();
+      foreach($result as $value){
+
+        switch ($value['tipo_turno']) {
+          case 0://Turno NORMAL
+            $simple[] = [
+                      'id' => $value['id'],
+                      'fecha' => $value['fecha'],
+                      'hora' => $value['horario_turno'],
+                      'direccion' => $value['direccion'],
+                      'cancha' => $value['nombre'],
+              ];
+            break;
+          case 1://Mi Equipo vs Otro Equipo
+            $idEquipoRival = $this->dbEquipo->getEquipo($value['id_equipo_rival']);
+            $jugadores = $this->dbEquipo->getJugadoresEquipo($idEquipoRival['id']);
+            $capitan = $this->dbEquipo->datosJugador($value['id_equipo_rival']);
+            $promedio_edad = 0;
+              foreach ($jugadores as $valueJug) {
+                  $promedio_edad += $valueJug['edad'];
+              }
+              $nro = count($jugadores);
+              $promedio_edad += $capitan[0]['edad'];
+              $promedio_edad = $promedio_edad / (count($jugadores) + 1);
+            $tvt[] = [
+                          'id' => $value['id'],
+                          'equipo' =>  $value['nombre'],
+                          'img_equipo' => $idEquipoRival['logo'],
+                          'capitan' => $capitan,
+                          'jugadores' => $jugadores,
+                          'edad' => round($promedio_edad,2),
+                          'fecha' => $value['fecha'],
+                          'hora' => $value['horario_turno'],
+                          'direccion' => $value['direccion'],
+                          'cancha' => $value['nombre'],
+            ];
+            break;
+          case 2://Mi Equipo vs Invitado
+
+            break;
+          case 3://Mi Equipo Lista de Espera
+
+            break;
+      }
     }
-    return $result;
+    if(isset($simple)){
+      $arrayResultado = $arrayResultado + array('simple'=>$simple);
+    }
+    if(isset($tvt)){
+      $arrayResultado = $arrayResultado + array('tvt'=>$tvt);
+    }
+    if(isset($tvi)){
+      $arrayResultado = $arrayResultado + array('tvi'=>$tvi);
+    }
   }
-
-
+  return $arrayResultado;
+  }
 }

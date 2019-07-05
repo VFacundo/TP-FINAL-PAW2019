@@ -10,7 +10,7 @@ turnos.init = function(){
   window.addEventListener("DOMContentLoaded", function() {
     btnEditar = document.getElementById('btnEditar');
     divForm = document.getElementById('nuevoTurno');
-	
+
 	var tipoTurno = divForm.getElementsByTagName('form')[0].tipo_turno;
 	tipoTurno.addEventListener('change',function(){
 		if(tipoTurno.value == 1){
@@ -79,6 +79,7 @@ turnos.crearTurno = function(){
       fecha_turno = form.fecha_turno.value,
       horario_turno = form.horario_turno.value,
       cancha_turno = form.cancha_turno.value,
+      eq_rival = form.eq_rival,
       xhr = new XMLHttpRequest(),
       data = [tipo_turno,fecha_turno,horario_turno,cancha_turno];
 
@@ -88,6 +89,9 @@ turnos.crearTurno = function(){
         formData.append('fecha_turno',fecha_turno);
         formData.append('horario_turno',horario_turno);
         formData.append('cancha_turno',cancha_turno);
+          if(tipo_turno == 1){
+            formData.append('equipo_rival',eq_rival.value);
+          }
 
         xhr.open('POST', 'http://localhost/turnos/nuevoturno');
         xhr.onload = function() {
@@ -113,14 +117,14 @@ turnos.showTab = function(n) {
 		document.getElementById("prevBtn").style.display = "inline";
 	}
 	if (n == (x.length - 1)) {
-		//Termino! 
+		//Termino!
 		var divResumen = document.querySelector("#resumenTurno"),
 			form = document.turno,
 			tipo_turno = form.tipo_turno.selectedOptions[0],
 			fecha_turno = form.fecha_turno.value,
 			horario_turno = form.horario_turno.value,
 			cancha_turno = form.cancha_turno.selectedOptions[0].innerHTML;
-			
+
 		document.getElementById("nextBtn").style.display = "none";
 		divResumen.children[0].innerHTML += ' '+tipo_turno.innerHTML;
 		if (tipo_turno.value == 1){

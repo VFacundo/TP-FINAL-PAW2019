@@ -46,7 +46,7 @@ $arrayResultado = null;
                       'logo' => $value['logo'],
                       'capitan' => $this->datosJugador($value['id_capitan']),
                       'jugadores' => $this->getJugadoresEquipo($value['id']),
-                      'promedio_edad' => $promedio_edad,
+                      'promedio_edad' => round($promedio_edad,2),
         ];
       }
 }
@@ -181,6 +181,15 @@ public function getEquipo($id){//Regresa el id de equipo Propio(capitan)
    $result = $result->fetch();
  }
  return $result;
+}
+
+public function getCapitan($nombreEquipo){//Input Nombre Equipo, Return Id Capitan
+  $sql = "SELECT id_capitan FROM equipo WHERE nombre='$nombreEquipo'";
+  $result = $this->db->conn->query($sql);
+  if(!$result===FALSE){
+    $result = $result->fetch();
+  }
+  return $result;
 }
 
 }

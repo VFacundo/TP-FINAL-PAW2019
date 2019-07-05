@@ -25,7 +25,8 @@ private static function initialize(){
     sesion::startSession();
     if(sesion::is_login()){
       $this->pasarVariableAVista("miequipo",self::$dbEquipos->getEquipo(sesion::getId()));
-      $this->pasarVariableAVista("misturnos",self::$dbTurnos->buscarMisTurnos(sesion::getId()));
+      $misTurnos = self::$dbTurnos->buscarMisTurnos(sesion::getId());
+      $this->pasarVariableAVista("turno",$misTurnos);
     }else {
       $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
     }
@@ -93,10 +94,10 @@ private static function initialize(){
         $duracion_turno = date_interval_create_from_date_string($duracion_turno .' minutes');
 
         while($horario_apertura < $horario_cierre) {
-          $horario_apertura->add($duracion_turno);
             if(!in_array($horario_apertura->format('H:i:s'),$array_horario)){
               $horarios .= '<option value="' . $horario_apertura->format('H:i:s') . '">' . $horario_apertura->format('H:i:s') . '</option>' . PHP_EOL;
             }
+            $horario_apertura->add($duracion_turno);
         }
     echo($horarios);
     exit();
