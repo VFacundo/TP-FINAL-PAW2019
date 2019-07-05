@@ -99,11 +99,10 @@ li button {
 	/*		registrarTurno window	*/
 	.stepTab{
 		display:none;
-		margin: 2vh 2vw;
-		min-width: 30vw;
-		min-height: 25vh;
+		margin: 1vh 2vw;
 		flex-direction: column;
 		justify-content: space-between;
+		min-height: 18vh;
 	}
 	#nuevoTurno form > div > button{
 		-webkit-appearance: inherit;
@@ -111,19 +110,14 @@ li button {
 		padding: 1em 2em;
 	}
 	#contenedorAtrasAdelante{
-		
-position: absolute;
-		
-bottom: 0;
-		
-right: 2vw;
+		/* position: absolute; */
+		bottom: 0;
+		right: 2vw;
 	}
 	.rechazar{
 		padding:0;
 	}
-	.stepContenedor{
-
-	}
+	.stepContenedor{margin: 1vh 0vw;}
 	.stepTab div .boton {
 	margin: auto;
 	display: block;
@@ -144,19 +138,23 @@ right: 2vw;
 	.step.finish {
 	  background-color: #4CAF50;
 	}
+	.hint{
+		text-transform: initial;
+		font-style: italic;
+	}
 	#nuevoTurno{
 		display: flex;
 		animation-name: zoom;
 		animation-duration: 0.6s;
 		position: fixed;
 		z-index: 10;
-		height: 35vh;
-		width: 45vw;
+		max-height: 35vh;
+		width: 70vw;
 		background-color: #ffffff;
-		padding: 5vh 1vw;
+		padding: 2vh 1vw;
 		justify-content: space-between;
-		top: 20vh;
-		left: 40vw;
+		top: 25%;
+		right: 12.5%;
 		border: 5px solid black;
 		flex-direction: column;
 		align-items: center;
@@ -164,7 +162,7 @@ right: 2vw;
 	#nuevoTurno h5{
 		font-size: 2em;
 	}
-	#nuevoTurno form{display: flex;flex-direction: column;align-items: center;text-transform: uppercase;width: 100%;height: 100%;position: relative;}
+	#nuevoTurno form{display: flex;flex-direction: column;align-items: center;text-transform: uppercase;/* width: 100%; *//* height: 100%; */position: relative;/* margin: 1vh 0vw; */}
 
 	#nuevoTurno form label {
 		width: 100%;

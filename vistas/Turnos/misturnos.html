@@ -196,18 +196,19 @@
 				<label>Tipo de Turno: 
 					<select name="tipo_turno">
 						<option value="0">Simple</option>
-						<option value="1">Mi Equipo VS Otro Equipo</option>
-						<option value="2">Mi Equipo VS Invitado</option>
+						<option value="1">Mi equipo VS Otro equipo</option>
+						<option value="2">Mi equipo VS Invitado</option>
+						<option value="3">Buscar rival</option>
 					</select>
 					<input name="eq_rival" id="eq_rival" autocomplete="off" placeholder="Equipo a desafiar" style="display:none;">
 				</label>
 				<div class="hint">
 					<span>Ayuda:</span>
 					<ul>
-						<li>Turno simple: </li>
-						<li>Turno simple: </li>
-						<li>Turno simple: </li>
-						<li>Turno simple: </li>
+						<li>Turno simple: Reserva tradicional de un turno.</li>
+						<li>Mi equipo VS Otro equipo: Retar a un equipo existente en la plataforma.</li>
+						<li>Mi equipo VS Invitado: Utiliza tu equipo para jugar contra un equipo no existente en la plataforma.</li>
+						<li>Buscar rival: Quedar en lista de espera a ser retado por un equipo en una fecha y lugar seleccionado.</li>
 					</ul>
 				</div>
 			</div>
@@ -238,10 +239,10 @@
 			<div class="stepTab">
 				<label>Resumen de turno:</label>
 				<div id="resumenTurno">
-					<span>Tipo de turno:</span>
-					<span>Cancha:</span>
-					<span>Fecha: </span>
-					<span>Hora: </span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span> </span>
 				</div>
 				<div>
 					<input class="boton" type="submit" name="confirmar" value="Confirmar Turno"></input>

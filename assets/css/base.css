@@ -320,6 +320,11 @@ a:hover
 		vertical-align: middle;
 		padding: 3vh 2vw;
 	}
+	.salir{
+		background: #ea4848;
+		font-size: 0.8em;
+		line-height: 2vh;
+	}
 /*********************************************************************************/
 /* Lista como tabla		                                                         */
 /*********************************************************************************/
@@ -385,7 +390,7 @@ a:hover
 		align-items: center;
 		text-align: center;
 		flex-wrap: wrap;
-		justify-content: flex-start;
+		justify-content: space-around;
 	}
 	.lista6Col {
 		width: 100% !important;
@@ -449,10 +454,11 @@ a:hover
 			align-items: center;
 			text-align: center;
 			flex-wrap: wrap;
+			font-size: 0.6em;
 			}
 		.lista6Col > ul li:nth-child(1),
 		.lista6Row > ul li:nth-child(1){
-			width: 18vw;
+			width: 17vw;
 		}
 		.lista6Col > ul li:nth-child(2),
 		.lista6Row > ul li:nth-child(2){
@@ -586,6 +592,21 @@ a:hover
 		.lista6Col.perfil > ul li:nth-child(6),
 		.lista6Row.perfil > ul li:nth-child(6){
 			width:9vw;
+		}
+		.lista6Col.equipo > ul li:nth-child(2),
+		.lista6Row.equipo > ul li:nth-child(2),
+		.lista6Row.equipo > ul li:nth-child(2) input{
+			width: 20vw;
+		}
+		.lista6Col.equipo > ul li:nth-child(3),
+		.lista6Row.equipo > ul li:nth-child(3),
+		.lista6Row.equipo > ul li:nth-child(3) input{
+			width: 6vw;
+		}
+		.lista6Col.equipo > ul li:nth-child(4),
+		.lista6Row.equipo > ul li:nth-child(4),
+		.lista6Row.equipo > ul li:nth-child(4) input{
+			width: 20vw;
 		}
 	}
 	/* General */

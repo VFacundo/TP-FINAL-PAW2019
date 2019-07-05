@@ -1,6 +1,6 @@
 <div  class="lista6Col divContenedor" id="comojugadorDatos">
 	<?php
-		echo '<ul >
+		echo '<ul class="lista6Col">
 			<li>Logo</li>
 			<li>Equipo</li>
 			<li>Edad promedio</li>
@@ -9,12 +9,13 @@
 			<li></li>
 		</ul>
 			<ul>';
-		if(!empty($misturnosjugador)){
-			foreach($misturnosjugador as $valor){
+		if(!empty($turnosComoJugador)){
+			foreach($turnosComoJugador as $valor){
 				echo '<li><ul>';
-				echo '<li><img src="/img/' . $valor['miequipo']['logo'] . '" alt="Logo de Equipo"></li>';
-				echo '<li>' . $valor['miequipo']['nombre'] . '</li>';
-				echo '<li>' . $valor['miequipo']['promedio_edad'] . '</li>';
+				echo '<li><img src="/img/' . $valor['logo'] . '" alt="Logo de Equipo"></li>';
+				echo '<li>' . $valor['nombre'] . '</li>';
+				echo '<li>' . $valor['promedio_edad'] . '</li>';
+				echo '<li>' . $valor['proxPartido'] . '</li>';
 				echo '<li></li>';
 				echo '<li>';
 					if(isset($valor['asiste'])){
@@ -43,50 +44,12 @@
 								<li>Usuario</li>
 							</ul>';
 				echo	'<ul>';
-				echo		'<li>' . $valor['miequipo']['capitan'][0]['nombre'] ." (C)". '</li>';
-				echo		'<li>' . $valor['miequipo']['capitan'][0]['edad'] . '</li>';
-				echo		'<li>' . $valor['miequipo']['capitan'][0]['user'] . '</li>';
+				echo		'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
+				echo		'<li>' . $valor['capitan'][0]['edad'] . '</li>';
+				echo		'<li>' . $valor['capitan'][0]['user'] . '</li>';
 				echo	'</ul>';
 
-				foreach($valor['miequipo']['jugadores'] as $valorJug){
-					echo	'<ul>';
-					echo		'<li>' . $valorJug['nombre'] . '</li>';
-					echo		'<li>' . $valorJug['edad'] . '</li>';
-					echo		'<li>' . $valorJug['user'] . '</li>';
-					echo	'</ul>';
-				}
-				echo 	'</div>
-					</li>';
-				echo '</ul></li>';
-				/////INFO TURNO///////////
-				echo '<li><ul>';
-				echo '<li>'.'Fecha Partido:'.$valor['rival']['tvt'][0]['fecha'].'</li>';
-				echo '<li>'."Horario Partido:".$valor['rival']['tvt'][0]['hora'].'</li>';
-				echo '<li>Direccion:'.$valor['rival']['tvt'][0]['cancha']. " | " . $valor['rival']['tvt'][0]['direccion']. '</li>';
-				echo '</li></ul>';
-					///EQUIPO RIVAL!!!!!///////////////
-				echo '<li><ul>';
-				echo '<li><img src="/img/' . $valor['rival']['tvt'][0]['img_equipo'] . '" alt="Logo de Equipo"></li>';
-				echo '<li>' . $valor['rival']['tvt'][0]['equipo'] . '</li>';
-				echo '<li>' . $valor['rival']['tvt'][0]['edad'] . '</li>';
-				echo '<li></li>';
-				echo '<li>
-						<span class="masDetalles"> Mas detalles </span>
-					 </li>';
-				echo '<li>
-						<div class="detalles">
-							<ul>
-								<li>Jugador</li>
-								<li>Edad</li>
-								<li>Usuario</li>
-							</ul>';
-				echo	'<ul>';
-				echo		'<li>' . $valor['rival']['tvt'][0]['capitan'][0]['nombre'] ." (C)". '</li>';
-				echo		'<li>' . $valor['rival']['tvt'][0]['capitan'][0]['edad'] . '</li>';
-				echo		'<li>' . $valor['rival']['tvt'][0]['capitan'][0]['user'] . '</li>';
-				echo	'</ul>';
-
-				foreach($valor['rival']['tvt'][0]['jugadores'] as $valorJug){
+				foreach($valor['jugadores'] as $valorJug){
 					echo	'<ul>';
 					echo		'<li>' . $valorJug['nombre'] . '</li>';
 					echo		'<li>' . $valorJug['edad'] . '</li>';

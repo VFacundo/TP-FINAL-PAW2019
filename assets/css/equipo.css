@@ -12,7 +12,9 @@ div .equipo > input{
 
 #miequipoImagen{width: 8vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 0vh 1vw;}
 
-
+#comojugadorDatos ul li:nth-child(1){
+	width: 7vw;
+}
 
 #miequipoImagen::before{
 	 content: 'Logo'; 
@@ -59,15 +61,13 @@ li .icon-trash {
 
 ul li img {
     min-width: 40px;
-    height: 4.5vh;
+    height: 40px;
     border-radius: 50%;
 }
 
 .ulSinEquipo li ul li:nth-child(4){
 	width: 30vw !important;
 }
-
-
 
 /******/
 
@@ -187,11 +187,22 @@ input[type="file"]#inputSb {
 }
 #contenedorEquipo form > label > label{padding: 2vh 1vw;margin: 0vh 1vw;display: inline-block;vertical-align: middle;}
 
+.detalles ul li:nth-child(1){
+	width: 33% !important;
+}
+.detalles ul li:nth-child(2){
+	width: 33% !important;
+}
+.detalles ul li:nth-child(3){
+	width: 33% !important;
+}
 /* Mobile view */
 
 @media (max-width: 600px) {
 	ul li img {
-		min-width: 30px;
+		width: 20px;
+		height: 20px;
+		min-width: 20px;
 	}
 
 	li label.boton {
@@ -202,7 +213,13 @@ input[type="file"]#inputSb {
 	.icon-trash {
 		background: #f13232;
 	}
-	
+
+	.detalles ul:nth-child(odd){
+		background: #dff1ca;
+	} 
+	.detalles ul:nth-child(1){
+		background: #aae65a;
+	} 	
 }
 
 @media (max-height: 600px) {
