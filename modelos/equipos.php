@@ -47,6 +47,7 @@ $arrayResultado = null;
                       'capitan' => $this->datosJugador($value['id_capitan']),
                       'jugadores' => $this->getJugadoresEquipo($value['id']),
                       'promedio_edad' => round($promedio_edad,2),
+                      'id_capitan' => $value['id_capitan'],
         ];
       }
 }

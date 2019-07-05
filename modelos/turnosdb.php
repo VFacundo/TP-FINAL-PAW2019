@@ -111,7 +111,7 @@ public function buscarMisTurnos($id){//Id user
               $promedio_edad = $promedio_edad / (count($jugadores) + 1);
             $tvt[] = [
                           'id' => $value['id'],
-                          'equipo' =>  $value['nombre'],
+                          'equipo' =>  $idEquipoRival['nombre'],
                           'img_equipo' => $idEquipoRival['logo'],
                           'capitan' => $capitan,
                           'jugadores' => $jugadores,
@@ -141,5 +141,24 @@ public function buscarMisTurnos($id){//Id user
     }
   }
   return $arrayResultado;
+  }
+
+  public function misTurnosJugador($id){
+    $misEquiposJugador = $this->dbEquipo->misEquiposJugador($id);
+      if($misEquiposJugador){
+          foreach($misEquiposJugador as $value){
+            $turnosEquipo = $this->buscarMisTurnos($value['id_capitan']);
+              if($turnosEquipo){
+                $partidos[] = [
+                    'miequipo' => $value,
+                    'rival' => $turnosEquipo,
+                ];
+              }
+          }
+        if(empty($partidos)){
+          $partidos = FALSE;
+        }
+      }
+      return $partidos;
   }
 }

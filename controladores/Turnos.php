@@ -27,6 +27,7 @@ private static function initialize(){
       $this->pasarVariableAVista("miequipo",self::$dbEquipos->getEquipo(sesion::getId()));
       $misTurnos = self::$dbTurnos->buscarMisTurnos(sesion::getId());
       $this->pasarVariableAVista("turno",$misTurnos);
+      $this->pasarVariableAVista("misturnosjugador",self::$dbTurnos->misturnosjugador(sesion::getId()));
     }else {
       $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
     }
