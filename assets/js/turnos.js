@@ -165,14 +165,19 @@ turnos.nextPrevTab = function(n) {
 
 //Solo verifica que esten llenos los input. TODO: Agregar alguna verificacion extra
 turnos.validateForm = function () {
-  var x, y, z, i, valid = true;
+  var x, y, z, i,
+  valid = true,
+  tipoTurno = divForm.getElementsByTagName('form')[0].tipo_turno;
   x = document.getElementsByClassName("stepTab");
   y = x[currentTab].getElementsByTagName("input");
   z = x[currentTab].getElementsByTagName("select");
   for (i = 0; i < y.length; i++) {
     if (y[i].value == "") {
-      y[i].className += " invalid";
-      valid = false;
+		console.log("Tab",currentTab,"TTurno",tipoTurno);
+		if((currentTab == 0) && (tipoTurno.value == 1)){
+			y[i].className += " invalid";
+			valid = false;
+		}
     }
   }
   for (i = 0; i < z.length; i++) {

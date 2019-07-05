@@ -613,6 +613,7 @@ a:hover
 		overflow-y: auto;
 		overflow-x: hidden;
 		max-height: 50vh;
+		justify-content: space-around;
 	}
 	.lista6Col.equipo > ul:not(:first-child){
 		overflow-y: auto;

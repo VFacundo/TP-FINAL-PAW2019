@@ -1,102 +1,77 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    var masDetalles = document.getElementsByClassName("masDetalles");
-	for(var i=0; masDetalles.length > i; i++){
-		masDetalles[i].addEventListener('click', function (){mostrarDetalle()});
-		console.log(masDetalles[i]);
-	}
-	toggleContenedor(document.getElementById("contenedorEquipo"));
-});
-
-function mostrarDetalle(){
-	var div = (event.target).parentElement.parentElement.querySelector(".detalles");
-	if(div.classList.contains("mostrando")){
-		div.classList.remove("mostrando");
-		console.log("nomostrando");
-	}else{
-		div.classList.add("mostrando");
-		console.log("mostrando");
+function eliminarJugador(){
+	var confirmar = true;
+	if(confirmar){
+		var name = event.target.parentElement.parentElement.children[1].children[0].value,
+			user = event.target.parentElement.parentElement.children[3].children[0].value,
+			xhr = new XMLHttpRequest(),
+			formData = new FormData();
+		formData.append('user', user);
+		formData.append('name', name);
+		xhr.open('POST', 'http://localhost/equipo/borrarjugador');
+		xhr.onload = function() {
+			console.log('User borrado', xhr.responseText);
+		}
+		xhr.send(formData);
+		event.target.parentElement.parentElement.parentElement.remove();
 	}
 }
-
-
-function toggleContenedor(active){
-	var equipo = document.getElementById("contenedorEquipo"),
-	solicitudes = document.getElementById("contenedorSolicitudes"),
-	jugador = document.getElementById("contenedorComoJugador");
-
-	equipo.style.display = 'none';
-	solicitudes.style.display = 'none';
-	jugador.style.display = 'none';
-	active.style.display = 'block';
+function editarJugador(){
+	var button = event.target,
+		cancel = document.createElement('label'),
+		li = event.target.parentElement;
+		
+	console.log(li,cancel,button);
+	cancel.classList.add('boton');
+	cancel.classList.add('cancelEdition');
+	cancel.innerHTML = 'X';
+	cancel.setAttribute("onclick","cancelarEdicion()");
+	li.appendChild(cancel);
+	
+	button.classList.remove('icon-pencil');
+	button.classList.add('icon-ok');
+	button.setAttribute("onclick","confirmarEdicion()");
+	
+	/*
+	formData.append('user', user);
+	formData.append('name', name);
+	xhr.open('POST', 'http://localhost/equipo/borrarjugador');
+	xhr.onload = function() {
+		console.log('User borrado', xhr.responseText);
+	}
+	xhr.send(formData);
+	event.target.parentElement.parentElement.parentElement.remove();*/
 }
 
-function showSection(index){
-	var equipo = document.getElementById("contenedorEquipo"),
-		solicitudes = document.getElementById("contenedorSolicitudes"),
-		jugador = document.getElementById("contenedorComoJugador"),
-		active = document.querySelector(".btnActive"),
-		botones = document.getElementsByClassName("btnEquipo");
-	if(active.innerText == "MI EQUIPO" && !(index == 1)){
-		if(index==2){
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MIS SOLICITUDES"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(solicitudes);
-					break;
-				}
-			}
-		}else{
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MIS EQUIPOS JUGADOR"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(jugador);
-					break;
-				}
-			}
-		}
+function cancelarEdicion(){
+	var li = event.target.parentElement,
+		edit = li.children[0];
+	li.children[1].remove();
+	edit.classList.add('icon-pencil');
+	edit.classList.remove('icon-ok');
+	edit.setAttribute("onclick","editarJugador()");
+}
+
+function confirmarEdicion(){
+	var xhr = new XMLHttpRequest(),
+		formData = new FormData(),
+		li = event.target.parentElement,
+		edit = li.children[0],
+		name = event.target.parentElement.parentElement.children[1].children[0].value,
+	    edad = event.target.parentElement.parentElement.children[2].children[0].value,
+		user = event.target.parentElement.parentElement.children[3].children[0].value,
+		formData = new FormData();
+		
+	formData.append('user', user);
+	formData.append('name', name);
+	formData.append('edad', edad);
+	xhr.open('POST', 'http://localhost/equipo/editarjugador');
+	xhr.onload = function() {
+		console.log('User Editado', xhr.responseText);
 	}
-	if(active.innerText == "MIS SOLICITUDES" && !(index == 2)){
-		if(index==1){
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MI EQUIPO"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(equipo);
-					break;
-				}
-			}
-		}else{
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MIS EQUIPOS JUGADOR"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(jugador);
-					break;
-				}
-			}
-		}
-	}
-	if(active.innerText == "MIS EQUIPOS JUGADOR" && !(index == 3)){
-		if(index==1){
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MI EQUIPO"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(equipo);
-					break;
-				}
-			}
-		}else{
-			for (var i = 0; i < botones.length; i++){
-				if(botones[i].innerText == "MIS SOLICITUDES"){
-					active.classList.remove("btnActive");
-					botones[i].classList.add("btnActive");
-					toggleContenedor(solicitudes);
-					break;
-				}
-			}
-		}
-	}
+	xhr.send(formData);
+	
+	li.children[1].remove();
+	edit.classList.add('icon-pencil');
+	edit.classList.remove('icon-ok');
+	edit.setAttribute("onclick","editarJugador()");
 }

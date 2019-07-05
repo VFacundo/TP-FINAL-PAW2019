@@ -45,9 +45,16 @@ div .equipo > input{
 li .icon-pencil {
 	width:100%;
 }
+li .icon-ok{
+	width:50%;
+}
+li .cancelEdition{
+	background: #ea4848;
+	width:50%;
+}
 li .icon-trash {
     background: #f13232;
-	width:100%;
+    width:100%;
 }
 
 ul li img {
@@ -189,6 +196,7 @@ input[type="file"]#inputSb {
 
 	li label.boton {
 		padding: 1vh 1.5vw;
+		width: -webkit-fill-available;
 	}
 
 	.icon-trash {

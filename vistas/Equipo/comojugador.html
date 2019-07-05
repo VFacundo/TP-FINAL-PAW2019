@@ -1,29 +1,29 @@
 <div class="lista6Col" id="comojugadorDatos">
 	<?php
 		echo '<ul class="lista6Col">
-			<li>Logo</li>
-			<li>Equipo</li>
-			<li>Edad promedio</li>
-			<li>Proximo partido</li>
-			<li></li>
-			<li></li>
-		</ul>
+				<li>Logo</li>
+				<li>Equipo</li>
+				<li>Edad promedio</li>
+				<li>Proximo partido</li>
+				<li></li>
+				<li></li>
+			  </ul>
 		<ul>';
 		if(!empty($equiposComoJugador)){
 			foreach($equiposComoJugador as $valor){
-				echo '<li><ul>';
-				echo '<li><img src="/img/' . $valor['logo'] . '" alt="Logo de Equipo"></li>';
-				echo '<li>' . $valor['nombre'] . '</li>';
-				echo '<li>' . $valor['promedio_edad'] . '</li>';
-				echo '<li>' . "ProximoPartido" . '</li>';
-				echo '<li></li>';
-				echo '<li>
-								<button class="boton rechazar" disabled>✕</button>
-								<button class="boton aceptar" disabled>✓</button>
-						 </li>';
-				echo '<li>
-								<span class="masDetalles"> Mas detalles </span>
-							</li>';
+				echo '<li class="lista6Row">
+						<ul>';
+				echo 	'<li><img src="/img/' . $valor['logo'] . '" alt="Logo de Equipo"></li>';
+				echo 	'<li>' . $valor['nombre'] . '</li>';
+				echo 	'<li>' . $valor['promedio_edad'] . '</li>';
+				echo 	'<li>' . "ProximoPartido" . '</li>';
+				echo 	'<li>
+							<button class="boton rechazar" disabled>✕</button>
+							<button class="boton aceptar" disabled>✓</button>
+						</li>';
+				echo 	'<li>
+							<span class="masDetalles"> Mas detalles </span>
+						</li>';
 				echo 	'<li>
 								<div class="detalles">
 									<ul>
