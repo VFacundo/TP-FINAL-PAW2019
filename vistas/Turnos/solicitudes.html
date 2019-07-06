@@ -1,53 +1,24 @@
 <div id="contenedorComoJugador" class="divContenedor lista6Col">
-	<?php	
+	<?php
 		if($miequipo){
 			echo '<ul>
-				<li>Equipo</li>
-				<li>Edad media</li>
 				<li>Fecha</li>
 				<li>Lugar</li>
 				<li></li>
 				<li></li>
 			</ul>
-			<ul>'; 	
-			if(isset($turno['tSolicitudesEnviadas'])){		
-				foreach($turno['tSolicitudesEnviadas'] as $valor){
-					echo '<li  class="lista6Row">';
-					echo	'<ul>';
-					echo		'<li> <img src="img/' . $valor['img_equipo'] . '"></li>';
-					echo		'<li>' . $valor['equipo'] . '</li>';
-					echo		'<li>' . $valor['edad'] . '</li>';
-					echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
-					echo		'<li>' . $valor['direccion'] . "|" . $valor['cancha'] .'</li>';
-					echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id'] .')">Cancelar</button> </li>';
-					echo 		'<li>
-									<span class="masDetalles"> Mas detalles </span>
-								</li>';
-					echo 		'<li>
-									<div class="detalles">
-										<ul>
-											<li>Jugador</li>
-											<li>Edad</li>
-											<li>Usuario</li>
-										</ul>';
-					echo				'<ul>';
-					echo					'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
-					echo					'<li>' . $valor['capitan'][0]['edad'] . '</li>';
-					echo					'<li>' . $valor['capitan'][0]['user'] . '</li>';
-					echo				'</ul>';
-										foreach($valor['jugadores'] as $valorJug){
-											echo	'<ul>';
-											echo		'<li>' . $valorJug['nombre'] . '</li>';
-											echo		'<li>' . $valorJug['edad'] . '</li>';
-											echo		'<li>' . $valorJug['user'] . '</li>';
-											echo	'</ul>';
-										}
-					echo 			'</div>
-								</li>';
-					echo 	'</ul>
-						</li>';
+			<ul>';
+				if(isset($turno['tSolicitudesEnviadas'])){
+					foreach($turno['tSolicitudesEnviadas'] as $valor){
+						echo '<li  class="lista3Row">';
+						echo	'<ul>';
+						echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
+						echo		'<li>' . $valor['direccion'] . "|" . $valor['cancha'] .'</li>';
+						echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id'] .')">Cancelar</button> </li>';
+						echo	'</ul>';
+						echo '</li>';
+					}
 				}
-			}
 			echo '</ul>';
 		}else{
 			echo '<div class="sinEquipo">';

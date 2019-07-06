@@ -8,7 +8,7 @@
 div .equipo > input{
 	width: 50%;
 	margin: 1vh auto;
-} 
+}
 
 #miequipoImagen{width: 8vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 0vh 1vw;}
 
@@ -17,7 +17,7 @@ div .equipo > input{
 }
 
 #miequipoImagen::before{
-	 content: 'Logo'; 
+	 content: 'Logo';
 	font-size: 1em;
 }
 
@@ -47,6 +47,12 @@ div .equipo > input{
 li .icon-pencil {
 	width:100%;
 }
+
+.icon-pencil.icon-disabled {
+	background: rgba(88, 163, 0, 0.53);
+	cursor: not-allowed;
+}
+
 li .icon-ok{
 	width:50%;
 }
@@ -216,10 +222,10 @@ input[type="file"]#inputSb {
 
 	.detalles ul:nth-child(odd){
 		background: #dff1ca;
-	} 
+	}
 	.detalles ul:nth-child(1){
 		background: #aae65a;
-	} 	
+	}
 }
 
 @media (max-height: 600px) {

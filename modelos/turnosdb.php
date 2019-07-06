@@ -126,7 +126,13 @@ public function buscarMisTurnos($id){//Id user
 
             break;
           case 3://Mi Equipo Lista de Espera
-
+          $lista[] = [
+                    'id' => $value['id'],
+                    'fecha' => $value['fecha'],
+                    'hora' => $value['horario_turno'],
+                    'direccion' => $value['direccion'],
+                    'cancha' => $value['nombre'],
+            ];
             break;
       }
     }
@@ -138,6 +144,9 @@ public function buscarMisTurnos($id){//Id user
     }
     if(isset($tvi)){
       $arrayResultado = $arrayResultado + array('tvi'=>$tvi);
+    }
+    if(isset($lista)){
+      $arrayResultado = $arrayResultado + array('tSolicitudesEnviadas'=>$lista);
     }
   }
   return $arrayResultado;
@@ -155,9 +164,9 @@ public function buscarMisTurnos($id){//Id user
                 ];
               }
           }
-        if(empty($partidos)){
-          $partidos = FALSE;
-        }
+      }
+      if(empty($partidos)){
+        $partidos = FALSE;
       }
       return $partidos;
   }

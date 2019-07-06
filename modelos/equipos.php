@@ -9,6 +9,49 @@ class equipos{
       $this->db = new dbconnect();
     }
 
+public function cambiarImg($img,$id){
+  $id_equipo = $this->getEquipo($id)['id'];
+  $archivoImagen = ['imgFile' => $img];
+  $archivoImagen = $this->subirLogo($archivoImagen);
+  $sql = "UPDATE equipo SET logo='$archivoImagen' WHERE id='$id_equipo'";
+  $result = $this->db->conn->prepare($sql)->execute();
+  return $result?$archivoImagen:FALSE;
+}
+
+public function changeTeamName($nombreEquipo,$id){
+      $id_equipo = $this->getEquipo($id)['id'];
+      $nombreEquipo = $this->sanitizeString($nombreEquipo);
+      $sql = "UPDATE equipo SET nombre='$nombreEquipo' WHERE id='$id_equipo'";
+      $result = $this->db->conn->prepare($sql)->execute();
+  return $result;
+}
+
+public function editarJugadorEquipo($id,$id_jugador,$nombre_jugador,$edad_jugador,$usr_jugador){
+    if(!empty($usr_jugador)){
+      $usr_jugador = $this->sanitizeString($usr_jugador);
+      $id_jugador_new = $this->getIdUser($usr_jugador);
+      $id_equipo = $this->getEquipo($id)['id'];
+      $sql = "INSERT INTO jugador_equipo(id_jugador,id_equipo) VALUES(?,?)";
+      $result = $this->db->conn->prepare($sql)->execute([$id_jugador_new,$id_equipo]);
+        if($result){
+          $this->borrarJugadorEquipo($id_jugador,$id);
+        }
+    }else{
+      $nombre_jugador = $this->sanitizeString($nombre_jugador);
+      $edad_jugador = $this->sanitizeInt($edad_jugador);
+      $sql = "UPDATE jugador SET nombre='$nombre_jugador', edad='$edad_jugador' WHERE id='$id_jugador'";
+      $result = $this->db->conn->prepare($sql)->execute();
+    }
+    return $result;
+}
+
+public function borrarJugadorEquipo($id_jugador,$id){//In IDJUg, idUSR CAPITAN
+  $id_equipo = $this->getEquipo($id)['id'];
+  $sql = "DELETE FROM jugador_equipo WHERE id_jugador='$id_jugador' and id_equipo='$id_equipo'";
+  $result = $this->db->conn->prepare($sql)->execute();
+  return $result;
+}
+
 public function datosJugador($id_jugador){//In idJugador return Data jugador/user
   $sql = "SELECT u.user,j.nombre,j.edad FROM jugador j
 	INNER JOIN usuario u ON (j.id_usuario = u.id)
@@ -56,7 +99,7 @@ $arrayResultado = null;
 
 
 public function getJugadoresEquipo($id_equipo){//Input id Equipo Return Todos los jugadores
-  $sql = "SELECT e.logo,e.nombre,j.nombre,j.img_src,j.edad,u.user FROM equipo e
+  $sql = "SELECT e.logo,e.nombre,j.nombre,j.img_src,j.edad,j.id,u.user FROM equipo e
 	         INNER JOIN jugador_equipo je on (je.id_equipo = e.id)
      	        INNER JOIN jugador j on (j.id = je.id_jugador)
                 	LEFT JOIN usuario u on (u.id = j.id_usuario)

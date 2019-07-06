@@ -57,4 +57,71 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
       exit();
     }
   }
+
+  public function cambiarimg(){
+    sesion::startSession();
+    self::initialize();
+      if(sesion::is_login()){
+        $img_equipo = $_FILES['imgFile'];
+          $result = self::$db->cambiarimg($img_equipo,sesion::getId());
+            if($result){
+                echo $result;
+            }else {
+              echo "400";
+            }
+      }
+      exit();
+  }
+
+  public function editarJugadorEquipo(){
+    sesion::startSession();
+    self::initialize();
+      if(sesion::is_login()){
+        $id_jugador = $_POST['id_jugador'];
+        $nombre_jugador = $_POST['name'];
+        $edad_jugador = $_POST['edad'];
+        $usr_jugador = $_POST['user'];
+          if(self::$db->editarJugadorEquipo(sesion::getId(),$id_jugador,$nombre_jugador,$edad_jugador,$usr_jugador)){
+            echo "200";
+          }
+      }else {
+        echo "404";
+      }
+      exit();
+  }
+
+  public function editnombreequipo(){
+    sesion::startSession();
+    self::initialize();
+      if(sesion::is_login()){
+        $nombre_equipo = $_POST['nombre_equipo'];
+        if(self::$db->verifyNombre($nombre_equipo)===FALSE){
+          if(self::$db->changeTeamName($nombre_equipo,sesion::getId())){
+            echo($nombre_equipo);
+          }else {
+            echo("400");
+          }
+        }else {
+          echo("400");
+        }
+      }
+      exit();
+  }
+
+  public function borrarjugadorequipo(){
+    sesion::startSession();
+    self::initialize();
+      if(sesion::is_login()){
+          $id_jugador = $_POST['id_jugador'];
+        if(self::$db->borrarJugadorEquipo($id_jugador,sesion::getId())){
+            echo "200";
+        } else{
+            echo "404";
+        }
+      }else {
+        echo "404";
+      }
+      exit();
+  }
+
 }

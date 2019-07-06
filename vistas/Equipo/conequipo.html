@@ -1,9 +1,9 @@
 <form name="equipo" action="" onSubmit="crearEquipo(); return false">
 	<div id="miequipoImagen">
 		<img src="/img/<?=$logo_equipo?>" alt="Imagen de Equipo">
-		<label class="boton" id="labelSubir">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" ></label>
+		<label class="boton" id="labelSubir">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" onchange="subirImgEquipo();"></label>
 	</div>
-	<label><span>Nombre del equipo:</span><input type="text" name="eq_nombre" value="<?=$nombre_equipo?>" disabled><label class="boton icon-pencil"></label></label>
+	<label><span>Nombre del equipo:</span><input type="text" name="eq_nombre" value="<?=$nombre_equipo?>" disabled><label class="boton icon-pencil" onclick="editNombreEquipo();"></label></label>
 	<div class="lista6Col equipo" id="miequipoDatos">
 		<ul>
 			<li>&nbsp;</li>
@@ -24,15 +24,20 @@
 					<li></li>
 				</ul>
 			</li>
-			<?php 
+			<?php
 				foreach($jugadores as $valor){
 					echo '<li class="lista6Row equipo"><ul>';
 					echo '<li><img src="/img/' . $valor['img_src'] . '" alt="Imagen de jugador"></li>';
 					echo '<li><input type="text" name="j_nombre" value="' . $valor['nombre'] . '"disabled></li>';
 					echo '<li><input type="number" name="j_edad" value="' . $valor['edad'] . '" disabled></li>';
-					echo '<li><input type="text" name="j_usr" value="' . $valor['user'] . '" disabled></li>';
-					echo '<li><label class="boton icon-pencil" onclick="editarJugador()"></label></li>';
+					echo '<li><input type="text" name="j_usr" value="' . $valor['user'] . '" disabled autocomplete="off"></li>';
+						if(!empty($valor['user'])){
+							echo '<li><label class="boton icon-pencil icon-disabled"></label></li>';
+						}else{
+							echo '<li><label class="boton icon-pencil" onclick="editarJugador()"></label></li>';
+						}
 					echo '<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>';
+					echo '<input type="hidden" value="' . $valor['id'] . '">' ;
 					echo '</ul></li>';
 				}
 			?>
