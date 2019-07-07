@@ -39,14 +39,18 @@ li button {
 	margin: 4vh 0vw;
 }
 
-#misturnos > div:nth-child(2){max-height: 70vh;}
+#misturnos > div:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
 
-#misturnos > div:nth-child(3){
+#nuevoTurno{
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	height: 100%;
+	z-index: 100;
 }
 /*	TvT	  */
 	.detalles.mostrando {
@@ -83,18 +87,39 @@ li button {
 
 	#tTvT .lista6Col > ul li:nth-child(5),
 	#tTvT .lista6Row > ul li:nth-child(5){
-		width: 9vw;
-		/* height: 2em; */
+		width: 20%;
+	}
+	#tTvT .lista6Col > ul li:nth-child(6),
+	#tTvT .lista6Row > ul li:nth-child(6){
+		width: 10%;
+	}
+	#tTvT .lista6Col > ul li:nth-child(7),
+	#tTvT .lista6Row > ul li:nth-child(7){
+		width: 10%;
+		min-width: 3vw;
+	}
+	#tTvT .lista6Col > ul li:nth-child(8),
+	#tTvT .lista6Row > ul li:nth-child(8){
+		min-width:60vw;
+		width: 100%;
 	}
 	#tTvT .lista6Col > ul,
 	#tTvT .lista6Row > ul{
-		justify-content: flex-start;
+}
+	#tTvT .lista6Col img {
+		
 	}
 
 
 	#tTvI{display: none;}
 	#tSolicitudes{
 		display: none;
+	}
+	#registrar{
+		position:absolute;
+		bottom:2vh;
+		width: 100%;
+		text-align: center;
 	}
 	/*		registrarTurno window	*/
 	.stepTab{
@@ -116,6 +141,8 @@ li button {
 	}
 	.rechazar{
 		padding:0;
+		width: 100%;
+		font-size: 0.8vw;
 	}
 	.stepContenedor{margin: 1vh 0vw;}
 	.stepTab div .boton {
@@ -184,7 +211,6 @@ li button {
 			font-size: .8em;
 		}
 		.contenedorTablaTurnos{
-			font-size: .65em;
 		}
 		.contenedorTablaTurnos button{
 			font-size: 0em;
@@ -205,6 +231,19 @@ li button {
 	}
 	/* Mobile screen */
 	@media (max-width: 600px) {
+		#tTvT .lista6Col > ul li:nth-child(5),
+		#tTvT .lista6Row > ul li:nth-child(5){
+			width: 20%;
+		}
+		#tTvT .lista6Col > ul li:nth-child(6),
+		#tTvT .lista6Row > ul li:nth-child(6){
+			width: 5%;
+		}
+		#tTvT .lista6Col > ul li:nth-child(7),
+		#tTvT .lista6Row > ul li:nth-child(7){
+			width: 5%;
+			min-width: 3vw;
+		}
 		#contenedorTurnos > ul{
 			flex-direction: column;
 			margin: 0;
@@ -215,14 +254,13 @@ li button {
 			width: 100%;
 			height: 11vh;
 			border-top: 2px solid #58a300;
+			width: 100%;
 		}
 		/*BOTONES*/
 		.botonesTurnos a{
-			font-size: 0.6em;
 			height: 100%;
 		}
 		.contenedorTablaTurnos{
-			font-size: .65em;
 			border-top: 2px solid #58a300;
 			margin: 0;
 			padding: 1vh 0vw;
@@ -233,9 +271,10 @@ li button {
 			line-height: 1.5vh;
 			letter-spacing: 0;
 			font-weight: 100;
-			min-width: 3vw !important;
+			min-width: 5vw !important;
 			height: 3vh;
 			margin: 0 auto;
+			width: min-content;
 		}
 		.contenedorTablaTurnos button:after{
 			content: '\f1f8';
@@ -263,14 +302,23 @@ li button {
 			animation-duration: 0.6s;
 			position: fixed;
 			z-index: 1;
-			width: 95vw;
+			width: 97vw;
 			background-color: #f7faf2f7;
 			top: 0vh;
-			left: 2.5vw;
+			left: 1.5vw;
 			padding: 5vh 0vw;
 			border: none;
 			height: 90vh;
+			min-height: 90vh;
 		}
+		#nuevoTurno .cerrar{
+   			font-size: 1em !important;
+   			/* line-height: 0; */
+   			border-radius: 7%;
+   			padding: 1vh 2vw;
+   			width: fit-content;
+   			background: red;
+   		}
 
 		#nuevoTurno form{display: flex;flex-direction: column;justify-content: center;align-items: center;text-transform: uppercase;margin: 2vh 3vw;width: unset;}
 

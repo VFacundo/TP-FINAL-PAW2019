@@ -66,8 +66,9 @@
 						<?php
 							if($miequipo){
 								echo '<ul>
+										<li></li>
 										<li>Equipo</li>
-										<li>Edad media</li>
+										<li>Edad</li>
 										<li>Fecha</li>
 										<li>Lugar</li>
 										<li></li>
@@ -124,8 +125,9 @@
 						<?php
 							if($miequipo){
 								echo '<ul>
+										<li></li>
 										<li>Equipo</li>
-										<li>Edad media</li>
+										<li>Edad</li>
 										<li>Fecha</li>
 										<li>Lugar</li>
 										<li></li>
@@ -183,10 +185,9 @@
 		</div>
 		<?php include('solicitudes.html');?>
 		<?php include('comojugador.html');?>
-	</div>
-	</div>
-	<div id="registrar">
-		<a onclick="turnos.toggle();" class="boton" id="btnEditar">Registrar turno ahora</a>
+		<div id="registrar">
+			<a onclick="turnos.toggle();" class="boton" id="btnEditar">Registrar turno ahora</a>
+		</div>
 	</div>
 
 	<div id="nuevoTurno" style="display:none">
@@ -260,7 +261,7 @@
 			  <span class="step"></span>
 			</div>
 		</form>
-		<a class="boton rechazar" onclick="turnos.toggle();">Cerrar</a>
+		<a class="boton cerrar" onclick="turnos.toggle();">Cerrar</a>
 	</div>
 
 </section>
