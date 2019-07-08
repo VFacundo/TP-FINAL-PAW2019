@@ -1,10 +1,13 @@
+.add{
+	width: 30vw !important;
+}
 .add div{
 	display: flex;
 	font-size: 0.7em;
 	justify-content: center;
 	align-items: center;
 }
-
+.editar{display: flex;justify-content: center;margin: 5vh 0vw;}
 div .equipo > input{
 	width: 50%;
 	margin: 1vh auto;
@@ -14,6 +17,10 @@ div .equipo > input{
 
 #comojugadorDatos ul li:nth-child(1){
 	width: 7vw;
+}
+
+#comojugadorDatos .lista6Row > ul li:nth-child(7){
+	width: 100%;
 }
 
 #miequipoImagen::before{

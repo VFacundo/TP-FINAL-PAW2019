@@ -334,6 +334,9 @@ a:hover
 		width: fit-content;
 		background: red;
 	}
+	.cancelEdition{
+	background: red;
+	}
 /*********************************************************************************/
 /* Lista como tabla		                                                         */
 /*********************************************************************************/
@@ -539,6 +542,9 @@ a:hover
 		width: 5%;
 		min-width: 0;
 		}
+		.detalles{
+			width:100%;
+		}
 		.mostrando > ul li:nth-child(1),
 		.mostrando > ul li:nth-child(1){
 			width: 33%;
@@ -612,7 +618,7 @@ a:hover
 	}
 	.lista6Col.equipo > ul li:nth-child(5),
 	.lista6Row.equipo > ul li:nth-child(5){
-		width: 6vw;
+		width: 7vw;
 	}
 	.lista6Col.equipo > ul li:nth-child(6),
 	.lista6Row.equipo > ul li:nth-child(6){
@@ -962,9 +968,9 @@ body > span{position: absolute;top: 5vh;left: -40vw;}
 		width: 68vw !important;
 	}
 	#contenedorEquipo form > label input{
-	width: 50vw;
+	width: 35vw !important;
 	}
-	#contenedorEquipo form > label label{width: 8vw;padding: 1vh 0.5vw !important;margin: 0vh 1vw !important;}
+	#contenedorEquipo form > label label{min-width: 5vw;padding: 1vh 1vw !important;margin: 0vh 1vw !important;}
 	.btnEquipo a {
 		font-size: 3.5vw;
 		height: 5.5vh;
