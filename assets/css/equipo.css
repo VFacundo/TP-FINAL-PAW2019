@@ -3,9 +3,15 @@
 }
 .add div{
 	display: flex;
-	font-size: 0.7em;
+	/* font-size: 0.7em; */
 	justify-content: center;
 	align-items: center;
+	margin: 1vh 0vw;
+}
+.add div label{
+	line-height: 2vh;
+	/* padding: 1.5vh 1vw; */
+	width: 30vw !important;
 }
 .editar{display: flex;justify-content: center;margin: 5vh 0vw;}
 div .equipo > input{

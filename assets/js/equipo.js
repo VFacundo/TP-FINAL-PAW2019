@@ -1,22 +1,90 @@
-function eliminarJugador(){
-	var confirmar = true;
-	if(confirmar){
-		var id_jugador = event.target.parentElement.parentElement.children[6].value,
-			xhr = new XMLHttpRequest(),
-			formData = new FormData();
-		formData.append('id_jugador',id_jugador);
-		xhr.open('POST', 'http://localhost/equipo/borrarjugadorequipo');
-		xhr.onload = function() {
-			console.log('JUG borrado', xhr.responseText);
-			if(xhr.responseText==200){
-				alert("Jugador Borrado!");
-			}else {
-				alert("No fue Posible Realizar Esta Accion");
+function eliminarJugador(confirmar,jugador){
+	if(confirmar !== null){
+		if(confirmar){
+			var xhr = new XMLHttpRequest(),
+				formData = new FormData(),
+				items = document.querySelectorAll(".lista6Row.equipo");
+			formData.append('id_jugador',jugador);
+			xhr.open('POST', 'http://localhost/equipo/borrarjugadorequipo');
+			xhr.onload = function() {
+				console.log('JUG borrado', xhr.responseText);
+				if(xhr.responseText==200){
+					alert("Jugador Borrado!");
+				}else {
+					alert("No fue Posible Realizar Esta Accion");
+				}
 			}
+			xhr.send(formData);
+			document.querySelector("#msgConfirmar").remove();
+			var salir = false;
+			for(var i = 0;i<items.length;i++){
+				console.log("item",items[i]);
+				for(var j = 0;j<items[i].getElementsByTagName("input").length;j++){
+					if((items[i].getElementsByTagName("input")[j].type == "hidden")&&(items[i].getElementsByTagName("input")[j].value == jugador)){
+						var borrar = items[i];
+						console.log("borrando: "+borrar);
+						borrar.parentElement.removeChild(borrar);
+						
+						break;
+					}
+				}
+				if(salir) break;
+			}
+		}else{
+			document.querySelector("#msgConfirmar").remove();
 		}
-		xhr.send(formData);
-		event.target.parentElement.parentElement.parentElement.remove();
+	}else{
+		var li = event.target.parentElement,
+			ul = li.parentElement,
+			name = ul.children[1].children[0].disabled = false,
+			edad = ul.children[2].children[0].disabled = false,
+			user = ul.children[3].children[0].disabled = false,
+			old_data = {name: ul.children[1].children[0].value,
+						edad: ul.children[2].children[0].value,
+						user: ul.children[3].children[0].value,
+						id: ul.lastChild.value
+						};
+		//localStorage.setItem("remove"+old_data.id,JSON.stringify(old_data));
+		msgConfirmar("¿Desea realmente eliminar a el jugador "+old_data.name+"("+old_data.edad+")?","Eliminar Jugador",old_data);
 	}
+}
+
+function msgConfirmar(msj,titulo,data){
+	console.log("msg",msj)
+	var ventana = document.createElement("div"),
+		h3 = document.createElement("h3"),
+		p = document.createElement("p"),
+		divBtn = document.createElement("div"),
+		okBtn = document.createElement("span"),
+		cancelBtn = document.createElement("span"),
+		cerrarBtn = document.createElement("span"),
+		ventana = document.createElement("div");
+	
+	ventana.classList.add("ventana");
+	ventana.id = "msgConfirmar";
+	okBtn.classList.add("boton");
+	cancelBtn.classList.add("boton");
+	okBtn.classList.add("okBtn");
+	cancelBtn.classList.add("cancelBtn");
+	cerrarBtn.classList.add("cerrar");
+	ventana.classList.add("ventana");
+	h3.innerHTML = titulo;
+	p.innerHTML = msj;
+	okBtn.innerHTML = "Aceptar";
+	cerrarBtn.setAttribute("onclick","eliminarJugador(false,-1)");
+	cancelBtn.setAttribute("onclick","eliminarJugador(false,-1)");
+	okBtn.setAttribute("onclick","eliminarJugador(true,"+data.id+")");
+	cancelBtn.innerHTML = "Cancelar";
+	
+	ventana.appendChild(h3);
+	ventana.appendChild(p);
+	divBtn.appendChild(cancelBtn);
+	divBtn.appendChild(okBtn);
+	ventana.appendChild(divBtn);
+	ventana.appendChild(cerrarBtn);
+	
+	document.querySelector("body").appendChild(ventana);
+	
 }
 
 function agregarFila(equipo){
@@ -37,7 +105,7 @@ function agregarFila(equipo){
 						'</li>'+
 						'<li class="add">'+
 							'<div>'+
-								'<span class="boton" onclick="agregarFila(true)">Agregar jugador</span>'+
+								'<label class="boton" onclick="agregarFila(true)">Agregar jugador</label>'+
 							'</div>'+
 						'</li>';
 	}else{
@@ -53,7 +121,7 @@ function agregarFila(equipo){
 				'</li>'+
 				'<li class="add">'+
 					'<div>'+
-						'<span class="boton" onclick="agregarFila(false)">Agregar jugador</span>'+
+						'<label class="boton" onclick="agregarFila(false)">Agregar jugador</label>'+
 					'</div>'+
 				'</li>';
 	}
@@ -143,9 +211,6 @@ function editarJugador(){
 					id: ul.lastChild.value
 					};
 		localStorage.setItem(old_data.id,JSON.stringify(old_data));
-		console.log(li);
-		console.log(old_data);
-		console.log(ul.parentElement);
 
 	cancelBtn(li,"cancelarEdicion("+old_data.id+")");
 	button.classList.remove('icon-pencil');

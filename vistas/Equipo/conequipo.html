@@ -36,14 +36,14 @@
 						}else{
 							echo '<li><label class="boton icon-pencil" onclick="editarJugador()"></label></li>';
 						}
-					echo '<li><label class="boton icon-trash" onclick="eliminarJugador()"></label></li>';
+					echo '<li><label class="boton icon-trash" onclick="eliminarJugador(null,-1)"></label></li>';
 					echo '<input type="hidden" value="' . $valor['id'] . '">' ;
 					echo '</ul></li>';
 				}
 			?>
 			<li class="add">
 				<div>
-					<span class="boton" onclick="agregarFila(true)">Agregar jugador</span>
+					<label class="boton" onclick="agregarFila(true)">Agregar jugador</label>
 				</div>
 			</li>
 		</ul>

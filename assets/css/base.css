@@ -71,10 +71,6 @@ p
 	line-height: 180%;
 }
 
-strong
-{
-}
-
 a
 {
 	color: #ffffff;
@@ -333,10 +329,60 @@ a:hover
 		padding: 1vh 2vw;
 		width: fit-content;
 		background: red;
+		position: absolute;
+		right: 0;
+		top: 0;
+		border: none;
+		margin: 0.5vh 0.3vw;
+	}
+	.cerrar:hover{
+		cursor: pointer;
+	}
+	.cerrar:after{
+		content:'X';
+		font-family:sans-serif;
 	}
 	.cancelEdition{
-	background: red;
+		background: red;
 	}
+	#prevBtn{background: #58a30075;color: #ffffff;}
+	#nextBtn{
+	}
+
+.ventana{
+	display: flex;
+	animation-name: zoom;
+	animation-duration: 0.6s;
+	position: fixed;
+	z-index: 10;
+	color:white;
+	background-color: #ffffff;
+	/* justify-content: space-between; */
+	border: 2px solid black;
+	flex-direction: column;
+	align-items: center;
+	padding: 5vh 1vw;
+	margin: auto;
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	transform: translate(-50%,-50%);
+}
+.ventana > h3{font-size: 2.1em;margin-bottom: 2vh;}
+.ventana > p{color: black;}
+.ventana > div{
+	margin: 2vh 0vw;
+}
+
+.ventana > div span{
+	margin: 0vh 0.5vw;
+	padding: 1vh 2vw;
+}
+.okBtn{
+
+}
+.cancelBtn{background: #ff000094;}
+
 /*********************************************************************************/
 /* Lista como tabla		                                                         */
 /*********************************************************************************/
@@ -586,6 +632,7 @@ a:hover
 		width: 100% !important;
 		display: flex;
 		flex-direction: column;
+		border: 1px solid #000000;
 	}
 	.lista6Col.equipo > ul:nth-child(1){/*Header*/
 			line-height: 2em;
@@ -623,6 +670,9 @@ a:hover
 	.lista6Col.equipo > ul li:nth-child(6),
 	.lista6Row.equipo > ul li:nth-child(6){
 		width: 6vw;
+	}
+	.lista6Col ul li > input, .lista6Row ul li > input {
+		padding: 0vh 0.2vw;
 	}
 	.lista6Col.equipo > ul li:nth-child(6) div{
 		/* width:30vw; */

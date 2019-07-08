@@ -189,8 +189,9 @@
 			<a onclick="turnos.toggle();" class="boton" id="btnEditar">Registrar turno ahora</a>
 		</div>
 	</div>
+</section>
 
-	<div id="nuevoTurno" style="display:none">
+	<div class="ventana" id="nuevoTurno" style="display:none">
 		<h5>Reservar turno</h5>
 		<form name="turno" action="" onSubmit="turnos.crearTurno(); return false">
 			<div class="stepTab">
@@ -253,16 +254,14 @@
 				<button class="boton" type="button" id="prevBtn" onclick="turnos.nextPrevTab(-1)">Atras</button>
 				<button class="boton" type="button" id="nextBtn" onclick="turnos.nextPrevTab(1)">Siguiente</button>
 			</div>
-			<div class="stepContenedor">
-			  <span class="step"></span>
-			  <span class="step"></span>
-			  <span class="step"></span>
-			  <span class="step"></span>
-			  <span class="step"></span>
-			</div>
 		</form>
-		<a class="boton cerrar" onclick="turnos.toggle();">Cerrar</a>
+		<div class="stepContenedor">
+		  <span class="step"></span>
+		  <span class="step"></span>
+		  <span class="step"></span>
+		  <span class="step"></span>
+		  <span class="step"></span>
+		</div>
+		<a class="boton cerrar" onclick="turnos.toggle();"></a>
 	</div>
-
-</section>
 <?php include('assets/template/baseTail.html'); ?>
