@@ -95,14 +95,12 @@ turnos.crearTurno = function(){
 
         xhr.open('POST', 'http://localhost/turnos/nuevoturno');
         xhr.onload = function() {
-        console.log('Info Enviada');
         xhr.responseText;
         window.location.reload();
         }
         xhr.send(formData);
-        console.log("ENVIA3");
       }else{
-        alert("Los Datos ingresados son Incorrectos!");
+        msgNotificar("Los datos ingresados son incorrectos","Crear turno");
       }
 }
 
@@ -163,7 +161,6 @@ turnos.nextPrevTab = function(n) {
   turnos.showTab(currentTab);
 }
 
-//Solo verifica que esten llenos los input. TODO: Agregar alguna verificacion extra
 turnos.validateForm = function () {
   var x, y, z, i,
   valid = true,

@@ -9,9 +9,9 @@ function eliminarJugador(confirmar,jugador){
 			xhr.onload = function() {
 				console.log('JUG borrado', xhr.responseText);
 				if(xhr.responseText==200){
-					alert("Jugador Borrado!");
+					msgNotificar("Jugador borrado exitosamente","Borrar jugador");
 				}else {
-					alert("No fue Posible Realizar Esta Accion");
+					msgNotificar("No fue posible borrar el jugador","Borrar jugador");
 				}
 			}
 			xhr.send(formData);
@@ -22,9 +22,7 @@ function eliminarJugador(confirmar,jugador){
 				for(var j = 0;j<items[i].getElementsByTagName("input").length;j++){
 					if((items[i].getElementsByTagName("input")[j].type == "hidden")&&(items[i].getElementsByTagName("input")[j].value == jugador)){
 						var borrar = items[i];
-						console.log("borrando: "+borrar);
 						borrar.parentElement.removeChild(borrar);
-						
 						break;
 					}
 				}
@@ -45,52 +43,14 @@ function eliminarJugador(confirmar,jugador){
 						id: ul.lastChild.value
 						};
 		//localStorage.setItem("remove"+old_data.id,JSON.stringify(old_data));
-		msgConfirmar("¿Desea realmente eliminar a el jugador "+old_data.name+"("+old_data.edad+")?","Eliminar Jugador",old_data);
+		msgConfirmar("¿Desea realmente eliminar a el jugador "+old_data.name+"("+old_data.edad+")?","Eliminar Jugador",old_data,"eliminarJugador(true,"+old_data.id+")","eliminarJugador(false,-1)");
 	}
 }
 
-function msgConfirmar(msj,titulo,data){
-	console.log("msg",msj)
-	var ventana = document.createElement("div"),
-		h3 = document.createElement("h3"),
-		p = document.createElement("p"),
-		divBtn = document.createElement("div"),
-		okBtn = document.createElement("span"),
-		cancelBtn = document.createElement("span"),
-		cerrarBtn = document.createElement("span"),
-		ventana = document.createElement("div");
-	
-	ventana.classList.add("ventana");
-	ventana.id = "msgConfirmar";
-	okBtn.classList.add("boton");
-	cancelBtn.classList.add("boton");
-	okBtn.classList.add("okBtn");
-	cancelBtn.classList.add("cancelBtn");
-	cerrarBtn.classList.add("cerrar");
-	ventana.classList.add("ventana");
-	h3.innerHTML = titulo;
-	p.innerHTML = msj;
-	okBtn.innerHTML = "Aceptar";
-	cerrarBtn.setAttribute("onclick","eliminarJugador(false,-1)");
-	cancelBtn.setAttribute("onclick","eliminarJugador(false,-1)");
-	okBtn.setAttribute("onclick","eliminarJugador(true,"+data.id+")");
-	cancelBtn.innerHTML = "Cancelar";
-	
-	ventana.appendChild(h3);
-	ventana.appendChild(p);
-	divBtn.appendChild(cancelBtn);
-	divBtn.appendChild(okBtn);
-	ventana.appendChild(divBtn);
-	ventana.appendChild(cerrarBtn);
-	
-	document.querySelector("body").appendChild(ventana);
-	
-}
 
 function agregarFila(equipo){
 	var ul = event.target.parentElement.parentElement.parentElement,
 		li = event.target.parentElement.parentElement;
-	console.log(li);
 	li.outerHTML = '';
 	if(equipo){
 		ul.innerHTML += '<li class="lista6Row equipo">'+
@@ -139,7 +99,7 @@ function subirImgEquipo(){
 			img_src = "/img/";
 			document.querySelector('#miequipoImagen>img').src = img_src+xhr.responseText.trim();
 		}else{
-			alert("No se pudo Completar Esa accion!");
+			msgNotificar("No se pudo subir la imagen correctamente, porfavor intente denuevo","Subir Imagen");
 		}
 	}
 	xhr.send(formData);
@@ -168,7 +128,7 @@ function editNombreEquipo(){
 					if(xhr.responseText != 400){
 						nombreEquipo.value = xhr.responseText;
 					}else{
-						alert("No se pudo Completar Esa accion!");
+						msgNotificar("No se pudo cambiar el nombre del equipo. La longitud debe ser mayor a 4 caracteres y el nombre no debe coincidir con uno existente", "Cambiar nombre de equipo");
 					}
 				}
 				xhr.send(formData);
@@ -178,13 +138,12 @@ function editNombreEquipo(){
 }
 
 function cancelEditNameTeam(old_name){
-	console.log(event.target);
 	var lab = event.target.parentElement,
 		btn = lab.lastChild.remove();
-		document.getElementsByName("eq_nombre")[0].disabled=true;
-		document.getElementsByName("eq_nombre")[0].value = old_name;
-		lab.lastChild.classList.remove('icon-ok');
-		lab.lastChild.classList.add('icon-pencil');
+	document.getElementsByName("eq_nombre")[0].disabled=true;
+	document.getElementsByName("eq_nombre")[0].value = old_name;
+	lab.lastChild.classList.remove('icon-ok');
+	lab.lastChild.classList.add('icon-pencil');
 }
 
 function cancelBtn(li,funcion){
@@ -241,8 +200,6 @@ function cancelarEdicion(id){
 		name.value = old_data.name;
 		edad.value = old_data.edad;
 		user.value = old_data.user;
-		console.log(old_data);
-		console.log(name);
 		localStorage.setItem(id,'');
 	li.children[1].remove();
 	edit.classList.add('icon-pencil');
@@ -272,9 +229,9 @@ function confirmarEdicion(){
 	xhr.open('POST', 'http://localhost/equipo/editarjugadorequipo');
 	xhr.onload = function() {
 		if(xhr.responseText == 200){
-			alert("Jugador Editado!");
+			msgNotificar("Jugador editado correctamente.","Editar jugador");
 		}else {
-			alert("No fue Posible Realizar Esta Accion");
+			msgNotificar("No se pudo editar el jugador.","Editar jugador");
 		}
 	}
 	xhr.send(formData);

@@ -84,7 +84,9 @@ a:hover
 {
 	text-decoration: none;
 }
-
+strong{
+	font-weight: bold;
+}
 .container
 {
 	overflow: hidden;
@@ -334,6 +336,7 @@ a:hover
 		top: 0;
 		border: none;
 		margin: 0.5vh 0.3vw;
+		color: white;
 	}
 	.cerrar:hover{
 		cursor: pointer;
@@ -355,7 +358,6 @@ a:hover
 	animation-duration: 0.6s;
 	position: fixed;
 	z-index: 10;
-	color:white;
 	background-color: #ffffff;
 	/* justify-content: space-between; */
 	border: 2px solid black;
@@ -378,10 +380,22 @@ a:hover
 	margin: 0vh 0.5vw;
 	padding: 1vh 2vw;
 }
+#msgNotificar{
+	width: 90%;
+}
 .okBtn{
 
 }
 .cancelBtn{background: #ff000094;}
+	/* Mobile */
+	@media (max-width: 600px) {
+		#msgConfirmar{
+			width: 90%;
+		}
+		#msgNotificar{
+			width: 90%;
+		}
+	}
 
 /*********************************************************************************/
 /* Lista como tabla		                                                         */

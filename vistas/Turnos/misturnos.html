@@ -36,7 +36,7 @@
 						<a class="boton">Equipo vs Equipo</a>
 					</div>
 					<div>
-						<a class="boton">Equipo vs Invitado</a>
+						<a class="boton">Historial turnos</a>
 					</div>
 				</li>
 				<li class="contenedorTablaTurnos">
@@ -121,63 +121,26 @@
 							}
 							?>
 					</div>
-					<div class="lista6Col" id="tTvI">
+					<div class="lista3Col" id="historial">
 						<?php
-							if($miequipo){
-								echo '<ul>
-										<li></li>
-										<li>Equipo</li>
-										<li>Edad</li>
-										<li>Fecha</li>
-										<li>Lugar</li>
-										<li></li>
-										<li></li>
-									</ul>
-									<ul>'; 
-								if(isset($turno['tvi'])){
-									foreach($turno['tvi'] as $valor){
-										echo '<li  class="lista6Row">';
-										echo	'<ul>';
-										echo		'<li> <img src="img/' . $valor['img_equipo'] . '"></li>';
-										echo		'<li>' . $valor['equipo'] . '</li>';
-										echo		'<li>' . $valor['edad'] . '</li>';
-										echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
-										echo		'<li>' . $valor['direccion'] . "|" . $valor['cancha'] .'</li>';
-										echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id'] .')">Cancelar</button> </li>';
-										echo 		'<li>
-														<span class="masDetalles"> Mas detalles </span>
-													</li>';
-										echo 		'<li>
-														<div class="detalles">
-															<ul>
-																<li>Jugador</li>
-																<li>Edad</li>
-																<li>Usuario</li>
-															</ul>';
-										echo				'<ul>';
-										echo					'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
-										echo					'<li>' . $valor['capitan'][0]['edad'] . '</li>';
-										echo					'<li>' . $valor['capitan'][0]['user'] . '</li>';
-										echo				'</ul>';
-															foreach($valor['jugadores'] as $valorJug){
-																echo	'<ul>';
-																echo		'<li>' . $valorJug['nombre'] . '</li>';
-																echo		'<li>' . $valorJug['edad'] . '</li>';
-																echo		'<li>' . $valorJug['user'] . '</li>';
-																echo	'</ul>';
-															}
-										echo 			'</div>
-													</li>';
-										echo 	'</ul>
-											</li>';
-									}
+							echo '<ul>
+									<li>Tipo</li>
+									<li>Fecha</li>
+									<li>Lugar</li>
+								</ul>
+								<ul>'; 
+							if(isset($turno['historial'])){
+								foreach($turno['historial'] as $valor){
+									echo '<li  class="lista3Row">';
+									echo	'<ul>';
+									echo		'<li>' . $valor['tipo'] . '</li>';
+									echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
+									echo		'<li>' . $valor['lugar'] . '</li>';
+									echo 	'</ul>
+										</li>';
 								}
-								echo '</ul>';
-							}else{
-								echo '<div class="sinEquipo">';
-									include('sinequipo.html');
-								echo '</div>';
 							}
+							echo '</ul>';
 						?>
 					</div>
 				</li>
@@ -199,18 +162,16 @@
 					<select name="tipo_turno">
 						<option value="0">Simple</option>
 						<option value="1">Mi equipo VS Otro equipo</option>
-						<option value="2">Mi equipo VS Invitado</option>
-						<option value="3">Buscar rival</option>
+						<option value="2">Buscar rival</option>
 					</select>
 					<input name="eq_rival" id="eq_rival" autocomplete="off" placeholder="Equipo a desafiar" style="display:none;">
 				</label>
 				<div class="hint">
-					<span>Ayuda:</span>
+					<span><strong>Ayuda:</strong></span>
 					<ul>
-						<li>Turno simple: Reserva tradicional de un turno.</li>
-						<li>Mi equipo VS Otro equipo: Retar a un equipo existente en la plataforma.</li>
-						<li>Mi equipo VS Invitado: Utiliza tu equipo para jugar contra un equipo no existente en la plataforma.</li>
-						<li>Buscar rival: Quedar en lista de espera a ser retado por un equipo en una fecha y lugar seleccionado.</li>
+						<li><strong>Turno simple:</strong> Reserva tradicional de un turno.</li>
+						<li><strong>Mi equipo VS Otro equipo:</strong> Retar a un equipo existente en la plataforma.</li>
+						<li><strong>Buscar rival:</strong> Quedar en lista de espera a ser retado por un equipo en una fecha y lugar seleccionado.</li>
 					</ul>
 				</div>
 			</div>

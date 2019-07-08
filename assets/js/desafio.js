@@ -5,7 +5,7 @@ function desafioTurno(){
   formData.append('id_turno',id_turno);
   xhr.open('POST', 'http://localhost/buscarpartido/desafiar');
   xhr.onload = function() {
-  alert(xhr.responseText);
+	msgNotificar(xhr.responseText,"Desafiar equipo");
   }
   xhr.send(formData);
 }

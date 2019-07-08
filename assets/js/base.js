@@ -51,6 +51,76 @@ function showNav(){
 	
 }
 
+function msgConfirmar(msj,titulo,data,accionOk,accionCancelar){
+	var ventana = document.createElement("div"),
+		h3 = document.createElement("h3"),
+		p = document.createElement("p"),
+		divBtn = document.createElement("div"),
+		okBtn = document.createElement("span"),
+		cancelBtn = document.createElement("span"),
+		cerrarBtn = document.createElement("span"),
+		ventana = document.createElement("div");
+	
+	ventana.classList.add("ventana");
+	ventana.id = "msgConfirmar";
+	okBtn.classList.add("boton");
+	cancelBtn.classList.add("boton");
+	okBtn.classList.add("okBtn");
+	cancelBtn.classList.add("cancelBtn");
+	cerrarBtn.classList.add("cerrar");
+	ventana.classList.add("ventana");
+	h3.innerHTML = titulo;
+	p.innerHTML = msj;
+	okBtn.innerHTML = "Aceptar";
+	cerrarBtn.setAttribute("onclick",accionCancelar);
+	cancelBtn.setAttribute("onclick",accionCancelar);
+	okBtn.setAttribute("onclick",accionOk);
+	cancelBtn.innerHTML = "Cancelar";
+	
+	ventana.appendChild(h3);
+	ventana.appendChild(p);
+	divBtn.appendChild(cancelBtn);
+	divBtn.appendChild(okBtn);
+	ventana.appendChild(divBtn);
+	ventana.appendChild(cerrarBtn);
+	
+	document.querySelector("body").appendChild(ventana);
+	
+}
+function msgNotificar(msj,titulo){
+	var ventana = document.createElement("div"),
+		h3 = document.createElement("h3"),
+		p = document.createElement("p"),
+		divBtn = document.createElement("div"),
+		okBtn = document.createElement("span"),
+		cerrarBtn = document.createElement("span"),
+		ventana = document.createElement("div");
+	
+	ventana.classList.add("ventana");
+	ventana.id = "msgNotificar";
+	okBtn.classList.add("boton");
+	okBtn.classList.add("okBtn");
+	cerrarBtn.classList.add("cerrar");
+	ventana.classList.add("ventana");
+	h3.innerHTML = titulo;
+	p.innerHTML = msj;
+	okBtn.innerHTML = "Aceptar";
+	okBtn.setAttribute("onclick","cerrarNotificacion()");
+	cerrarBtn.setAttribute("onclick","cerrarNotificacion()");
+	
+	ventana.appendChild(h3);
+	ventana.appendChild(p);
+	divBtn.appendChild(okBtn);
+	ventana.appendChild(divBtn);
+	ventana.appendChild(cerrarBtn);
+	
+	document.querySelector("body").appendChild(ventana);
+}
+function cerrarNotificacion(){
+	var msg = document.querySelector("#msgNotificar");
+	msg.parentElement.removeChild(msg);
+}
+
 Base.click = function(){
   var selected = event.target,
 	  old_selected = document.getElementsByClassName("selectedLi");
