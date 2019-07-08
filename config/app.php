@@ -41,5 +41,11 @@ return [
             'controlador' => 'Instantsearch',
             'accion' => 'search'
         ]
-	]
+	],
+  'buscarpartido' => [
+      'accionPorDefecto' => [
+          'controlador' => 'Buscarpartido',
+          'accion' => 'buscar'
+      ]
+]
 ];

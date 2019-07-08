@@ -1,0 +1,68 @@
+<?php include('assets/template/baseHead.html'); ?>
+<head>
+<title>Buscar Partido</title>
+<script src="assets/js/mostrarDetalles.js"></script>
+<script src="assets/js/desafio.js"></script>
+</head>
+<section class="sideSection" id="buscarPartido">
+  <h1>Buscar Partido</h1>
+	<div>
+    <div class="lista6Col" id="buscarPartido">
+      <?php
+        echo '<ul class="lista6Col">
+            <li></li>
+            <li>Equipo</li>
+            <li>Edad Promedio</li>
+            <li>Fecha</li>
+            <li>Cancha</li>
+            <li></li>
+            <li></li>
+            </ul>
+        <ul>';
+        if(!empty($listaPartidos)){
+          foreach($listaPartidos as $valor){
+            echo '<li class="lista6Row">
+                <ul>';
+            echo 	'<li><img src="/img/' . $valor['logo_equipo'] . '" alt="Logo de Equipo"></li>';
+            echo 	'<li>' . $valor['nombre_equipo'] . '</li>';
+            echo 	'<li>' . $valor['promedio_edad'] . '</li>';
+            echo 	'<li>' . $valor['fecha_turno'] ." | ". $valor['horario_turno'] . '</li>';
+            echo 	'<li>' . $valor['nombre_cancha'] ." | ". $valor['direccion_cancha'] . '</li>';
+            echo '<input type="hidden" value="' . $valor['id_turno'] . '">' ;
+            echo 	'<li><button class="boton" onclick="desafioTurno();">DESAFIAR!</button></li>';
+            echo 	'<li>
+                  <span class="masDetalles"> Mas detalles </span>
+                </li>';
+            echo 	'<li>
+                    <div class="detalles">
+                      <ul>
+                        <li>Jugador</li>
+                        <li>Edad</li>
+                        <li>Usuario</li>
+                      </ul>';
+
+              echo	'<ul>';
+              echo		'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
+              echo		'<li>' . $valor['capitan'][0]['edad'] . '</li>';
+              echo		'<li>' . $valor['capitan'][0]['user'] . '</li>';
+              echo	'</ul>';
+
+              foreach($valor['jugadores'] as $valorJug){
+                echo	'<ul>';
+                echo		'<li>' . $valorJug['nombre'] . '</li>';
+                echo		'<li>' . $valorJug['edad'] . '</li>';
+                echo		'<li>' . $valorJug['user'] . '</li>';
+                echo	'</ul>';
+              }
+            echo 	'</div>
+                  </li>';
+            echo '</ul></li>';
+          }
+        }
+        echo '</ul>';
+      ?>
+    </div>
+	</div>
+</section>
+
+<?php include('assets/template/baseTail.html'); ?>

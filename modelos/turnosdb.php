@@ -13,6 +13,73 @@ class turnosdb{
       $this->dbEquipo = new equipos();
     }
 
+    public function registrarDesafio($id_turno,$id){
+      $id_equipo = $this->dbEquipo->getEquipo($id)['id'];
+      $sql = "INSERT INTO desafio(id,id_equipo,id_turno,fecha_registro,horario_registro,estado) VALUES (NULL,$id_equipo,$id_turno,CURDATE(),CURTIME(),'publicado')";
+      $resultado = $this->db->conn->prepare($sql)->execute();
+      $info = $this->db->conn->errorCode();
+    }
+
+    public function getTurno($id_turno,$id){//In idTurno,idusr return si el turno es d el usr
+      $sql = "SELECT * FROM turno WHERE id='$id_turno' AND id_solicitante='$id'";
+      $result = $this->db->conn->query($sql);
+        if(!$result===FALSE){
+          $result = $result->fetchAll();
+        }
+      return $result;
+    }
+
+    public function buscarPartido(){
+       $sql = "SELECT * FROM turno WHERE (fecha>=CURDATE() AND horario_turno>=CURTIME()) AND tipo_turno = 3";
+       $result = $this->db->conn->query($sql);
+       $arrayResultado = [];
+         if(!$result===FALSE){
+           $result = $result->fetchAll();
+             foreach ($result as $value) {
+                   $datos_solicitante = $this->dbEquipo->getIdJugador($value['id_solicitante']);
+                   $datos_solicitante = $this->dbEquipo->datosJugador($datos_solicitante);
+                   $id_equipo = $this->dbEquipo->getEquipo($value['id_solicitante']);
+                   $datos_equipo = $id_equipo;
+                   $datos_cancha = $this->data_cancha($value['id_cancha']);
+                   $jugadores = $this->dbEquipo->getJugadoresEquipo($datos_equipo['id']);
+                   $promedio_edad = $this->calc_promedio_edad($jugadores,$datos_solicitante);
+                 $arrayResultado[] = [
+                           "id_turno" => $value['id'],
+                           "nombre_equipo" => $datos_equipo['nombre'],
+                           "logo_equipo" => $datos_equipo['logo'],
+                           "promedio_edad" => $promedio_edad,
+                           "fecha_turno" => $value['fecha'],
+                           "horario_turno" => $value['horario_turno'],
+                           "nombre_cancha" => $datos_cancha[0]['nombre'],
+                           "direccion_cancha" => $datos_cancha[0]['direccion'],
+                           "capitan" => $datos_solicitante,
+                           "jugadores" => $jugadores,
+                 ];
+             }
+           }
+       return $arrayResultado;
+    }
+
+    public function calc_promedio_edad($jugadores,$capitan){
+      $promedio_edad = 0;
+        foreach ($jugadores as $valueJug) {
+            $promedio_edad += $valueJug['edad'];
+        }
+        $nro = count($jugadores);
+        $promedio_edad += $capitan[0]['edad'];
+        $promedio_edad = $promedio_edad / (count($jugadores) + 1);
+      return round($promedio_edad,2);
+    }
+
+    public function listaBuscarPartido(){
+       $sql = "SELECT * FROM turno WHERE (fecha>=CURDATE() AND horario_turno>=CURTIME()) AND tipo_turno = 3";
+       $result = $this->db->conn->query($sql);
+         if(!$result===FALSE){
+           $result = $result->fetchAll();
+           }
+       return $result;
+    }
+
 public function horariosDisponibles($cancha_turno,$fecha_turno){
   $sql = "SELECT t.horario_turno, c.horario_apertura, c.horario_cierre, c.duracion_turno FROM turno t
 	          INNER JOIN cancha c on t.id_cancha = c.id

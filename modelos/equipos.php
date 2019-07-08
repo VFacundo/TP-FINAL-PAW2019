@@ -217,7 +217,7 @@ public function getEquipoNombre($nombre_equipo){//id equipo x nombre
   return $result;
 }
 
-public function getEquipo($id){//Regresa el id de equipo Propio(capitan)
+public function getEquipo($id){//input idUSR Regresa el id de equipo Propio(capitan)
  $id_jugador = $this->getIdJugador($id);
  $sql = "SELECT * FROM equipo WHERE id_capitan='$id_jugador'";
  $result = $this->db->conn->query($sql);
