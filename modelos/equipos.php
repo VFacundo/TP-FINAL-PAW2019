@@ -27,21 +27,32 @@ public function changeTeamName($nombreEquipo,$id){
 }
 
 public function editarJugadorEquipo($id,$id_jugador,$nombre_jugador,$edad_jugador,$usr_jugador){
-    if(!empty($usr_jugador)){
-      $usr_jugador = $this->sanitizeString($usr_jugador);
-      $id_jugador_new = $this->getIdUser($usr_jugador);
       $id_equipo = $this->getEquipo($id)['id'];
-      $sql = "INSERT INTO jugador_equipo(id_jugador,id_equipo) VALUES(?,?)";
-      $result = $this->db->conn->prepare($sql)->execute([$id_jugador_new,$id_equipo]);
-        if($result){
-          $this->borrarJugadorEquipo($id_jugador,$id);
-        }
-    }else{
-      $nombre_jugador = $this->sanitizeString($nombre_jugador);
-      $edad_jugador = $this->sanitizeInt($edad_jugador);
-      $sql = "UPDATE jugador SET nombre='$nombre_jugador', edad='$edad_jugador' WHERE id='$id_jugador'";
-      $result = $this->db->conn->prepare($sql)->execute();
-    }
+      if(!empty($usr_jugador)){
+        $usr_jugador = $this->sanitizeString($usr_jugador);
+        $id_jugador_new = $this->getIdUser($usr_jugador);
+        $sql = "INSERT INTO jugador_equipo(id_jugador,id_equipo) VALUES(?,?)";
+        $result = $this->db->conn->prepare($sql)->execute([$id_jugador_new,$id_equipo]);
+          if($result){
+            $this->borrarJugadorEquipo($id_jugador,$id);
+          }
+      }elseif(!empty($id_jugador)){
+        $nombre_jugador = $this->sanitizeString($nombre_jugador);
+        $edad_jugador = $this->sanitizeInt($edad_jugador);
+        $sql = "UPDATE jugador SET nombre='$nombre_jugador', edad='$edad_jugador' WHERE id='$id_jugador'";
+        $result = $this->db->conn->prepare($sql)->execute();
+      }else{
+        $nombre_jugador = $this->sanitizeString($nombre_jugador);
+        $edad_jugador = $this->sanitizeInt($edad_jugador);
+        $sql = "INSERT INTO jugador(id,nombre,img_src,edad) VALUES (?,?,?,?)";
+        $img_src = 'avatar' . rand(1,3) . ".svg";
+        $result = $this->db->conn->prepare($sql)->execute([NULL,$nombre_jugador,$img_src,$edad_jugador]);
+          if(!$result===FALSE){
+            $id_jugador = $this->db->conn->lastInsertId();
+            $sql = "INSERT INTO jugador_equipo(id_jugador,id_equipo) VALUES(?,?)";
+            $this->db->conn->prepare($sql)->execute([$id_jugador,$id_equipo]);
+          }
+      }
     return $result;
 }
 
@@ -177,7 +188,7 @@ public function newEquipo($nombre_equipo,$img_equipo,$nombre_j,$edad_j,$usr_j,$i
   if(!empty($img_equipo)){
     $img_equipo = $this->subirLogo($img_equipo);
   }else {
-    $img_equipo = 'avatar' . rand(1,3) . ".svg";;//aca van los avatares default
+    $img_equipo = 'avatar' . rand(1,3) . ".svg";//aca van los avatares default
   }
   $id_capitan = $this->getIdJugador($id);
   if($id_capitan){
@@ -234,6 +245,15 @@ public function getCapitan($nombreEquipo){//Input Nombre Equipo, Return Id Capit
     $result = $result->fetch();
   }
   return $result;
+}
+
+public function dataCapitan($idEquipo){
+  $sql = "SELECT id_capitan FROM equipo WHERE id = '$idEquipo'";
+  $result = $this->db->conn->query($sql);
+  if(!$result===FALSE){
+    $result = $result->fetch();
+  }
+  return $this->datosJugador($result['id_capitan']);
 }
 
 }

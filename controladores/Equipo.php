@@ -3,18 +3,21 @@ namespace UNLu\PAW\Controladores;
 use UNLu\PAW\Libs\VIstaHTML;
 use UNLu\PAW\Modelos\users;
 use UNLu\PAW\Modelos\equipos;
+use UNLu\PAW\Modelos\turnosdb;
 
 class Equipo extends \UNLu\PAW\Libs\Controlador{
 
   private static $initialized = false;
   private static $db;
   private static $dbu;
+  private static $dbTurnos;
 
   private static function initialize(){
     if(self::$initialized)
       return true;
       self::$db = new equipos();
       self::$dbu = new users();
+      self::$dbTurnos = new turnosdb();
     self::$initialized=true;
   }
 
@@ -30,6 +33,7 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
           $this->pasarVariableAVista("logo_equipo",$jugadoresEquipo[0]['logo']);
           $this->pasarVariableAVista("nombre_equipo",$jugadoresEquipo[0][1]);
           $this->pasarVariableAVista("jugadores",$jugadoresEquipo);
+          $this->pasarVariableAVista("solicitudesPartidos", self::$dbTurnos->desafios(sesion::getId()));
         }
         $this->pasarVariableAVista("equiposComoJugador",self::$db->misEquiposJugador(sesion::getId()));
       sesion::refreshTime();
@@ -77,7 +81,11 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
     sesion::startSession();
     self::initialize();
       if(sesion::is_login()){
-        $id_jugador = $_POST['id_jugador'];
+        if(isset($_POST['id_jugador'])){
+            $id_jugador = $_POST['id_jugador'];
+        }else{
+          $id_jugador = NULL;
+        }
         $nombre_jugador = $_POST['name'];
         $edad_jugador = $_POST['edad'];
         $usr_jugador = $_POST['user'];

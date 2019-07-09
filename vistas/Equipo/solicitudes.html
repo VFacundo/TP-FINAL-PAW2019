@@ -1,27 +1,27 @@
 <div class="lista6Col" id="solicitudesDatos">
-	<?php	
+	<?php
 		if($equipo){
 			echo '<ul>
 					<li></li>
 					<li>Equipo</li>
-					<li>Edad</li>
+					<li>Edad Promedio</li>
 					<li>Fecha</li>
 					<li>Lugar</li>
 					<li></li>
 					<li></li>
 				</ul>
-			<ul>'; 	
-			if(isset($turno['tSolicitudesEnviadas'])){		
-				foreach($turno['tSolicitudesEnviadas'] as $valor){
+			<ul>';
+			if(isset($solicitudesPartidos)){
+				foreach($solicitudesPartidos as $valor){
 					echo '<li  class="lista6Row">';
 					echo	'<ul>';
-					echo		'<li> <img src="img/' . $valor['img_equipo'] . '"></li>';
-					echo		'<li>' . $valor['equipo'] . '</li>';
-					echo		'<li>' . $valor['edad'] . '</li>';
-					echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
-					echo		'<li>' . $valor['direccion'] . "|" . $valor['cancha'] .'</li>';
-					echo		'<li> <button class="boton rechazar" onclick="aceptarTurno('. $valor['id'] .')">Aceptar</button> </li>';
-					echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id'] .')">Cancelar</button> </li>';
+					echo		'<li> <img src="img/' . $valor['logo_equipo'] . '"></li>';
+					echo		'<li>' . $valor['nombre_equipo'] . '</li>';
+					echo		'<li>' . $valor['edad_promedio'] . '</li>';
+					echo		'<li>' . $valor['fecha_turno'] . " | " . $valor['horario_turno']."hs" . '</li>';
+					echo		'<li>' . $valor['direccion_cancha'] . " | " . $valor['cancha'] .'</li>';
+					echo		'<li> <button class="boton rechazar" onclick="aceptarTurno('. $valor['id_desafio'] .')">Aceptar</button> </li>';
+					echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id_desafio'] .')">Cancelar</button> </li>';
 					echo 		'<li>
 									<span class="masDetalles"> Mas detalles </span>
 								</li>';

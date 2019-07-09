@@ -41,14 +41,14 @@
 				</li>
 				<li class="contenedorTablaTurnos">
 					<div class="lista3Col" id="tSimple">
-							<?php 
+							<?php
 								echo '<ul>
 										<li>Fecha</li>
 										<li>Lugar</li>
 										<li></li>
 									</ul>
 									<ul>';
-								if(isset($turno['simple'])){	
+								if(isset($turno['simple'])){
 									foreach($turno['simple'] as $valor){
 										echo '<li  class="lista3Row">';
 										echo	'<ul>';
@@ -74,8 +74,8 @@
 										<li></li>
 										<li></li>
 									</ul>
-									<ul>'; 
-								if(isset($turno['tvt'])){		
+									<ul>';
+								if(isset($turno['tvt'])){
 									foreach($turno['tvt'] as $valor){
 										echo '<li  class="lista6Row">';
 										echo	'<ul>';
@@ -128,14 +128,14 @@
 									<li>Fecha</li>
 									<li>Lugar</li>
 								</ul>
-								<ul>'; 
-							if(isset($turno['historial'])){
-								foreach($turno['historial'] as $valor){
+								<ul>';
+							if(isset($historial)){
+								foreach($historial as $valor){
 									echo '<li  class="lista3Row">';
 									echo	'<ul>';
-									echo		'<li>' . $valor['tipo'] . '</li>';
-									echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
-									echo		'<li>' . $valor['lugar'] . '</li>';
+									echo		'<li>' . $valor['tipo_turno'] . '</li>';
+									echo		'<li>' . $valor['fecha_turno'] . " | " . $valor['horario_turno']."hs" . '</li>';
+									echo		'<li>' . $valor['direccion_cancha'] . " | " . $valor['nombre_cancha'] . '</li>';
 									echo 	'</ul>
 										</li>';
 								}
@@ -158,7 +158,7 @@
 		<h5>Reservar turno</h5>
 		<form name="turno" action="" onSubmit="turnos.crearTurno(); return false">
 			<div class="stepTab">
-				<label>Tipo de Turno: 
+				<label>Tipo de Turno:
 					<select name="tipo_turno">
 						<option value="0">Simple</option>
 						<option value="1">Mi equipo VS Otro equipo</option>
@@ -176,7 +176,7 @@
 				</div>
 			</div>
 			<div class="stepTab">
-				<label>Cancha: 
+				<label>Cancha:
 					<select name="cancha_turno" onchange="turnos.horariosDisponibles();" required></select>
 				</label>
 				<div class="hint">
@@ -192,7 +192,7 @@
 				</div>
 			</div>
 			<div class="stepTab">
-				<label>Horario: 
+				<label>Horario:
 					<select name="horario_turno" required></select>
 				</label>
 				<div class="hint">

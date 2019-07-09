@@ -15,6 +15,7 @@ var document = document || {},
             input[i].addEventListener('change', function (){instantSearch.clearData(tableName)});
             input[i].setAttribute("list",tableName);
           }
+          console.log(input);
       });
     }
 
