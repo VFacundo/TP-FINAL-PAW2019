@@ -4,9 +4,10 @@
 			echo '<ul>
 					<li></li>
 					<li>Equipo</li>
-					<li>Edad Promedio</li>
+					<li>Edad</li>
 					<li>Fecha</li>
 					<li>Lugar</li>
+					<li></li>
 					<li></li>
 					<li></li>
 				</ul>
@@ -20,8 +21,10 @@
 					echo		'<li>' . $valor['edad_promedio'] . '</li>';
 					echo		'<li>' . $valor['fecha_turno'] . " | " . $valor['horario_turno']."hs" . '</li>';
 					echo		'<li>' . $valor['direccion_cancha'] . " | " . $valor['cancha'] .'</li>';
-					echo		'<li> <button class="boton rechazar" onclick="aceptarTurno('. $valor['id_desafio'] .')">Aceptar</button> </li>';
-					echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id_desafio'] .')">Cancelar</button> </li>';
+					echo		'<li> <div> 
+										<button class="boton aceptar" onclick="aceptarTurno('. $valor['id_desafio'] .')">Aceptar</button>';
+					echo		'		<button class="boton rechazar" onclick="cancelarTurno('. $valor['id_desafio'] .')">Cancelar</button>
+									  </div></li>';
 					echo 		'<li>
 									<span class="masDetalles"> Mas detalles </span>
 								</li>';

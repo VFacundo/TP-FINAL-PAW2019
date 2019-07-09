@@ -5,7 +5,9 @@
 	RewriteCond %{REQUEST_URI} !/img/
 	RewriteCond %{REQUEST_URI} !/assets/css
 	RewriteCond %{REQUEST_URI} !/assets/js
+	RewriteCond %{REQUEST_URI} !/assets/fonts
 	RewriteCond %{REQUEST_URI} !/script_install/
+	RewriteCond %{REQUEST_URI} !manifest.json
 
 	#No muestro Errores
 	#php_flag display_startup_errors off

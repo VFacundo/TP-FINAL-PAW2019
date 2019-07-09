@@ -228,8 +228,7 @@ function confirmarEdicion(){
 	}
 	xhr.open('POST', 'http://localhost/equipo/editarjugadorequipo');
 	xhr.onload = function() {
-		console.log(xhr.responseText);
-		if(xhr.responseText==200){
+		if(xhr.responseText == 200){
 			msgNotificar("Jugador editado correctamente.","Editar jugador");
 		}else {
 			msgNotificar("No se pudo editar el jugador.","Editar jugador");

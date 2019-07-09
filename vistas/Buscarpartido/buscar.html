@@ -7,21 +7,22 @@
 <section class="sideSection" id="buscarPartido">
   <h1>Buscar Partido</h1>
 	<div>
-    <div class="lista6Col" id="buscarPartido">
+    <div class="lista6Col buscarpartido" id="buscarPartido">
       <?php
-        echo '<ul class="lista6Col">
+        echo '<ul>
             <li></li>
             <li>Equipo</li>
-            <li>Edad Promedio</li>
+            <li>Edad</li>
             <li>Fecha</li>
             <li>Cancha</li>
+            <li></li>
             <li></li>
             <li></li>
             </ul>
         <ul>';
         if(!empty($listaPartidos)){
           foreach($listaPartidos as $valor){
-            echo '<li class="lista6Row">
+            echo '<li class="lista6Row buscarpartido">
                 <ul>';
             echo 	'<li><img src="/img/' . $valor['logo_equipo'] . '" alt="Logo de Equipo"></li>';
             echo 	'<li>' . $valor['nombre_equipo'] . '</li>';

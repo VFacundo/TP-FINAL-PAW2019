@@ -170,7 +170,6 @@ turnos.validateForm = function () {
   z = x[currentTab].getElementsByTagName("select");
   for (i = 0; i < y.length; i++) {
     if (y[i].value == "") {
-		console.log("Tab",currentTab,"TTurno",tipoTurno);
 		if((currentTab == 0) && (tipoTurno.value == 1)){
 			y[i].className += " invalid";
 			valid = false;
