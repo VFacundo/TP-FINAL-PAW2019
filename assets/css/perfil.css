@@ -15,8 +15,8 @@
 }
 
 #miPerfilImagen img{
-	width: 20vw;
-	height: fit-content;
+	max-width: 20vw;
+	height: auto;
 	max-height: 15vh;
 	border-radius: 50%;
 }

@@ -42,7 +42,7 @@ function eliminarJugador(confirmar,jugador){
 						user: ul.children[3].children[0].value,
 						id: ul.lastChild.value
 						};
-						
+		//localStorage.setItem("remove"+old_data.id,JSON.stringify(old_data));
 		msgConfirmar("¿Desea realmente eliminar a el jugador "+old_data.name+"("+old_data.edad+")?","Eliminar Jugador",old_data,"eliminarJugador(true,"+old_data.id+")","eliminarJugador(false,-1)");
 	}
 }
@@ -228,7 +228,7 @@ function confirmarEdicion(){
 	}
 	xhr.open('POST', 'http://localhost/equipo/editarjugadorequipo');
 	xhr.onload = function() {
-		if(xhr.responseText == 200){
+		if(xhr.responseText.includes(200)){
 			msgNotificar("Jugador editado correctamente.","Editar jugador");
 		}else {
 			msgNotificar("No se pudo editar el jugador.","Editar jugador");
@@ -243,103 +243,4 @@ function confirmarEdicion(){
 	name.disabled = true;
 	edad.disabled = true;
 	user.disabled = true;
-}
-
-function aceptarTurno(confirmar,turno){
-	if(confirmar !== null){
-		if(confirmar){
-			var xhr = new XMLHttpRequest(),
-				formData = new FormData(),
-				items = document.querySelectorAll(".lista6Row.equipo");
-			formData.append('id_turno',turno);
-			xhr.open('POST', 'http://localhost/equipo/aceptarTurno');
-			xhr.onload = function() {
-				console.log('Turno aceptado: ', xhr.responseText);
-				if(xhr.responseText==200){
-					msgNotificar("El desafio fue aceptado exitosamente","Solicitud de desafio");
-				}else {
-					msgNotificar("El desafio no pudo ser aceptado, porfavor intentelo denuevo.","Solicitud de desafio");
-				}
-			}
-			xhr.send(formData);
-			document.querySelector("#msgConfirmar").remove();
-			var salir = false;
-			for(var i = 0;i<items.length;i++){
-				console.log("item",items[i]);
-				for(var j = 0;j<items[i].getElementsByTagName("input").length;j++){
-					if((items[i].getElementsByTagName("input")[j].type == "hidden")&&(items[i].getElementsByTagName("input")[j].value == turno)){
-						var borrar = items[i];
-						borrar.parentElement.removeChild(borrar);
-						break;
-					}
-				}
-				if(salir) break;
-			}
-		}else{
-			document.querySelector("#msgConfirmar").remove();
-		}
-	}else{
-		var li = event.target.parentElement.parentElement,
-			ul = li.parentElement,
-			name =  ul.children[1].innerText,
-			edad =  ul.children[2].innerText,
-			fecha = ul.children[3].innerText,
-			lugar = ul.children[4].innerText;
-			old_data = {name:  ul.children[1].innerText,
-						edad:  ul.children[2].innerText,
-						fecha: ul.children[3].innerText,
-						lugar: ul.children[4].innerText,
-						id: ul.lastChild.value
-						};
-		msgConfirmar("¿Desea aceptar el desafio contra "+old_data.name+" en "+old_data.lugar+" ("+old_data.fecha+")?","Solicitud de desafio",old_data,"aceptarTurno(true,"+old_data.id+")","aceptarTurno(false,-1)");
-	}
-}
-function cancelarTurno(confirmar,turno){
-	if(confirmar !== null){
-		if(confirmar){
-			var xhr = new XMLHttpRequest(),
-				formData = new FormData(),
-				items = document.querySelectorAll(".lista6Row.equipo");
-			formData.append('id_turno',turno);
-			xhr.open('POST', 'http://localhost/equipo/aceptarTurno');
-			xhr.onload = function() {
-				console.log('Turno aceptado: ', xhr.responseText);
-				if(xhr.responseText==200){
-					msgNotificar("El desafio fue rechazado exitosamente","Solicitud de desafio");
-				}else {
-					msgNotificar("El desafio no pudo ser rechazado, porfavor intentelo denuevo.","Solicitud de desafio");
-				}
-			}
-			xhr.send(formData);
-			document.querySelector("#msgConfirmar").remove();
-			var salir = false;
-			for(var i = 0;i<items.length;i++){
-				console.log("item",items[i]);
-				for(var j = 0;j<items[i].getElementsByTagName("input").length;j++){
-					if((items[i].getElementsByTagName("input")[j].type == "hidden")&&(items[i].getElementsByTagName("input")[j].value == turno)){
-						var borrar = items[i];
-						borrar.parentElement.removeChild(borrar);
-						break;
-					}
-				}
-				if(salir) break;
-			}
-		}else{
-			document.querySelector("#msgConfirmar").remove();
-		}
-	}else{
-		var li = event.target.parentElement.parentElement,
-			ul = li.parentElement,
-			name =  ul.children[1].innerText,
-			edad =  ul.children[2].innerText,
-			fecha = ul.children[3].innerText,
-			lugar = ul.children[4].innerText,
-			old_data = {name:  ul.children[1].innerText,
-						edad:  ul.children[2].innerText,
-						fecha: ul.children[3].innerText,
-						lugar: ul.children[4].innerText,
-						id: ul.lastChild.value
-						};
-		msgConfirmar("¿Desea rechazar el desafio de "+old_data.name+" en "+old_data.lugar+" ("+old_data.fecha+")?","Solicitud de desafio",old_data,"cancelarTurno(true,"+old_data.id+")","cancelarTurno(false,-1)");
-	}
 }
