@@ -46,7 +46,7 @@ class turnosdb{
     public function historial($id){
       $sql = "SELECT t.id, t.tipo_turno, t.fecha,t.id_equipo_rival, t.horario_turno,c.nombre,c.direccion FROM turno t
                 INNER JOIN cancha c on t.id_cancha=c.id
-                  WHERE id_solicitante='$id' AND (fecha<=CURDATE() AND horario_turno<=CURTIME())";
+                  WHERE id_solicitante='$id' AND (fecha<CURDATE())";
       $result = $this->db->conn->query($sql);
       $arrayResultado = [];
         if(!$result===FALSE){
