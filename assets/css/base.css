@@ -937,6 +937,67 @@ strong{
 		}
 	}
 	
+	/*Special use - Gestion Canchas*/
+	#gestioncanchas.lista7Col > ul li:nth-child(1),
+	#gestioncanchas.lista7Row > ul li:nth-child(1){
+		width: 20%;
+	}
+	#gestioncanchas.lista7Col > ul li:nth-child(2),
+	#gestioncanchas.lista7Row > ul li:nth-child(2){
+		width: 20%;
+	}
+	#gestioncanchas.lista7Col > ul li:nth-child(3),
+	#gestioncanchas.lista7Row > ul li:nth-child(3){
+		width: 10%;
+	}
+	#gestioncanchas.lista7Col > ul li:nth-child(4),
+	#gestioncanchas.lista7Row > ul li:nth-child(4){
+		width: 10%;
+	}
+	#gestioncanchas.lista7Col > ul li:nth-child(5),
+	#gestioncanchas.lista7Row > ul li:nth-child(5){
+		width: 10%;
+	}
+	#gestioncanchas.lista7Col > ul li:nth-child(6),
+	#gestioncanchas.lista7Row > ul li:nth-child(6){
+		width: 10%;
+	}
+	#gestioncanchas.lista7Col > ul li:nth-child(7),
+	#gestioncanchas.lista7Row > ul li:nth-child(7){
+		width: 15%;
+	}
+	@media (max-width: 600px) and (max-width: 1000px) {
+		#gestioncanchas.lista7Col > ul li:nth-child(1),
+		#gestioncanchas.lista7Row > ul li:nth-child(1){
+			width: 19%;
+		}
+		#gestioncanchas.lista7Col > ul li:nth-child(2),
+		#gestioncanchas.lista7Row > ul li:nth-child(2){
+			width: 20%;
+		}
+		#gestioncanchas.lista7Col > ul li:nth-child(3),
+		#gestioncanchas.lista7Row > ul li:nth-child(3){
+			width: 15%;
+			word-break: break-all;
+		}
+		#gestioncanchas.lista7Col > ul li:nth-child(4),
+		#gestioncanchas.lista7Row > ul li:nth-child(4){
+			width: 13%;
+		}
+		#gestioncanchas.lista7Col > ul li:nth-child(5),
+		#gestioncanchas.lista7Row > ul li:nth-child(5){
+			width: 13%;
+		}
+		#gestioncanchas.lista7Col > ul li:nth-child(6),
+		#gestioncanchas.lista7Row > ul li:nth-child(6){
+			width: 13%;
+		}
+		#gestioncanchas.lista7Col > ul li:nth-child(7),
+		#gestioncanchas.lista7Row > ul li:nth-child(7){
+			width: 6%;
+		}
+	}
+
 	/*#######################*/               
 	/*#####6COL-buscarpartido*/
 	/*#######################*/ 

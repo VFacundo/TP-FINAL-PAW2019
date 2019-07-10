@@ -18,7 +18,7 @@
 						echo			'<li>' . $valor['fecha_turno'] . " | " . $valor['horario_turno']."hs" . '</li>';
 						echo			'<li>' . $valor['direccion_cancha'] . " | " . $valor['nombre_cancha'] . '</li>';
 						echo			'<li><input type="hidden" value="' . $valor['id_turno'] . '"><></li>';
-						echo			'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id_turno'] .')">Cancelar</button> </li>';
+						echo			'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id_turno'] .')" disabled>Cancelar</button> </li>';
 						echo 		'</ul>
 								</li>';
 					}

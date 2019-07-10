@@ -1,7 +1,7 @@
 <?php
 namespace UNLu\PAW\Controladores;
 use UNLu\PAW\Libs\VIstaHTML;
-use UNLu\PAW\Modelos\users;
+use UNLu\PAW\Modelos\admindb;
 
 class Admin extends \UNLu\PAW\Libs\Controlador{
 
@@ -11,29 +11,36 @@ class Admin extends \UNLu\PAW\Libs\Controlador{
 	private static function initialize(){
 		if(self::$initialized)
 			return true;
-		self::$db = new users();
+		self::$db = new admindb();
 		self::$initialized=true;
 	}
 
 	public function turnosreservados(){
 		self::initialize();
 		sesion::startSession();
-		if(sesion::is_login()){
-			//$this->redireccionarA($_SERVER['REQUEST_URI'],'/turnosadmin');
-			sesion::refreshTime();
+		if(sesion::isAdmin()){
+			if(sesion::is_login()){
+				sesion::refreshTime();
+			}else{
+				$this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
+			}
 		}else{
-			$this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
+			$this->redireccionarA($_SERVER['REQUEST_URI'],'/login/logout');
 		}
 	}
 
 	public function canchas(){
 		self::initialize();
 		sesion::startSession();
-		if(sesion::is_login()){
-			//$this->redireccionarA($_SERVER['REQUEST_URI'],'/canchas');
-			sesion::refreshTime();
+		if(sesion::isAdmin()){
+			if(sesion::is_login()){
+				sesion::refreshTime();
+				$this->pasarVariableaVista('canchas',self::$db->buscarCanchas());
+			}else{
+				$this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
+			}	
 		}else{
-			$this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
+			$this->redireccionarA($_SERVER['REQUEST_URI'],'/login/logout');
 		}
 	}
 
