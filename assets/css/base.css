@@ -324,6 +324,20 @@ strong{
 	.asisto:hover{
 		cursor: pointer;
 	}
+	.add{
+		width: 100% !important;
+	}
+	.add div{
+		display: flex;
+		/* font-size: 0.7em; */
+		justify-content: center;
+		align-items: center;
+		margin: 1vh 0vw;
+	}
+	.add div label{
+		line-height: 2vh;
+		width: 30vw !important;
+	}
 /* Mobile */
 	@media (max-width: 600px) {
 		.masDetalles{

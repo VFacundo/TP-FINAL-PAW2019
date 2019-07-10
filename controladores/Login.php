@@ -128,17 +128,22 @@ class Login extends \UNLu\PAW\Libs\Controlador{
       if(!empty($db->buscarUser($ident))){
         if($db->loginUser($ident,$pass)===TRUE){
           sesion::inicializarSesion($db->buscarUser($ident));
-          $this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
+		  if(sesion::isAdmin()){
+			$this->redireccionarA($_SERVER['REQUEST_URI'],'/admin');
+			exit();
+		  }else{
+			$this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
+		  }
         }else{
-          $_SESSION['mensaje'] = 'Contraseña Incorrecta';
+          $_SESSION['mensaje'] = 'Usuario o Contraseña Incorrecto';
           $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
         }
       }else{
-          $_SESSION['mensaje'] = 'Datos Ingresados NO Validos! no user';
+          $_SESSION['mensaje'] = 'Usuario o Contraseña Incorrecto';
           $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
       }
     }else {
-      $_SESSION['mensaje'] = 'Datos Ingresados NO Validos!' . 'mail:'. data::verify_mail($ident) .'usr:'.  data::verify_username($ident) . 'pwd:'. data::verify_pass($pass);
+      $_SESSION['mensaje'] = 'Usuario o Contraseña Incorrecto';
       $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
     }
   }

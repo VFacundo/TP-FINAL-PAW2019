@@ -7,6 +7,7 @@ class sesion{
   private static $initialized = false;
   private static $timeout = 200;
   private static $sName = "USRSSN";
+  private static $admin = false;
 
     private static function initialize(){
       if(self::$initialized)
@@ -82,6 +83,16 @@ class sesion{
       }
       return $sa;
     }
+	public static function setAdmin(){
+      self::startSession();
+      $_SESSION['ad'] = TRUE;
+    }
 
+    public static function isAdmin(){
+      if(sesion::is_login()){
+        return $_SESSION['ad'];
+      }
+      return FALSE;
+    }
 }
 ?>

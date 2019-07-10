@@ -1,6 +1,7 @@
 <?php
 namespace UNLu\PAW\Modelos;
 use UNLu\PAW\Modelos\dbconnect;
+use UNLu\PAW\Controladores\sesion;
 use PDO;
 require_once 'vendor/autoload.php';
 
@@ -120,10 +121,10 @@ class users{
       return $login;
   }
 
-  public function buscarUser($ident){//Busco el mail en la bd
-    $sql= "SELECT id,mail FROM usuario WHERE mail='$ident'";
+	public function buscarUser($ident){//Busco el mail en la bd
+    $sql= "SELECT id,mail,tipo FROM usuario WHERE mail='$ident'";
       if(strpos($ident,'@')===FALSE){//si tiene @ es un mail
-          $sql= "SELECT id,user FROM usuario WHERE user='$ident'";
+          $sql= "SELECT id,user,tipo FROM usuario WHERE user='$ident'";
       }
     $result = $this->db->conn->query($sql);
     $existe = NULL;
@@ -131,9 +132,13 @@ class users{
       $result = $result->fetch();
         if(!$result===FALSE){
             $existe = $result['id'];
+              if($result['tipo']==1){
+                sesion::setAdmin();
+              }
         }
     }
     return $existe;
   }
+  
 }
 ?>

@@ -27,7 +27,26 @@ Base.init = function(){
 		menu.addEventListener("click",function(){showNav()});
 	});
 }
-
+Base.initAdmin = function(){
+	window.addEventListener("DOMContentLoaded", function(){
+    var botonNav = document.getElementsByClassName("botonNav"),
+			initSel = 0,
+			menu = document.querySelector("#menuBtn"),
+			location = window.location.href;
+		if(location.search("turnosreservados")!=-1){
+			initSel = 0;
+		}else if (location.search("canchas")!=-1) {
+			initSel = 1;
+		}else {
+			initSel = 0;
+		}
+		botonNav[initSel].classList.add("selectedLi");
+		for (var i = 0; i < botonNav.length; i++) {
+			botonNav[i].addEventListener("click",Base.click);
+		}
+		menu.addEventListener("click",function(){showNav()});
+	});
+}
 function showNav(){
 	var nav = document.querySelector("body > nav"),
 		menu = document.querySelector("body > nav nav"),

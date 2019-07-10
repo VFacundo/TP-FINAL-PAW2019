@@ -42,10 +42,16 @@ return [
             'accion' => 'search'
         ]
 	],
-  'buscarpartido' => [
-      'accionPorDefecto' => [
-          'controlador' => 'Buscarpartido',
-          'accion' => 'buscar'
-      ]
-]
+	'buscarpartido' => [
+		'accionPorDefecto' => [
+			'controlador' => 'Buscarpartido',
+			'accion' => 'buscar'
+		]
+	],
+	'admin' => [
+		'accionPorDefecto' => [
+			'controlador' => 'Admin',
+			'accion' => 'turnosreservados'
+		]
+	]
 ];

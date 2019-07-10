@@ -1,0 +1,30 @@
+<?php include('assets/template/baseHeadAdmin.html'); ?>
+<section class="sideSection">
+  <h1>Turnos reservados</h1>
+	<div>
+		<div class="lista3Col" id="turnosreservados">
+			<?php
+				echo '<ul>
+						<li>Tipo</li>
+						<li>Fecha</li>
+						<li>Lugar</li>
+					</ul>
+					<ul>';
+				if(isset($historial)){
+					foreach($historial as $valor){
+						echo 	'<li  class="lista3Row">';
+						echo		'<ul>';
+						echo			'<li>' . $valor['tipo_turno'] . '</li>';
+						echo			'<li>' . $valor['fecha_turno'] . " | " . $valor['horario_turno']."hs" . '</li>';
+						echo			'<li>' . $valor['direccion_cancha'] . " | " . $valor['nombre_cancha'] . '</li>';
+						echo			'<li><input type="hidden" value="' . $valor['id_turno'] . '"><></li>';
+						echo			'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id_turno'] .')">Cancelar</button> </li>';
+						echo 		'</ul>
+								</li>';
+					}
+				}
+				echo '</ul>';
+			?>
+		</div>
+	</div>
+<?php include('assets/template/baseTailAdmin.html'); ?>

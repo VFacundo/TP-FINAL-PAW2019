@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,height=device-height,user-scalable=no, initial-scale=1.0">
+		<link rel="manifest" href="manifest.json">
+		<link rel="stylesheet" href="/assets/css/base.css">
+		<link rel="stylesheet" href="/assets/css/loader.css">
+		<link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
+		<link type="text/css" rel="stylesheet" href="assets/css/iconset.css" />
+		<script src="/assets/js/calcViewPort.js"></script>
+		<script type="text/javascript" src="/assets/js/editarPerfil.js"></script>
+		<script src="/assets/js/base.js"></script>
+		<script> Base.initAdmin(); </script>
+	</head>	
+	<script>
+		function logoutPhp(){
+		  window.location.href='/admin/logout';
+		}
+	</script>
+	<body>
+		<span id="menuBtn">></span>
+		<nav>
+			<div class="logo">
+				<figure>
+				  <img src="/img/logoBlack.png" alt="Logo Fulbito!">
+				</figure>
+				<h1>Hay Fulbito</h1>
+			</div>
+			<nav>
+				<ul>
+					<li class="botonNav boton" onclick="location.href='/admin/turnosreservados'">Turnos Reservados</li>
+					<li class="botonNav boton" onclick="location.href='/admin/canchas'">Gestion Canchas</li>
+					<li class="botonNav boton" onclick="logoutPhp()">Cerrar sesion</li>
+				</ul>
+			</nav>
+		</nav>
+		<div class="background"></div>
