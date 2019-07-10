@@ -59,7 +59,7 @@ private static function initialize(){
     $canchas = self::$dbTurnos->select_canchas();
     $mensaje = null;
     foreach ($canchas as $value) {
-      $mensaje.= '<option value="' . $value['id'] . '">' . $value['nombre'] . '<sub>' . $value['direccion'] . '</sub>' . '</option>';
+      $mensaje.= '<option value="' . $value['id'] . '">' . $value['nombre'] . '<label>' . $value['direccion'] . '</label>' . '</option>';
     }
       echo $mensaje;
       exit();

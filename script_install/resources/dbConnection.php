@@ -71,7 +71,7 @@ class dbConnection{
 									tipo_turno INT(11) UNSIGNED,
 									origen_turno VARCHAR(50),
 									FOREIGN KEY(id_solicitante) REFERENCES usuario(id),
-									FOREIGN KEY(id_equipo_rival) REFERENCES equipo(id),
+									FOREIGN KEY(id_equipo_rival) REFERENCES usuario(id),
 									FOREIGN KEY(id_cancha) REFERENCES cancha(id),
 									PRIMARY KEY(id,fecha,horario_turno)
 									);

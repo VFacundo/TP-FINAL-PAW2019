@@ -13,6 +13,52 @@ class turnosdb{
       $this->dbEquipo = new equipos();
     }
 
+    public function aceptarDesafio($id,$id_desafio){
+      $data_desafio = $this->verificarDesafio($id,$id_desafio);
+      $result = NULL;
+      if($data_desafio){
+        $id_turno = $data_desafio['id_turno'];
+          $sql = "DELETE FROM desafio WHERE id_turno='$id_turno'";
+          $result = $this->db->conn->prepare($sql)->execute();
+            if($result){
+              $idCapitanRival = $this->dbEquipo->dataCapitan($data_desafio['id_equipo']);
+              $id_equipo_rival = $this->dbEquipo->getIdUsuario($idCapitanRival[0]['id'])[0];
+              $sql = "UPDATE turno SET id_equipo_rival='$id_equipo_rival',tipo_turno='1' WHERE id = '$id_turno'";
+                $result = $this->db->conn->prepare($sql)->execute();
+            }
+      }
+      return $result;
+    }
+
+    public function borrarDesafio($id,$id_desafio){
+      if($this->verificarDesafio($id,$id_desafio)){
+        $sql = "DELETE FROM desafio WHERE id='$id_desafio'";
+        $result = $this->db->conn->prepare($sql)->execute();
+        return $result;
+      }
+    }
+
+    public function verificarDesafio($id,$id_desafio){
+      $sql = "SELECT * FROM turno t
+	              INNER JOIN desafio d on t.id = d.id_turno
+                    WHERE t.id_solicitante='$id' AND t.tipo_turno='3' AND d.id = '$id_desafio'";
+      $result = $this->db->conn->query($sql);
+      if(!$result===FALSE){
+        $result = $result->fetch();
+        }
+      return $result;
+    }
+
+    public function buscarDesafio($id_turno,$id){
+      $id_equipo = $this->dbEquipo->getEquipo($id)['id'];
+      $sql = "SELECT * FROM desafio WHERE id_equipo = '$id_equipo' AND id_turno = '$id_turno'";
+      $result = $this->db->conn->query($sql);
+        if(!$result===FALSE){
+          $result = $result->fetch();
+        }
+      return $result;
+    }
+
     public function desafios($id){
       $sql = "SELECT d.id,t.fecha,t.horario_turno,t.id_cancha,d.id_equipo,c.direccion,c.nombre FROM turno t
 	                INNER JOIN desafio d on t.id = d.id_turno
@@ -97,7 +143,7 @@ class turnosdb{
     }
 
     public function buscarPartido(){
-       $sql = "SELECT * FROM turno WHERE (fecha>=CURDATE() AND horario_turno>=CURTIME()) AND tipo_turno = 3";
+       $sql = "SELECT * FROM turno WHERE CONCAT(fecha,' ',horario_turno)>=NOW() AND tipo_turno = 3";
        $result = $this->db->conn->query($sql);
        $arrayResultado = [];
          if(!$result===FALSE){
@@ -197,7 +243,8 @@ public function newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,$id){
       $id_solicitante = $id;
       //$nombreEquipoRival = $this->dbEquipo->getEquipoNombre($equipo_rival);
       $idCapitanRival = $this->dbEquipo->getCapitan($equipo_rival);
-      $id_equipo_rival = $idCapitanRival['id_capitan'];
+      $id_capitan = $this->dbEquipo->getIdUsuario($idCapitanRival['id_capitan']);
+      $id_equipo_rival = $id_capitan[0];
       break;
     case 2://Mi Equipo vs Invitado
       $id_solicitante = $id;
@@ -208,14 +255,14 @@ public function newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,$id){
       $id_equipo_rival = NULL;
       break;
   }
-  $resultado = $this->db->conn->prepare($sql)->execute([NULL,$fecha,$horario,$id_solicitante,$id_equipo_rival,1,$tipoTurno,'web']);
+  $resultado = $this->db->conn->prepare($sql)->execute([NULL,$fecha,$horario,$id_solicitante,$id_equipo_rival,$cancha,$tipoTurno,'web']);
   $info = $this->db->conn->errorCode();
 }
 
 public function buscarMisTurnos($id){//Id user
     $sql = "SELECT t.id, t.tipo_turno, t.fecha,t.id_equipo_rival, t.horario_turno,c.nombre,c.direccion FROM turno t
 	            INNER JOIN cancha c on t.id_cancha=c.id
-                WHERE id_solicitante='$id'";
+                WHERE id_solicitante='$id' AND CONCAT(t.fecha,' ',t.horario_turno)>=NOW()";
     $result = $this->db->conn->query($sql);
     $arrayResultado = [];
     if(!$result===FALSE){
@@ -235,7 +282,8 @@ public function buscarMisTurnos($id){//Id user
           case 1://Mi Equipo vs Otro Equipo
             $idEquipoRival = $this->dbEquipo->getEquipo($value['id_equipo_rival']);
             $jugadores = $this->dbEquipo->getJugadoresEquipo($idEquipoRival['id']);
-            $capitan = $this->dbEquipo->datosJugador($value['id_equipo_rival']);
+            $id_capitan = $this->dbEquipo->getIdJugador($value['id_equipo_rival']);
+            $capitan = $this->dbEquipo->datosJugador($id_capitan);
             $promedio_edad = 0;
               foreach ($jugadores as $valueJug) {
                   $promedio_edad += $valueJug['edad'];
@@ -290,7 +338,8 @@ public function buscarMisTurnos($id){//Id user
     $misEquiposJugador = $this->dbEquipo->misEquiposJugador($id);
       if($misEquiposJugador){
           foreach($misEquiposJugador as $value){
-            $turnosEquipo = $this->buscarMisTurnos($value['id_capitan']);
+            $id_capitan = $this->dbEquipo->getIdUsuario($value['id_capitan']);
+            $turnosEquipo = $this->buscarMisTurnos($id_capitan);
               if(isset($turnosEquipo['tvt'])){
                 $partidos[] = [
                     'miequipo' => $value,

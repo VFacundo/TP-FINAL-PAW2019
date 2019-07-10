@@ -64,7 +64,7 @@ public function borrarJugadorEquipo($id_jugador,$id){//In IDJUg, idUSR CAPITAN
 }
 
 public function datosJugador($id_jugador){//In idJugador return Data jugador/user
-  $sql = "SELECT u.user,j.nombre,j.edad FROM jugador j
+  $sql = "SELECT u.user,j.nombre,j.edad,j.id FROM jugador j
 	INNER JOIN usuario u ON (j.id_usuario = u.id)
     	WHERE j.id = '$id_jugador'";
   $result = $this->db->conn->query($sql);
@@ -154,6 +154,16 @@ public function getIdJugador($id){//id usuario
   if(!$result===FALSE){
     $result = $result->fetch();
     $result = $result['id'];
+  }
+  return $result;
+}
+
+public function getIdUsuario($id_jugador){//id jugador
+  $sql = "SELECT id_usuario FROM jugador WHERE id='$id_jugador'";
+  $result = $this->db->conn->query($sql);
+  if(!$result===FALSE){
+    $result = $result->fetch();
+    $result = $result['id_usuario'];
   }
   return $result;
 }
@@ -255,5 +265,6 @@ public function dataCapitan($idEquipo){
   }
   return $this->datosJugador($result['id_capitan']);
 }
+
 
 }

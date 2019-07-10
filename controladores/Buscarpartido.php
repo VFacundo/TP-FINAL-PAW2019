@@ -33,13 +33,16 @@ public function desafiar(){
       self::initialize();
       $id_turno = $_POST['id_turno'];
         if(!self::$dbTurnos->getTurno($id_turno,sesion::getId())){
-            //registrar desafio!
-            if(self::$dbTurnos->registrarDesafio($id_turno,sesion::getId())){
-              echo "Desafio Registrado!";
+            if(!self::$dbTurnos->buscarDesafio($id_turno,sesion::getId())){
+              //registrar desafio!
+              if(self::$dbTurnos->registrarDesafio($id_turno,sesion::getId())){
+                echo "Desafio Registrado!";
+              }else{
+                echo "Debes Registrar Un EQUIPO!";
+              }
             }else{
-              echo "Debes Registrar Un EQUIPO!";
+               echo "Ya Desafiaste Ese Turno!";
             }
-
         }else {
           echo "No Puedes Desafiar TU Propio Turno!";
         }
