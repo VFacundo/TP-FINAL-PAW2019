@@ -142,12 +142,12 @@ strong{
 		content:'';
 		background-image: url('/img/silueta.png');
 		position: absolute;
-		height: 4vh;
+		height: 5vh;
 		width: 4vw;
 		min-width: 20px;
-		background-size: 30px 35px;
+		background-size: 25px 30px;
 		background-repeat: no-repeat;
-		margin: 0vh -3vw;
+		margin: -0.5vh -2vw;
 	}
 
 	#contenedorLogo{
@@ -938,6 +938,7 @@ strong{
 	.lista6Col.buscarpartido > ul li ul{
 		display: flex;
 		justify-content: start;
+		flex-wrap: wrap;
 	}
 	.lista6Col.buscarpartido {
 		width: 100% !important;
@@ -1205,6 +1206,11 @@ body > span{position: absolute;top: 5vh;left: -40vw;}
 		justify-content: center;
 	}
 	ul{
+	}
+}
+@media (max-width: 1200px) {
+	.selectedLi:before{
+		background:none;
 	}
 }
 /*****************/
