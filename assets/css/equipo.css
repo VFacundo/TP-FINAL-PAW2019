@@ -1,5 +1,5 @@
 .add{
-	width: 30vw !important;
+	width: 100% !important;
 }
 .add div{
 	display: flex;
@@ -9,9 +9,12 @@
 	margin: 1vh 0vw;
 }
 .add div label{
-	line-height: 2vh;
-	/* padding: 1.5vh 1vw; */
-	width: 30vw !important;
+	
+line-height: 2vh;
+	
+/* padding: 1.5vh 1vw; */
+	
+width: 30vw !important;
 }
 .editar{display: flex;justify-content: center;margin: 5vh 0vw;}
 div .equipo > input{
@@ -21,13 +24,6 @@ div .equipo > input{
 
 #miequipoImagen{width: 8vw;display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;align-items: center;margin: 0vh 1vw;}
 
-#comojugadorDatos ul li:nth-child(1){
-	width: 7vw;
-}
-
-#comojugadorDatos .lista6Row > ul li:nth-child(7){
-	width: 100%;
-}
 
 #miequipoImagen::before{
 	 content: 'Logo';
@@ -67,11 +63,11 @@ li .icon-pencil {
 }
 
 li .icon-ok{
-	width:50%;
+	width: 49%;
 }
 li .cancelEdition{
 	background: #ea4848;
-	width:50%;
+	width: 49%;
 }
 li .icon-trash {
     background: #f13232;

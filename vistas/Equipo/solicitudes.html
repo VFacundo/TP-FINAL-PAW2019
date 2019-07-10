@@ -1,20 +1,19 @@
-<div class="lista6Col" id="solicitudesDatos">
+<div class="lista7Col" id="solicitudesDatos">
 	<?php
 		if($equipo){
 			echo '<ul>
-					<li></li>
+					<li>&nbsp;</li>
 					<li>Equipo</li>
 					<li>Edad</li>
 					<li>Fecha</li>
 					<li>Lugar</li>
 					<li></li>
 					<li></li>
-					<li></li>
 				</ul>
 			<ul>';
 			if(isset($solicitudesPartidos)){
 				foreach($solicitudesPartidos as $valor){
-					echo '<li  class="lista6Row">';
+					echo '<li  class="lista7Row">';
 					echo	'<ul>';
 					echo		'<li> <img src="img/' . $valor['logo_equipo'] . '"></li>';
 					echo		'<li>' . $valor['nombre_equipo'] . '</li>';
@@ -22,14 +21,14 @@
 					echo		'<li>' . $valor['fecha_turno'] . " | " . $valor['horario_turno']."hs" . '</li>';
 					echo		'<li>' . $valor['direccion_cancha'] . " | " . $valor['cancha'] .'</li>';
 					echo		'<li> <div>
-										<button class="boton aceptar" onclick="aceptarTurno(null,'. $valor['id_desafio'] .')">Aceptar</button>';
-					echo		'		<button class="boton rechazar" onclick="cancelarTurno(null,'. $valor['id_desafio'] .')">Cancelar</button>
+										<button class="boton aceptar" onclick="aceptarDesafio(null,'. $valor['id_desafio'] .')">Aceptar</button>';
+					echo		'		<button class="boton rechazar" onclick="rechazarDesafio(null,'. $valor['id_desafio'] .')">Cancelar</button>
 									  </div></li>';
 					echo 		'<li>
 									<span class="masDetalles"> Mas detalles </span>
 								</li>';
-					echo 		'<li>
-									<div class="detalles">
+					echo 		'<li class="detalles">
+									<div>
 										<ul>
 											<li>Jugador</li>
 											<li>Edad</li>

@@ -1,6 +1,6 @@
-<div class="lista6Col" id="comojugadorDatos">
+<div class="lista7Col" id="comojugadorDatos">
 	<?php
-		echo '<ul class="lista6Col">
+		echo '<ul class="lista7Col">
 				<li></li>
 				<li>Equipo</li>
 				<li>Edad</li>
@@ -11,7 +11,7 @@
 		<ul>';
 		if(!empty($equiposComoJugador)){
 			foreach($equiposComoJugador as $valor){
-				echo '<li class="lista6Row">
+				echo '<li class="lista7Row">
 						<ul>';
 				echo 	'<li><img src="/img/' . $valor['logo'] . '" alt="Logo de Equipo"></li>';
 				echo 	'<li>' . $valor['nombre'] . '</li>';
@@ -23,8 +23,8 @@
 				echo 	'<li>
 							<span class="masDetalles"> Mas detalles </span>
 						</li>';
-				echo 	'<li>
-								<div class="detalles">
+				echo 	'<li class="detalles">
+								<div>
 									<ul>
 										<li>Jugador</li>
 										<li>Edad</li>

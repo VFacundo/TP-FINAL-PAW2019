@@ -4,29 +4,27 @@
 		<label class="boton" id="labelSubir">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" onchange="subirImgEquipo();"></label>
 	</div>
 	<label><span>Nombre del equipo:</span><input type="text" name="eq_nombre" value="<?=$nombre_equipo?>" disabled><label class="boton icon-pencil" onclick="editNombreEquipo();"></label></label>
-	<div class="lista6Col equipo" id="miequipoDatos">
+	<div class="lista6Col" id="miequipoDatos">
 		<ul>
 			<li>&nbsp;</li>
 			<li>Nombre</li>
 			<li>Edad</li>
 			<li>Usuario</li>
 			<li></li>
-			<li></li>
 		</ul>
 		<ul>
-			<li class="lista6Row equipo">
+			<li class="lista6Row">
 				<ul class="capitan">
 					<li><img src="img/<?=$datosUserJug['img_src']?>" alt="Imagen de jugador"></li>
 					<li><?=$datosUserJug['nombre']?></li>
 					<li><?=$datosUserJug['edad']?></li>
 					<li><?=$datosUserJug['user']?></li>
 					<li></li>
-					<li></li>
 				</ul>
 			</li>
 			<?php
 				foreach($jugadores as $valor){
-					echo '<li class="lista6Row equipo"><ul>';
+					echo '<li class="lista6Row"><ul>';
 					echo '<li><img src="/img/' . $valor['img_src'] . '" alt="Imagen de jugador"></li>';
 					echo '<li><input type="text" name="j_nombre" value="' . $valor['nombre'] . '"disabled></li>';
 					echo '<li><input type="number" name="j_edad" value="' . $valor['edad'] . '" disabled></li>';

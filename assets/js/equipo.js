@@ -8,7 +8,7 @@ function eliminarJugador(confirmar,jugador){
 			xhr.open('POST', 'http://localhost/equipo/borrarjugadorequipo');
 			xhr.onload = function() {
 				console.log('JUG borrado', xhr.responseText);
-				if(xhr.responseText==200){
+				if(xhr.responseText.includes(200)){
 					msgNotificar("Jugador borrado exitosamente","Borrar jugador");
 				}else {
 					msgNotificar("No fue posible borrar el jugador","Borrar jugador");
@@ -95,7 +95,7 @@ function subirImgEquipo(){
 	formData.append('imgFile',blobFile);
 	xhr.open('POST', 'http://localhost/equipo/cambiarimg');
 	xhr.onload = function() {
-		if(xhr.responseText != 400){
+		if(!xhr.responseText.include(400)){
 			img_src = "/img/";
 			document.querySelector('#miequipoImagen>img').src = img_src+xhr.responseText.trim();
 		}else{
@@ -228,7 +228,7 @@ function confirmarEdicion(){
 	}
 	xhr.open('POST', 'http://localhost/equipo/editarjugadorequipo');
 	xhr.onload = function() {
-		if(xhr.responseText == 200){
+		if(xhr.responseText.include(200)){
 			msgNotificar("Jugador editado correctamente.","Editar jugador");
 		}else {
 			msgNotificar("No se pudo editar el jugador.","Editar jugador");
@@ -245,17 +245,17 @@ function confirmarEdicion(){
 	user.disabled = true;
 }
 
-function aceptarTurno(confirmar,turno){
+function aceptarDesafio(confirmar,turno){
 	if(confirmar !== null){
 		if(confirmar){
 			var xhr = new XMLHttpRequest(),
 				formData = new FormData(),
 				items = document.querySelectorAll(".lista6Row.equipo");
 			formData.append('id_turno',turno);
-			xhr.open('POST', 'http://localhost/equipo/aceptarTurno');
+			xhr.open('POST', 'http://localhost/equipo/aceptardesafio');
 			xhr.onload = function() {
-				console.log('Turno aceptado: ', xhr.responseText);
-				if(xhr.responseText==200){
+				console.log('Desafio aceptado: ', xhr.responseText);
+				if(xhr.responseText.includes(200)){
 					msgNotificar("El desafio fue aceptado exitosamente","Solicitud de desafio");
 				}else {
 					msgNotificar("El desafio no pudo ser aceptado, porfavor intentelo denuevo.","Solicitud de desafio");
@@ -289,22 +289,22 @@ function aceptarTurno(confirmar,turno){
 						edad:  ul.children[2].innerText,
 						fecha: ul.children[3].innerText,
 						lugar: ul.children[4].innerText,
-						id: ul.lastChild.value
+						id: ul.lastChild.children[0].value
 						};
-		msgConfirmar("¿Desea aceptar el desafio contra "+old_data.name+" en "+old_data.lugar+" ("+old_data.fecha+")?","Solicitud de desafio",old_data,"aceptarTurno(true,"+old_data.id+")","aceptarTurno(false,-1)");
+		msgConfirmar("¿Desea aceptar el desafio contra "+old_data.name+" en "+old_data.lugar+" ("+old_data.fecha+")?","Solicitud de desafio",old_data,"aceptarDesafio(true,"+old_data.id+")","aceptarDesafio(false,-1)");
 	}
 }
-function cancelarTurno(confirmar,turno){
+function rechazarDesafio(confirmar,turno){
 	if(confirmar !== null){
 		if(confirmar){
 			var xhr = new XMLHttpRequest(),
 				formData = new FormData(),
 				items = document.querySelectorAll(".lista6Row.equipo");
 			formData.append('id_turno',turno);
-			xhr.open('POST', 'http://localhost/equipo/aceptarTurno');
+			xhr.open('POST', 'http://localhost/equipo/rechazardesafio');
 			xhr.onload = function() {
-				console.log('Turno aceptado: ', xhr.responseText);
-				if(xhr.responseText==200){
+				console.log('Desafio Rechazado: ', xhr.responseText);
+				if(xhr.responseText.include(200)){
 					msgNotificar("El desafio fue rechazado exitosamente","Solicitud de desafio");
 				}else {
 					msgNotificar("El desafio no pudo ser rechazado, porfavor intentelo denuevo.","Solicitud de desafio");
@@ -338,8 +338,8 @@ function cancelarTurno(confirmar,turno){
 						edad:  ul.children[2].innerText,
 						fecha: ul.children[3].innerText,
 						lugar: ul.children[4].innerText,
-						id: ul.lastChild.value
+						id: ul.lastChild.children[0].value
 						};
-		msgConfirmar("¿Desea rechazar el desafio de "+old_data.name+" en "+old_data.lugar+" ("+old_data.fecha+")?","Solicitud de desafio",old_data,"cancelarTurno(true,"+old_data.id+")","cancelarTurno(false,-1)");
+		msgConfirmar("¿Desea rechazar el desafio de "+old_data.name+" en "+old_data.lugar+" ("+old_data.fecha+")?","Solicitud de desafio",old_data,"rechazarDesafio(true,"+old_data.id+")","rechazarDesafio(false,-1)");
 	}
 }

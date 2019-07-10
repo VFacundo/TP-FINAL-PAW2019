@@ -53,6 +53,7 @@ function showNav(){
 
 function msgConfirmar(msj,titulo,data,accionOk,accionCancelar){
 	var ventana = document.createElement("div"),
+		overlay = document.createElement("div"),
 		h3 = document.createElement("h3"),
 		p = document.createElement("p"),
 		divBtn = document.createElement("div"),
@@ -62,7 +63,8 @@ function msgConfirmar(msj,titulo,data,accionOk,accionCancelar){
 		ventana = document.createElement("div");
 	
 	ventana.classList.add("ventana");
-	ventana.id = "msgConfirmar";
+	overlay.classList.add("overlay");
+	overlay.id = "msgConfirmar";
 	okBtn.classList.add("boton");
 	cancelBtn.classList.add("boton");
 	okBtn.classList.add("okBtn");
@@ -84,11 +86,14 @@ function msgConfirmar(msj,titulo,data,accionOk,accionCancelar){
 	ventana.appendChild(divBtn);
 	ventana.appendChild(cerrarBtn);
 	
-	document.querySelector("body").appendChild(ventana);
+	overlay.appendChild(ventana);
+	
+	document.querySelector("body").appendChild(overlay);
 	
 }
 function msgNotificar(msj,titulo){
 	var ventana = document.createElement("div"),
+		overlay = document.createElement("div"),
 		h3 = document.createElement("h3"),
 		p = document.createElement("p"),
 		divBtn = document.createElement("div"),
@@ -97,7 +102,8 @@ function msgNotificar(msj,titulo){
 		ventana = document.createElement("div");
 	
 	ventana.classList.add("ventana");
-	ventana.id = "msgNotificar";
+	overlay.classList.add("overlay");
+	overlay.id = "msgNotificar";
 	okBtn.classList.add("boton");
 	okBtn.classList.add("okBtn");
 	cerrarBtn.classList.add("cerrar");
@@ -114,8 +120,11 @@ function msgNotificar(msj,titulo){
 	ventana.appendChild(divBtn);
 	ventana.appendChild(cerrarBtn);
 	
-	document.querySelector("body").appendChild(ventana);
+	overlay.appendChild(ventana);
+	
+	document.querySelector("body").appendChild(overlay);
 }
+
 function cerrarNotificacion(){
 	var msg = document.querySelector("#msgNotificar");
 	msg.parentElement.removeChild(msg);
