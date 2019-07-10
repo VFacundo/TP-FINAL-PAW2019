@@ -95,7 +95,7 @@ function subirImgEquipo(){
 	formData.append('imgFile',blobFile);
 	xhr.open('POST', 'http://localhost/equipo/cambiarimg');
 	xhr.onload = function() {
-		if(!xhr.responseText.include(400)){
+		if(!xhr.responseText.includes(400)){
 			img_src = "/img/";
 			document.querySelector('#miequipoImagen>img').src = img_src+xhr.responseText.trim();
 		}else{
@@ -228,7 +228,7 @@ function confirmarEdicion(){
 	}
 	xhr.open('POST', 'http://localhost/equipo/editarjugadorequipo');
 	xhr.onload = function() {
-		if(xhr.responseText.include(200)){
+		if(xhr.responseText.includes(200)){
 			msgNotificar("Jugador editado correctamente.","Editar jugador");
 		}else {
 			msgNotificar("No se pudo editar el jugador.","Editar jugador");

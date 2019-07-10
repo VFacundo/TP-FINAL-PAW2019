@@ -31,10 +31,23 @@ class Login extends \UNLu\PAW\Libs\Controlador{
       }
         sesion::startSession();
         sesion::inicializarSesion($db->buscarUser($mail));
-        $this->redireccionarA($_SERVER['REQUEST_URI'],'/response/responsepage/OK');
+		echo '200';
       }else{
-          $this->redireccionarA($_SERVER['REQUEST_URI'],'/response/responsepage/ERROR');
+		  echo 'error';
       }
+	  exit();
+  }
+
+  public function flogin(){
+    $id_token = $_POST['id_token'];
+    $mail = $_POST['umail'];
+    $nombre = $_POST['fullName'];
+    $db = new users();
+	$db->newUser($id_token,$mail,$nombre,'',0,'');
+	sesion::startSession();
+	sesion::inicializarSesion($db->buscarUser($mail));
+	echo '200';
+	exit();
   }
 
   public function registro($mensaje=null){

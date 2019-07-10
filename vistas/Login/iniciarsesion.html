@@ -40,7 +40,7 @@
       <a href="login/registro">Crear Cuenta</a>
       <section id="logTerceros">
 		<div class="fb-login-button">
-			<div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
+			<div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState();"></div>
 			<div id="fb-root"></div>
 		</div>
         <div class="g-login-button">
@@ -72,6 +72,68 @@
                 window.location="login";
             }
           </script>
+		  <script>
+				  function statusChangeCallback(response) {
+					if (response.status === 'connected') {
+					  logfb();
+					}
+				  }
+
+				  function checkLoginState() {
+					FB.getLoginStatus(function(response) {
+					  statusChangeCallback(response);
+					});
+				  }
+
+				  window.fbAsyncInit = function() {
+					FB.init({
+					  appId      : '2326764637646567',
+					  cookie     : true,  
+										  
+					  xfbml      : true,  
+					  version    : 'v3.3' 
+					});
+
+					FB.getLoginStatus(function(response) {
+					  statusChangeCallback(response);
+					});
+
+				  };
+
+				  // Load the SDK asynchronously
+				  (function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) return;
+					js = d.createElement(s); js.id = id;
+					js.src = "https://connect.facebook.net/en_US/sdk.js";
+					fjs.parentNode.insertBefore(js, fjs);
+				  }(document, 'script', 'facebook-jssdk'));
+
+				  function logfb() {
+					respuesta = FB.api('/me', {fields: 'name, email, birthday, location,photos'}, function(response){
+						var id_token,
+							umail,
+							fullName,
+							xhr = new XMLHttpRequest(),
+							respuesta,
+							formData = new FormData();
+						respuesta = response;	
+						xhr.open('POST', 'http://localhost/login/flogin');
+						xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+						xhr.onload = function() {
+							console.log('Signed in as: ' + xhr.responseText);
+						};
+						id_token = respuesta.id;
+						umail = respuesta.email;
+						fullName = respuesta.name;
+						xhr.send('id_token='+id_token+'&umail='+umail+'&fullName='+fullName);
+						window.location="login";
+						console.log(response);
+						return response});
+					
+				  }
+				</script>
+
         </div>
       </section>
     </section>
