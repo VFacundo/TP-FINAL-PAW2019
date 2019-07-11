@@ -24,6 +24,8 @@ public function buscar(){
       self::initialize();
       $this->pasarVariableAVista("listaPartidos",self::$dbTurnos->buscarPartido());
       sesion::refreshTime();
+  }else {
+    $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
   }
 }
 

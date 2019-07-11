@@ -54,7 +54,8 @@
 										echo	'<ul>';
 										echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
 										echo		'<li>' . $valor['direccion'] . "|" . $valor['cancha'] .'</li>';
-										echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id'] .')">Cancelar</button> </li>';
+										echo		'<li> <button class="boton rechazar" onclick="turnos.cancelarTurno()">Cancelar</button> </li>';
+										echo 		'<input type="hidden" value="' . $valor['id'] . '">' ;
 										echo	'</ul>';
 										echo '</li>';
 									}
@@ -84,7 +85,8 @@
 										echo		'<li>' . $valor['edad'] . '</li>';
 										echo		'<li>' . $valor['fecha'] . $valor['hora']."hs" . '</li>';
 										echo		'<li>' . $valor['direccion'] . "|" . $valor['cancha'] .'</li>';
-										echo		'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id'] .')">Cancelar</button> </li>';
+										echo		'<li> <button class="boton rechazar" onclick="turnos.cancelarTurno()">Cancelar</button> </li>';
+										echo 		'<input type="hidden" value="' . $valor['id'] . '">' ;
 										echo 		'<li>
 														<span class="masDetalles"> Mas detalles </span>
 													</li>';
@@ -177,7 +179,7 @@
 			</div>
 			<div class="stepTab">
 				<label>Cancha:
-					<select name="cancha_turno" onchange="turnos.horariosDisponibles();" required></select>
+					<select name="cancha_turno" required></select>
 				</label>
 				<div class="hint">
 					<span>Ayuda: Canchas disponibles para solicitar turnos</span>

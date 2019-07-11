@@ -54,6 +54,22 @@ private static function initialize(){
     }
   }
 
+  public function borrarTurno(){
+    self::initialize();
+    sesion::startSession();
+    if(sesion::is_login()){
+      $id_turno = $_POST['id_turno'];
+        if(self::$dbTurnos->borrarTurno(sesion::getId(),$id_turno)){
+          echo 200;
+        }else {
+          echo 400;
+        }
+    }else {
+      echo 400;
+    }
+    exit();
+  }
+
   public function getCanchas(){
     self::initialize();
     $canchas = self::$dbTurnos->select_canchas();
@@ -97,7 +113,7 @@ private static function initialize(){
 
         while($horario_apertura < $horario_cierre) {
             if(!in_array($horario_apertura->format('H:i:s'),$array_horario)){
-              $horarios .= '<option value="' . $horario_apertura->format('H:i:s') . '">' . $horario_apertura->format('H:i:s') . '</option>' . PHP_EOL;
+              $horarios .= '<option value="' . $horario_apertura->format('H:i') . '">' . $horario_apertura->format('H:i') . '</option>' . PHP_EOL;
             }
             $horario_apertura->add($duracion_turno);
         }

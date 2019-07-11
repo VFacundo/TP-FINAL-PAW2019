@@ -5,7 +5,7 @@ class sesion{
 
   private function __construct(){}
   private static $initialized = false;
-  private static $timeout = 200;
+  private static $timeout = 20000;
   private static $sName = "USRSSN";
   private static $admin = false;
 
@@ -40,6 +40,7 @@ class sesion{
         $_SESSION['timeout'] = time();
         $_SESSION['is_login'] = TRUE;
         $_SESSION['id'] = $id;
+        isset($_SESSION['ad'])?$_SESSION['ad']=TRUE:$_SESSION['ad']=FALSE;
         session_regenerate_id();
     }
 

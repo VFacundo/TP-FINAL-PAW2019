@@ -169,7 +169,7 @@ public function getIdUsuario($id_jugador){//id jugador
 }
 
 public function sanitizeString($string){
-  $string = strtolower(preg_replace('/[^a-z0-9-]+/i',' ',$string));
+  $string = preg_replace('/[^a-z0-9-]+/i',' ',$string);
   return $string;
 }
 public function sanitizeInt($int){

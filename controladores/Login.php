@@ -129,10 +129,10 @@ class Login extends \UNLu\PAW\Libs\Controlador{
         if($db->loginUser($ident,$pass)===TRUE){
           sesion::inicializarSesion($db->buscarUser($ident));
 		  if(sesion::isAdmin()){
-			$this->redireccionarA($_SERVER['REQUEST_URI'],'/admin');
-			exit();
+  			$this->redireccionarA($_SERVER['REQUEST_URI'],'/admin');
+  			exit();
 		  }else{
-			$this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
+			  $this->redireccionarA($_SERVER['REQUEST_URI'],'/perfil');
 		  }
         }else{
           $_SESSION['mensaje'] = 'Usuario o Contraseña Incorrecto';

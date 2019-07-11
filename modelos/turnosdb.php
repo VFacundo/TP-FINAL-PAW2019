@@ -13,6 +13,30 @@ class turnosdb{
       $this->dbEquipo = new equipos();
     }
 
+    public function borrarTurno($id,$id_turno){
+      $result = FALSE;
+      date_default_timezone_set('America/Argentina/Buenos_Aires');
+      $turno = $this->getTurno($id_turno,$id);
+      if($turno){
+        $cancel_turno = date_interval_create_from_date_string('45' .' minutes');
+        $fecha = $turno[0]['fecha'];
+        $horario = $turno[0]['horario_turno'];
+        $fecha_hora = date_create_from_format('Y-m-d H:i:s', $fecha . $horario);
+        //$actual = date('Y-m-d H:i:s');
+        $actual = new \DateTime("now");
+        echo '';
+        $actual->add($cancel_turno);
+          if($fecha_hora>$actual){
+              $sql = "DELETE FROM turno WHERE id='$id_turno' AND id_solicitante='$id'";
+              $result = $this->db->conn->prepare($sql)->execute();
+          }
+      }
+    return $result;
+    }
+      /*
+        9:00
+        8:15
+      */
     public function aceptarDesafio($id,$id_desafio){
       $data_desafio = $this->verificarDesafio($id,$id_desafio);
       $result = NULL;
@@ -60,7 +84,8 @@ class turnosdb{
     }
 
     public function desafios($id){
-      $sql = "SELECT d.id,t.fecha,t.horario_turno,t.id_cancha,d.id_equipo,c.direccion,c.nombre FROM turno t
+      $formato = '%H:%i';
+      $sql = "SELECT d.id,t.fecha,time_format(t.horario_turno, '$formato') AS horario_turno,t.id_cancha,d.id_equipo,c.direccion,c.nombre FROM turno t
 	                INNER JOIN desafio d on t.id = d.id_turno
     	              INNER JOIN cancha c on t.id_cancha = c.id
 		                	WHERE t.id_solicitante = '$id'";
@@ -90,7 +115,8 @@ class turnosdb{
     }
 
     public function historial($id){
-      $sql = "SELECT t.id, t.tipo_turno, t.fecha,t.id_equipo_rival, t.horario_turno,c.nombre,c.direccion FROM turno t
+      $formato = '%H:%i';
+      $sql = "SELECT t.id, t.tipo_turno, t.fecha,t.id_equipo_rival,time_format(t.horario_turno, '$formato') AS horario_turno,c.nombre,c.direccion FROM turno t
                 INNER JOIN cancha c on t.id_cancha=c.id
                   WHERE id_solicitante='$id' AND (fecha<CURDATE())";
       $result = $this->db->conn->query($sql);
@@ -162,7 +188,7 @@ class turnosdb{
                            "logo_equipo" => $datos_equipo['logo'],
                            "promedio_edad" => $promedio_edad,
                            "fecha_turno" => $value['fecha'],
-                           "horario_turno" => $value['horario_turno'],
+                           "horario_turno" => date('H:i',strtotime($value['horario_turno'])),
                            "nombre_cancha" => $datos_cancha[0]['nombre'],
                            "direccion_cancha" => $datos_cancha[0]['direccion'],
                            "capitan" => $datos_solicitante,
@@ -260,7 +286,8 @@ public function newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,$id){
 }
 
 public function buscarMisTurnos($id){//Id user
-    $sql = "SELECT t.id, t.tipo_turno, t.fecha,t.id_equipo_rival, t.horario_turno,c.nombre,c.direccion FROM turno t
+    $formato = '%H:%i';
+    $sql = "SELECT t.id, t.tipo_turno, t.fecha,t.id_equipo_rival,time_format(t.horario_turno, '$formato') AS horario_turno,c.nombre,c.direccion FROM turno t
 	            INNER JOIN cancha c on t.id_cancha=c.id
                 WHERE id_solicitante='$id' AND CONCAT(t.fecha,' ',t.horario_turno)>=NOW()";
     $result = $this->db->conn->query($sql);

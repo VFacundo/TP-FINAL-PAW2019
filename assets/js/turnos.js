@@ -23,6 +23,28 @@ turnos.init = function(){
   });
 }
 
+turnos.cancelarTurno = function(){
+var formData = new FormData(),
+    id_turno = event.target.parentElement.nextSibling.value,
+    li = event.target.parentElement.parentElement;
+    xhr = new XMLHttpRequest();
+
+    formData.append("id_turno",id_turno);
+    xhr.open('POST', 'http://localhost/turnos/borrarturno');
+    xhr.onload = function() {
+
+    response = xhr.responseText;
+      if(response.includes(200)){
+        alert("Turno Borrado!");
+        li.parentElement.removeChild(li);
+      }else {
+        alert("No se Pudo Realizar la accion solicitada!");
+      }
+      console.log(xhr.responseText);
+    }
+      xhr.send(formData);
+}
+
 turnos.horariosDisponibles = function(){
   var xhr = new XMLHttpRequest(),
   cancha_turno = document.turno.cancha_turno.value,
