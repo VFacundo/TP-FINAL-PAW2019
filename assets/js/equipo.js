@@ -21,8 +21,7 @@ function eliminarJugador(confirmar,jugador){
 	if(confirmar !== null){
 		if(confirmar){
 			var xhr = new XMLHttpRequest(),
-				formData = new FormData(),
-				items = document.querySelectorAll(".lista6Row.equipo");
+				formData = new FormData();
 			formData.append('id_jugador',jugador);
 			xhr.open('POST', 'http://localhost/equipo/borrarjugadorequipo');
 			xhr.onload = function() {
@@ -35,18 +34,7 @@ function eliminarJugador(confirmar,jugador){
 			}
 			xhr.send(formData);
 			document.querySelector("#msgConfirmar").remove();
-			var salir = false;
-			for(var i = 0;i<items.length;i++){
-				console.log("item",items[i]);
-				for(var j = 0;j<items[i].getElementsByTagName("input").length;j++){
-					if((items[i].getElementsByTagName("input")[j].type == "hidden")&&(items[i].getElementsByTagName("input")[j].value == jugador)){
-						var borrar = items[i];
-						borrar.parentElement.removeChild(borrar);
-						break;
-					}
-				}
-				if(salir) break;
-			}
+			borrarItemLi(jugador,".lista6Row");
 		}else{
 			document.querySelector("#msgConfirmar").remove();
 		}

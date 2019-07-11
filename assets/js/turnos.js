@@ -23,26 +23,40 @@ turnos.init = function(){
   });
 }
 
-turnos.cancelarTurno = function(){
-var formData = new FormData(),
-    id_turno = event.target.parentElement.nextSibling.value,
-    li = event.target.parentElement.parentElement;
-    xhr = new XMLHttpRequest();
-
-    formData.append("id_turno",id_turno);
-    xhr.open('POST', 'http://localhost/turnos/borrarturno');
-    xhr.onload = function() {
-
-    response = xhr.responseText;
-      if(response.includes(200)){
-        alert("Turno Borrado!");
-        li.parentElement.removeChild(li);
-      }else {
-        alert("No se Pudo Realizar la accion solicitada!");
-      }
-      console.log(xhr.responseText);
-    }
-      xhr.send(formData);
+turnos.cancelarTurno = function(confirmacion,id){
+	if(confirmacion != null){
+		if(confirmacion){
+			var formData = new FormData(),
+			id_turno = id,
+			li = event.target.parentElement.parentElement;
+			
+			console.log(event.target);
+			xhr = new XMLHttpRequest();
+			formData.append("id_turno",id_turno);
+			xhr.open('POST', 'http://localhost/turnos/borrarturno');
+			xhr.onload = function() {
+				response = xhr.responseText;
+				console.log(id_turno,response);
+				if(response.includes(200)){
+					document.querySelector("#msgConfirmar").remove();
+					msgNotificar("Turno cancelado correctamente","Cancelar turno");
+					borrarItemLi(id,".lista3Row, .lista7Row");
+					//li.parentElement.removeChild(li);
+				}else {
+					document.querySelector("#msgConfirmar").remove();
+					msgNotificar("No se pudo cancelar el turno correctamente. Porfavor intente luego.","Cancelar turno");
+				}
+			}
+			xhr.send(formData);
+		}else{
+			document.querySelector("#msgConfirmar").remove();
+		}
+	}else{
+		var li = event.target.parentElement,
+			ul = li.parentElement,
+			id = ul.lastChild.value;
+		msgConfirmar("¿Realmente desea cancelar el turno? Solo podrá ser cancelado con mas de 1 hora de anticipacion","Cancelar turno",'','turnos.cancelarTurno(true,'+id+')','turnos.cancelarTurno(false,'+id+')');
+	}
 }
 
 turnos.horariosDisponibles = function(){
@@ -134,6 +148,7 @@ turnos.showTab = function(n) {
 	if (n == 0) {
 		document.getElementById("prevBtn").style.display = "none";
 	} else {
+		turnos.horariosDisponibles();
 		document.getElementById("prevBtn").style.display = "inline";
 	}
 	if (n == (x.length - 1)) {

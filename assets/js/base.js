@@ -69,6 +69,24 @@ function showNav(){
 	}
 	
 }
+function borrarItemLi(id,from){
+	var items = document.querySelectorAll(from),
+		salir = false;
+	console.log("item",items,"from",from);
+	for(var i = 0;i<items.length;i++){
+		console.log("item",items[i]);
+		for(var j = 0;j<items[i].getElementsByTagName("input").length;j++){
+			if((items[i].getElementsByTagName("input")[j].type == "hidden")&&(items[i].getElementsByTagName("input")[j].value == id)){
+				var borrar = items[i];
+				console.log(borrar,"borrar");
+				console.log(borrar.parentElement,"borrar.parentElement");
+				borrar.parentElement.removeChild(borrar);
+				break;
+			}
+		}
+		if(salir) break;
+	}
+}
 
 function msgConfirmar(msj,titulo,data,accionOk,accionCancelar){
 	var ventana = document.createElement("div"),
