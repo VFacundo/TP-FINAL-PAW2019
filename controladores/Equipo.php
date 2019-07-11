@@ -42,6 +42,20 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
     }
   }
 
+  public function salirDeEquipo(){
+    sesion::startSession();
+    if(sesion::is_login()){
+      self::initialize();
+        $nombre_equipo = $_POST['eq_nombre'];
+        if(self::$db->salirDeEquipo(sesion::getId(),$nombre_equipo)){
+          echo 200;
+        }else {
+          echo 400;
+        }
+    }
+    exit();
+  }
+
   public function aceptarDesafio(){
     sesion::startSession();
     if(sesion::is_login()){

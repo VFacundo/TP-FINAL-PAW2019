@@ -1,3 +1,22 @@
+function salirDeEquipo(){
+	var xhr = new XMLHttpRequest(),
+		formData = new FormData(),
+		eq_nombre = event.target.parentElement.parentElement.children[1];
+		console.log(eq_nombre.innerText);
+		formData.append("eq_nombre",eq_nombre.innerText);
+		xhr.open('POST', 'http://localhost/equipo/salirdeequipo');
+		xhr.onload = function() {
+			console.log('JUG borrado', xhr.responseText);
+			if(xhr.responseText.includes(200)){
+				alert("OK");
+			}else {
+				alert("Error");
+			}
+		}
+		xhr.send(formData);
+}
+
+
 function eliminarJugador(confirmar,jugador){
 	if(confirmar !== null){
 		if(confirmar){
@@ -42,7 +61,7 @@ function eliminarJugador(confirmar,jugador){
 						user: ul.children[3].children[0].value,
 						id: ul.lastChild.value
 						};
-						
+
 		msgConfirmar("¿Desea realmente eliminar a el jugador "+old_data.name+"("+old_data.edad+")?","Eliminar Jugador",old_data,"eliminarJugador(true,"+old_data.id+")","eliminarJugador(false,-1)");
 	}
 }

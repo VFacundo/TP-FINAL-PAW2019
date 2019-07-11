@@ -17,9 +17,7 @@
 				echo 	'<li>' . $valor['nombre'] . '</li>';
 				echo 	'<li>' . $valor['promedio_edad'] . '</li>';
 				echo 	'<li>' . "ProximoPartido" . '</li>';
-				echo 	'<li>
-							<button class="boton salir" disabled>Salir del equipo</button>
-						</li>';
+				echo 	'<li><button class="boton salir" onclick="salirDeEquipo();">Salir del equipo</button></li>';
 				echo 	'<li>
 							<span class="masDetalles"> Mas detalles </span>
 						</li>';
@@ -52,4 +50,3 @@
 		echo '</ul>';
 	?>
 </div>
-

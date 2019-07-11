@@ -9,6 +9,14 @@ class equipos{
       $this->db = new dbconnect();
     }
 
+public function salirDeEquipo($id,$nombre_equipo){
+  $id_equipo = $this->getEquipoNombre($nombre_equipo);
+  $id_jugador = $this->getIdJugador($id);
+  $sql = "DELETE FROM jugador_equipo WHERE id_jugador='$id_jugador' and id_equipo='$id_equipo'";
+  $result = $this->db->conn->prepare($sql)->execute();
+  return $result;
+}
+
 public function cambiarImg($img,$id){
   $id_equipo = $this->getEquipo($id)['id'];
   $archivoImagen = ['imgFile' => $img];
