@@ -25,8 +25,9 @@ function subirImg() {
   }
 
   function actualizarImg(){
-    var img = document.getElementById("imgPerfil"),
+    var img = document.getElementById("miPerfilImagen").children[0],
     xhr = new XMLHttpRequest(),response;
+	
     xhr.open('POST', 'http://localhost/perfil/getImg');
     xhr.onload = function() {
     console.log('Solicito Img... ');
@@ -34,7 +35,7 @@ function subirImg() {
     if(response!='error'){
       console.log(response);
       response = response.trim();//quito espacios
-      img.src = 'img/'+response;
+      img.style.backgroundImage = "url('img/"+response+"')";
     }
     }
     xhr.send('');
@@ -47,13 +48,13 @@ function subirImg() {
     img_src = 'avatar',
     ext = '.svg',
     ruta,
-    img = document.getElementById("imgPerfil"),
+    img = document.getElementById("miPerfilImagen").children[0],
     xhr = new XMLHttpRequest(),
     formData = new FormData();
 
     rnd = Math.floor(Math.random() * (max - min)) + min;
     ruta = img_src+rnd+ext;
-    img.src = 'img/'+ruta;
+    img.style.backgroundImage = "url('img/"+ruta+"')";
     formData.append('img_src',ruta);
     xhr.open('POST', 'http://localhost/perfil/setImg');
     xhr.onload = function() {

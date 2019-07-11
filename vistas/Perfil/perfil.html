@@ -8,7 +8,8 @@
 		<h1>Mi Perfil</h1>
 		<div>
 			<div id="miPerfilImagen">
-				<img src="<?=$img?>" alt="Imagen de perfil" id="imgPerfil">
+				<div class="img" style="background-image: url('<?=$img?>')">
+				</div>
 				<div>
 					<a class="boton" onclick="cambiarImg();">Cambiar</a>
 					<label class="boton">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" onchange="subirImg();"></label>

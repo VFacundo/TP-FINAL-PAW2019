@@ -104,9 +104,9 @@ function subirImgEquipo(){
 	xhr.onload = function() {
 		if(!xhr.responseText.includes(400)){
 			img_src = "/img/";
-			document.querySelector('#miequipoImagen>img').src = img_src+xhr.responseText.trim();
+			document.querySelector('#miequipoImagen .img').style.backgroundImage = "url('"+img_src+xhr.responseText.trim()+"')";
 		}else{
-			msgNotificar("No se pudo subir la imagen correctamente, porfavor intente denuevo","Subir Imagen");
+			msgNotificar("No se pudo subir la imagen correctamente, porfavor intente de nuevo","Subir Imagen");
 		}
 	}
 	xhr.send(formData);

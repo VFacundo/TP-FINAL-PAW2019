@@ -55,7 +55,7 @@ turnos.cancelarTurno = function(confirmacion,id){
 		var li = event.target.parentElement,
 			ul = li.parentElement,
 			id = ul.lastChild.value;
-		msgConfirmar("¿Realmente desea cancelar el turno? Solo podrá ser cancelado con mas de 1 hora de anticipacion","Cancelar turno",'','turnos.cancelarTurno(true,'+id+')','turnos.cancelarTurno(false,'+id+')');
+		msgConfirmar("Â¿Realmente desea cancelar el turno? Solo podrÃ¡ ser cancelado con mas de 1 hora de anticipacion","Cancelar turno",'','turnos.cancelarTurno(true,'+id+')','turnos.cancelarTurno(false,'+id+')');
 	}
 }
 

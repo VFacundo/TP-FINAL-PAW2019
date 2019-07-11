@@ -1,6 +1,6 @@
 <form name="equipo" action="" onSubmit="crearEquipo(); return false">
 	<div id="miequipoImagen">
-		<img src="/img/<?=$logo_equipo?>" alt="Imagen de Equipo">
+		<div class="img" style="background-image: url('/img/<?=$logo_equipo?>');"></div>
 		<label class="boton" id="labelSubir">Subir<input type="file" id="inputSb" accept="image/jpeg,image/png" onchange="subirImgEquipo();"></label>
 	</div>
 	<label><span>Nombre del equipo:</span><input type="text" name="eq_nombre" value="<?=$nombre_equipo?>" disabled><label class="boton icon-pencil" onclick="editNombreEquipo();"></label></label>

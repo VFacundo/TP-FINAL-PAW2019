@@ -136,6 +136,7 @@ body{
     width: 100%;
     background: #ffffffc2;
     border-color: black;
+    text-indent: .5em;
 }
 .login form div{
     display: flex;

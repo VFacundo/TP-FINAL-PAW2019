@@ -31,19 +31,7 @@ body {
     overflow: hidden;
 }
 
-@keyframes animationBG {
-    0% {
-        transform: scale(1)
-    }
 
-    50% {
-        transform: scale(1.5)
-    }
-
-    100% {
-        transform: scale(1)
-    }
-}
 
 h1, h2, h3 {
     margin: 0;
@@ -73,7 +61,15 @@ a {
     /* width: 100%; */
     /* height: 100%; */
 }
-
+input{
+    text-indent: .5em;
+}
+input:disabled{
+    border: none;
+    background: none;
+    text-align: center;
+    text-indent: 0;
+}
 a:hover {
     text-decoration: none;
 }
@@ -81,7 +77,25 @@ a:hover {
 strong {
     font-weight: bold;
 }
-
+.img {
+    width: 200px !important;
+    height: 200px;
+    background-size: cover;
+    background-position: top center;
+    border-radius: 50%;
+}
+@media (max-width:1100px){
+    .img {
+        width: 120px !important;
+        height: 120px;
+    }
+}
+@media (max-width:600px){
+    .img {
+        width: 80px !important;
+        height: 80px;
+    }
+}
 .sideSection {
     grid-area: b;
     position: relative;
@@ -226,7 +240,7 @@ ul.contact li a.icon-rss:before {
     line-height: 3vh;
     text-align: center;
     white-space: pre-wrap;
-    background: #58a300;
+    background: #74BF04;
     border-radius: 0.5em;
     font-weight: bold;
     text-transform: uppercase;
@@ -253,7 +267,7 @@ ul.contact li a.icon-rss:before {
 }
 
 .btnActive {
-    background: #b3f35b;
+    background: #99ff01;
     border-radius: .5em;
 }
 
@@ -570,7 +584,7 @@ button.boton.aceptar {
 }
 
 .lista3Row:nth-child(odd) {
-    background: #99c35f5e;
+    background: #74bf0459;
 }
 
 .lista3Row {
@@ -778,9 +792,6 @@ button.boton.aceptar {
     width: 90%;
 }
 
-.lista6Row ul li {
-}
-
 /*<NEW!>*/
 .lista6Col > ul li:nth-child(1), .lista6Row > ul li:nth-child(1) {
     width: 5%;
@@ -899,11 +910,11 @@ button.boton.aceptar {
 }
 
 .lista7Col > ul li:nth-child(4), .lista7Row > ul li:nth-child(4) {
-    width: 15%;
+    width: 13%;
 }
 
 .lista7Col > ul li:nth-child(5), .lista7Row > ul li:nth-child(5) {
-    width: 20%;
+    width: 15%;
 }
 
 .lista7Col > ul li:nth-child(6), .lista7Row > ul li:nth-child(6) {
@@ -923,7 +934,7 @@ button.boton.aceptar {
 }
 
 .lista7Col > ul li:nth-child(7), .lista7Row > ul li:nth-child(7) {
-    width: 11%;
+    width: 13%;
 }
 
 .lista7Row ul li img {
@@ -955,7 +966,7 @@ button.boton.aceptar {
     }
 
     .lista7Col > ul li:nth-child(2), .lista7Row > ul li:nth-child(2) {
-        width: 25%;
+        width: 20%;
     }
 
     .lista7Col > ul li:nth-child(3), .lista7Row > ul li:nth-child(3) {
@@ -984,7 +995,7 @@ button.boton.aceptar {
     }
 
     .lista7Col > ul li:nth-child(7), .lista7Row > ul li:nth-child(7) {
-        width: 5%;
+        width: 8%;
     }
 
     .lista7Row ul li img {
@@ -1291,7 +1302,7 @@ body {
 }
 
 body > nav {
-    background: #ffffffa6;
+    background: #c0d99cab;
     min-height: 100vh;
     grid-area: a;
     z-index: 1;
@@ -1481,5 +1492,18 @@ body > span {
 
     to {
         left: 0vw
+    }
+}
+@keyframes animationBG {
+    0% {
+        transform: scale(1)
+    }
+
+    50% {
+        transform: scale(1.5)
+    }
+
+    100% {
+        transform: scale(1)
     }
 }
