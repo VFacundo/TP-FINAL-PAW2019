@@ -20,7 +20,8 @@ public function salirDeEquipo($id,$nombre_equipo){
 public function cambiarImg($img,$id){
   $id_equipo = $this->getEquipo($id)['id'];
   $archivoImagen = ['imgFile' => $img];
-  $archivoImagen = $this->subirLogo($archivoImagen);
+  $img = new imagen();
+  $archivoImagen = $img->subirImagen($archivoImagen,false);
   $sql = "UPDATE equipo SET logo='$archivoImagen' WHERE id='$id_equipo'";
   $result = $this->db->conn->prepare($sql)->execute();
   return $result?$archivoImagen:FALSE;
@@ -140,22 +141,6 @@ public function verifyNombre($nombre){//Busca nombre de equipo en la bd
   return $result;
 }
 
-public function subirLogo($datosImg){
-  $directorioImagenes = dirname(__DIR__) . '/img/equipos/';
-  if(is_uploaded_file($datosImg['imgFile']['tmp_name'])){
-    $tipoImagen = $datosImg['imgFile']['type'];
-        if(($tipoImagen == "image/jpeg") || ($tipoImagen == "image/png")){
-          $infoImg = getimagesize($datosImg['imgFile']['tmp_name']);
-            if(($datosImg['imgFile']['size'])<10000000){
-                $archivoImagen = time() . basename($_FILES["imgFile"]["name"]);
-                move_uploaded_file($datosImg["imgFile"]["tmp_name"],$directorioImagenes . $archivoImagen);
-                $archivoImagen = 'equipos/' . $archivoImagen;
-            }
-        }
-    }
-    return $archivoImagen;
-}
-
 public function getIdJugador($id){//id usuario
   $sql = "SELECT id FROM jugador WHERE id_usuario='$id'";
   $result = $this->db->conn->query($sql);
@@ -204,7 +189,8 @@ public function getIdUser($user){//Retorna el id de jugador de un usuario
 public function newEquipo($nombre_equipo,$img_equipo,$nombre_j,$edad_j,$usr_j,$id){
   $nombre_equipo = $this->sanitizeString($nombre_equipo);
   if(!empty($img_equipo)){
-    $img_equipo = $this->subirLogo($img_equipo);
+    $img = new imagen();
+    $img_equipo = $img->subirImagen($archivoImagen,false);
   }else {
     $img_equipo = 'avatar' . rand(1,3) . ".svg";//aca van los avatares default
   }
