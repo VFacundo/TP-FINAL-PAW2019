@@ -163,8 +163,12 @@
 				<label>Tipo de Turno:
 					<select name="tipo_turno">
 						<option value="0">Simple</option>
-						<option value="1">Mi equipo VS Otro equipo</option>
-						<option value="3">Buscar rival</option>
+						<?php
+							if($miequipo){
+								echo '<option value="1">Mi equipo VS Otro equipo</option>';
+								echo '<option value="3">Buscar rival</option>';
+							}
+						?>
 					</select>
 					<input name="eq_rival" id="eq_rival" autocomplete="off" placeholder="Equipo a desafiar" style="display:none;">
 				</label>

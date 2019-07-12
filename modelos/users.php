@@ -11,6 +11,21 @@ class users{
       $this->db = new dbconnect();
     }
 
+    public function setMailVerificado($mail){//Save Mail verif
+      $sql = "UPDATE usuario SET tipo='1' WHERE mail='$mail'";
+      $resultado = $this->db->conn->prepare($sql)->execute();
+    }
+
+
+    public function getMailPendiente(){
+      $sql = "SELECT mail,id FROM usuario WHERE tipo=0";
+      $result = $this->db->conn->query($sql);
+      if(!$result===FALSE){
+        $result = $result->fetchAll();
+      }
+      return $result;
+    }
+
     public function setImg($id,$img_src){
       $sql = "UPDATE jugador SET img_src='$img_src' WHERE id_usuario='$id'";
       $resultado = $this->db->conn->prepare($sql)->execute();
@@ -132,13 +147,16 @@ class users{
       $result = $result->fetch();
         if(!$result===FALSE){
             $existe = $result['id'];
-              if($result['tipo']==1){
+              if($result['tipo']==0){
+                return FALSE;
+              }
+              if($result['tipo']==2){
                 sesion::setAdmin();
               }
         }
     }
     return $existe;
   }
-  
+
 }
 ?>

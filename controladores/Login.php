@@ -85,7 +85,7 @@ class Login extends \UNLu\PAW\Libs\Controlador{
                     }
                     $db->newUser($pass,$mail,$nombre,$username,$edad,$tel);
                     mail::sendConfirmMail($mail);
-                    $this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
+                    $this->redireccionarA($_SERVER['REQUEST_URI'],"/verify/verifymail/" . $mail);
                 }else{
                     $_SESSION['mensaje'] = 'Ya Existe';
                     $this->redireccionarA($_SERVER['REQUEST_URI'],'registro');
