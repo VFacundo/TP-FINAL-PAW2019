@@ -187,7 +187,19 @@ body{
 .pluginLoginButton table .pluginLoginButtonlarge table {
     width: 100%;
 }
+.verificacion{justify-content: start !important;padding-top: 2em;}
 
+.verificacion .boton {
+    padding: 2vh 6vw;
+    color: white;
+}
+.verificacion h3{text-align: center;font-size: 2.2em;margin-bottom: 1em;}
+
+.verificacion h4 {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
 /*  ---VISTA CELULAR ---  */
   @media (max-width: 600px) {
     .login{

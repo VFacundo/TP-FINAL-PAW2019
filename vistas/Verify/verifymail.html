@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Verify Fulbito</title>
+    <title>Verificacion por mail - Hay Fulbito!</title>
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
+	<script src="/assets/js/calcViewPort.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <h1>Se Envio un EMAIL de Verificacion a tu Cuenta: <?=$mail?> </h1>
-    <a href="/login">Continuar a Login</a>
+    <div class="background"></div>
+    <section class="login verificacion">
+      <h1>Hay Fulbito</h1>
+      <figure>
+        <img src="/img/logoBlack.png" alt="Logo Fulbito!">
+      </figure>
+      <h3>Verificar el email</h3>
+	  <h4>Se envio un email de verificacion a la casilla: <?=$mail?> para validar tu cuenta</h4>
+	  <?php
+		if (strpos($mail, 'gmail') !== false) {
+			echo '<a class="boton" href="https://mail.google.com">Ir al mail</a>';
+		}else{
+			if ((strpos($mail, 'hotmail') !== false) || (strpos($mail, 'outlook') !== false)) {
+				echo '<a class="boton" href="https://hotmail.com">Ir al mail</a>';
+			}else{
+				if ((strpos($mail, 'hotmail') === false) && (strpos($mail, 'gmail') === false)) {
+					echo '<a class="boton" href="/login">Volver</a>';
+				}
+			}
+		}
+	  ?>
+      
+    </section>
   </body>
 </html>
