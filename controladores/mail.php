@@ -76,7 +76,7 @@ public static function leerConfig(){
 								<td style="text-align: center;">
 									<h1>Hay Fulbito!</h1>
 									<figure>
-										img src="logoBlack.png" width="200" height="200">
+										<img src="logoBlack.png" width="200" height="200">
 									</figure>
 									<h3>Verificar el email</h3>
 									<h4>Gracias por registrarte en Hay Fulbito!</h4>

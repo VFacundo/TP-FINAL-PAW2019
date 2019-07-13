@@ -226,3 +226,70 @@ turnos.validateForm = function () {
   }
   return valid;
 }
+	/* COMO JUGADOR */
+	
+	function asisto(confirmar,turno){
+		if(confirmar !== null){
+			if(confirmar){
+				var xhr = new XMLHttpRequest(),
+					formData = new FormData(),
+					items = document.querySelectorAll(".dosEquipos");
+				formData.append('turno',turno);
+				xhr.open('POST', 'http://localhost/equipo/asisto');
+				xhr.onload = function() {
+					console.log('Asistir: ', xhr.responseText);
+					if(xhr.responseText.includes(200)){
+						msgNotificar("Has confirmado tu asistencia al partido","Asistir al partido");
+					}else {
+						msgNotificar("Ocurrio un error, porfavor intentelo de nuevo.","Asistir al partido");
+					}
+				}
+				xhr.send(formData);
+				document.querySelector("#msgConfirmar").remove();
+				borrarItemLi(turno,".dosEquipos");
+			}else{
+				document.querySelector("#msgConfirmar").remove();
+			}
+		}else{
+			if(!event.target.classList.contains('confirmed')){
+				var li = event.target.parentElement.parentElement,
+					old_data = {name:  li.children[2].innerText,
+								id: turno
+								};
+				msgConfirmar("¿Desea confirmar la asistencia para el partido contra "+old_data.name+"?","Confirmar asistencia",old_data,"asisto(true,"+old_data.id+")","asisto(false,-1)");
+			}
+		}
+	}
+	function noasisto(confirmar,turno){
+		if(confirmar !== null){
+			if(confirmar){
+				var xhr = new XMLHttpRequest(),
+					formData = new FormData(),
+					items = document.querySelectorAll(".dosEquipos");
+				formData.append('turno',turno);
+				xhr.open('POST', 'http://localhost/equipo/asisto');
+				xhr.onload = function() {
+					console.log('Asistir: ', xhr.responseText);
+					if(xhr.responseText.includes(200)){
+						msgNotificar("Has confirmado tu asistencia al partido","Asistir al partido");
+					}else {
+						msgNotificar("Ocurrio un error, porfavor intentelo de nuevo.","Asistir al partido");
+					}
+				}
+				xhr.send(formData);
+				document.querySelector("#msgConfirmar").remove();
+				borrarItemLi(turno,".dosEquipos");
+			}else{
+				document.querySelector("#msgConfirmar").remove();
+			}
+		}else{
+			if(!event.target.classList.contains('confirmed')){
+				var li = event.target.parentElement.parentElement,
+					old_data = {name:  li.children[2].innerText,
+								id: turno
+								};
+				msgConfirmar("¿Desea confirmar la inasistencia para el partido contra "+old_data.name+"?","Confirmar inasistencia",old_data,"noasisto(true,"+old_data.id+")","noasisto(false,-1)");
+		
+			}
+		}
+	}

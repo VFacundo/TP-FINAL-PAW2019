@@ -70,6 +70,9 @@ input:disabled{
     text-align: center;
     text-indent: 0;
 }
+.stepTab label input{
+    text-indent: 0;
+}
 a:hover {
     text-decoration: none;
 }
@@ -345,6 +348,18 @@ button.boton.aceptar {
     background: red;
     color: white;
     font-weight: 100;
+}
+
+.noAsisto.confirmed {
+    background: #f99d9d;
+}
+
+.asisto.confirmed {
+    background: #6cc70040;
+}
+
+.confirmed {
+    border: 2px solid #80808061;
 }
 
 .noAsisto:hover {
@@ -727,7 +742,10 @@ button.boton.aceptar {
 
 .dosEquipos {
     width: 100% !important;
+    border-bottom: 5px solid white;
+    margin: 0vh 0vw;
 }
+.dosEquipos > ul {border-bottom: 2px solid black;}
 
 .dosEquipos > ul {
     display: flex;
@@ -1220,6 +1238,10 @@ button.boton.aceptar {
 
 .detalles div ul{justify-content: space-around !important;}
 
+.detalles div ul li {
+    width: 33%;
+}
+
 .detalles.mostrando {
     display: block;
     height: 30vh;
@@ -1242,26 +1264,34 @@ button.boton.aceptar {
     max-height: 50vh;
 }
 
-.lista6Col.equipo > ul:not(:first-child) {
+.lista6Col.equipo > ul {
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 40vh;
 }
 
-.lista6Col.equipo > ul:not(:first-child)::-webkit-scrollbar {
+#miequipoDatos :nth-child(2) {
+    overflow-y: hidden;
+    line-height: 1.5em;
+}
+
+*::-webkit-scrollbar {
     /*display: none; */
     width: 0.5vw;
 }
 
-.lista6Col.equipo > ul:not(:first-child)::-webkit-scrollbar-thumb {
-    background: #ccc;
+*::-webkit-scrollbar-thumb {
+    background: #74bf04;
     border-radius: 4px;
 }
 
 #solicitudesDatos li:nth-child(8) {
     width: 100% !important;
 }
-
+#comojugadorDatos{
+    height: 70vh;
+    overflow-y: auto;
+}
 .masDetalles:hover {
     cursor: pointer;
 }

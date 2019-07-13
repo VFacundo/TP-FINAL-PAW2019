@@ -45,12 +45,12 @@ function crearEquipo() {
 		xhr.onload = function () {
 			console.log('Info Enviada');
 			if (xhr.responseText) {
-				alert(xhr.responseText);
+				msgNotificar("Creaste el equipo exitosamente","Crear equipo");
 			}
 			window.location.reload();
 		}
 		xhr.send(formData);
 	} else {
-		alert("Su Equipo Debe contar con Al menos 5 Jugadores!");
+		msgNotificar("Su equipo debe contar con al menos 5 jugadores","Crear equipo");
 	}
 }

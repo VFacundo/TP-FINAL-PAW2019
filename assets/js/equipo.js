@@ -2,18 +2,18 @@ function salirDeEquipo(){
 	var xhr = new XMLHttpRequest(),
 		formData = new FormData(),
 		eq_nombre = event.target.parentElement.parentElement.children[1];
-		console.log(eq_nombre.innerText);
-		formData.append("eq_nombre",eq_nombre.innerText);
-		xhr.open('POST', 'http://localhost/equipo/salirdeequipo');
-		xhr.onload = function() {
-			console.log('JUG borrado', xhr.responseText);
-			if(xhr.responseText.includes(200)){
-				alert("OK");
-			}else {
-				alert("Error");
-			}
+	console.log(eq_nombre.innerText);
+	formData.append("eq_nombre",eq_nombre.innerText);
+	xhr.open('POST', 'http://localhost/equipo/salirdeequipo');
+	xhr.onload = function() {
+		console.log('JUG borrado', xhr.responseText);
+		if(xhr.responseText.includes(200)){
+			msgNotificar("Saliste del equipo exitosamente","Salir de equipo");
+		}else {
+			msgNotificar("Hubo un error al intentar salir del equipo","Salir de equipo");
 		}
-		xhr.send(formData);
+	}
+	xhr.send(formData);
 }
 
 
@@ -270,18 +270,7 @@ function aceptarDesafio(confirmar,turno){
 			}
 			xhr.send(formData);
 			document.querySelector("#msgConfirmar").remove();
-			var salir = false;
-			for(var i = 0;i<items.length;i++){
-				console.log("item",items[i]);
-				for(var j = 0;j<items[i].getElementsByTagName("input").length;j++){
-					if((items[i].getElementsByTagName("input")[j].type == "hidden")&&(items[i].getElementsByTagName("input")[j].value == turno)){
-						var borrar = items[i];
-						borrar.parentElement.removeChild(borrar);
-						break;
-					}
-				}
-				if(salir) break;
-			}
+			borrarItemLi(turno,".lista6Row.equipo");
 		}else{
 			document.querySelector("#msgConfirmar").remove();
 		}
@@ -319,18 +308,7 @@ function rechazarDesafio(confirmar,turno){
 			}
 			xhr.send(formData);
 			document.querySelector("#msgConfirmar").remove();
-			var salir = false;
-			for(var i = 0;i<items.length;i++){
-				console.log("item",items[i]);
-				for(var j = 0;j<items[i].getElementsByTagName("input").length;j++){
-					if((items[i].getElementsByTagName("input")[j].type == "hidden")&&(items[i].getElementsByTagName("input")[j].value == turno)){
-						var borrar = items[i];
-						borrar.parentElement.removeChild(borrar);
-						break;
-					}
-				}
-				if(salir) break;
-			}
+			borrarItemLi(turno,".lista6Row.equipo");
 		}else{
 			document.querySelector("#msgConfirmar").remove();
 		}

@@ -4,7 +4,7 @@
 				<li></li>
 				<li>Equipo</li>
 				<li>Edad</li>
-				<li>Proximo partido</li>
+				<li></li>
 				<li></li>
 				<li></li>
 			  </ul>
@@ -13,15 +13,15 @@
 			foreach($equiposComoJugador as $valor){
 				echo '<li class="lista7Row">
 						<ul>';
-				echo 	'<li><img src="/img/' . $valor['logo'] . '" alt="Logo de Equipo"></li>';
-				echo 	'<li>' . $valor['nombre'] . '</li>';
-				echo 	'<li>' . $valor['promedio_edad'] . '</li>';
-				echo 	'<li>' . "ProximoPartido" . '</li>';
-				echo 	'<li><button class="boton salir" onclick="salirDeEquipo();">Salir del equipo</button></li>';
-				echo 	'<li>
+				echo 	'	<li><img src="/img/' . $valor['logo'] . '" alt="Logo de Equipo"></li>';
+				echo 	'	<li>' . $valor['nombre'] . '</li>';
+				echo 	'	<li>' . $valor['promedio_edad'] . '</li>';
+				echo 	'	<li>' . "" . '</li>';
+				echo 	'	<li><button class="boton salir" onclick="salirDeEquipo();">Salir del equipo</button></li>';
+				echo 	'	<li>
 							<span class="masDetalles"> Mas detalles </span>
-						</li>';
-				echo 	'<li class="detalles">
+							</li>';
+				echo 	'	<li class="detalles">
 								<div>
 									<ul>
 										<li>Jugador</li>
@@ -29,20 +29,20 @@
 										<li>Usuario</li>
 									</ul>';
 
-					echo	'<ul>';
-					echo		'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
-					echo		'<li>' . $valor['capitan'][0]['edad'] . '</li>';
-					echo		'<li>' . $valor['capitan'][0]['user'] . '</li>';
-					echo	'</ul>';
+					echo		'	<ul>';
+					echo				'<li>' . $valor['capitan'][0]['nombre'] ." (C)". '</li>';
+					echo				'<li>' . $valor['capitan'][0]['edad'] . '</li>';
+					echo				'<li>' . $valor['capitan'][0]['user'] . '</li>';
+					echo		'	</ul>';
 
 					foreach($valor['jugadores'] as $valorJug){
-						echo	'<ul>';
-						echo		'<li>' . $valorJug['nombre'] . '</li>';
-						echo		'<li>' . $valorJug['edad'] . '</li>';
-						echo		'<li>' . $valorJug['user'] . '</li>';
-						echo	'</ul>';
+						echo	'	<ul>';
+						echo			'<li>' . $valorJug['nombre'] . '</li>';
+						echo			'<li>' . $valorJug['edad'] . '</li>';
+						echo			'<li>' . $valorJug['user'] . '</li>';
+						echo	'	</ul>';
 					}
-				echo 	'</div>
+				echo 	'		</div>
 							</li>';
 				echo '</ul></li>';
 			}

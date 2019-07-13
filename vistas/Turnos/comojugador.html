@@ -20,17 +20,17 @@
 					echo 			'<li>';
 					if($valor['asisto']!=2){
 						if($valor['asisto']==1){
-							echo		'<button class="boton noAsisto">No asisto <span></span></button>
-										<button class="boton asisto confirmed" disabled>Asisto <span></span></button>
+							echo		'<button class="boton noAsisto" onclick="noasisto(null,'.$valor['rival']['id'].')">No asisto <span></span></button>
+										<button class="boton asisto confirmed" onclick="asisto(null,'.$valor['rival']['id'].')">Asisto <span></span></button>
 									</li>';
 						}else{
-							echo		'<button class="boton noAsisto confirmed" disabled>No asisto <span></span></button>
-										<button class="boton asisto">Asisto <span></span></button>
+							echo		'<button class="boton noAsisto confirmed" onclick="noasisto(null,'.$valor['rival']['id'].')">No asisto <span></span></button>
+										<button class="boton asisto" onclick="asisto(null,'.$valor['rival']['id'].')">Asisto <span></span></button>
 									</li>';
 						}
 					}else{
-						echo			'<button class="boton noAsisto">No asisto <span></span></button>
-										<button class="boton asisto">Asisto <span></span></button>
+						echo			'<button class="boton noAsisto" onclick="noasisto(null,'.$valor['rival']['id'].')">No asisto <span></span></button>
+										<button class="boton asisto" onclick="asisto(null,'.$valor['rival']['id'].')">Asisto <span></span></button>
 									</li>';
 					}
 				echo 				'<li>
@@ -76,7 +76,7 @@
 				echo				'<li>' . $valor['rival']['edad'] . '</li>';
 				echo				'<li></li>';
 				echo				'<li>
-										<span class="masDetalles"> Mas detalles </span>
+										<span class="masDetalles"> Detalles rival </span>
 									</li>';
 				echo				'<li class="detalles">
 										<div>
@@ -101,9 +101,10 @@
 				echo 					'</div>
 									</li>';
 				echo 			'</ul>
-							</li>';
+							</li>
+						</ul>';
 			}
 		}
-		echo 		'</ul>';
+		echo '</ul>';
 	?>
 </div>
