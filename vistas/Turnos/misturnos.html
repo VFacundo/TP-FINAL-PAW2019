@@ -89,7 +89,6 @@
 										echo 		'<li>
 														<span class="masDetalles"> Mas detalles </span>
 													</li>';
-										echo 		'<input type="hidden" value="' . $valor['id'] . '">' ;
 										echo 		'<li class="detalles">
 														<div>
 															<ul>
@@ -111,8 +110,18 @@
 															}
 										echo 			'</div>
 													</li>';
-										echo 	'</ul>
-											</li>';
+
+													echo '<li class="infoTurno">';
+														echo '<ul>';
+															echo		'<li>' . 'No Confirmo:' . $valor['asisten']['no_confirmo'] . '</li>';
+															echo		'<li>' . 'No Asisten:' . $valor['asisten']['no_asisten'] . '</li>';
+															echo		'<li>' . 'Asisten:'. $valor['asisten']['asisten'] . '</li>';
+													echo '</ul>';
+													echo '</li>';
+
+										echo 		'<input type="hidden" value="' . $valor['id'] . '">' ;
+										echo 	'</ul>';
+										echo	'</li>';
 									}
 								}
 								echo '</ul>';

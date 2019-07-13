@@ -297,7 +297,6 @@ public function newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,$id){
       break;
     case 1://Mi Equipo vs Otro Equipo
       $id_solicitante = $id;
-      //$nombreEquipoRival = $this->dbEquipo->getEquipoNombre($equipo_rival);
       $idCapitanRival = $this->dbEquipo->getCapitan($equipo_rival);
       $id_capitan = $this->dbEquipo->getIdUsuario($idCapitanRival['id_capitan']);
       $id_equipo_rival = $id_capitan[0];
@@ -312,7 +311,36 @@ public function newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,$id){
       break;
   }
   $resultado = $this->db->conn->prepare($sql)->execute([NULL,$fecha,$horario,$id_solicitante,$id_equipo_rival,$cancha,$tipoTurno,'web']);
-  $info = $this->db->conn->errorCode();
+  //$info = $this->db->conn->errorCode();
+  $id_turno = $this->db->conn->lastInsertId();
+
+if($resultado){
+    if($tipoTurno==1){
+        //ADD Asistir-No Asistir
+        $id_equipo = $this->dbEquipo->getEquipo($id_solicitante);
+        $id_equipo = $id_equipo['id'];
+        $jugadores = $this->dbEquipo->getJugadoresEquipo($id_equipo);
+          foreach($jugadores as $valueJug){
+            if(!empty($valueJug['user'])){
+              $sql = "INSERT INTO asistir_turno (id_jugador,id_turno,estado) VALUES (?,?,?)";
+              $this->db->conn->prepare($sql)->execute([$valueJug['id'],$id_turno,2]);//VALUES 0 No ASISTE | 1 ASISTE | 2 No CONFIRM
+            }
+          }
+    }
+  }
+}
+
+public function asistir_turno($id_turno){
+  $sql = "SELECT COUNT(IF(estado=0,estado,null)) AS no_asisten,
+		        COUNT(IF(estado=1,estado,null)) AS asisten,
+              COUNT(IF(estado=2,estado,null)) AS no_confirmo
+          FROM asistir_turno
+          WHERE id_turno = '$id_turno'";
+  $result = $this->db->conn->query($sql);
+    if(!$result===FALSE){
+      $result = $result->fetch();
+    }
+  return $result;
 }
 
 public function buscarMisTurnos($id){//Id user
@@ -341,6 +369,7 @@ public function buscarMisTurnos($id){//Id user
             $jugadores = $this->dbEquipo->getJugadoresEquipo($idEquipoRival['id']);
             $id_capitan = $this->dbEquipo->getIdJugador($value['id_equipo_rival']);
             $capitan = $this->dbEquipo->datosJugador($id_capitan);
+            $asisten = $this->asistir_turno($value['id']);
             $promedio_edad = 0;
               foreach ($jugadores as $valueJug) {
                   $promedio_edad += $valueJug['edad'];
@@ -359,6 +388,7 @@ public function buscarMisTurnos($id){//Id user
                           'hora' => $value['horario_turno'],
                           'direccion' => $value['direccion'],
                           'cancha' => $value['nombre'],
+                          'asisten' => $asisten,
             ];
             break;
           case 2://Mi Equipo vs Invitado
@@ -391,17 +421,31 @@ public function buscarMisTurnos($id){//Id user
   return $arrayResultado;
   }
 
+  public function getAsisto($id_jugador,$id_turno){
+    $sql = "SELECT estado FROM asistir_turno WHERE id_jugador='$id_jugador' AND id_turno='$id_turno'";
+    $result = $this->db->conn->query($sql);
+      if(!$result===FALSE){
+        $result = $result->fetch();
+      }
+    return $result;
+  }
+
   public function misTurnosJugador($id){
     $misEquiposJugador = $this->dbEquipo->misEquiposJugador($id);
+    $id_jugador = $this->dbEquipo->getIdJugador($id);
       if($misEquiposJugador){
           foreach($misEquiposJugador as $value){
             $id_capitan = $this->dbEquipo->getIdUsuario($value['id_capitan']);
             $turnosEquipo = $this->buscarMisTurnos($id_capitan);
               if(isset($turnosEquipo['tvt'])){
-                $partidos[] = [
-                    'miequipo' => $value,
-                    'rival' => $turnosEquipo,
-                ];
+                foreach($turnosEquipo['tvt'] as $turnosTvt){
+                  $asisto = $this->getAsisto($id_jugador,$turnosTvt['id']);
+                  $partidos[] = [
+                      'miequipo' => $value,
+                      'rival' => $turnosTvt,
+                      'asisto' => $asisto['estado'],
+                  ];
+                }
               }
           }
       }

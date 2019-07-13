@@ -75,6 +75,12 @@ class dbConnection{
 									FOREIGN KEY(id_cancha) REFERENCES cancha(id),
 									PRIMARY KEY(id,fecha,horario_turno)
 									);
+				CREATE TABLE asistir_turno (
+									id_jugador INT(11) UNSIGNED,
+									id_turno INT(11) UNSIGNED,
+									estado TINYINT UNSIGNED,
+									PRIMARY KEY(id_jugador,id_turno,estado)
+									);
 				CREATE TABLE desafio (
 									id INT(11) UNSIGNED AUTO_INCREMENT,
 									id_equipo INT(11) UNSIGNED,

@@ -93,9 +93,12 @@ li button {
 	#tTvT .lista6Row > ul{
 	}
 	#tTvT .lista6Col img {
-		
+
 	}
 
+	#tTvT div > label{
+
+	}
 
 	#tTvI{display: none;}
 	#tSolicitudes{
@@ -107,7 +110,7 @@ li button {
 		width: 100%;
 		text-align: center;
 	}
-	
+
 	/*		registrarTurno window	*/
 	.stepTab{
 		display:none;
