@@ -161,7 +161,7 @@
 		<form name="turno" action="" onSubmit="turnos.crearTurno(); return false">
 			<div class="stepTab">
 				<label>Tipo de Turno:
-					<select name="tipo_turno">
+					<select name="tipo_turno" onchange="turnos.horariosDisponibles();">
 						<option value="0">Simple</option>
 						<?php
 							if($miequipo){
@@ -191,7 +191,7 @@
 			</div>
 			<div class="stepTab">
 				<label>Fecha:
-					<input type="date" name="fecha_turno" max="<?php echo date("Y") . '-12' . '-31' ;?>" min="<?php echo date("Y-m-d");?>"  value="<?php echo date("Y-m-d");?>" onchange="turnos.horariosDisponibles();" required/>
+					<input type="date" name="fecha_turno" max="<?php echo date("Y") . '-12' . '-31' ;?>" min="<?php echo date("Y-m-d");?>" onchange="turnos.horariosDisponibles();" required/>
 				</label>
 				<div class="hint">
 					<span>Ayuda: Seleccione la fecha para reservar el turno</span>

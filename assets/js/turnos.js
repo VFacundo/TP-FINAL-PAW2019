@@ -29,7 +29,7 @@ turnos.cancelarTurno = function(confirmacion,id){
 			var formData = new FormData(),
 			id_turno = id,
 			li = event.target.parentElement.parentElement;
-			
+
 			console.log(event.target);
 			xhr = new XMLHttpRequest();
 			formData.append("id_turno",id_turno);
@@ -64,10 +64,12 @@ turnos.horariosDisponibles = function(){
   cancha_turno = document.turno.cancha_turno.value,
   fecha_turno = document.turno.fecha_turno.value,
   horario_turno = document.turno.horario_turno,
+  tipo_turno = document.turno.tipo_turno.value,
   formData = new FormData(),response;
 
   formData.append("cancha_turno",cancha_turno);
   formData.append("fecha_turno",fecha_turno);
+  formData.append("tipo_turno",tipo_turno);
 
   xhr.open('POST', 'http://localhost/turnos/horariosdisponibles');
   xhr.onload = function() {
@@ -111,14 +113,14 @@ turnos.toggle = function(){
 turnos.crearTurno = function(){
   var formData = new FormData(),
       form = document.turno,
-	  tipo_turno = form.tipo_turno.selectedOptions[0],
-	  fecha_turno = form.fecha_turno.value,
-	  horario_turno = form.horario_turno.selectedOptions[0].value,
-	  cancha_turno = form.cancha_turno.selectedOptions[0].innerHTML,
+      tipo_turno = form.tipo_turno.value,
+      fecha_turno = form.fecha_turno.value,
+      horario_turno = form.horario_turno.value,
+      cancha_turno = form.cancha_turno.value,
       eq_rival = form.eq_rival,
       xhr = new XMLHttpRequest(),
       data = [tipo_turno,fecha_turno,horario_turno,cancha_turno];
-
+      console.log("HORARIO ",horario_turno);
       if(data.indexOf(null)==-1){
         console.log("OK");
         formData.append('tipo_turno',tipo_turno);
@@ -157,7 +159,7 @@ turnos.showTab = function(n) {
 			form = document.turno,
 			tipo_turno = form.tipo_turno.selectedOptions[0],
 			fecha_turno = form.fecha_turno.value,
-			horario_turno = form.horario_turno.selectedOptions[0].value,
+			horario_turno = form.horario_turno.value,
 			cancha_turno = form.cancha_turno.selectedOptions[0].innerHTML;
 
 		document.getElementById("nextBtn").style.display = "none";

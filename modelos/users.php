@@ -82,7 +82,7 @@ class users{
     }
 
     public function newUser($pass, $mail,$nombre,$username,$edad,$tel){
-      if(empty($this->buscarUser($mail))){//0 pendiente, 1 usuario comun, 2 admin
+      if(empty($this->buscarUser($mail))){//0 pendiente, 1 usuario comun, 2 admin 
         if(empty($username)){
           $sql = "SELECT count(id) from usuario";
             $result = $this->db->conn->query($sql);

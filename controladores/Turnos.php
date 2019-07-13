@@ -44,8 +44,16 @@ private static function initialize(){
       $horario = $_POST['horario_turno'];
       $cancha = $_POST['cancha_turno'];
       $equipo_rival = isset($_POST['equipo_rival'])?$_POST['equipo_rival']:FALSE;
-        if(self::$dbTurnos->buscarTurnoHD($fecha,$horario)!=FALSE){
-          echo("Fecha/Hora No disponibles!");
+      $data_turno = self::$dbTurnos->buscarTurnoHD($fecha,$horario);
+        if($data_turno!=FALSE){
+          if($data_turno['tipo_turno']==3){//Si el horario esta ocupado, pero es un turno buscar lo sobreescribo!
+            $data_cancha = self::$dbTurnos->getMailDataTurno($data_turno['id']);
+            self::$dbTurnos->borrarTurno($data_turno['id_solicitante'],$data_turno['id']);
+            mail::sendRejectTurno($data_cancha['mail'],$data_turno['fecha'] . ' - ' . $data_turno['horario_turno'],$data_cancha['cancha']);
+            self::$dbTurnos->newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,sesion::getId());
+          }else {
+            echo("Fecha/Hora No disponibles!");
+          }
         }else {
           self::$dbTurnos->newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,sesion::getId());
         }
@@ -93,7 +101,8 @@ private static function initialize(){
     */
     $cancha_turno = $_POST['cancha_turno'];
     $fecha_turno = $_POST['fecha_turno'];
-    $result = self::$dbTurnos->horariosDisponibles($cancha_turno,$fecha_turno);
+    $tipo_turno = $_POST['tipo_turno'];
+    $result = self::$dbTurnos->horariosDisponibles($cancha_turno,$fecha_turno,$tipo_turno);
     $horarios = null;
     $array_horario = [];
       if(!empty($result)){

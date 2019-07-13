@@ -27,7 +27,7 @@ function subirImg() {
   function actualizarImg(){
     var img = document.getElementById("miPerfilImagen").children[0],
     xhr = new XMLHttpRequest(),response;
-	
+
     xhr.open('POST', 'http://localhost/perfil/getImg');
     xhr.onload = function() {
     console.log('Solicito Img... ');

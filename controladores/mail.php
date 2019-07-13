@@ -54,7 +54,7 @@ public static function leerConfig(){
 					  <style>
 							@import url("https://fonts.googleapis.com/css?family=Indie+Flower&display=swap");
 							@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
-							
+
 							figure{
 								display: flex;
 								justify-content: center;
@@ -103,7 +103,7 @@ public static function leerConfig(){
 					  <style>
 							@import url("https://fonts.googleapis.com/css?family=Indie+Flower&display=swap");
 							@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
-							
+
 							figure{
 								display: flex;
 								justify-content: center;
@@ -128,23 +128,23 @@ public static function leerConfig(){
 										<img src="logoBlack.png" width="200" height="200">
 									</figure>
 									<h3>Confirmacion de desafio</h3>
-									<span>Felicidades! El equipo <strong>'.$equipo.'</strong> te ha aceptado el desafio.<br>
+									<span>Felicidades! El equipo <strong>'.$equipo.'</strong> ha aceptado el desafio.<br>
 									<strong>Datos turno:</strong><br>
 									<strong>Cancha y Direccion:</strong> '. $cancha .'<br>
 									<strong>Dia y hora:</strong> '. $fecha .'<br></span><br>
-									<span>No pierdas tiempo, ¡Avísale a tus compañeros de equipo!</span><br>
+									<span> No pierdas tiempo, ¡Avísale a tus compañeros de equipo!</span><br>
 									<span>Te esperamos!</span>
 								</td>
 							</tr>
 						</table>
-						  
+
 					  </body>
 
 					</html>';
 	  $to = '<' . $to . '>';
 	  self::sendMail($to,$subject,$message);
 	}
-	
+
 	public static function sendRejectDesafio($to,$fecha,$cancha,$equipo){
 		$subject = "Rechazo de desafio. Hay Fulbito!";
 		$message = ' <!DOCTYPE html>
@@ -155,7 +155,7 @@ public static function leerConfig(){
 					  <style>
 							@import url("https://fonts.googleapis.com/css?family=Indie+Flower&display=swap");
 							@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
-							
+
 							figure{
 								display: flex;
 								justify-content: center;
@@ -180,7 +180,7 @@ public static function leerConfig(){
 									<img src="logoBlack.png" width="200" height="200">
 								  </figure>
 								  <h3>Rechazo de desafio</h3>
-								   <span>El equipo <strong>'.$equipo.'</strong> te ha rechazado el desafio.<br>
+								   <span>El equipo <strong>'.$equipo.'</strong> ha rechazado el desafio.<br>
 									<strong>Datos turno:</strong><br>
 									<strong>Cancha y Direccion:</strong> '. $cancha .'<br>
 									<strong>Dia y hora:</strong> '. $fecha .'<br></span>
@@ -195,7 +195,7 @@ public static function leerConfig(){
 		$to = '<' . $to . '>';
 		self::sendMail($to,$subject,$message);
 	}
-	
+
 	public static function sendRequestDesafio($to,$fecha,$cancha, $equipo){
 		$subject = "Te han desafiado. Hay Fulbito!";
 		$message = ' <!DOCTYPE html>
@@ -206,7 +206,7 @@ public static function leerConfig(){
 					  <style>
 							@import url("https://fonts.googleapis.com/css?family=Indie+Flower&display=swap");
 							@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
-							
+
 							section{
 								width: 100%;
 								display: flex;
@@ -250,4 +250,56 @@ public static function leerConfig(){
 		$to = '<' . $to . '>';
 		self::sendMail($to,$subject,$message);
 	}
+
+  public static function sendRejectTurno($to,$fecha,$cancha){
+    $subject = "Turno Cancelado. Hay Fulbito!";
+    $message = ' <!DOCTYPE html>
+          <html lang="es" dir="ltr">
+            <head>
+            <meta charset="utf-8">
+            </head>
+            <style>
+              @import url("https://fonts.googleapis.com/css?family=Indie+Flower&display=swap");
+              @import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
+
+              figure{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                max-height: 200px;
+                max-width: 200px;
+              }
+              figure img{
+                height: auto;
+                width: auto;
+                max-width: 200px;
+                max-height: 200px;
+              }
+              h1{font-size: 5vh;color: black;line-height: 7vh;text-shadow: 0 2px 2px rgba(0, 0, 0, 0.32);font-family: "Indie Flower", cursive;}
+            </style>
+            <body>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td style="text-align: center;">
+                  <h1>Hay Fulbito!</h1>
+                  <figure>
+                  <img src="logoBlack.png" width="200" height="200">
+                  </figure>
+                  <h3>Turno Cancelado</h3>
+                   <span>Su turno del Tipo: <strong> BUSCAR RIVAL </strong> ha sido CANCELADO.<br>
+                  <strong>Datos turno:</strong><br>
+                  <strong>Cancha y Direccion:</strong> '. $cancha .'<br>
+                  <strong>Dia y hora:</strong> '. $fecha .'<br></span>
+                  <span>No te desanimes...</span><br>
+                  <span>Te esperamos pronto</span><br>
+                </td>
+              </tr>
+            </table>
+            </body>
+
+          </html>';
+    $to = '<' . $to . '>';
+    self::sendMail($to,$subject,$message);
+  }
+
 }

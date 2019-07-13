@@ -158,29 +158,31 @@ class turnosdb{
         }
         return $result;
     }
-	
-    public function getMailDataTurno($id_turno){
-      $sql = "SELECT t.horario_turno,t.id_cancha, t.fecha, u.mail FROM turno t
-				INNER JOIN usuario u on t.id_solicitante = u.id
-	            	WHERE t.id = '$id_turno'";
-      $result = $this->db->conn->query($sql);
-        if(!$result===FALSE){
-          $result = $result->fetch();
-		  $cancha = $this->data_cancha($result['id_cancha']);
-		  $result = $result + array('cancha' => $cancha[0]['nombre'].' - '.$cancha[0]['direccion']); 
+
+
+        public function getMailDataTurno($id_turno){
+          $sql = "SELECT t.horario_turno,t.id_cancha, t.fecha, u.mail FROM turno t
+    				INNER JOIN usuario u on t.id_solicitante = u.id
+    	            	WHERE t.id = '$id_turno'";
+          $result = $this->db->conn->query($sql);
+            if(!$result===FALSE){
+              $result = $result->fetch();
+    		  $cancha = $this->data_cancha($result['id_cancha']);
+    		  $result = $result + array('cancha' => $cancha[0]['nombre'].' - '.$cancha[0]['direccion']);
+            }
+          return $result;
         }
-      return $result;
-    }
-	
-    public function getTurnoFromIdDesafio($id_desafio){
-      $sql = "SELECT id_turno,id_equipo FROM desafio WHERE id='$id_desafio'";
-      $result = $this->db->conn->query($sql);
-        if(!$result===FALSE){
-          $result = $result->fetch();
+
+        public function getTurnoFromIdDesafio($id_desafio){
+          $sql = "SELECT id_turno,id_equipo FROM desafio WHERE id='$id_desafio'";
+          $result = $this->db->conn->query($sql);
+            if(!$result===FALSE){
+              $result = $result->fetch();
+            }
+          return $result;
         }
-      return $result;
-    }
-	
+
+
     public function getTurno($id_turno,$id){//In idTurno,idusr return si el turno es d el usr
       $sql = "SELECT * FROM turno WHERE id='$id_turno' AND id_solicitante='$id'";
       $result = $this->db->conn->query($sql);
@@ -204,18 +206,18 @@ class turnosdb{
                    $datos_cancha = $this->data_cancha($value['id_cancha']);
                    $jugadores = $this->dbEquipo->getJugadoresEquipo($datos_equipo['id']);
                    $promedio_edad = $this->calc_promedio_edad($jugadores,$datos_solicitante);
-                   $arrayResultado[] = [
-                             "id_turno" => $value['id'],
-                             "nombre_equipo" => $datos_equipo['nombre'],
-                             "logo_equipo" => $datos_equipo['logo'],
-                             "promedio_edad" => $promedio_edad,
-                             "fecha_turno" => $value['fecha'],
-                             "horario_turno" => date('H:i',strtotime($value['horario_turno'])),
-                             "nombre_cancha" => $datos_cancha[0]['nombre'],
-                             "direccion_cancha" => $datos_cancha[0]['direccion'],
-                             "capitan" => $datos_solicitante,
-                             "jugadores" => $jugadores,
-                   ];
+                 $arrayResultado[] = [
+                           "id_turno" => $value['id'],
+                           "nombre_equipo" => $datos_equipo['nombre'],
+                           "logo_equipo" => $datos_equipo['logo'],
+                           "promedio_edad" => $promedio_edad,
+                           "fecha_turno" => $value['fecha'],
+                           "horario_turno" => date('H:i',strtotime($value['horario_turno'])),
+                           "nombre_cancha" => $datos_cancha[0]['nombre'],
+                           "direccion_cancha" => $datos_cancha[0]['direccion'],
+                           "capitan" => $datos_solicitante,
+                           "jugadores" => $jugadores,
+                 ];
              }
            }
        return $arrayResultado;
@@ -241,10 +243,16 @@ class turnosdb{
        return $result;
     }
 
-public function horariosDisponibles($cancha_turno,$fecha_turno){
-  $sql = "SELECT t.horario_turno, c.horario_apertura, c.horario_cierre, c.duracion_turno FROM turno t
-	          INNER JOIN cancha c on t.id_cancha = c.id
-	            	WHERE fecha = '$fecha_turno' AND id_cancha = '$cancha_turno'";
+public function horariosDisponibles($cancha_turno,$fecha_turno,$tipo_turno){
+  if($tipo_turno == 3){
+    $sql = "SELECT t.horario_turno, c.horario_apertura, c.horario_cierre, c.duracion_turno FROM turno t
+              INNER JOIN cancha c on t.id_cancha = c.id
+                  WHERE fecha = '$fecha_turno' AND id_cancha = '$cancha_turno'";
+  }else {
+    $sql = "SELECT t.horario_turno, c.horario_apertura, c.horario_cierre, c.duracion_turno FROM turno t
+  	          INNER JOIN cancha c on t.id_cancha = c.id
+  	            	WHERE fecha = '$fecha_turno' AND id_cancha = '$cancha_turno' AND tipo_turno != 3";
+  }
   $result = $this->db->conn->query($sql);
   if(!$result===FALSE){
       $result = $result->fetchAll();
@@ -271,7 +279,7 @@ public function select_canchas(){
 }
 
 public function buscarTurnoHD($fecha,$horario){//Buscar por Hora y Dia
-  $sql = "SELECT id FROM turno WHERE fecha='$fecha' AND horario_turno=$horario";
+  $sql = "SELECT id,tipo_turno,id_solicitante,fecha,horario_turno FROM turno WHERE fecha='$fecha' AND horario_turno='$horario'";
   $result = $this->db->conn->query($sql);
   if(!$result===FALSE){
     $result = $result->fetch();

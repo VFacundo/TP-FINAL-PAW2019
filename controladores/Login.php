@@ -28,7 +28,7 @@ class Login extends \UNLu\PAW\Libs\Controlador{
       if(empty($db->buscarUser($mail))){
         $db->newUser($tokenPayload,$mail,$nombre,'',0,'');
         $db->googleToken($mail,$tokenPayload);
-		$db->setMailVerificado($mail);
+        $db->setMailVerificado($mail);
       }
         sesion::startSession();
         sesion::inicializarSesion($db->buscarUser($mail));
@@ -45,7 +45,7 @@ class Login extends \UNLu\PAW\Libs\Controlador{
     $nombre = $_POST['fullName'];
     $db = new users();
 	$db->newUser($id_token,$mail,$nombre,'',0,'');
-	$db->setMailVerificado($mail);
+  $db->setMailVerificado($mail); 
 	sesion::startSession();
 	sesion::inicializarSesion($db->buscarUser($mail));
 	echo '200';
