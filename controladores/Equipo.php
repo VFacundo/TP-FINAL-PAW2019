@@ -59,13 +59,18 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
   public function aceptarDesafio(){
     sesion::startSession();
     if(sesion::is_login()){
-      self::initialize();
-      $id_desafio = $_POST['id_turno'];
-      if(self::$dbTurnos->aceptarDesafio(sesion::getId(),$id_desafio)){
-        echo "200";
-      }else {
-        echo "400";
-      }
+        self::initialize();
+        if(self::$dbTurnos->aceptarDesafio(sesion::getId(),$id_desafio)){
+			$id_desafio = $_POST['id_turno'];
+			$desafio = self::$dbTurnos->getTurnoFromIdDesafio($id_desafio);
+			$datos = self::$dbTurnos->getMailDataTurno($desafio['id_equipo']);
+			$rival = self::$db->getEquipo(sesion::getId());
+			$mailRival = self::$db->dataCapitan($desafio['id_equipo']);
+			mail::sendConfirmDesafio($mailRival[0]['mail'],$datos['fecha'].' - '.$datos['horario_turno'],$datos['cancha'], $rival['nombre']);
+			echo "200";
+        }else {
+			echo "400";
+        }
     }
     exit();
   }
@@ -73,10 +78,16 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
   public function rechazarDesafio(){
     sesion::startSession();
     if(sesion::is_login()){
-      self::initialize();
-      $id_desafio = $_POST['id_turno'];
+		self::initialize();
+		$id_desafio = $_POST['id_turno'];
         if(self::$dbTurnos->borrarDesafio(sesion::getId(),$id_desafio)){
-          echo "200";
+			$id_desafio = $_POST['id_turno'];
+			$desafio = self::$dbTurnos->getTurnoFromIdDesafio($id_desafio);
+			$datos = self::$dbTurnos->getMailDataTurno($desafio['id_equipo']);
+			$rival = self::$db->getEquipo(sesion::getId());
+			$mailRival = self::$db->dataCapitan($desafio['id_equipo']);
+			mail::sendRejectDesafio($mailRival[0]['mail'],$datos['fecha'].' - '.$datos['horario_turno'],$datos['cancha'], $rival['nombre']);
+			echo "200";
         }else {
           echo "400";
         }

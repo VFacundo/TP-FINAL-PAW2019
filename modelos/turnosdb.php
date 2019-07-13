@@ -158,7 +158,29 @@ class turnosdb{
         }
         return $result;
     }
-
+	
+    public function getMailDataTurno($id_turno){
+      $sql = "SELECT t.horario_turno,t.id_cancha, t.fecha, u.mail FROM turno t
+				INNER JOIN usuario u on t.id_solicitante = u.id
+	            	WHERE t.id = '$id_turno'";
+      $result = $this->db->conn->query($sql);
+        if(!$result===FALSE){
+          $result = $result->fetch();
+		  $cancha = $this->data_cancha($result['id_cancha']);
+		  $result = $result + array('cancha' => $cancha[0]['nombre'].' - '.$cancha[0]['direccion']); 
+        }
+      return $result;
+    }
+	
+    public function getTurnoFromIdDesafio($id_desafio){
+      $sql = "SELECT id_turno,id_equipo FROM desafio WHERE id='$id_desafio'";
+      $result = $this->db->conn->query($sql);
+        if(!$result===FALSE){
+          $result = $result->fetch();
+        }
+      return $result;
+    }
+	
     public function getTurno($id_turno,$id){//In idTurno,idusr return si el turno es d el usr
       $sql = "SELECT * FROM turno WHERE id='$id_turno' AND id_solicitante='$id'";
       $result = $this->db->conn->query($sql);
@@ -182,18 +204,18 @@ class turnosdb{
                    $datos_cancha = $this->data_cancha($value['id_cancha']);
                    $jugadores = $this->dbEquipo->getJugadoresEquipo($datos_equipo['id']);
                    $promedio_edad = $this->calc_promedio_edad($jugadores,$datos_solicitante);
-                 $arrayResultado[] = [
-                           "id_turno" => $value['id'],
-                           "nombre_equipo" => $datos_equipo['nombre'],
-                           "logo_equipo" => $datos_equipo['logo'],
-                           "promedio_edad" => $promedio_edad,
-                           "fecha_turno" => $value['fecha'],
-                           "horario_turno" => date('H:i',strtotime($value['horario_turno'])),
-                           "nombre_cancha" => $datos_cancha[0]['nombre'],
-                           "direccion_cancha" => $datos_cancha[0]['direccion'],
-                           "capitan" => $datos_solicitante,
-                           "jugadores" => $jugadores,
-                 ];
+                   $arrayResultado[] = [
+                             "id_turno" => $value['id'],
+                             "nombre_equipo" => $datos_equipo['nombre'],
+                             "logo_equipo" => $datos_equipo['logo'],
+                             "promedio_edad" => $promedio_edad,
+                             "fecha_turno" => $value['fecha'],
+                             "horario_turno" => date('H:i',strtotime($value['horario_turno'])),
+                             "nombre_cancha" => $datos_cancha[0]['nombre'],
+                             "direccion_cancha" => $datos_cancha[0]['direccion'],
+                             "capitan" => $datos_solicitante,
+                             "jugadores" => $jugadores,
+                   ];
              }
            }
        return $arrayResultado;

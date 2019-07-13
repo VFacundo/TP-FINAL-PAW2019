@@ -37,16 +37,19 @@ public function desafiar(){
         if(!self::$dbTurnos->getTurno($id_turno,sesion::getId())){
             if(!self::$dbTurnos->buscarDesafio($id_turno,sesion::getId())){
               //registrar desafio!
+			  $datos = self::$dbTurnos->getMailDataTurno($id_turno);
               if(self::$dbTurnos->registrarDesafio($id_turno,sesion::getId())){
-                echo "Desafio Registrado!";
+				$rival = self::$dbEquipos->getEquipo(sesion::getId());
+				mail::sendRequestDesafio($datos['mail'],$datos['fecha'].' - '.$datos['horario_turno'],$datos['cancha'], $rival['nombre']);
+                echo "El desafio se registro correctamente. Se te notificará por mail cuando el capitan del equipo responda la solicitud de desafio!";
               }else{
-                echo "Debes Registrar Un EQUIPO!";
+                echo "El desafio no se registro. Antes de desafiar otros equipos debes crear un equipo";
               }
             }else{
-               echo "Ya Desafiaste Ese Turno!";
+               echo "Ya desafiaste ese turno. Porfavor, ten paciencia te avisaremos por mail cuando el capitan responda tu solicitud";
             }
         }else {
-          echo "No Puedes Desafiar TU Propio Turno!";
+          echo "No puedes desafiar tu propio turno";
         }
     }
     exit();

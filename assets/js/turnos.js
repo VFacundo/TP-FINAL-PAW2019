@@ -111,10 +111,10 @@ turnos.toggle = function(){
 turnos.crearTurno = function(){
   var formData = new FormData(),
       form = document.turno,
-      tipo_turno = form.tipo_turno.value,
-      fecha_turno = form.fecha_turno.value,
-      horario_turno = form.horario_turno.value,
-      cancha_turno = form.cancha_turno.value,
+	  tipo_turno = form.tipo_turno.selectedOptions[0],
+	  fecha_turno = form.fecha_turno.value,
+	  horario_turno = form.horario_turno.selectedOptions[0].value,
+	  cancha_turno = form.cancha_turno.selectedOptions[0].innerHTML,
       eq_rival = form.eq_rival,
       xhr = new XMLHttpRequest(),
       data = [tipo_turno,fecha_turno,horario_turno,cancha_turno];
@@ -148,7 +148,7 @@ turnos.showTab = function(n) {
 	if (n == 0) {
 		document.getElementById("prevBtn").style.display = "none";
 	} else {
-		turnos.horariosDisponibles();
+		//turnos.horariosDisponibles();
 		document.getElementById("prevBtn").style.display = "inline";
 	}
 	if (n == (x.length - 1)) {
@@ -157,7 +157,7 @@ turnos.showTab = function(n) {
 			form = document.turno,
 			tipo_turno = form.tipo_turno.selectedOptions[0],
 			fecha_turno = form.fecha_turno.value,
-			horario_turno = form.horario_turno.value,
+			horario_turno = form.horario_turno.selectedOptions[0].value,
 			cancha_turno = form.cancha_turno.selectedOptions[0].innerHTML;
 
 		document.getElementById("nextBtn").style.display = "none";

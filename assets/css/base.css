@@ -819,8 +819,9 @@ button.boton.aceptar {
 }
 
 .lista6Row ul li img {
-    max-width: 40px;
-    max-height: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
 
 /*</NEW!>*/

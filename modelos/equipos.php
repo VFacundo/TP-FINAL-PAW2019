@@ -73,7 +73,7 @@ public function borrarJugadorEquipo($id_jugador,$id){//In IDJUg, idUSR CAPITAN
 }
 
 public function datosJugador($id_jugador){//In idJugador return Data jugador/user
-  $sql = "SELECT u.user,j.nombre,j.edad,j.id FROM jugador j
+  $sql = "SELECT u.user,u.mail,j.nombre,j.edad,j.id FROM jugador j
 	INNER JOIN usuario u ON (j.id_usuario = u.id)
     	WHERE j.id = '$id_jugador'";
   $result = $this->db->conn->query($sql);
@@ -190,7 +190,7 @@ public function newEquipo($nombre_equipo,$img_equipo,$nombre_j,$edad_j,$usr_j,$i
   $nombre_equipo = $this->sanitizeString($nombre_equipo);
   if(!empty($img_equipo)){
     $img = new imagen();
-    $img_equipo = $img->subirImagen($archivoImagen,false);
+    $img_equipo = $img->subirImagen($img_equipo,false);
   }else {
     $img_equipo = 'avatar' . rand(1,3) . ".svg";//aca van los avatares default
   }
