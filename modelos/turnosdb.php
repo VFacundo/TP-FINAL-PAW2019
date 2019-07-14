@@ -270,7 +270,7 @@ public function data_cancha($id_cancha){
 }
 
 public function select_canchas(){
-  $sql = "SELECT id,nombre,direccion FROM cancha";
+  $sql = "SELECT * FROM cancha";
   $result = $this->db->conn->query($sql);
   if(!$result===FALSE){
     $result = $result->fetchAll();

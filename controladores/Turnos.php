@@ -84,7 +84,7 @@ private static function initialize(){
     $canchas = self::$dbTurnos->select_canchas();
     $mensaje = null;
     foreach ($canchas as $value) {
-      $mensaje.= '<option value="' . $value['id'] . '">' . $value['nombre'] . '<label>' . $value['direccion'] . '</label>' . '</option>';
+      $mensaje.= '<option data-dir="' . $value['direccion'] . '" data-hora-cierre="' . $value['horario_cierre'] . '" data-hora-apertura="' . $value['horario_apertura'] . '" data-tel="' . $value['telefono'] . '" data-duracion="' . $value['duracion_turno'] . '" value="' . $value['id'] . '">' . $value['nombre'] . '<label></label>' . '</option>';
     }
       echo $mensaje;
       exit();
