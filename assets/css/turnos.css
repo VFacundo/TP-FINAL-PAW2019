@@ -118,7 +118,17 @@ li button {
 		flex-direction: column;
 		justify-content: space-between;
 		min-height: 18vh;
+		padding: 2vh 0vw;
 	}
+	.infoCancha{
+		display: flex;
+		flex-direction: column;
+		text-transform: none;
+	}
+
+.infoCancha label {
+    margin: 1vh 0vw;
+}
 	#nuevoTurno form > div > button{
 		-webkit-appearance: inherit;
 		line-height: 0;
@@ -129,6 +139,13 @@ li button {
 		bottom: 0;
 		right: 2vw;
 	}
+	form label select[name="cancha_turno"]{
+		
+width: 100%;
+	}
+
+form label select[name="cancha_turno"] option {
+}
 	.rechazar{
 		padding:0;
 		width: 100%;
@@ -300,6 +317,7 @@ li button {
 			display: flex;
 			justify-content: space-between;
 			flex-wrap: wrap;
+			align-items: center;
 		}
 	}
 	/*Height*/

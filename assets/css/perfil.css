@@ -85,15 +85,17 @@
 
 #editarPerfil{
 	display: none;
-	animation-name: zoom;
-	animation-duration: 0.6s;
-	position: fixed;
-	z-index: 1;
-	min-width: 80vw;
-	background-color: #f7faf2f7;
 }
 
-#editarPerfil form{display: flex;flex-direction: column;justify-content: center;align-items: center;text-transform: uppercase;margin: 1vh 2vw;/* background: #f7faf2; */}
+#editarPerfil form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-transform: uppercase;
+	margin: 1vh 2vw;
+	/* background: #f7faf2; */
+}
 
 @keyframes zoom {
   from {transform:scale(0.9)}

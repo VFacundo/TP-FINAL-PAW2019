@@ -61,25 +61,26 @@ turnos.cancelarTurno = function(confirmacion,id){
 
 turnos.horariosDisponibles = function(){
   var xhr = new XMLHttpRequest(),
-  cancha_turno = document.turno.cancha_turno.value,
-  fecha_turno = document.turno.fecha_turno.value,
-  horario_turno = document.turno.horario_turno,
-  tipo_turno = document.turno.tipo_turno.value,
-  formData = new FormData(),response;
-
-  formData.append("cancha_turno",cancha_turno);
-  formData.append("fecha_turno",fecha_turno);
-  formData.append("tipo_turno",tipo_turno);
-
-  xhr.open('POST', 'http://localhost/turnos/horariosdisponibles');
-  xhr.onload = function() {
-
-  console.log(horario_turno);
-  response = xhr.responseText;
-    if(response){
-      horario_turno.innerHTML = xhr.responseText;
-      console.log(xhr.responseText);
-    }
+	cancha_turno = document.turno.cancha_turno.value,
+	fecha_turno = document.turno.fecha_turno.value,
+	horario_turno = document.turno.horario_turno,
+	tipo_turno = document.turno.tipo_turno.value,
+	formData = new FormData(),response;
+	
+	
+	formData.append("cancha_turno",cancha_turno);
+	formData.append("fecha_turno",fecha_turno);
+	formData.append("tipo_turno",tipo_turno);
+	
+	xhr.open('POST', 'http://localhost/turnos/horariosdisponibles');
+	xhr.onload = function() {
+	
+	console.log(horario_turno);
+	response = xhr.responseText;
+	if(response){
+		horario_turno.innerHTML = xhr.responseText;
+		console.log(xhr.responseText);
+	}
 
   }
     xhr.send(formData);
@@ -88,15 +89,26 @@ turnos.horariosDisponibles = function(){
 
 turnos.getCanchas = function(){
   var xhr = new XMLHttpRequest(),
-  form = document.turno.cancha_turno;
-
-  xhr.open('POST', 'http://localhost/turnos/getcanchas');
-  xhr.onload = function() {
-  form.innerHTML = xhr.responseText;
-  console.log(form);
-  console.log(xhr.responseText);
-  }
+	form = document.turno.cancha_turno,
+	labels = document.querySelectorAll(".infoCancha label"),
+	direccion = labels[0],
+	apertura = labels[1],
+	cierre = labels[2],
+	telefono = labels[3],
+	duracion = labels[4];
+	
+	console.log(labels);
+    xhr.open('POST', 'http://localhost/turnos/getcanchas');
+    xhr.onload = function() {
+		form.innerHTML = xhr.responseText;
+		direccion.innerHTML = "DIRECCION: " + document.turno.cancha_turno.selectedOptions[0].getAttribute("data-dir");
+		apertura.innerHTML = "HORARIO APERTURA: " + document.turno.cancha_turno.selectedOptions[0].getAttribute("data-hora-apertura")+ "hs";
+		cierre.innerHTML = "HORARIO CIERRE: " + document.turno.cancha_turno.selectedOptions[0].getAttribute("data-hora-cierre")+ "hs";
+		telefono.innerHTML = "TELEFONO: " + document.turno.cancha_turno.selectedOptions[0].getAttribute("data-tel");
+		duracion.innerHTML = "DURACION DEL TURNO: " + document.turno.cancha_turno.selectedOptions[0].getAttribute("data-duracion")+" Minutos";
+    }
     xhr.send(" ");
+  	
 }
 
 turnos.toggle = function(){
@@ -145,15 +157,15 @@ turnos.crearTurno = function(){
 
 
 turnos.showTab = function(n) {
-	var x = document.getElementsByClassName("stepTab");
-	x[n].style.display = "flex";
+	var tabs= document.getElementsByClassName("stepTab");
+	tabs[n].style.display = "flex";
 	if (n == 0) {
 		document.getElementById("prevBtn").style.display = "none";
 	} else {
 		//turnos.horariosDisponibles();
 		document.getElementById("prevBtn").style.display = "inline";
 	}
-	if (n == (x.length - 1)) {
+	if (n == (tabs.length - 1)) {
 		//Termino!
 		var divResumen = document.querySelector("#resumenTurno"),
 			form = document.turno,
@@ -179,21 +191,21 @@ turnos.showTab = function(n) {
 
 turnos.updStepIndicator = function(n) {
 	// This function removes the "active" class of all steps...
-	var i, x = document.getElementsByClassName("step");
-	for (i = 0; i < x.length; i++) {
-	x[i].classList.remove("active");
+	var i,tabs= document.getElementsByClassName("step");
+	for (i = 0; i < tabs.length; i++) {
+	tabs[i].classList.remove("active");
 	}
 	//... and adds the "active" class to the current step:
-	x[n].classList.add("active");
+	tabs[n].classList.add("active");
 }
 
 
 turnos.nextPrevTab = function(n) {
-  var x = document.getElementsByClassName("stepTab");
+  var tabs = document.getElementsByClassName("stepTab");
   if (n == 1 && !turnos.validateForm()) return false;
-  x[currentTab].style.display = "none";
+  tabs[currentTab].style.display = "none";
   currentTab = currentTab + n;
-  if (currentTab >= x.length) {
+  if (currentTab >= tabs.length) {
     document.querySelector("#nuevoTurno form").submit();
     return false;
   }
@@ -201,23 +213,23 @@ turnos.nextPrevTab = function(n) {
 }
 
 turnos.validateForm = function () {
-  var x, y, z, i,
+  var tabs, inputs, selects, i,
   valid = true,
   tipoTurno = divForm.getElementsByTagName('form')[0].tipo_turno;
-  x = document.getElementsByClassName("stepTab");
-  y = x[currentTab].getElementsByTagName("input");
-  z = x[currentTab].getElementsByTagName("select");
-  for (i = 0; i < y.length; i++) {
-    if (y[i].value == "") {
+  tabs = document.getElementsByClassName("stepTab");
+  inputs = tabs[currentTab].getElementsByTagName("input");
+  selects = tabs[currentTab].getElementsByTagName("select");
+  for (i = 0; i < inputs.length; i++) {
+    if (inputs[i].value == "") {
 		if((currentTab == 0) && (tipoTurno.value == 1)){
-			y[i].className += " invalid";
+			inputs[i].className += " invalid";
 			valid = false;
 		}
     }
   }
-  for (i = 0; i < z.length; i++) {
-    if (z[i].value == "") {
-      z[i].className += " invalid";
+  for (i = 0; i < selects.length; i++) {
+    if (selects[i].value == "") {
+      selects[i].className += " invalid";
       valid = false;
     }
   }

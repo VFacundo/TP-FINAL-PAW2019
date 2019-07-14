@@ -24,7 +24,7 @@
 				<a class="boton" id="btnEditar" onclick="editarPerfil();">Editar</a>
 			</div>
 
-			<div id="editarPerfil">
+			<div class="ventana" id="editarPerfil">
 				<form action="perfil/editarPerfil" method="post">
 					<label>Nombre<input type="text" name="nombre" value="<?=$datos['nombre']?>" required></label>
 					<label>UserName<input type="text" name="username" value="<?=$datos['user']?>" required></label>
@@ -35,6 +35,7 @@
 					  <input class="boton" type="reset" name="borrar" value="Restaurar"></button>
 					</div>
 				</form>
+				<a class="boton cerrar" onclick="editarPerfil();"></a>
 			</div>
 
 			<div id="miPerfilEstadisticas">

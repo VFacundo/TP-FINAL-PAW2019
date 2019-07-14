@@ -7,7 +7,6 @@ function editarPerfil() {
     }else {
       divForm.style.display='block';
     }
-  console.log('editando..');
 }
 
 function subirImg() {
