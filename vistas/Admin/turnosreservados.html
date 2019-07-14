@@ -1,24 +1,37 @@
 <?php include('assets/template/baseHeadAdmin.html'); ?>
+<head>
+	<title>Panel administrador - Turnos Reservados</title>
+      	<link rel="stylesheet" href="/assets/css/turnos.css">
+          	<link rel="stylesheet" href="/assets/css/admin.css">
+    	<script src="assets/js/admin.js"></script>
+      <script>turnos.init();</script>
+
+</head>
 <section class="sideSection">
   <h1>Turnos reservados</h1>
 	<div>
-		<div class="lista3Col" id="turnosreservados">
+		<div class="lista6Col" id="turnosreservados">
 			<?php
 				echo '<ul>
+            <li></li>
 						<li>Tipo</li>
 						<li>Fecha</li>
 						<li>Lugar</li>
+            <li>Origen</li>
+            <li>Solicitante</li>
 					</ul>
 					<ul>';
-				if(isset($historial)){
-					foreach($historial as $valor){
-						echo 	'<li  class="lista3Row">';
+				if(isset($turnos_reservados)){
+					foreach($turnos_reservados as $valor){
+						echo 	'<li  class="lista6Row">';
 						echo		'<ul>';
+              			echo			'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id_turno'] .')" disabled>Cancelar</button> </li>';
 						echo			'<li>' . $valor['tipo_turno'] . '</li>';
 						echo			'<li>' . $valor['fecha_turno'] . " | " . $valor['horario_turno']."hs" . '</li>';
 						echo			'<li>' . $valor['direccion_cancha'] . " | " . $valor['nombre_cancha'] . '</li>';
-						echo			'<li><input type="hidden" value="' . $valor['id_turno'] . '"><></li>';
-						echo			'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id_turno'] .')" disabled>Cancelar</button> </li>';
+            echo			'<li>' . $valor['origen_turno'] . '</li>';
+            echo			'<li>' . $valor['mail_solicitante'] . '</li>';
+            echo			'<li><input type="hidden" value="' . $valor['id_turno'] . '"></li>';
 						echo 		'</ul>
 								</li>';
 					}
@@ -27,4 +40,70 @@
 			?>
 		</div>
 	</div>
+  <div id="registrar">
+    <a onclick="turnos.toggle();" class="boton" id="btnEditar">Registrar Turno</a>
+  </div>
+</section>
+
+<div class="ventana" id="nuevoTurno" style="display:none">
+  <h5>Reservar turno</h5>
+  <form name="turno" action="" onSubmit="turnos.crearTurno(); return false">
+    <div class="stepTab">
+      <label>Origen Turno:
+        <input type="text" name="origen_turno"required></input>
+      </label>
+      <div class="hint">
+        <span>Ayuda: Canchas disponibles para solicitar turnos</span>
+      </div>
+    </div>
+    <div class="stepTab">
+      <label>Cancha:
+        <select name="cancha_turno" onchange="turnos.horariosDisponibles();" required></select>
+      </label>
+      <div class="hint">
+        <span>Ayuda: Canchas disponibles para solicitar turnos</span>
+      </div>
+    </div>
+    <div class="stepTab">
+      <label>Fecha:
+        <input type="date" name="fecha_turno" max="<?php echo date("Y") . '-12' . '-31' ;?>" min="<?php echo date("Y-m-d");?>" onchange="turnos.horariosDisponibles();" required/>
+      </label>
+      <div class="hint">
+        <span>Ayuda: Seleccione la fecha para reservar el turno</span>
+      </div>
+    </div>
+    <div class="stepTab">
+      <label>Horario:
+        <select name="horario_turno" required></select>
+      </label>
+      <div class="hint">
+        <span>Ayuda: Se muestran las horas disponibles para reservar un turno. Si no ve ninguna disponible significa que no hay turnos disponibles.</span>
+      </div>
+    </div>
+    <div class="stepTab">
+      <label>Resumen de turno:</label>
+      <div id="resumenTurno">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span> </span>
+      </div>
+      <div>
+        <input class="boton" type="submit" name="confirmar" value="Confirmar Turno"></input>
+      </div>
+    </div>
+    <div id="contenedorAtrasAdelante">
+      <button class="boton" type="button" id="prevBtn" onclick="turnos.nextPrevTab(-1)">Atras</button>
+      <button class="boton" type="button" id="nextBtn" onclick="turnos.nextPrevTab(1)">Siguiente</button>
+    </div>
+  </form>
+  <div class="stepContenedor">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+  <a class="boton cerrar" onclick="turnos.toggle();"></a>
+</div>
 <?php include('assets/template/baseTailAdmin.html'); ?>

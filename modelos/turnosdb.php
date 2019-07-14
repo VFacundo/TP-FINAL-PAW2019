@@ -287,7 +287,7 @@ public function buscarTurnoHD($fecha,$horario){//Buscar por Hora y Dia
   return $result;
 }
 
-public function newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,$id){
+public function newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,$id,$origen){
   $sql = "INSERT INTO turno(id,fecha,horario_turno,id_solicitante,id_equipo_rival,id_cancha,tipo_turno,origen_turno) VALUES (?,?,?,?,?,?,?,?)";
 
   switch ($tipoTurno) {
@@ -310,7 +310,7 @@ public function newTurno($tipoTurno,$fecha,$horario,$cancha,$equipo_rival,$id){
       $id_equipo_rival = NULL;
       break;
   }
-  $resultado = $this->db->conn->prepare($sql)->execute([NULL,$fecha,$horario,$id_solicitante,$id_equipo_rival,$cancha,$tipoTurno,'web']);
+  $resultado = $this->db->conn->prepare($sql)->execute([NULL,$fecha,$horario,$id_solicitante,$id_equipo_rival,$cancha,$tipoTurno,$origen]);
   //$info = $this->db->conn->errorCode();
   $id_turno = $this->db->conn->lastInsertId();
 

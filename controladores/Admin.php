@@ -20,6 +20,7 @@ class Admin extends \UNLu\PAW\Libs\Controlador{
 		sesion::startSession();
 		if(sesion::isAdmin()){
 			if(sesion::is_login()){
+				$this->pasarVariableAVista("turnos_reservados",self::$db->turnos_reservados());
 				sesion::refreshTime();
 			}else{
 				$this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
@@ -38,7 +39,7 @@ class Admin extends \UNLu\PAW\Libs\Controlador{
 				$this->pasarVariableaVista('canchas',self::$db->buscarCanchas());
 			}else{
 				$this->redireccionarA($_SERVER['REQUEST_URI'],'/login');
-			}	
+			}
 		}else{
 			$this->redireccionarA($_SERVER['REQUEST_URI'],'/login/logout');
 		}

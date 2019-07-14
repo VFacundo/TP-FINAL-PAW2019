@@ -62,7 +62,7 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
          self::initialize();
       $id_desafio = $_POST['id_turno'];
       $desafio = self::$dbTurnos->getTurnoFromIdDesafio($id_desafio);
-      $datos = self::$dbTurnos->getMailDataTurno($desafio['id_equipo']);
+      $datos = self::$dbTurnos->getMailDataTurno($desafio['id_turno']);
       if(self::$dbTurnos->aceptarDesafio(sesion::getId(),$id_desafio)){
      			$rival = self::$db->getEquipo(sesion::getId());
      			$mailRival = self::$db->dataCapitan($desafio['id_equipo']);
