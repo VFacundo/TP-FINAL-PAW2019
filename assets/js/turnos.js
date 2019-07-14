@@ -239,7 +239,7 @@ turnos.validateForm = function () {
   return valid;
 }
 	/* COMO JUGADOR */
-	
+
 	function asisto(confirmar,turno){
 		if(confirmar !== null){
 			if(confirmar){
@@ -247,18 +247,26 @@ turnos.validateForm = function () {
 					formData = new FormData(),
 					items = document.querySelectorAll(".dosEquipos");
 				formData.append('turno',turno);
-				xhr.open('POST', 'http://localhost/equipo/asisto');
+        formData.append('asisto',true);
+				xhr.open('POST', 'http://localhost/equipo/confirmarasist');
 				xhr.onload = function() {
 					console.log('Asistir: ', xhr.responseText);
 					if(xhr.responseText.includes(200)){
 						msgNotificar("Has confirmado tu asistencia al partido","Asistir al partido");
+						document.querySelector('#currentasisto').classList.add('confirmed');
+						document.querySelector('#currentasisto').id = '';
+						try{
+							document.querySelector('#currentconfirmed').classList.remove('confirmed');
+							document.querySelector('#currentconfirmed').id = '';
+						}catch{}
 					}else {
 						msgNotificar("Ocurrio un error, porfavor intentelo de nuevo.","Asistir al partido");
+						document.querySelector('#currentasisto').classList.add('confirmed');
+						document.querySelector('#currentasisto').id = '';
 					}
 				}
 				xhr.send(formData);
 				document.querySelector("#msgConfirmar").remove();
-				borrarItemLi(turno,".dosEquipos");
 			}else{
 				document.querySelector("#msgConfirmar").remove();
 			}
@@ -268,6 +276,10 @@ turnos.validateForm = function () {
 					old_data = {name:  li.children[2].innerText,
 								id: turno
 								};
+				event.target.id = "currentasisto";
+				try{
+					event.target.parentElement.querySelector('.confirmed').id = "currentconfirmed";
+				}catch{}
 				msgConfirmar("¿Desea confirmar la asistencia para el partido contra "+old_data.name+"?","Confirmar asistencia",old_data,"asisto(true,"+old_data.id+")","asisto(false,-1)");
 			}
 		}
@@ -279,18 +291,26 @@ turnos.validateForm = function () {
 					formData = new FormData(),
 					items = document.querySelectorAll(".dosEquipos");
 				formData.append('turno',turno);
-				xhr.open('POST', 'http://localhost/equipo/asisto');
+				formData.append('asisto',false);
+				xhr.open('POST', 'http://localhost/equipo/confirmarasist');
 				xhr.onload = function() {
 					console.log('Asistir: ', xhr.responseText);
 					if(xhr.responseText.includes(200)){
 						msgNotificar("Has confirmado tu asistencia al partido","Asistir al partido");
+						document.querySelector('#currentnoasisto').classList.add('confirmed');
+						document.querySelector('#currentnoasisto').id = '';
+						try{
+							document.querySelector('#currentconfirmed').classList.remove('confirmed');
+							document.querySelector('#currentconfirmed').id = '';
+						}catch{}
 					}else {
 						msgNotificar("Ocurrio un error, porfavor intentelo de nuevo.","Asistir al partido");
+						document.querySelector('#currentnoasisto').classList.add('confirmed');
+						document.querySelector('#currentnoasisto').id = '';
 					}
 				}
 				xhr.send(formData);
 				document.querySelector("#msgConfirmar").remove();
-				borrarItemLi(turno,".dosEquipos");
 			}else{
 				document.querySelector("#msgConfirmar").remove();
 			}
@@ -300,8 +320,12 @@ turnos.validateForm = function () {
 					old_data = {name:  li.children[2].innerText,
 								id: turno
 								};
+				event.target.id = "currentnoasisto";
+				try{
+					event.target.parentElement.querySelector('.confirmed').id = "currentconfirmed";
+				}catch{}
 				msgConfirmar("¿Desea confirmar la inasistencia para el partido contra "+old_data.name+"?","Confirmar inasistencia",old_data,"noasisto(true,"+old_data.id+")","noasisto(false,-1)");
-		
+
 			}
 		}
 	}

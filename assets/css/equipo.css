@@ -176,13 +176,15 @@ input[type="file"]#inputSb {
     flex-wrap: wrap;
     padding: 0vh 1vw;
 }
+
 #contenedorEquipo form span{width: max-content;text-align: center;margin: 2vh auto;}
 
 #miequipoDatos > span {
     line-height: 2.5vh;
 }
 
-#miequipoDatos {}
+#miequipoDatos {
+}
 #contenedorEquipo form > label{width: min-content;display: flex;flex-direction: row;flex-wrap: nowrap;justify-content: start;align-items: baseline;}
 #contenedorEquipo form > label > input{
     line-height: 2em;
@@ -207,6 +209,7 @@ input[type="file"]#inputSb {
 @media (max-width: 600px) {
 	#contenedorEquipo form > label {
 		font-size: inherit;
+		width: 100% !important;
 	}
 	ul li img {
 		width: 20px;
