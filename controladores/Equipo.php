@@ -185,4 +185,19 @@ class Equipo extends \UNLu\PAW\Libs\Controlador{
       exit();
   }
 
+  public function confirmarasist(){
+    sesion::startSession();
+    self::initialize();
+      if(sesion::is_login()){
+        $id_turno = $_POST['turno'];
+        $asisto = $_POST['asisto'];
+        if(self::$dbTurnos->asistencia(sesion::getId(),$id_turno,$asisto)){
+          echo 200;
+        }else {
+          echo 400;
+        }
+      }
+      exit();
+  }
+
 }

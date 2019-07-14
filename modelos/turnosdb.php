@@ -162,7 +162,7 @@ class turnosdb{
 
         public function getMailDataTurno($id_turno){
           $sql = "SELECT t.horario_turno,t.id_cancha, t.fecha, u.mail FROM turno t
-    				INNER JOIN usuario u on t.id_solicitante = u.id
+    				       INNER JOIN usuario u on t.id_solicitante = u.id
     	            	WHERE t.id = '$id_turno'";
           $result = $this->db->conn->query($sql);
             if(!$result===FALSE){
@@ -427,6 +427,18 @@ public function buscarMisTurnos($id){//Id user
       if(!$result===FALSE){
         $result = $result->fetch();
       }
+    return $result;
+  }
+
+  public function asistencia($id,$id_turno,$asisto){
+      if($asisto === true){
+        $asisto = 1;
+      }else {
+        $asisto = 0;
+      }
+      $id = $this->dbEquipo->getIdJugador($id);
+      $sql = "UPDATE asistir_turno SET estado='$asisto' WHERE id_jugador='$id' AND id_turno='$id_turno'";
+      $result = $this->db->conn->prepare($sql)->execute();
     return $result;
   }
 

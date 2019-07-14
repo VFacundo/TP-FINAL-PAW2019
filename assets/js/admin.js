@@ -1,29 +1,28 @@
 var document = document || {},
     console = console || {},
     window = window || {},
-    turnos = turnos || {},
+    admin = admin || {},
     btnEditar,
     divForm,
     currentTab = 0;
 
-turnos.init = function(){
+admin.init = function(){
   window.addEventListener("DOMContentLoaded", function() {
-    btnEditar = document.getElementById('btnEditar');
+  //  btnEditar = document.getElementById('btnEditar');
     divForm = document.getElementById('nuevoTurno');
   });
 }
 
-turnos.cancelarTurno = function(confirmacion,id){
+admin.cancelarTurno = function(confirmacion,id){
 	if(confirmacion != null){
 		if(confirmacion){
 			var formData = new FormData(),
 			id_turno = id,
-			li = event.target.parentElement.parentElement;
+			li = event.target.parentElement.parentElement,
 
-			console.log(event.target);
 			xhr = new XMLHttpRequest();
 			formData.append("id_turno",id_turno);
-			xhr.open('POST', 'http://localhost/turnos/borrarturno');
+			xhr.open('POST', 'http://localhost/admin/borrarturno');
 			xhr.onload = function() {
 				response = xhr.responseText;
 				console.log(id_turno,response);
@@ -49,7 +48,7 @@ turnos.cancelarTurno = function(confirmacion,id){
 	}
 }
 
-turnos.horariosDisponibles = function(){
+admin.horariosDisponibles = function(){
   var xhr = new XMLHttpRequest(),
   cancha_turno = document.turno.cancha_turno.value,
   fecha_turno = document.turno.fecha_turno.value,
@@ -76,7 +75,7 @@ turnos.horariosDisponibles = function(){
 
 }
 
-turnos.getCanchas = function(){
+admin.getCanchas = function(){
   var xhr = new XMLHttpRequest(),
   form = document.turno.cancha_turno;
 
@@ -89,19 +88,19 @@ turnos.getCanchas = function(){
     xhr.send(" ");
 }
 
-turnos.toggle = function(){
+admin.toggle = function(){
   var style = divForm.style.display;
   console.log("echo");
 	if(style == 'flex'){
 		divForm.style.display = 'none';
 	}else{
 		divForm.style.display='flex';
-		turnos.getCanchas();
-		turnos.showTab(currentTab);
+		admin.getCanchas();
+		admin.showTab(currentTab);
 	}
 }
 
-turnos.crearTurno = function(){
+admin.crearTurno = function(){
   var formData = new FormData(),
       form = document.turno,
       tipo_turno = 0,
@@ -133,7 +132,7 @@ turnos.crearTurno = function(){
 
 
 
-turnos.showTab = function(n) {
+admin.showTab = function(n) {
 	var x = document.getElementsByClassName("stepTab");
 	x[n].style.display = "flex";
 	if (n == 0) {
@@ -163,10 +162,10 @@ turnos.showTab = function(n) {
 		document.getElementById("nextBtn").style.display = "inline";
 		document.getElementById("nextBtn").innerHTML = "Siguiente";
 	}
-	turnos.updStepIndicator(n)
+	admin.updStepIndicator(n)
 }
 
-turnos.updStepIndicator = function(n) {
+admin.updStepIndicator = function(n) {
 	// This function removes the "active" class of all steps...
 	var i, x = document.getElementsByClassName("step");
 	for (i = 0; i < x.length; i++) {
@@ -177,19 +176,19 @@ turnos.updStepIndicator = function(n) {
 }
 
 
-turnos.nextPrevTab = function(n) {
+admin.nextPrevTab = function(n) {
   var x = document.getElementsByClassName("stepTab");
-  if (n == 1 && !turnos.validateForm()) return false;
+  if (n == 1 && !admin.validateForm()) return false;
   x[currentTab].style.display = "none";
   currentTab = currentTab + n;
   if (currentTab >= x.length) {
     document.querySelector("#nuevoTurno form").submit();
     return false;
   }
-  turnos.showTab(currentTab);
+  admin.showTab(currentTab);
 }
 
-turnos.validateForm = function () {
+admin.validateForm = function () {
   var x, y, z, i,
   valid = true,
   tipoTurno = divForm.getElementsByTagName('form')[0].tipo_turno;

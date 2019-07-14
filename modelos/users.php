@@ -16,7 +16,6 @@ class users{
       $resultado = $this->db->conn->prepare($sql)->execute();
     }
 
-
     public function getMailPendiente(){
       $sql = "SELECT mail,id FROM usuario WHERE tipo=0";
       $result = $this->db->conn->query($sql);
@@ -82,7 +81,7 @@ class users{
     }
 
     public function newUser($pass, $mail,$nombre,$username,$edad,$tel){
-      if(empty($this->buscarUser($mail))){//0 pendiente, 1 usuario comun, 2 admin 
+      if(empty($this->buscarUser($mail))){//0 pendiente, 1 usuario comun, 2 admin
         if(empty($username)){
           $sql = "SELECT count(id) from usuario";
             $result = $this->db->conn->query($sql);

@@ -1,10 +1,10 @@
 <?php include('assets/template/baseHeadAdmin.html'); ?>
 <head>
 	<title>Panel administrador - Turnos Reservados</title>
-      	<link rel="stylesheet" href="/assets/css/turnos.css">
-          	<link rel="stylesheet" href="/assets/css/admin.css">
+      <link rel="stylesheet" href="/assets/css/turnos.css">
+      <link rel="stylesheet" href="/assets/css/admin.css">
     	<script src="assets/js/admin.js"></script>
-      <script>turnos.init();</script>
+      <script>admin.init();</script>
 
 </head>
 <section class="sideSection">
@@ -25,13 +25,13 @@
 					foreach($turnos_reservados as $valor){
 						echo 	'<li  class="lista6Row">';
 						echo		'<ul>';
-              			echo			'<li> <button class="boton rechazar" onclick="cancelarTurno('. $valor['id_turno'] .')" disabled>Cancelar</button> </li>';
+              			echo			'<li> <button class="boton rechazar" onclick="admin.cancelarTurno(null,-1)">Cancelar</button> </li>';
 						echo			'<li>' . $valor['tipo_turno'] . '</li>';
 						echo			'<li>' . $valor['fecha_turno'] . " | " . $valor['horario_turno']."hs" . '</li>';
 						echo			'<li>' . $valor['direccion_cancha'] . " | " . $valor['nombre_cancha'] . '</li>';
             echo			'<li>' . $valor['origen_turno'] . '</li>';
             echo			'<li>' . $valor['mail_solicitante'] . '</li>';
-            echo			'<li><input type="hidden" value="' . $valor['id_turno'] . '"></li>';
+            echo			'<input type="hidden" value="' . $valor['id_turno'] . '">';
 						echo 		'</ul>
 								</li>';
 					}
@@ -41,13 +41,13 @@
 		</div>
 	</div>
   <div id="registrar">
-    <a onclick="turnos.toggle();" class="boton" id="btnEditar">Registrar Turno</a>
+    <a onclick="admin.toggle();" class="boton" id="btnEditar">Registrar Turno</a>
   </div>
 </section>
 
 <div class="ventana" id="nuevoTurno" style="display:none">
   <h5>Reservar turno</h5>
-  <form name="turno" action="" onSubmit="turnos.crearTurno(); return false">
+  <form name="turno" action="" onSubmit="admin.crearTurno(); return false">
     <div class="stepTab">
       <label>Origen Turno:
         <input type="text" name="origen_turno"required></input>
@@ -58,7 +58,7 @@
     </div>
     <div class="stepTab">
       <label>Cancha:
-        <select name="cancha_turno" onchange="turnos.horariosDisponibles();" required></select>
+        <select name="cancha_turno" onchange="admin.horariosDisponibles();" required></select>
       </label>
       <div class="hint">
         <span>Ayuda: Canchas disponibles para solicitar turnos</span>
@@ -66,7 +66,7 @@
     </div>
     <div class="stepTab">
       <label>Fecha:
-        <input type="date" name="fecha_turno" max="<?php echo date("Y") . '-12' . '-31' ;?>" min="<?php echo date("Y-m-d");?>" onchange="turnos.horariosDisponibles();" required/>
+        <input type="date" name="fecha_turno" max="<?php echo date("Y") . '-12' . '-31' ;?>" min="<?php echo date("Y-m-d");?>" onchange="admin.horariosDisponibles();" required/>
       </label>
       <div class="hint">
         <span>Ayuda: Seleccione la fecha para reservar el turno</span>
@@ -93,8 +93,8 @@
       </div>
     </div>
     <div id="contenedorAtrasAdelante">
-      <button class="boton" type="button" id="prevBtn" onclick="turnos.nextPrevTab(-1)">Atras</button>
-      <button class="boton" type="button" id="nextBtn" onclick="turnos.nextPrevTab(1)">Siguiente</button>
+      <button class="boton" type="button" id="prevBtn" onclick="admin.nextPrevTab(-1)">Atras</button>
+      <button class="boton" type="button" id="nextBtn" onclick="admin.nextPrevTab(1)">Siguiente</button>
     </div>
   </form>
   <div class="stepContenedor">
@@ -104,6 +104,6 @@
     <span class="step"></span>
     <span class="step"></span>
   </div>
-  <a class="boton cerrar" onclick="turnos.toggle();"></a>
+  <a class="boton cerrar" onclick="admin.toggle();"></a>
 </div>
 <?php include('assets/template/baseTailAdmin.html'); ?>

@@ -11,6 +11,25 @@ class admindb{
       $this->db = new dbconnect();
     }
 
+    public function addCancha($array_cancha){
+      $sql = "INSERT INTO cancha VALUES(id,nombre,direccion,telefono,horario_cierre,horario_apertura,duracion_turno)
+                  VALUES (:nombre_cancha,:direccion_cancha,:telefono_cancha,:horario_apertura,:horario_cierre,:duracion_turno)";
+      $result = $this->db->conn->prepare($sql)->execute($array_cancha);
+      return $result;
+    }
+
+    public function borrarCancha($id_cancha){
+      $sql = "DELETE FROM cancha WHERE id='$id_cancha'";
+      $result = $this->db->conn->prepare($sql)->execute();
+    return $result;
+    }
+
+    public function borrarTurno($id_turno){
+      $sql = "DELETE FROM turno WHERE id='$id_turno'";
+      $result = $this->db->conn->prepare($sql)->execute();
+    return $result;
+    }
+
 	public function buscarCanchas(){
 		$formato = '%H:%i';
 		$sql= "SELECT id, nombre, direccion, telefono, time_format(horario_cierre, '$formato') as horario_cierre, time_format(horario_apertura, '$formato') as horario_apertura, duracion_turno FROM `cancha`";
