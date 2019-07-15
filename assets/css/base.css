@@ -64,6 +64,9 @@ a {
 input{
     text-indent: .5em;
 }
+input[type="time"]{
+    text-indent: 0em;
+}
 input:disabled{
     border: none;
     background: none;

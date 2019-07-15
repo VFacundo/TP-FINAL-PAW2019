@@ -77,16 +77,32 @@ admin.horariosDisponibles = function(){
 
 admin.getCanchas = function(){
   var xhr = new XMLHttpRequest(),
-  form = document.turno.cancha_turno;
+	form = document.turno.cancha_turno;
 
-  xhr.open('POST', 'http://localhost/turnos/getcanchas');
-  xhr.onload = function() {
-  form.innerHTML = xhr.responseText;
-  console.log(form);
-  console.log(xhr.responseText);
-  }
+    xhr.open('POST', 'http://localhost/turnos/getcanchas');
+    xhr.onload = function() {
+		form.innerHTML = xhr.responseText;
+		admin.updateCancha();
+    }
     xhr.send(" ");
+
 }
+
+admin.updateCancha = function(){
+  var 	labels = document.querySelectorAll(".infoCancha label"),
+      	direccion = labels[0],
+      	apertura = labels[1],
+      	cierre = labels[2],
+      	telefono = labels[3],
+      	duracion = labels[4];
+  direccion.innerHTML = "DIRECCION: " + document.turno.cancha_turno.selectedOptions[0].getAttribute("data-dir");
+  apertura.innerHTML = "HORARIO APERTURA: " + document.turno.cancha_turno.selectedOptions[0].getAttribute("data-hora-apertura")+ "hs";
+  cierre.innerHTML = "HORARIO CIERRE: " + document.turno.cancha_turno.selectedOptions[0].getAttribute("data-hora-cierre")+ "hs";
+  telefono.innerHTML = "TELEFONO: " + document.turno.cancha_turno.selectedOptions[0].getAttribute("data-tel");
+  duracion.innerHTML = "DURACION DEL TURNO: " + document.turno.cancha_turno.selectedOptions[0].getAttribute("data-duracion")+" Minutos";
+  admin.horariosDisponibles();
+}
+
 
 admin.toggle = function(){
   var style = divForm.style.display;

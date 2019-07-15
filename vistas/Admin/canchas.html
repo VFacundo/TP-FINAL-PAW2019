@@ -13,37 +13,37 @@
 	<div>
 		<div class="lista7Col" id="gestioncanchas">
 			<?php
-				echo 	'<ul>
-							<li>Nombre</li>
-							<li>Direccion</li>
-							<li>Telefono</li>
-							<li>H. Apertura</li>
-							<li>H. Cierre</li>
-							<li>Duracion turno</li>
-							<li></li>
-						</ul>
-						<ul>';
-							if(isset($canchas)){
-								foreach($canchas as $valor){
-									echo '<li class="lista7Row">
-											<ul>';
-									echo '		<li>' . $valor['nombre'] .'</li>';
-									echo '		<li>' . $valor['direccion'] .'</li>';
-									echo '		<li>' . $valor['telefono'] . '</li>';
-									echo '		<li>' . $valor['horaA'] . '</li>';
-									echo '		<li>' . $valor['horaC'] . '</li>';
-									echo '		<li>' . $valor['duracion'] . '</li>';
-									echo '		<li> <button class="boton rechazar" onclick="admin.eliminarCancha(null,-1)">Eliminar</button> </li>';
-            			echo			'<input type="hidden" value="' . $valor['id'] . '">';
-									echo '	</ul>
-										</li>';
-								}
-							}
+	echo 	'<ul>
+				<li>Nombre</li>
+				<li>Direccion</li>
+				<li>Telefono</li>
+				<li>H. Apertura</li>
+				<li>H. Cierre</li>
+				<li>Duracion turno</li>
+				<li></li>
+			</ul>
+			<ul>';
+				if(isset($canchas)){
+					foreach($canchas as $valor){
+						echo '<li class="lista7Row">
+								<ul>';
+						echo '		<li>' . $valor['nombre'] .'</li>';
+						echo '		<li>' . $valor['direccion'] .'</li>';
+						echo '		<li>' . $valor['telefono'] . '</li>';
+						echo '		<li>' . $valor['horaA'] . '</li>';
+						echo '		<li>' . $valor['horaC'] . '</li>';
+						echo '		<li>' . $valor['duracion'] . '</li>';
+						echo '		<li> <button class="boton rechazar" onclick="admin.eliminarCancha(null,-1)">Eliminar</button> </li>';
+       		echo			'<input type="hidden" value="' . $valor['id'] . '">';
+						echo '	</ul>
+							</li>';
+					}
+				}
 			?>
+			<div class="add">
+				<a onclick="admin.cerrarCrear();" class="boton" id="btnEditar">Agregar Cancha</a>
+			</div>
 		</div>
-	</div>
-	<div id="registrar">
-		<a onclick="admin.cerrarCrear();" class="boton" id="btnEditar">Agregar Cancha</a>
 	</div>
 </section>
 

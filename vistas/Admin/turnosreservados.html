@@ -15,12 +15,12 @@
 		<div class="lista6Col" id="turnosreservados">
 			<?php
 				echo '<ul>
-            <li></li>
-						<li>Tipo</li>
-						<li>Fecha</li>
-						<li>Lugar</li>
-            <li>Origen</li>
-            <li>Solicitante</li>
+						<li></li>
+									<li>Tipo</li>
+									<li>Fecha</li>
+									<li>Lugar</li>
+						<li>Origen</li>
+						<li>Solicitante</li>
 					</ul>
 					<ul>';
 				if(isset($turnos_reservados)){
@@ -40,9 +40,9 @@
 				}
 				echo '</ul>';
 			?>
-		</div>
-		<div id="registrar">
-			<a onclick="admin.toggle();" class="boton" id="btnEditar">Registrar Turno</a>
+			<div class="add">
+				<a onclick="admin.toggle();" class="boton" id="btnEditar">Registrar Turno</a>
+			</div>
 		</div>
 	</div>
   
@@ -56,16 +56,23 @@
         <input type="text" name="origen_turno"required></input>
       </label>
       <div class="hint">
-        <span>Ayuda: Canchas disponibles para solicitar turnos</span>
+        <span>Ayuda: Origen por el cual proviene el turno</span>
       </div>
     </div>
     <div class="stepTab">
-      <label>Cancha:
-        <select name="cancha_turno" onchange="admin.horariosDisponibles();" required></select>
-      </label>
-      <div class="hint">
-        <span>Ayuda: Canchas disponibles para solicitar turnos</span>
-      </div>
+		<label>Cancha:
+			<select name="cancha_turno" onchange="admin.updateCancha();" required></select>
+		</label>
+		<div class="infoCancha">
+			<label></label>
+			<label></label>
+			<label></label>
+			<label></label>
+			<label></label>
+		</div>
+		<div class="hint">
+			<span>Ayuda: Canchas disponibles para solicitar turnos</span>
+		</div>
     </div>
     <div class="stepTab">
       <label>Fecha:
