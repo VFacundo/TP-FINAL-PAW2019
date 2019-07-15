@@ -7,7 +7,7 @@ var document = document || {},
     currentTab = 0;
 
 turnos.init = function(){
-  window.addEventListener("DOMContentLoaded", function() {
+  window.addEventListener("load", function() {
     btnEditar = document.getElementById('btnEditar');
     divForm = document.getElementById('nuevoTurno');
 
@@ -66,15 +66,15 @@ turnos.horariosDisponibles = function(){
 	horario_turno = document.turno.horario_turno,
 	tipo_turno = document.turno.tipo_turno.value,
 	formData = new FormData(),response;
-	
-	
+
+
 	formData.append("cancha_turno",cancha_turno);
 	formData.append("fecha_turno",fecha_turno);
 	formData.append("tipo_turno",tipo_turno);
-	
+
 	xhr.open('POST', 'http://localhost/turnos/horariosdisponibles');
 	xhr.onload = function() {
-	
+
 	console.log(horario_turno);
 	response = xhr.responseText;
 	if(response){
@@ -96,7 +96,7 @@ turnos.getCanchas = function(){
 	cierre = labels[2],
 	telefono = labels[3],
 	duracion = labels[4];
-	
+
 	console.log(labels);
     xhr.open('POST', 'http://localhost/turnos/getcanchas');
     xhr.onload = function() {
@@ -108,7 +108,7 @@ turnos.getCanchas = function(){
 		duracion.innerHTML = "DURACION DEL TURNO: " + document.turno.cancha_turno.selectedOptions[0].getAttribute("data-duracion")+" Minutos";
     }
     xhr.send(" ");
-  	
+
 }
 
 turnos.toggle = function(){
@@ -238,94 +238,94 @@ turnos.validateForm = function () {
   }
   return valid;
 }
-	/* COMO JUGADOR */
+/* COMO JUGADOR */
 
-	function asisto(confirmar,turno){
-		if(confirmar !== null){
-			if(confirmar){
-				var xhr = new XMLHttpRequest(),
-					formData = new FormData(),
-					items = document.querySelectorAll(".dosEquipos");
-				formData.append('turno',turno);
-        formData.append('asisto',true);
-				xhr.open('POST', 'http://localhost/equipo/confirmarasist');
-				xhr.onload = function() {
-					console.log('Asistir: ', xhr.responseText);
-					if(xhr.responseText.includes(200)){
-						msgNotificar("Has confirmado tu asistencia al partido","Asistir al partido");
-						document.querySelector('#currentasisto').classList.add('confirmed');
-						document.querySelector('#currentasisto').id = '';
-						try{
-							document.querySelector('#currentconfirmed').classList.remove('confirmed');
-							document.querySelector('#currentconfirmed').id = '';
-						}catch{}
-					}else {
-						msgNotificar("Ocurrio un error, porfavor intentelo de nuevo.","Asistir al partido");
-						document.querySelector('#currentasisto').classList.add('confirmed');
-						document.querySelector('#currentasisto').id = '';
-					}
-				}
-				xhr.send(formData);
-				document.querySelector("#msgConfirmar").remove();
-			}else{
-				document.querySelector("#msgConfirmar").remove();
-			}
-		}else{
-			if(!event.target.classList.contains('confirmed')){
-				var li = event.target.parentElement.parentElement,
-					old_data = {name:  li.children[2].innerText,
-								id: turno
-								};
-				event.target.id = "currentasisto";
-				try{
-					event.target.parentElement.querySelector('.confirmed').id = "currentconfirmed";
-				}catch{}
-				msgConfirmar("¿Desea confirmar la asistencia para el partido contra "+old_data.name+"?","Confirmar asistencia",old_data,"asisto(true,"+old_data.id+")","asisto(false,-1)");
-			}
-		}
-	}
-	function noasisto(confirmar,turno){
-		if(confirmar !== null){
-			if(confirmar){
-				var xhr = new XMLHttpRequest(),
-					formData = new FormData(),
-					items = document.querySelectorAll(".dosEquipos");
-				formData.append('turno',turno);
-				formData.append('asisto',false);
-				xhr.open('POST', 'http://localhost/equipo/confirmarasist');
-				xhr.onload = function() {
-					console.log('Asistir: ', xhr.responseText);
-					if(xhr.responseText.includes(200)){
-						msgNotificar("Has confirmado tu asistencia al partido","Asistir al partido");
-						document.querySelector('#currentnoasisto').classList.add('confirmed');
-						document.querySelector('#currentnoasisto').id = '';
-						try{
-							document.querySelector('#currentconfirmed').classList.remove('confirmed');
-							document.querySelector('#currentconfirmed').id = '';
-						}catch{}
-					}else {
-						msgNotificar("Ocurrio un error, porfavor intentelo de nuevo.","Asistir al partido");
-						document.querySelector('#currentnoasisto').classList.add('confirmed');
-						document.querySelector('#currentnoasisto').id = '';
-					}
-				}
-				xhr.send(formData);
-				document.querySelector("#msgConfirmar").remove();
-			}else{
-				document.querySelector("#msgConfirmar").remove();
-			}
-		}else{
-			if(!event.target.classList.contains('confirmed')){
-				var li = event.target.parentElement.parentElement,
-					old_data = {name:  li.children[2].innerText,
-								id: turno
-								};
-				event.target.id = "currentnoasisto";
-				try{
-					event.target.parentElement.querySelector('.confirmed').id = "currentconfirmed";
-				}catch{}
-				msgConfirmar("¿Desea confirmar la inasistencia para el partido contra "+old_data.name+"?","Confirmar inasistencia",old_data,"noasisto(true,"+old_data.id+")","noasisto(false,-1)");
+function asisto(confirmar,turno){
+  if(confirmar !== null){
+    if(confirmar){
+      var xhr = new XMLHttpRequest(),
+        formData = new FormData(),
+        items = document.querySelectorAll(".dosEquipos");
+      formData.append('turno',turno);
+      formData.append('asisto',true);
+      xhr.open('POST', 'http://localhost/equipo/confirmarasist');
+      xhr.onload = function() {
+        console.log('Asistir: ', xhr.responseText);
+        if(xhr.responseText.includes(200)){
+          msgNotificar("Has confirmado tu asistencia al partido","Asistir al partido");
+          document.querySelector('#currentasisto').classList.add('confirmed');
+          document.querySelector('#currentasisto').id = '';
+          try{
+            document.querySelector('#currentconfirmed').classList.remove('confirmed');
+            document.querySelector('#currentconfirmed').id = '';
+          }catch{}
+        }else {
+          msgNotificar("Ocurrio un error, porfavor intentelo de nuevo.","Asistir al partido");
+          document.querySelector('#currentasisto').classList.add('confirmed');
+          document.querySelector('#currentasisto').id = '';
+        }
+      }
+      xhr.send(formData);
+      document.querySelector("#msgConfirmar").remove();
+    }else{
+      document.querySelector("#msgConfirmar").remove();
+    }
+  }else{
+    if(!event.target.classList.contains('confirmed')){
+      var li = event.target.parentElement.parentElement,
+        old_data = {name:  li.children[2].innerText,
+              id: turno
+              };
+      event.target.id = "currentasisto";
+      try{
+        event.target.parentElement.querySelector('.confirmed').id = "currentconfirmed";
+      }catch{}
+      msgConfirmar("¿Desea confirmar la asistencia para el partido contra "+old_data.name+"?","Confirmar asistencia",old_data,"asisto(true,"+old_data.id+")","asisto(false,-1)");
+    }
+  }
+}
+function noasisto(confirmar,turno){
+  if(confirmar !== null){
+    if(confirmar){
+      var xhr = new XMLHttpRequest(),
+        formData = new FormData(),
+        items = document.querySelectorAll(".dosEquipos");
+      formData.append('turno',turno);
+      formData.append('asisto',false);
+      xhr.open('POST', 'http://localhost/equipo/confirmarasist');
+      xhr.onload = function() {
+        console.log('Asistir: ', xhr.responseText);
+        if(xhr.responseText.includes(200)){
+          msgNotificar("Has confirmado tu asistencia al partido","Asistir al partido");
+          document.querySelector('#currentnoasisto').classList.add('confirmed');
+          document.querySelector('#currentnoasisto').id = '';
+          try{
+            document.querySelector('#currentconfirmed').classList.remove('confirmed');
+            document.querySelector('#currentconfirmed').id = '';
+          }catch{}
+        }else {
+          msgNotificar("Ocurrio un error, porfavor intentelo de nuevo.","Asistir al partido");
+          document.querySelector('#currentnoasisto').classList.add('confirmed');
+          document.querySelector('#currentnoasisto').id = '';
+        }
+      }
+      xhr.send(formData);
+      document.querySelector("#msgConfirmar").remove();
+    }else{
+      document.querySelector("#msgConfirmar").remove();
+    }
+  }else{
+    if(!event.target.classList.contains('confirmed')){
+      var li = event.target.parentElement.parentElement,
+        old_data = {name:  li.children[2].innerText,
+              id: turno
+              };
+      event.target.id = "currentnoasisto";
+      try{
+        event.target.parentElement.querySelector('.confirmed').id = "currentconfirmed";
+      }catch{}
+      msgConfirmar("¿Desea confirmar la inasistencia para el partido contra "+old_data.name+"?","Confirmar inasistencia",old_data,"noasisto(true,"+old_data.id+")","noasisto(false,-1)");
 
-			}
-		}
-	}
+    }
+  }
+}

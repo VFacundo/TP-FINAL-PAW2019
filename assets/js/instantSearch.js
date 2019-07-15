@@ -5,7 +5,7 @@ var document = document || {},
 
   instantSearch.init = function(field,tableName){
       var input;
-        window.addEventListener("DOMContentLoaded", function() {
+        window.addEventListener("load", function() {
           input = document.getElementsByName(field),
           dataList = document.createElement("datalist");
           dataList.id = tableName;

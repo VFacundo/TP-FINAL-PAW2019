@@ -9,16 +9,19 @@
 		<link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
 		<link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
 		<link type="text/css" rel="stylesheet" href="assets/css/iconset.css" />
+    <script src="/assets/js/cargarScripts.js"></script>
+    <script>cargarAdmin();</script>
 		<script src="/assets/js/calcViewPort.js"></script>
 		<script type="text/javascript" src="/assets/js/editarPerfil.js"></script>
 		<script src="/assets/js/base.js"></script>
-		<script> Base.initAdmin(); </script>
-	</head>	
-	<script>
-		function logoutPhp(){
-		  window.location.href='/admin/logout';
-		}
-	</script>
+		<script> Base.initAdmin();</script>
+    <script>
+      function logoutPhp(){
+        window.location.href='/admin/logout';
+      }
+    </script>
+	</head>
+
 	<body>
 		<span id="menuBtn">></span>
 		<nav>

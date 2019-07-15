@@ -7,7 +7,7 @@ var document = document || {},
     currentTab = 0;
 
 admin.init = function(){
-  window.addEventListener("DOMContentLoaded", function() {
+  window.addEventListener("load", function() {
   //  btnEditar = document.getElementById('btnEditar');
     divForm = document.getElementById('nuevoTurno');
   });
@@ -29,7 +29,7 @@ admin.cancelarTurno = function(confirmacion,id){
 				if(response.includes(200)){
 					document.querySelector("#msgConfirmar").remove();
 					msgNotificar("Turno cancelado correctamente","Cancelar turno");
-					borrarItemLi(id,".lista3Row, .lista7Row");
+					borrarItemLi(id,"#turnosreservados .lista6Row");
 					//li.parentElement.removeChild(li);
 				}else {
 					document.querySelector("#msgConfirmar").remove();
@@ -44,7 +44,7 @@ admin.cancelarTurno = function(confirmacion,id){
 		var li = event.target.parentElement,
 			ul = li.parentElement,
 			id = ul.lastChild.value;
-		msgConfirmar("¿Realmente desea cancelar el turno? Solo podrá ser cancelado con mas de 1 hora de anticipacion","Cancelar turno",'','turnos.cancelarTurno(true,'+id+')','turnos.cancelarTurno(false,'+id+')');
+		msgConfirmar("¿Realmente desea cancelar el turno? Solo podrá ser cancelado con mas de 1 hora de anticipacion","Cancelar turno",'','admin.cancelarTurno(true,'+id+')','admin.cancelarTurno(false,'+id+')');
 	}
 }
 

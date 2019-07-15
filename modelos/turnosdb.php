@@ -431,7 +431,7 @@ public function buscarMisTurnos($id){//Id user
   }
 
   public function asistencia($id,$id_turno,$asisto){
-      if($asisto === true){
+      if($asisto === "true"){
         $asisto = 1;
       }else {
         $asisto = 0;

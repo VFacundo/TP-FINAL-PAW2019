@@ -7,7 +7,7 @@ var document = document || {},
 toggleSection.iniciarBtn = function(){
   var btnEquipo,
   divContenedor;
-  window.addEventListener("DOMContentLoaded", function() {
+  window.addEventListener("load", function() {
       btnEquipo = document.getElementsByClassName("btnEquipo");
       divContenedor = document.getElementsByClassName("divContenedor");
       toggleSection.addListener(btnEquipo,divContenedor);
@@ -17,7 +17,7 @@ toggleSection.iniciarBtn = function(){
 toggleSection.iniciarBtnSec = function(){
   var btnEquipo,
   divContenedor;
-  window.addEventListener("DOMContentLoaded", function() {
+  window.addEventListener("load", function() {
     btnEquipo = document.querySelectorAll('.botonesTurnos > div');
     divContenedor = document.querySelectorAll('.contenedorTablaTurnos > div');
     toggleSection.addListener(btnEquipo,divContenedor);
