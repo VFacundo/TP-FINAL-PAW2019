@@ -121,6 +121,18 @@ private static function initialize(){
         $horario_cierre = date_create_from_format($formato,$fecha_turno . $horario_cierre);
         $duracion_turno = date_interval_create_from_date_string($duracion_turno .' minutes');
 
+        $fecha_actual = new \DateTime("now");
+          if($fecha_actual->format('Y-m-d') == date('Y-m-d',strtotime($fecha_turno))){
+            if($fecha_actual>$horario_apertura){
+              $horario_apertura = $fecha_actual;
+              $horario_apertura->setTime($horario_apertura->format('H'),'00');
+              $fecha_actual = new \DateTime("now");
+                while($horario_apertura < $fecha_actual){
+                  $horario_apertura->add($duracion_turno);
+                }
+            }
+          }
+
         while($horario_apertura < $horario_cierre) {
             if(!in_array($horario_apertura->format('H:i:s'),$array_horario)){
               $horarios .= '<option value="' . $horario_apertura->format('H:i') . '">' . $horario_apertura->format('H:i') . '</option>' . PHP_EOL;
