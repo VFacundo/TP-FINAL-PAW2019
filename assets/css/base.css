@@ -1153,11 +1153,11 @@ button.boton.aceptar {
     }
 
     #gestioncanchas.lista7Col > ul li:nth-child(6), #gestioncanchas.lista7Row > ul li:nth-child(6) {
-        width: 13%;
+        width: 9%;
     }
 
     #gestioncanchas.lista7Col > ul li:nth-child(7), #gestioncanchas.lista7Row > ul li:nth-child(7) {
-        width: 6%;
+        width: 11%;
     }
 }
 
@@ -1172,13 +1172,40 @@ button.boton.aceptar {
 #turnosreservados.lista6Col > ul li:nth-child(4), #turnosreservados.lista6Row > ul li:nth-child(4){
     width: 19%;
 }
-#turnosreservados.lista6Col > ul li:nth-child(6), #turnosreservados.lista6Row > ul li:nth-child(6){
+#turnosreservados.lista6Col > ul li:nth-child(5){justify-content: center;}
+#turnosreservados.lista6Col > ul li:nth-child(6){
     width: 20%;
-    word-break: break-word;
+}
+
+#turnosreservados.lista6Col > ul li ul li:nth-child(6) {
+    word-break: break-all;
+}
+#registrar{display: flex;justify-content: center;margin: 2vh 0vw;}
+
+#registrar a {
+    min-width: 30vw;
 }
 /* Mobile */
 @media (max-width: 600px) {
     #turnosreservados.lista6Col > ul li:nth-child(1), #turnosreservados.lista6Row > ul li:nth-child(1){/* width: 5%; */}
+}
+
+@media (max-width: 1000px) {
+    .rechazar {
+        font-size: 0em !important;
+        line-height: 0;
+        padding: 0 !important;
+    }
+
+    .rechazar:after {
+        content: '✕';
+        font-size: 2.5vw;
+        line-height: 0;
+        display: inline-block;
+        vertical-align: middle;
+        padding: 2vh 1vw;
+    }
+
 }
 /*#######################*/
 /*#####6COL-buscarpartido*/
@@ -1309,6 +1336,10 @@ button.boton.aceptar {
 
 #miequipoDatos :nth-child(2) {
     line-height: 1.5em;
+}
+
+#miequipoDatos.lista6Col ul:not(:first-child) {
+    max-height: 40vh;
 }
 
 *::-webkit-scrollbar {
