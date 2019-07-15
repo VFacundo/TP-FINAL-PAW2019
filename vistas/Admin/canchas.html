@@ -1,11 +1,12 @@
 <?php include('assets/template/baseHeadAdmin.html'); ?>
 <head>
+	<!--
 	<title>Panel administrador - Gestion de canchas</title>
       	<link rel="stylesheet" href="/assets/css/turnos.css">
           	<link rel="stylesheet" href="/assets/css/admin.css">
     	<script src="assets/js/admin.js"></script>
       <script>admin.init();</script>
-
+-->
 </head>
 <section class="sideSection">
   <h1>Gestion de canchas</h1>
@@ -32,8 +33,8 @@
 									echo '		<li>' . $valor['horaA'] . '</li>';
 									echo '		<li>' . $valor['horaC'] . '</li>';
 									echo '		<li>' . $valor['duracion'] . '</li>';
-									echo '		<li> <button class="boton rechazar" onclick="eliminarCancha('. $valor['id'] .')" disabled>Eliminar</button> </li>';
-									echo '		<input type="hidden" value="' . $valor['id'] . '">' ;
+									echo '		<li> <button class="boton rechazar" onclick="admin.eliminarCancha(null,-1)">Eliminar</button> </li>';
+            			echo			'<input type="hidden" value="' . $valor['id'] . '">';
 									echo '	</ul>
 										</li>';
 								}
@@ -42,70 +43,26 @@
 		</div>
 	</div>
 	<div id="registrar">
-		<a onclick="admin.toggle();" class="boton" id="btnEditar">Agregar Cancha</a>
+		<a onclick="admin.cerrarCrear();" class="boton" id="btnEditar">Agregar Cancha</a>
 	</div>
 </section>
 
-<div class="ventana" id="nuevoTurno" style="display:none">
-  <h5>Reservar turno</h5>
-  <form name="turno" action="" onSubmit="admin.crearTurno(); return false">
-    <div class="stepTab">
-      <label>Nombre Cancha:
-        <input type="text" name="nombre_cancha"required></input>
-      </label>
-      <div class="hint">
-        <span>Ayuda: Canchas disponibles para solicitar turnos</span>
-      </div>
-    </div>
-    <div class="stepTab">
-      <label>Cancha:
-        <select name="cancha_turno" onchange="admin.horariosDisponibles();" required></select>
-      </label>
-      <div class="hint">
-        <span>Ayuda: Canchas disponibles para solicitar turnos</span>
-      </div>
-    </div>
-    <div class="stepTab">
-      <label>Fecha:
-        <input type="date" name="fecha_turno" max="<?php echo date("Y") . '-12' . '-31' ;?>" min="<?php echo date("Y-m-d");?>" onchange="admin.horariosDisponibles();" required/>
-      </label>
-      <div class="hint">
-        <span>Ayuda: Seleccione la fecha para reservar el turno</span>
-      </div>
-    </div>
-    <div class="stepTab">
-      <label>Horario:
-        <select name="horario_turno" required></select>
-      </label>
-      <div class="hint">
-        <span>Ayuda: Se muestran las horas disponibles para reservar un turno. Si no ve ninguna disponible significa que no hay turnos disponibles.</span>
-      </div>
-    </div>
-    <div class="stepTab">
-      <label>Resumen de turno:</label>
-      <div id="resumenTurno">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span> </span>
-      </div>
-      <div>
-        <input class="boton" type="submit" name="confirmar" value="Confirmar Turno"></input>
-      </div>
-    </div>
-    <div id="contenedorAtrasAdelante">
-      <button class="boton" type="button" id="prevBtn" onclick="admin.nextPrevTab(-1)">Atras</button>
-      <button class="boton" type="button" id="nextBtn" onclick="admin.nextPrevTab(1)">Siguiente</button>
-    </div>
-  </form>
-  <div class="stepContenedor">
-    <span class="step"></span>
-    <span class="step"></span>
-    <span class="step"></span>
-    <span class="step"></span>
-    <span class="step"></span>
-  </div>
-  <a class="boton cerrar" onclick="admin.toggle();"></a>
+<div class="ventana" id="nuevaCancha" style="display:none">
+  <h3>Nueva Cancha</h3>
+	<form name="nueva_cancha" action="" onSubmit="admin.crearCancha(); return false">
+		<label>Nombre: <input type="text" name="nombre_cancha" placeholder="Nombre Cancha" required></label>
+		<label>Direccion: <input type="text" name="direccion_cancha" placeholder="Direccion Cancha" required></label>
+		<label>Telefono: <input type="tel" name="telefono_cancha" placeholder="2346 454567" maxlength="12"></label>
+		<label>Horario Apertura: <input type="time" name="horario_apertura" step="1800" required></label>
+		<label>Horario Cierre: <input type="time" name="horario_cierre" step="1800" required></label>
+		<label>Duracion Turno: <input type="number" name="duracion_turno" min="10" max="60" step="300" required></label>
+
+		<div>
+			<input class="boton" type="submit" name="install" value="Guardar"></button>
+			<input class="boton" type="reset" name="borrar" value="Restaurar"></button>
+		</div>
+	</form>
+	<a class="boton cerrar" onclick="admin.cerrarCrear();"></a>
 </div>
 
 <?php include('assets/template/baseTailAdmin.html'); ?>

@@ -4,3 +4,26 @@
   width: 100%;
   text-align: center;
 }
+
+#nuevaCancha form{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  min-width: 20vw;
+}
+
+#nuevaCancha form label {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#nuevaCancha div{
+  display: flex;
+  justify-content: space-around;
+}
+
+#nuevaCancha div input {
+    min-width: 9vw;
+}

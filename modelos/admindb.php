@@ -12,7 +12,7 @@ class admindb{
     }
 
     public function addCancha($array_cancha){
-      $sql = "INSERT INTO cancha VALUES(id,nombre,direccion,telefono,horario_cierre,horario_apertura,duracion_turno)
+      $sql = "INSERT INTO cancha (nombre,direccion,telefono,horario_cierre,horario_apertura,duracion_turno)
                   VALUES (:nombre_cancha,:direccion_cancha,:telefono_cancha,:horario_apertura,:horario_cierre,:duracion_turno)";
       $result = $this->db->conn->prepare($sql)->execute($array_cancha);
       return $result;

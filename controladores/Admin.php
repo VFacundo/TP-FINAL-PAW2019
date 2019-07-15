@@ -62,7 +62,7 @@ class Admin extends \UNLu\PAW\Libs\Controlador{
 			exit();
 	}
 
-	public function nueva_cancha(){
+	public function nuevacancha(){
 		self::initialize();
 		sesion::startSession();
 		if(sesion::is_login() && sesion::isAdmin()){

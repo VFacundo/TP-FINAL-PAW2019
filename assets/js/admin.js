@@ -214,3 +214,83 @@ admin.validateForm = function () {
   }
   return valid;
 }
+
+admin.cerrarCrear = function(){
+  var divCancha = document.getElementById("nuevaCancha"),
+  style = divCancha.style.display;
+  if(style == 'flex'){
+    divCancha.style.display = 'none';
+  }else{
+    divCancha.style.display='flex';
+  }
+}
+
+admin.crearCancha = function(){
+  var form = document.nueva_cancha,
+      nombre = form.nombre_cancha.value,
+      direccion = form.direccion_cancha.value,
+      telefono = form.telefono_cancha.value,
+      horario_apertura = form.horario_apertura.value,
+      horario_cierre = form.horario_cierre.value,
+      duracion_turno = form.duracion_turno.value,
+      xhr = new XMLHttpRequest(),
+      formData = new FormData(),
+      data = [nombre,direccion,telefono,horario_apertura,horario_cierre,duracion_turno];
+
+      if(data.indexOf(null)==-1){
+          formData.append('nombre_cancha',nombre);
+          formData.append('direccion_cancha',direccion);
+          formData.append('telefono_cancha',telefono);
+          formData.append('horario_apertura',horario_apertura);
+          formData.append('horario_cierre',horario_cierre);
+          formData.append('duracion_turno',duracion_turno);
+
+          xhr.open('POST', 'http://localhost/admin/nuevacancha');
+          xhr.onload = function() {
+            console.log(xhr.responseText);
+          if(xhr.responseText.includes(200)){
+              window.location.reload();
+          }
+          }
+          xhr.send(formData);
+      }else {
+        msgNotificar("Los datos ingresados son incorrectos","Crear turno");
+      }
+}
+
+admin.eliminarCancha = function(confirmacion,id){
+  	if(confirmacion != null){
+  		if(confirmacion){
+  			var formData = new FormData(),
+  			id_cancha = id,
+  			li = event.target.parentElement.parentElement,
+
+  			xhr = new XMLHttpRequest();
+  			formData.append("id_cancha",id_cancha);
+  			xhr.open('POST', 'http://localhost/admin/borrarcancha');
+  			xhr.onload = function() {
+  				response = xhr.responseText;
+  				console.log(id_cancha,response);
+  				if(response.includes(200)){
+  					document.querySelector("#msgConfirmar").remove();
+  					msgNotificar("Cancha Eliminada correctamente","Eliminar Cancha");
+  					borrarItemLi(id,"#gestioncanchas .lista7Row");
+  					//li.parentElement.removeChild(li);
+  				}else {
+  					document.querySelector("#msgConfirmar").remove();
+  					msgNotificar("No se pudo Borrar la Cancha. La cancha tiene turnos asociados a Disputarse.","Eliminar Cancha");
+  				}
+  			}
+  			xhr.send(formData);
+  		}else{
+  			document.querySelector("#msgConfirmar").remove();
+  		}
+  	}else{
+  		var li = event.target.parentElement,
+  			ul = li.parentElement,
+  			id = ul.lastElementChild.value;
+        console.log(ul);
+        console.log(id);
+  		msgConfirmar("¿Realmente desea eliminar la Cancha?","Eliminar Cancha",'','admin.eliminarCancha(true,'+id+')','admin.eliminarCancha(false,'+id+')');
+  	}
+}

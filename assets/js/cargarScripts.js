@@ -1,13 +1,19 @@
 function cargarAdmin(){
   var head = document.getElementsByTagName("head")[0],
+      location = window.location.href,
       script = document.createElement("script"),
       title = document.createElement("title"),
       cssAd = document.createElement("link")
       cssTu = document.createElement("link");
 
 
-title.innerText = "Panel administrador - Turnos Reservados";
-head.appendChild(title);
+	if(location.search("turnosreservados")!=-1){
+    title.innerText = "Panel administrador - Turnos Reservados";
+    head.appendChild(title);
+  }else {
+    title.innerText = "Panel administrador - Gestion de canchas";
+    head.appendChild(title);
+  }
 
 cssAd.rel = "stylesheet";
 cssAd.type = "text/css";
